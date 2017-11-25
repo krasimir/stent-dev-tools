@@ -4,6 +4,7 @@ import './stent/machines';
 import { connect } from 'stent/lib/react';
 import page from './page';
 
+console.log('Hello');
 page.on(message => {
   console.log(message);
 });
