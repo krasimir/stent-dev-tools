@@ -1,7 +1,8 @@
-chrome.devtools.panels.elements.createSidebarPane(
+chrome.devtools.panels.create(
 	"Stent",
-	function(sidebar) {
-		sidebar.setPage("app/build/index.html");
-		// sidebar.setHeight("2500px");
+	"img/icon16.png",
+	"index.html",
+	function(panel) {
+		
 	}
 );

@@ -1,0 +1,2 @@
+export const LOCATING_STENT = 'LOCATING_STENT';
+export const STENT_LOCATED = 'STENT_LOCATED';
