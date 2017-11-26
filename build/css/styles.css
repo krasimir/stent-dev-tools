@@ -20,3 +20,73 @@ body, html {
 .right {
   float: right;
 }
+
+/* navigation */
+nav {
+  background: rgb(201, 201, 201);
+  border-bottom: solid 1px #999;
+}
+nav::after {
+  display: table;
+  content: " ";
+  clear: both;
+}
+.logo {
+  display: block;
+  float: left;
+  padding: 0.6em 0.5em 0 0.5em;
+  color: #999;
+}
+nav a {
+  display: block;
+  float: left;
+  text-decoration: none;
+  color: rgb(56, 56, 56);
+  font-weight: bold;
+  text-transform: uppercase;
+  height: 30px;
+  padding: 0.6em;
+}
+nav a:hover {
+  color: #000;
+}
+nav a:active {
+  transform: translateY(2px);
+}
+nav a.selected {
+  border-bottom: solid 2px #000;
+}
+
+/* log */
+.log {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.log li {
+  padding: 0.4em 1em;
+  background: rgb(224, 224, 224);
+  border-top: solid 1px rgb(228, 228, 228);
+}
+.log .fa {
+  margin-right: 0.4em;
+  font-size: 1.4em;
+}
+.log strong {
+  display: inline-block;
+  border: solid 1px #999;
+  border-radius: 0.4em;
+  padding: 0 0.2em 0 0.2em;
+}
+.onMachineCreated {
+  background: rgb(200, 212, 201) !important;
+}
+.onMachineConnected {
+  background: rgb(170, 189, 207) !important;
+}
+.onActionDispatched {
+  background: rgb(192, 189, 202) !important;
+}
+.onGeneratorStep {
+  background: rgb(201, 202, 189) !important;
+}

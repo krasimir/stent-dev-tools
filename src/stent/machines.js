@@ -1,17 +1,22 @@
 import { Machine } from 'stent';
-import { LOCATING_STENT, STENT_LOCATED } from './states';
-import { DEVTOOLS_KEY } from 'stent/lib/constants';
+import exampleState from '../_mocks/example.state.json';
+import { PAGES } from '../constants';
+
+const initialState = {
+  name: 'working',
+  page: PAGES.LOG,
+  actions: []
+};
 
 const machine = Machine.create('DevTools', {
-  state: { name: LOCATING_STENT },
+  state: exampleState,
   transitions: {
-    [LOCATING_STENT]: {
-      'locating': function () {
-        
+    'working': {
+      'action received': function ({ actions, ...rest }, action) {
+        actions.push(action);
+        console.log(action);
+        return { ...rest, actions };
       }
-    },
-    [STENT_LOCATED]: {
-      a: 'b'
     }
   }
 });
