@@ -14,4 +14,6 @@ const wire = () => {
   });
 }
 
+wire();
+
 export default bridge;

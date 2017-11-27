@@ -58,6 +58,25 @@ nav a.selected {
 }
 
 /* log */
+.logNav {
+  text-align: right;
+  padding-top: 0.5em;
+  padding-left: 0.5em;
+  padding-right: 0.5em;
+}
+.logNav::after {
+  display: table;
+  content: " ";
+  clear: both;
+}
+.logWrapper {
+  width: 100%;
+  height: calc(100% - 64px);
+  overflow-y: scroll;
+  position: absolute;
+  top: 64px;
+  left: 0;
+}
 .log {
   margin: 0;
   padding: 0;
@@ -74,9 +93,9 @@ nav a.selected {
 }
 .log strong {
   display: inline-block;
-  border: solid 1px #999;
   border-radius: 0.4em;
   padding: 0 0.2em 0 0.2em;
+  background: rgb(221, 221, 221);
 }
 .onMachineCreated {
   background: rgb(200, 212, 201) !important;
@@ -89,4 +108,7 @@ nav a.selected {
 }
 .onGeneratorStep {
   background: rgb(201, 202, 189) !important;
+}
+.onStateChanged {
+  background: rgb(201, 172, 186) !important;
 }

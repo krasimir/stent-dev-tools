@@ -26743,13 +26743,96 @@ var getMachineName = function getMachineName(_ref) {
 var PageLog = function (_React$Component) {
   _inherits(PageLog, _React$Component);
 
-  function PageLog() {
+  function PageLog(props) {
     _classCallCheck(this, PageLog);
 
-    return _possibleConstructorReturn(this, (PageLog.__proto__ || Object.getPrototypeOf(PageLog)).apply(this, arguments));
+    var _this = _possibleConstructorReturn(this, (PageLog.__proto__ || Object.getPrototypeOf(PageLog)).call(this, props));
+
+    _this._renderAction = _this._renderAction.bind(_this);
+    _this.state = {
+      filter: null
+    };
+    return _this;
   }
 
   _createClass(PageLog, [{
+    key: 'componentDidUpdate',
+    value: function componentDidUpdate() {
+      this.logWrapper.scrollTop = this.logWrapper.scrollHeight;
+    }
+  }, {
+    key: '_onFilterChanged',
+    value: function _onFilterChanged(filter) {
+      this.setState({ filter: filter === 'all' ? null : filter });
+    }
+  }, {
+    key: '_renderFilterSelector',
+    value: function _renderFilterSelector() {
+      var _this2 = this;
+
+      var options = this.props.actions.reduce(function (result, action) {
+        if (!result.find(function (o) {
+          return o === action.type;
+        })) result.push(action.type);
+        return result;
+      }, ['all']);
+
+      return _react2.default.createElement(
+        'select',
+        { onChange: function onChange(e) {
+            return _this2._onFilterChanged(e.target.value);
+          } },
+        options.map(function (type, i) {
+          return _react2.default.createElement(
+            'option',
+            { value: type, key: i },
+            type
+          );
+        })
+      );
+    }
+  }, {
+    key: '_renderAction',
+    value: function _renderAction(action, i) {
+      var filter = this.state.filter;
+
+
+      if (!this[action.type]) return null;
+      if (filter !== null && action.type !== filter) return null;
+
+      return _react2.default.createElement(
+        'li',
+        { key: i, className: action.type },
+        this[action.type](action)
+      );
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      var _this3 = this;
+
+      return _react2.default.createElement(
+        'div',
+        null,
+        _react2.default.createElement(
+          'div',
+          { className: 'logNav' },
+          this._renderFilterSelector()
+        ),
+        _react2.default.createElement(
+          'div',
+          { className: 'logWrapper', ref: function ref(el) {
+              return _this3.logWrapper = el;
+            } },
+          _react2.default.createElement(
+            'ul',
+            { className: 'log' },
+            this.props.actions.map(this._renderAction)
+          )
+        )
+      );
+    }
+  }, {
     key: 'onMachineCreated',
     value: function onMachineCreated(_ref2, idx) {
       var machine = _ref2.machine;
@@ -26827,7 +26910,7 @@ var PageLog = function (_React$Component) {
         message = _react2.default.createElement(
           'span',
           null,
-          'my new state is ',
+          'transition to ',
           _react2.default.createElement(
             'strong',
             null,
@@ -26853,7 +26936,7 @@ var PageLog = function (_React$Component) {
           message = _react2.default.createElement(
             'span',
             null,
-            'my new state is ',
+            'transition to ',
             _react2.default.createElement(
               'strong',
               null,
@@ -26867,35 +26950,58 @@ var PageLog = function (_React$Component) {
       return _react2.default.createElement(
         'div',
         null,
-        _react2.default.createElement('i', { className: 'fa fa-bullhorn' }),
+        _react2.default.createElement('i', { className: 'fa fa-spinner' }),
         message
       );
     }
-  }, {
-    key: 'onStateWillChange',
-    value: function onStateWillChange() {
-      return 'onStateWillChange';
-    }
+    // onStateWillChange() {}
+
   }, {
     key: 'onStateChanged',
-    value: function onStateChanged() {
-      return 'onStateChanged';
-    }
-  }, {
-    key: 'render',
-    value: function render() {
-      var _this2 = this;
+    value: function onStateChanged(_ref6) {
+      var machine = _ref6.machine;
 
       return _react2.default.createElement(
-        'ul',
-        { className: 'log' },
-        this.props.actions.map(function (action, i) {
-          return _this2[action.type] ? _react2.default.createElement(
-            'li',
-            { key: i, className: action.type },
-            _this2[action.type](action)
-          ) : null;
-        })
+        'div',
+        null,
+        _react2.default.createElement('i', { className: 'fa fa-arrow-right' }),
+        _react2.default.createElement(
+          'strong',
+          null,
+          getMachineName(machine)
+        ),
+        '\'s state changed to ',
+        _react2.default.createElement(
+          'strong',
+          null,
+          machine.state.name
+        )
+      );
+    }
+  }, {
+    key: 'onMachineDisconnected',
+    value: function onMachineDisconnected(_ref7) {
+      var machines = _ref7.machines,
+          meta = _ref7.meta;
+
+      var machinesConnectedTo = machines.map(getMachineName).join(', ');
+      var component = meta.component ? _react2.default.createElement(
+        'strong',
+        null,
+        '<' + meta.component + '>'
+      ) : null;
+
+      return _react2.default.createElement(
+        'div',
+        null,
+        _react2.default.createElement('i', { className: 'fa fa-unlink' }),
+        component,
+        ' disconnected from ',
+        _react2.default.createElement(
+          'strong',
+          null,
+          machinesConnectedTo
+        )
       );
     }
   }]);
@@ -26978,6 +27084,8 @@ var wire = function wire() {
   });
 };
 
+wire();
+
 exports.default = bridge;
 
 },{}],206:[function(require,module,exports){
@@ -27004,6 +27112,7 @@ var initialState = {
 };
 
 var machine = _stent.Machine.create('DevTools', {
+  // state: initialState,
   state: _exampleState2.default,
   transitions: {
     'working': {
@@ -27011,9 +27120,15 @@ var machine = _stent.Machine.create('DevTools', {
         var actions = _ref.actions,
             rest = _objectWithoutProperties(_ref, ['actions']);
 
+        if (action.pageRefresh === true) {
+          this.flushActions();
+          return;
+        }
         actions.push(action);
-        console.log(action);
         return _extends({}, rest, { actions: actions });
+      },
+      'flush actions': function flushActions() {
+        return { actions: [], name: 'working', page: _constants.PAGES.LOG };
       }
     }
   }

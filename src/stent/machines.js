@@ -9,13 +9,20 @@ const initialState = {
 };
 
 const machine = Machine.create('DevTools', {
+  // state: initialState,
   state: exampleState,
   transitions: {
     'working': {
       'action received': function ({ actions, ...rest }, action) {
+        if (action.pageRefresh === true) {
+          this.flushActions();
+          return;
+        }
         actions.push(action);
-        console.log(action);
         return { ...rest, actions };
+      },
+      'flush actions': function () {
+        return { actions: [], name: 'working', page: PAGES.LOG };
       }
     }
   }
