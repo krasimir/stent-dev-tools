@@ -69,6 +69,10 @@ nav a.selected {
   content: " ";
   clear: both;
 }
+.logNav .filter {
+  display: inline-block;
+  margin-right: 0.5em;
+}
 .logWrapper {
   width: 100%;
   height: calc(100% - 64px);
