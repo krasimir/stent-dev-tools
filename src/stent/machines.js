@@ -10,22 +10,20 @@ const initialState = {
 };
 
 const machine = Machine.create('DevTools', {
-  state: initialState,
-  // state: exampleState,
+  // state: initialState,
+  state: exampleState,
   transitions: {
     'working': {
       'action received': function ({ actions, ...rest }, action) {
         if (action.pageRefresh === true) {
-          this.flushActions(action.origin);
+          this.flushActions();
           return;
         }
         actions.push(normalizeAction(action));
         return { ...rest, actions };
       },
-      'flush actions': function ({ actions: oldActions }, newOrigin) {
-        const actions = oldActions.filter(({ origin }) => origin !== newOrigin);
-
-        return { actions, name: 'working', page: PAGES.LOG };
+      'flush actions': function () {
+        return { actions: [], name: 'working', page: PAGES.LOG };
       }
     }
   }

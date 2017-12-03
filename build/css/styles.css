@@ -22,7 +22,7 @@ body, html {
 }
 
 /* navigation */
-nav {
+nav { 
   background: rgb(201, 201, 201);
   border-bottom: solid 1px #999;
 }
@@ -71,7 +71,12 @@ nav a.selected {
 }
 .logNav .filter {
   display: inline-block;
+  margin-left: 0.5em;
+}
+.logNav a {
+  display: inline-block;
   margin-right: 0.5em;
+  cursor: pointer;
 }
 .logWrapper {
   width: 100%;
@@ -100,6 +105,27 @@ nav a.selected {
   border-radius: 0.4em;
   padding: 0 0.2em 0 0.2em;
   background: rgb(221, 221, 221);
+}
+.log .timeSplit {
+  background: #999;
+}
+.log .timeSplit a {
+  display: block;
+  width: 40px;
+  background: rgb(87, 87, 87);
+  cursor: pointer;
+  height: 4px;
+  transition: height 300ms ease, width 300ms ease;
+  transition-delay: 30ms;
+  overflow: hidden;
+  color: #FFF;
+  font-size: 0.8em;
+  padding-left: 1.6em;
+  padding-top: 0.35em;
+}
+.log .timeSplit a:hover {
+  height: 20px;
+  width: 100px;
 }
 .onMachineCreated {
   background: rgb(200, 212, 201) !important;

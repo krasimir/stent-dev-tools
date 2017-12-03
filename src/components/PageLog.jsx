@@ -1,7 +1,8 @@
 import React from 'react';
 import getMachineName from '../helpers/getMachineName';
+import { connect } from 'stent/lib/react';
 
-export default class PageLog extends React.Component {
+class PageLog extends React.Component {
   constructor(props) {
     super(props);
 
@@ -21,6 +22,13 @@ export default class PageLog extends React.Component {
     console.log(filter);
     this.setState({ filter: filter === '' ? null : filter });
   }
+  _renderTimeSplit(time) {
+    if (this.props.actions.length === 0) return null;
+
+    const diff = time - this.props.actions[0].time;
+
+    return <div className='timeSplit'><a>+ { formatMilliseconds(diff) }</a></div>;
+  }
   _renderFilterSelector() {
     const options = this.props.actions.reduce((result, action) => {
       if (!result.find(o => o === action.type)) result.push(action.type);
@@ -28,7 +36,7 @@ export default class PageLog extends React.Component {
     }, ['all']);
 
     return (
-      <select onChange={ e => this._onFilterTypeChanged(e.target.value) }>
+      <select onChange={ e => this._onFilterTypeChanged(e.target.value) } className='left' key='filter1'>
         { options.map((type, i) => <option value={ type } key={ i }>{ type }</option>) }
       </select>
     )
@@ -37,8 +45,9 @@ export default class PageLog extends React.Component {
     return (
       <input
         type='text'
-        className='filter'
+        className='filter left'
         placeholder='filter'
+        key='filter2'
         onChange={ event => this._onFilterChange(event.target.value) } />
     );
   }
@@ -59,16 +68,36 @@ export default class PageLog extends React.Component {
 
     return <li key={ i } className={ action.type }>{ actionRepresentation[0] }</li>;
   }
+  _renderActions() {
+    const actionsByTime = this.props.actions.reduce((result, action) => {
+      if (!result[action.time]) result[action.time] = [];
+      result[action.time].push(action);
+      return result;
+    }, {});
+    let actions = Object.keys(actionsByTime).map(time => ({
+      time,
+      actions: actionsByTime[time]
+    }));
+
+    actions = actions.sort((a, b) => a.time - b.time);
+
+    return actions.map(({ time, actions }) => {
+      return [this._renderTimeSplit(time)].concat(actions.map(this._renderAction));
+    });
+  }
   render() {
     return (
       <div>
         <div className='logNav'>
-          { this._renderFilter() }
-          { this._renderFilterSelector() }
+          { this.props.actions.length > 0 ? [
+            <a onClick={ () => this.props.clear() } key='clear'><i className='fa fa-ban'></i> clear</a>,
+            this._renderFilterSelector(),
+            this._renderFilter()
+          ] : null }
         </div>
         <div className='logWrapper' ref={ el => (this.logWrapper = el) }>
           <ul className='log'>
-            { this.props.actions.map(this._renderAction) }
+            { this._renderActions() }
           </ul>
         </div>
       </div>
@@ -162,4 +191,34 @@ export default class PageLog extends React.Component {
       `${ meta.component ? meta.component : '' } disconnected from ${ machinesConnectedTo }`
     ]
   }
+};
+
+
+export default connect(PageLog)
+  .with('DevTools')
+  .map(({ flushActions }) => ({ clear: () => flushActions() }));
+
+
+function formatMilliseconds(millisec) {
+  var seconds = (millisec / 1000).toFixed(0);
+  var minutes = Math.floor(seconds / 60);
+  var hours = '';
+  var ms = Math.floor(millisec % 1000);
+  if (minutes > 59) {
+      hours = Math.floor(minutes / 60);
+      hours = (hours >= 10) ? hours : "0" + hours;
+      minutes = minutes - (hours * 60);
+      minutes = (minutes >= 10) ? minutes : "0" + minutes;
+  }
+  if (ms < 100) {
+    if (ms < 10) { ms = '00' + ms; }
+    else { ms = '0' + ms };
+  }
+
+  seconds = Math.floor(seconds % 60);
+  seconds = (seconds >= 10) ? seconds : "0" + seconds;
+  if (hours !== "") {
+      return hours + ":" + minutes + ":" + seconds + ':' + ms;
+  }
+  return minutes + ":" + seconds + ':' + ms;
 }
