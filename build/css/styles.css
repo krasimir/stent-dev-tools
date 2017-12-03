@@ -20,6 +20,9 @@ body, html {
 .right {
   float: right;
 }
+.relative {
+  position: relative;
+}
 
 /* navigation */
 nav { 
@@ -148,6 +151,12 @@ nav a.selected {
 }
 .log .actionRow:hover {
   opacity: 0.8;
+}
+.log .snapshotMarker {
+  position: absolute;
+  top: 0.5em;
+  right: 0.5em;
+  margin-right: 0;
 }
 .onMachineCreated {
   background: rgb(200, 212, 201) !important;

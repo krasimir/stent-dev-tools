@@ -6,8 +6,7 @@ import { normalizeAction } from '../helpers/normalize';
 const initialState = {
   name: 'working',
   page: PAGES.LOG,
-  actions: [],
-  snapshotIndex: null
+  actions: []
 };
 
 const machine = Machine.create('DevTools', {
@@ -25,9 +24,6 @@ const machine = Machine.create('DevTools', {
       },
       'flush actions': function () {
         return { actions: [], name: 'working', page: PAGES.LOG };
-      },
-      snapshot: function (state, snapshotIndex) {
-        return { ...state, snapshotIndex };
       }
     }
   }

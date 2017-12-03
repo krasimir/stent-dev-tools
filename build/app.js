@@ -35352,7 +35352,8 @@ var PageLog = function (_React$Component) {
     _this._renderAction = _this._renderAction.bind(_this);
     _this.state = {
       filterByType: null,
-      filter: null
+      filter: null,
+      snapshotIndex: null
     };
     return _this;
   }
@@ -35361,15 +35362,6 @@ var PageLog = function (_React$Component) {
     key: 'componentDidUpdate',
     value: function componentDidUpdate() {
       // this.logWrapper.scrollTop = this.logWrapper.scrollHeight;
-    }
-  }, {
-    key: '_getSnapshotIndex',
-    value: function _getSnapshotIndex() {
-      var _props = this.props,
-          actions = _props.actions,
-          snapshotIndex = _props.snapshotIndex;
-
-      return snapshotIndex !== null ? snapshotIndex : actions.length - 1;
     }
   }, {
     key: '_onFilterTypeChanged',
@@ -35446,8 +35438,8 @@ var PageLog = function (_React$Component) {
 
       var _state = this.state,
           filterByType = _state.filterByType,
-          filter = _state.filter;
-      var snapshotIndex = this.props.snapshotIndex;
+          filter = _state.filter,
+          snapshotIndex = _state.snapshotIndex;
 
 
       if (!this[action.type]) {
@@ -35460,17 +35452,16 @@ var PageLog = function (_React$Component) {
       if (filter !== null && !actionRepresentation[1].toLowerCase().match(new RegExp(filter, 'ig'))) {
         return null;
       }
-
       return _react2.default.createElement(
         'li',
         {
           key: action.index,
-          className: action.type + ' ' + 'actionRow',
+          className: action.type + ' actionRow relative',
           onClick: function onClick() {
-            return _this4.props.changeCurrentSnapshot(action.index);
+            return _this4.setState({ snapshotIndex: action.index });
           } },
         actionRepresentation[0],
-        snapshotIndex === action.index && _react2.default.createElement('i', { className: 'fa fa-ban right' })
+        this.snapshotIndex === action.index && _react2.default.createElement('i', { className: 'fa fa-thumb-tack snapshotMarker' })
       );
     }
   }, {
@@ -35496,7 +35487,9 @@ var PageLog = function (_React$Component) {
   }, {
     key: '_renderTree',
     value: function _renderTree() {
-      var snapshotAction = this.props.actions[this._getSnapshotIndex()];
+      var actions = this.props.actions;
+
+      var snapshotAction = actions[this.snapshotIndex];
 
       if (!snapshotAction) return null;
 
@@ -35723,6 +35716,15 @@ var PageLog = function (_React$Component) {
         )
       ), (meta.component ? meta.component : '') + ' disconnected from ' + machinesConnectedTo];
     }
+  }, {
+    key: 'snapshotIndex',
+    get: function get() {
+      var snapshotIndex = this.state.snapshotIndex;
+      var actions = this.props.actions;
+
+
+      return snapshotIndex === null ? actions.length - 1 : snapshotIndex;
+    }
   }]);
 
   return PageLog;
@@ -35731,17 +35733,11 @@ var PageLog = function (_React$Component) {
 ;
 
 exports.default = (0, _react3.connect)(PageLog).with('DevTools').map(function (_ref7) {
-  var flushActions = _ref7.flushActions,
-      state = _ref7.state,
-      snapshot = _ref7.snapshot;
+  var flushActions = _ref7.flushActions;
   return {
     clear: function clear() {
       return flushActions();
-    },
-    changeCurrentSnapshot: function changeCurrentSnapshot(index) {
-      return snapshot(index);
-    },
-    snapshotIndex: state.snapshotIndex
+    }
   };
 });
 
@@ -35905,8 +35901,7 @@ function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in ob
 var initialState = {
   name: 'working',
   page: _constants.PAGES.LOG,
-  actions: [],
-  snapshotIndex: null
+  actions: []
 };
 
 var machine = _stent.Machine.create('DevTools', {
@@ -35927,9 +35922,6 @@ var machine = _stent.Machine.create('DevTools', {
       },
       'flush actions': function flushActions() {
         return { actions: [], name: 'working', page: _constants.PAGES.LOG };
-      },
-      snapshot: function snapshot(state, snapshotIndex) {
-        return _extends({}, state, { snapshotIndex: snapshotIndex });
       }
     }
   }

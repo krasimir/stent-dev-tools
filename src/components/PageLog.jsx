@@ -46,15 +46,18 @@ class PageLog extends React.Component {
     this._renderAction = this._renderAction.bind(this);
     this.state = {
       filterByType: null,
-      filter: null
+      filter: null,
+      snapshotIndex: null
     }
   }
   componentDidUpdate() {
     // this.logWrapper.scrollTop = this.logWrapper.scrollHeight;
   }
-  _getSnapshotIndex() {
-    const { actions, snapshotIndex } = this.props;
-    return snapshotIndex !== null ? snapshotIndex : actions.length - 1;
+  get snapshotIndex() {
+    const { snapshotIndex } = this.state;
+    const { actions } = this.props;
+
+    return snapshotIndex === null ? actions.length - 1 : snapshotIndex;
   }
   _onFilterTypeChanged(filter) {
     this.setState({ filterByType: filter === 'all' ? null : filter });
@@ -92,8 +95,7 @@ class PageLog extends React.Component {
     );
   }
   _renderAction(action) {
-    const { filterByType, filter } = this.state;
-    const { snapshotIndex } = this.props;
+    const { filterByType, filter, snapshotIndex } = this.state;
 
     if (!this[action.type]) {
       return null;
@@ -105,14 +107,13 @@ class PageLog extends React.Component {
     if (filter !== null && !actionRepresentation[1].toLowerCase().match(new RegExp(filter, 'ig'))) {
       return null;
     }
-
     return (
       <li
         key={ action.index }
-        className={ action.type + ' ' + 'actionRow' }
-        onClick={ () => this.props.changeCurrentSnapshot(action.index) } >
+        className={ action.type + ' actionRow relative' }
+        onClick={ () => this.setState({ snapshotIndex: action.index }) } >
         { actionRepresentation[0] }
-        { snapshotIndex === action.index && <i className='fa fa-ban right'></i> }
+        { this.snapshotIndex === action.index && <i className='fa fa-thumb-tack snapshotMarker'></i> }
       </li>
     );
   }
@@ -135,7 +136,8 @@ class PageLog extends React.Component {
     // });
   }
   _renderTree() {
-    const snapshotAction = this.props.actions[this._getSnapshotIndex()];
+    const { actions } = this.props;
+    const snapshotAction = actions[this.snapshotIndex];
 
     if (!snapshotAction) return null;
 
@@ -260,8 +262,6 @@ class PageLog extends React.Component {
 
 export default connect(PageLog)
   .with('DevTools')
-  .map(({ flushActions, state, snapshot }) => ({
-    clear: () => flushActions(),
-    changeCurrentSnapshot: index => snapshot(index),
-    snapshotIndex: state.snapshotIndex
+  .map(({ flushActions }) => ({
+    clear: () => flushActions()
   }));
