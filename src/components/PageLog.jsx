@@ -1,6 +1,43 @@
 import React from 'react';
 import getMachineName from '../helpers/getMachineName';
 import { connect } from 'stent/lib/react';
+import JSONTree from 'react-json-tree';
+import formatMilliseconds from '../helpers/formatMilliseconds';
+
+const treeTheme = {
+  scheme: 'chalk',
+  author: 'chris kempson (http://chriskempson.com)',
+  base00: '#151515',
+  base01: '#202020',
+  base02: '#303030',
+  base03: '#505050',
+  base04: '#b0b0b0',
+  base05: '#d0d0d0',
+  base06: '#e0e0e0',
+  base07: '#f5f5f5',
+  base08: '#fb9fb1',
+  base09: '#eda987',
+  base0A: '#ddb26f',
+  base0B: '#acc267',
+  base0C: '#12cfc0',
+  base0D: '#6fc2ef',
+  base0E: '#e1a3ee',
+  base0F: '#deaf8f'
+};
+const getItemString = (type, data, itemType, itemString) => {
+  if (type === 'Array') return <span>// ({ itemString })</span>;
+  return null;
+};
+function renderMachinesAsTree(machines) {
+  var unnamed = 1;
+  return machines.reduce((tree, machine) => {
+    var machineName = getMachineName(machine);
+
+    if (machineName === '<unnamed>') machineName = `<unnamed(${ ++unnamed })>`
+    tree[machineName] = machine.state;
+    return tree;
+  }, {})
+}
 
 class PageLog extends React.Component {
   constructor(props) {
@@ -13,13 +50,16 @@ class PageLog extends React.Component {
     }
   }
   componentDidUpdate() {
-    this.logWrapper.scrollTop = this.logWrapper.scrollHeight;
+    // this.logWrapper.scrollTop = this.logWrapper.scrollHeight;
+  }
+  _getSnapshotIndex() {
+    const { actions, snapshotIndex } = this.props;
+    return snapshotIndex !== null ? snapshotIndex : actions.length - 1;
   }
   _onFilterTypeChanged(filter) {
     this.setState({ filterByType: filter === 'all' ? null : filter });
   }
   _onFilterChange(filter) {
-    console.log(filter);
     this.setState({ filter: filter === '' ? null : filter });
   }
   _renderTimeSplit(time) {
@@ -51,11 +91,11 @@ class PageLog extends React.Component {
         onChange={ event => this._onFilterChange(event.target.value) } />
     );
   }
-  _renderAction(action, i) {
+  _renderAction(action) {
     const { filterByType, filter } = this.state;
+    const { snapshotIndex } = this.props;
 
     if (!this[action.type]) {
-      // console.warn(`I can't render ${ action.type } type of action`);
       return null;
     }
     if (filterByType !== null && action.type !== filterByType) return null;
@@ -66,31 +106,53 @@ class PageLog extends React.Component {
       return null;
     }
 
-    return <li key={ i } className={ action.type }>{ actionRepresentation[0] }</li>;
+    return (
+      <li
+        key={ action.index }
+        className={ action.type + ' ' + 'actionRow' }
+        onClick={ () => this.props.changeCurrentSnapshot(action.index) } >
+        { actionRepresentation[0] }
+        { snapshotIndex === action.index && <i className='fa fa-ban right'></i> }
+      </li>
+    );
   }
   _renderActions() {
-    const actionsByTime = this.props.actions.reduce((result, action) => {
-      if (!result[action.time]) result[action.time] = [];
-      result[action.time].push(action);
-      return result;
-    }, {});
-    let actions = Object.keys(actionsByTime).map(time => ({
-      time,
-      actions: actionsByTime[time]
-    }));
+    return this.props.actions.map(this._renderAction);
+    // const actionsByTime = this.props.actions.reduce((result, action) => {
+    //   if (!result[action.time]) result[action.time] = [];
+    //   result[action.time].push(action);
+    //   return result;
+    // }, {});
+    // let actions = Object.keys(actionsByTime).map(time => ({
+    //   time,
+    //   actions: actionsByTime[time]
+    // }));
 
-    actions = actions.sort((a, b) => a.time - b.time);
+    // actions = actions.sort((a, b) => a.time - b.time);
 
-    return actions.map(({ time, actions }) => {
-      return [this._renderTimeSplit(time)].concat(actions.map(this._renderAction));
-    });
+    // return actions.map(({ time, actions }) => {
+    //   return [this._renderTimeSplit(time)].concat(actions.map(this._renderAction));
+    // });
+  }
+  _renderTree() {
+    const snapshotAction = this.props.actions[this._getSnapshotIndex()];
+
+    if (!snapshotAction) return null;
+
+    return <JSONTree
+      data={ renderMachinesAsTree(snapshotAction.machines) }
+      theme={ treeTheme }
+      getItemString={ getItemString }
+    />;
   }
   render() {
+    const { clear } = this.props;
+
     return (
-      <div>
+      <div className='pageLog'>
         <div className='logNav'>
           { this.props.actions.length > 0 ? [
-            <a onClick={ () => this.props.clear() } key='clear'><i className='fa fa-ban'></i> clear</a>,
+            <a onClick={ () => clear() } key='clear'><i className='fa fa-ban'></i> clear</a>,
             this._renderFilterSelector(),
             this._renderFilter()
           ] : null }
@@ -99,6 +161,9 @@ class PageLog extends React.Component {
           <ul className='log'>
             { this._renderActions() }
           </ul>
+        </div>
+        <div className='logTree'>
+          { this._renderTree() }
         </div>
       </div>
     )
@@ -193,32 +258,10 @@ class PageLog extends React.Component {
   }
 };
 
-
 export default connect(PageLog)
   .with('DevTools')
-  .map(({ flushActions }) => ({ clear: () => flushActions() }));
-
-
-function formatMilliseconds(millisec) {
-  var seconds = (millisec / 1000).toFixed(0);
-  var minutes = Math.floor(seconds / 60);
-  var hours = '';
-  var ms = Math.floor(millisec % 1000);
-  if (minutes > 59) {
-      hours = Math.floor(minutes / 60);
-      hours = (hours >= 10) ? hours : "0" + hours;
-      minutes = minutes - (hours * 60);
-      minutes = (minutes >= 10) ? minutes : "0" + minutes;
-  }
-  if (ms < 100) {
-    if (ms < 10) { ms = '00' + ms; }
-    else { ms = '0' + ms };
-  }
-
-  seconds = Math.floor(seconds % 60);
-  seconds = (seconds >= 10) ? seconds : "0" + seconds;
-  if (hours !== "") {
-      return hours + ":" + minutes + ":" + seconds + ':' + ms;
-  }
-  return minutes + ":" + seconds + ':' + ms;
-}
+  .map(({ flushActions, state, snapshot }) => ({
+    clear: () => flushActions(),
+    changeCurrentSnapshot: index => snapshot(index),
+    snapshotIndex: state.snapshotIndex
+  }));

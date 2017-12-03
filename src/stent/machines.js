@@ -6,12 +6,12 @@ import { normalizeAction } from '../helpers/normalize';
 const initialState = {
   name: 'working',
   page: PAGES.LOG,
-  actions: []
+  actions: [],
+  snapshotIndex: null
 };
 
 const machine = Machine.create('DevTools', {
-  // state: initialState,
-  state: exampleState,
+  state: initialState,
   transitions: {
     'working': {
       'action received': function ({ actions, ...rest }, action) {
@@ -19,15 +19,23 @@ const machine = Machine.create('DevTools', {
           this.flushActions();
           return;
         }
+        action.index = actions.length;
         actions.push(normalizeAction(action));
         return { ...rest, actions };
       },
       'flush actions': function () {
         return { actions: [], name: 'working', page: PAGES.LOG };
+      },
+      snapshot: function (state, snapshotIndex) {
+        return { ...state, snapshotIndex };
       }
     }
   }
 });
+
+setTimeout(function () {
+  exampleState.actions.forEach(machine.actionReceived);
+}, 20);
 
 // exposing this machine for development purposes
 // setTimeout(() => {
