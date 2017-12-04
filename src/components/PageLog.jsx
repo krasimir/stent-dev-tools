@@ -3,27 +3,9 @@ import getMachineName from '../helpers/getMachineName';
 import { connect } from 'stent/lib/react';
 import JSONTree from 'react-json-tree';
 import formatMilliseconds from '../helpers/formatMilliseconds';
+import treeTheme from '../helpers/treeTheme';
+import { Machine } from 'stent';
 
-const treeTheme = {
-  scheme: 'chalk',
-  author: 'chris kempson (http://chriskempson.com)',
-  base00: '#151515',
-  base01: '#202020',
-  base02: '#303030',
-  base03: '#505050',
-  base04: '#b0b0b0',
-  base05: '#d0d0d0',
-  base06: '#e0e0e0',
-  base07: '#f5f5f5',
-  base08: '#fb9fb1',
-  base09: '#eda987',
-  base0A: '#ddb26f',
-  base0B: '#acc267',
-  base0C: '#12cfc0',
-  base0D: '#6fc2ef',
-  base0E: '#e1a3ee',
-  base0F: '#deaf8f'
-};
 const getItemString = (type, data, itemType, itemString) => {
   if (type === 'Array') return <span>// ({ itemString })</span>;
   return null;
@@ -39,6 +21,24 @@ function renderMachinesAsTree(machines) {
   }, {})
 }
 
+const nav = Machine.create('Nav', {
+  state: { name: 'state' }, 
+  transitions: {
+    'state': {
+      'view action': 'action',
+      'view machines': 'machines'
+    },
+    'action': {
+      'view state': 'state',
+      'view machines': 'machines'
+    },
+    'machines': {
+      'view state': 'state',
+      'view action': 'action'
+    }
+  } 
+});
+
 class PageLog extends React.Component {
   constructor(props) {
     super(props);
@@ -51,13 +51,18 @@ class PageLog extends React.Component {
     }
   }
   componentDidUpdate() {
-    // this.logWrapper.scrollTop = this.logWrapper.scrollHeight;
+    if (this.state.snapshotIndex === null) {
+      this.log.scrollTop = this.log.scrollHeight;
+    }
   }
   get snapshotIndex() {
     const { snapshotIndex } = this.state;
     const { actions } = this.props;
 
     return snapshotIndex === null ? actions.length - 1 : snapshotIndex;
+  }
+  _setSnapshotIndex(index) {
+    this.setState({ snapshotIndex: index === this.props.actions.length-1 ? null : index });
   }
   _onFilterTypeChanged(filter) {
     this.setState({ filterByType: filter === 'all' ? null : filter });
@@ -111,7 +116,7 @@ class PageLog extends React.Component {
       <li
         key={ action.index }
         className={ action.type + ' actionRow relative' }
-        onClick={ () => this.setState({ snapshotIndex: action.index }) } >
+        onClick={ () => this._setSnapshotIndex(action.index) } >
         { actionRepresentation[0] }
         { this.snapshotIndex === action.index && <i className='fa fa-thumb-tack snapshotMarker'></i> }
       </li>
@@ -148,24 +153,33 @@ class PageLog extends React.Component {
     />;
   }
   render() {
-    const { clear } = this.props;
+    const { clear, navViewState, navViewAction, navViewMachines, navState } = this.props;
 
     return (
       <div className='pageLog'>
-        <div className='logNav'>
-          { this.props.actions.length > 0 ? [
-            <a onClick={ () => clear() } key='clear'><i className='fa fa-ban'></i> clear</a>,
-            this._renderFilterSelector(),
-            this._renderFilter()
-          ] : null }
-        </div>
-        <div className='logWrapper' ref={ el => (this.logWrapper = el) }>
-          <ul className='log'>
+        <div className='logLeft'>
+          <div className='logNav'>
+            { this.props.actions.length > 0 ? [
+              <a onClick={ () => clear() } key='clear' className='ml1 try2'>
+                <i className='fa fa-ban'></i> clear
+              </a>,
+              this._renderFilterSelector(),
+              this._renderFilter()
+            ] : null }
+          </div>
+          <ul className='log' ref={ el => (this.log = el) }>
             { this._renderActions() }
           </ul>
         </div>
-        <div className='logTree'>
-          { this._renderTree() }
+        <div className='logRight'>
+          <div className='logNav fullHeight'>
+            <a onClick={ navViewState } className={ navState === 'state' ? 'selected' : null }>State</a>
+            <a onClick={ navViewAction } className={ navState === 'action' ? 'selected' : null }>Action</a>
+            <a onClick={ navViewMachines } className={ navState === 'machines' ? 'selected' : null }>Machines</a>
+          </div>
+          <div className='logTree'>
+            { navState === 'state' ? this._renderTree() : null }
+          </div>
         </div>
       </div>
     )
@@ -260,8 +274,17 @@ class PageLog extends React.Component {
   }
 };
 
-export default connect(PageLog)
-  .with('DevTools')
-  .map(({ flushActions }) => ({
-    clear: () => flushActions()
-  }));
+export default connect(
+  connect(PageLog)
+    .with('DevTools')
+    .map(({ flushActions }) => ({
+      clear: () => flushActions()
+    }))
+).with('Nav').map(n => {
+  return {
+    navViewState: n.viewState,
+    navViewAction: n.viewAction,
+    navViewMachines: n.viewMachines,
+    navState: n.state.name
+  }
+});

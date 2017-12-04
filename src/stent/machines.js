@@ -29,9 +29,9 @@ const machine = Machine.create('DevTools', {
   }
 });
 
-setTimeout(function () {
-  exampleState.actions.forEach(machine.actionReceived);
-}, 20);
+// setTimeout(function () {
+//   exampleState.actions.forEach(machine.actionReceived);
+// }, 20);
 
 // exposing this machine for development purposes
 // setTimeout(() => {

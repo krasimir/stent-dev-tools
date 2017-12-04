@@ -23,41 +23,11 @@ body, html {
 .relative {
   position: relative;
 }
-
-/* navigation */
-nav { 
-  background: rgb(201, 201, 201);
-  border-bottom: solid 1px #999;
+.ml1 {
+  margin-left: 1em;
 }
-nav::after {
-  display: table;
-  content: " ";
-  clear: both;
-}
-.logo {
-  display: block;
-  float: left;
-  padding: 0.6em 0.5em 0 0.5em;
-  color: #999;
-}
-nav a {
-  display: block;
-  float: left;
-  text-decoration: none;
-  color: rgb(56, 56, 56);
-  font-weight: bold;
-  text-transform: uppercase;
-  height: 30px;
-  padding: 0.6em;
-}
-nav a:hover {
-  color: #000;
-}
-nav a:active {
+.try2 {
   transform: translateY(2px);
-}
-nav a.selected {
-  border-bottom: solid 2px #000;
 }
 
 /* log */
@@ -67,10 +37,11 @@ nav a.selected {
   clear: both;
 }
 .logNav {
-  text-align: right;
-  padding-top: 0.5em;
-  padding-left: 0.5em;
-  padding-right: 0.5em;
+  padding: 0.5em;
+  background: #c9c9c9;
+  border-bottom: solid 1px #999;
+  border-top: solid 1px #fff;
+  height: 35px;
 }
 .logNav::after {
   display: table;
@@ -86,21 +57,42 @@ nav a.selected {
   margin-right: 0.5em;
   cursor: pointer;
 }
-.logWrapper {
+.logNav.fullHeight {
+  padding: 0;
+}
+.logNav.fullHeight a {
+  padding: 0.5em 1em 0.5em 1em;
+  background: #e4e4e4;
+  height: 33;
+  margin-right: 0;
+  border-left: solid 1px rgb(156, 156, 156);
+  border-right: solid 1px rgb(156, 156, 156);
+  border-bottom: solid 3px #e4e4e4;
+}
+.logNav.fullHeight a:hover {
+  background: #fff;
+  border-bottom: solid 3px #fff;
+}
+.logNav.fullHeight a.selected {
+  border-bottom: solid 3px rgb(71, 71, 71);
+}
+.logLeft {
   width: 50%;
-  height: calc(100% - 64px);
-  overflow-y: scroll;
+  height: 100%;
   position: absolute;
-  top: 64px;
+  top: 0;
   left: 0;
 }
-.logTree {
+.logRight {
   width: 50%;
-  height: calc(100% - 64px);
+  height: 100%;
   overflow-y: scroll;
   position: absolute;
-  top: 64px;
+  top: 0;
   left: 50%;
+  background: #e6e6e6;
+}
+.logTree {
   padding-left: 0.5em;
   padding-right: 0.5em;
 }
@@ -108,6 +100,8 @@ nav a.selected {
   margin: 0;
   padding: 0;
   list-style: none;
+  overflow-y: scroll;
+  height: calc(100% - 35px);
 }
 .log li {
   padding: 0.4em 1em;

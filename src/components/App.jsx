@@ -18,11 +18,6 @@ class App extends React.Component {
 
     return (
       <div>
-        <nav>
-          <i className='fa fa-heart logo' aria-hidden='true'></i>
-          <a href='#' className={ page === PAGES.LOG ? 'selected' : ''}>Log</a>
-          <a href='#' className={ page === PAGES.MACHINES ? 'selected' : ''}>Machines</a>
-        </nav>
         { this._renderPage() }
       </div>
     );

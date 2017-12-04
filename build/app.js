@@ -28867,7 +28867,7 @@ module.exports={
   "actions": [
     {
       "source": "stent",
-      "time": 1512307701460,
+      "time": 1512336620266,
       "machines": [
         {
           "name": "ToDos",
@@ -28948,269 +28948,296 @@ module.exports={
         }
       },
       "meta": {
-        "machines": 1,
         "middlewares": 1
       },
-      "origin": "http://localhost:3000/"
+      "origin": "http://localhost:3000/",
+      "index": 0
     },
     {
       "source": "stent",
-      "time": 1512307701465,
+      "time": 1512336620270,
       "machines": [
         {
           "name": "ToDos",
           "state": {
             "name": "idle",
             "todos": []
-          },
-          "transitions": {
-            "idle": {
-              "fetch todos": {
-                "__func": "fetchTodos"
-              },
-              "add new todo": {
-                "__func": "addNewTodo"
-              },
-              "delete todo": {
-                "__func": "deleteTodo"
-              },
-              "edit todo": {
-                "__func": "editTodo"
-              },
-              "change status": {
-                "__func": "changeStatus"
-              }
-            },
-            "fetching": {
-              "todos loaded": {
-                "__func": "todosLoaded"
-              },
-              "error": {
-                "__func": "error"
-              }
-            },
-            "error": {
-              "fetch todos": {
-                "__func": "fetchTodos"
-              }
-            }
-          },
-          "isIdle": {
-            "__func": "<anonymous>"
-          },
-          "fetchTodos": {
-            "__func": "<anonymous>"
-          },
-          "addNewTodo": {
-            "__func": "<anonymous>"
-          },
-          "deleteTodo": {
-            "__func": "<anonymous>"
-          },
-          "editTodo": {
-            "__func": "<anonymous>"
-          },
-          "changeStatus": {
-            "__func": "<anonymous>"
-          },
-          "isFetching": {
-            "__func": "<anonymous>"
-          },
-          "todosLoaded": {
-            "__func": "<anonymous>"
-          },
-          "error": {
-            "__func": "<anonymous>"
-          },
-          "isError": {
-            "__func": "<anonymous>"
-          },
-          "destroy": {
-            "__func": "<anonymous>"
           }
         }
       ],
       "type": "onMachineConnected",
       "meta": {
         "component": "App",
-        "machines": 1,
+        "machines": [
+          {
+            "name": "ToDos",
+            "state": {
+              "name": "idle",
+              "todos": []
+            },
+            "transitions": {
+              "idle": {
+                "fetch todos": {
+                  "__func": "fetchTodos"
+                },
+                "add new todo": {
+                  "__func": "addNewTodo"
+                },
+                "delete todo": {
+                  "__func": "deleteTodo"
+                },
+                "edit todo": {
+                  "__func": "editTodo"
+                },
+                "change status": {
+                  "__func": "changeStatus"
+                }
+              },
+              "fetching": {
+                "todos loaded": {
+                  "__func": "todosLoaded"
+                },
+                "error": {
+                  "__func": "error"
+                }
+              },
+              "error": {
+                "fetch todos": {
+                  "__func": "fetchTodos"
+                }
+              }
+            },
+            "isIdle": {
+              "__func": "<anonymous>"
+            },
+            "fetchTodos": {
+              "__func": "<anonymous>"
+            },
+            "addNewTodo": {
+              "__func": "<anonymous>"
+            },
+            "deleteTodo": {
+              "__func": "<anonymous>"
+            },
+            "editTodo": {
+              "__func": "<anonymous>"
+            },
+            "changeStatus": {
+              "__func": "<anonymous>"
+            },
+            "isFetching": {
+              "__func": "<anonymous>"
+            },
+            "todosLoaded": {
+              "__func": "<anonymous>"
+            },
+            "error": {
+              "__func": "<anonymous>"
+            },
+            "isError": {
+              "__func": "<anonymous>"
+            },
+            "destroy": {
+              "__func": "<anonymous>"
+            }
+          }
+        ],
         "middlewares": 2
       },
-      "origin": "http://localhost:3000/"
+      "origin": "http://localhost:3000/",
+      "index": 1
     },
     {
       "source": "stent",
-      "time": 1512307701469,
+      "time": 1512336620274,
       "machines": [
         {
           "name": "ToDos",
           "state": {
             "name": "idle",
             "todos": []
-          },
-          "transitions": {
-            "idle": {
-              "fetch todos": {
-                "__func": "fetchTodos"
-              },
-              "add new todo": {
-                "__func": "addNewTodo"
-              },
-              "delete todo": {
-                "__func": "deleteTodo"
-              },
-              "edit todo": {
-                "__func": "editTodo"
-              },
-              "change status": {
-                "__func": "changeStatus"
-              }
-            },
-            "fetching": {
-              "todos loaded": {
-                "__func": "todosLoaded"
-              },
-              "error": {
-                "__func": "error"
-              }
-            },
-            "error": {
-              "fetch todos": {
-                "__func": "fetchTodos"
-              }
-            }
-          },
-          "isIdle": {
-            "__func": "<anonymous>"
-          },
-          "fetchTodos": {
-            "__func": "<anonymous>"
-          },
-          "addNewTodo": {
-            "__func": "<anonymous>"
-          },
-          "deleteTodo": {
-            "__func": "<anonymous>"
-          },
-          "editTodo": {
-            "__func": "<anonymous>"
-          },
-          "changeStatus": {
-            "__func": "<anonymous>"
-          },
-          "isFetching": {
-            "__func": "<anonymous>"
-          },
-          "todosLoaded": {
-            "__func": "<anonymous>"
-          },
-          "error": {
-            "__func": "<anonymous>"
-          },
-          "isError": {
-            "__func": "<anonymous>"
-          },
-          "destroy": {
-            "__func": "<anonymous>"
           }
         }
       ],
       "type": "onMachineConnected",
       "meta": {
         "component": "AddNewTodo",
-        "machines": 1,
+        "machines": [
+          {
+            "name": "ToDos",
+            "state": {
+              "name": "idle",
+              "todos": []
+            },
+            "transitions": {
+              "idle": {
+                "fetch todos": {
+                  "__func": "fetchTodos"
+                },
+                "add new todo": {
+                  "__func": "addNewTodo"
+                },
+                "delete todo": {
+                  "__func": "deleteTodo"
+                },
+                "edit todo": {
+                  "__func": "editTodo"
+                },
+                "change status": {
+                  "__func": "changeStatus"
+                }
+              },
+              "fetching": {
+                "todos loaded": {
+                  "__func": "todosLoaded"
+                },
+                "error": {
+                  "__func": "error"
+                }
+              },
+              "error": {
+                "fetch todos": {
+                  "__func": "fetchTodos"
+                }
+              }
+            },
+            "isIdle": {
+              "__func": "<anonymous>"
+            },
+            "fetchTodos": {
+              "__func": "<anonymous>"
+            },
+            "addNewTodo": {
+              "__func": "<anonymous>"
+            },
+            "deleteTodo": {
+              "__func": "<anonymous>"
+            },
+            "editTodo": {
+              "__func": "<anonymous>"
+            },
+            "changeStatus": {
+              "__func": "<anonymous>"
+            },
+            "isFetching": {
+              "__func": "<anonymous>"
+            },
+            "todosLoaded": {
+              "__func": "<anonymous>"
+            },
+            "error": {
+              "__func": "<anonymous>"
+            },
+            "isError": {
+              "__func": "<anonymous>"
+            },
+            "destroy": {
+              "__func": "<anonymous>"
+            }
+          }
+        ],
         "middlewares": 2
       },
-      "origin": "http://localhost:3000/"
+      "origin": "http://localhost:3000/",
+      "index": 2
     },
     {
       "source": "stent",
-      "time": 1512307701471,
+      "time": 1512336620277,
       "machines": [
         {
           "name": "ToDos",
           "state": {
             "name": "idle",
             "todos": []
-          },
-          "transitions": {
-            "idle": {
-              "fetch todos": {
-                "__func": "fetchTodos"
-              },
-              "add new todo": {
-                "__func": "addNewTodo"
-              },
-              "delete todo": {
-                "__func": "deleteTodo"
-              },
-              "edit todo": {
-                "__func": "editTodo"
-              },
-              "change status": {
-                "__func": "changeStatus"
-              }
-            },
-            "fetching": {
-              "todos loaded": {
-                "__func": "todosLoaded"
-              },
-              "error": {
-                "__func": "error"
-              }
-            },
-            "error": {
-              "fetch todos": {
-                "__func": "fetchTodos"
-              }
-            }
-          },
-          "isIdle": {
-            "__func": "<anonymous>"
-          },
-          "fetchTodos": {
-            "__func": "<anonymous>"
-          },
-          "addNewTodo": {
-            "__func": "<anonymous>"
-          },
-          "deleteTodo": {
-            "__func": "<anonymous>"
-          },
-          "editTodo": {
-            "__func": "<anonymous>"
-          },
-          "changeStatus": {
-            "__func": "<anonymous>"
-          },
-          "isFetching": {
-            "__func": "<anonymous>"
-          },
-          "todosLoaded": {
-            "__func": "<anonymous>"
-          },
-          "error": {
-            "__func": "<anonymous>"
-          },
-          "isError": {
-            "__func": "<anonymous>"
-          },
-          "destroy": {
-            "__func": "<anonymous>"
           }
         }
       ],
       "type": "onMachineConnected",
       "meta": {
         "component": "ToDos",
-        "machines": 1,
+        "machines": [
+          {
+            "name": "ToDos",
+            "state": {
+              "name": "idle",
+              "todos": []
+            },
+            "transitions": {
+              "idle": {
+                "fetch todos": {
+                  "__func": "fetchTodos"
+                },
+                "add new todo": {
+                  "__func": "addNewTodo"
+                },
+                "delete todo": {
+                  "__func": "deleteTodo"
+                },
+                "edit todo": {
+                  "__func": "editTodo"
+                },
+                "change status": {
+                  "__func": "changeStatus"
+                }
+              },
+              "fetching": {
+                "todos loaded": {
+                  "__func": "todosLoaded"
+                },
+                "error": {
+                  "__func": "error"
+                }
+              },
+              "error": {
+                "fetch todos": {
+                  "__func": "fetchTodos"
+                }
+              }
+            },
+            "isIdle": {
+              "__func": "<anonymous>"
+            },
+            "fetchTodos": {
+              "__func": "<anonymous>"
+            },
+            "addNewTodo": {
+              "__func": "<anonymous>"
+            },
+            "deleteTodo": {
+              "__func": "<anonymous>"
+            },
+            "editTodo": {
+              "__func": "<anonymous>"
+            },
+            "changeStatus": {
+              "__func": "<anonymous>"
+            },
+            "isFetching": {
+              "__func": "<anonymous>"
+            },
+            "todosLoaded": {
+              "__func": "<anonymous>"
+            },
+            "error": {
+              "__func": "<anonymous>"
+            },
+            "isError": {
+              "__func": "<anonymous>"
+            },
+            "destroy": {
+              "__func": "<anonymous>"
+            }
+          }
+        ],
         "middlewares": 2
       },
-      "origin": "http://localhost:3000/"
+      "origin": "http://localhost:3000/",
+      "index": 3
     },
     {
       "source": "stent",
-      "time": 1512307701477,
+      "time": 1512336620282,
       "machines": [
         {
           "name": "ToDos",
@@ -29296,14 +29323,14 @@ module.exports={
         }
       },
       "meta": {
-        "machines": 1,
         "middlewares": 2
       },
-      "origin": "http://localhost:3000/"
+      "origin": "http://localhost:3000/",
+      "index": 4
     },
     {
       "source": "stent",
-      "time": 1512307701478,
+      "time": 1512336620283,
       "machines": [
         {
           "name": "ToDos",
@@ -29316,14 +29343,14 @@ module.exports={
       "type": "onGeneratorStep",
       "yielded": "fetching",
       "meta": {
-        "machines": 1,
         "middlewares": 2
       },
-      "origin": "http://localhost:3000/"
+      "origin": "http://localhost:3000/",
+      "index": 5
     },
     {
       "source": "stent",
-      "time": 1512307701478,
+      "time": 1512336620283,
       "machines": [
         {
           "name": "ToDos",
@@ -29407,14 +29434,14 @@ module.exports={
         }
       },
       "meta": {
-        "machines": 1,
         "middlewares": 2
       },
-      "origin": "http://localhost:3000/"
+      "origin": "http://localhost:3000/",
+      "index": 6
     },
     {
       "source": "stent",
-      "time": 1512307701478,
+      "time": 1512336620284,
       "machines": [
         {
           "name": "ToDos",
@@ -29496,14 +29523,14 @@ module.exports={
         }
       },
       "meta": {
-        "machines": 1,
         "middlewares": 2
       },
-      "origin": "http://localhost:3000/"
+      "origin": "http://localhost:3000/",
+      "index": 7
     },
     {
       "source": "stent",
-      "time": 1512307701479,
+      "time": 1512336620284,
       "machines": [
         {
           "name": "ToDos",
@@ -29519,182 +29546,198 @@ module.exports={
         "func": "load"
       },
       "meta": {
-        "machines": 1,
         "middlewares": 2
       },
-      "origin": "http://localhost:3000/"
+      "origin": "http://localhost:3000/",
+      "index": 8
     },
     {
       "source": "stent",
-      "time": 1512307701481,
+      "time": 1512336620286,
       "machines": [
         {
           "name": "ToDos",
           "state": {
             "name": "fetching"
-          },
-          "transitions": {
-            "idle": {
-              "fetch todos": {
-                "__func": "fetchTodos"
-              },
-              "add new todo": {
-                "__func": "addNewTodo"
-              },
-              "delete todo": {
-                "__func": "deleteTodo"
-              },
-              "edit todo": {
-                "__func": "editTodo"
-              },
-              "change status": {
-                "__func": "changeStatus"
-              }
-            },
-            "fetching": {
-              "todos loaded": {
-                "__func": "todosLoaded"
-              },
-              "error": {
-                "__func": "error"
-              }
-            },
-            "error": {
-              "fetch todos": {
-                "__func": "fetchTodos"
-              }
-            }
-          },
-          "isIdle": {
-            "__func": "<anonymous>"
-          },
-          "fetchTodos": {
-            "__func": "<anonymous>"
-          },
-          "addNewTodo": {
-            "__func": "<anonymous>"
-          },
-          "deleteTodo": {
-            "__func": "<anonymous>"
-          },
-          "editTodo": {
-            "__func": "<anonymous>"
-          },
-          "changeStatus": {
-            "__func": "<anonymous>"
-          },
-          "isFetching": {
-            "__func": "<anonymous>"
-          },
-          "todosLoaded": {
-            "__func": "<anonymous>"
-          },
-          "error": {
-            "__func": "<anonymous>"
-          },
-          "isError": {
-            "__func": "<anonymous>"
-          },
-          "destroy": {
-            "__func": "<anonymous>"
           }
         }
       ],
       "type": "onMachineDisconnected",
       "meta": {
         "component": "AddNewTodo",
-        "machines": 1,
+        "machines": [
+          {
+            "name": "ToDos",
+            "state": {
+              "name": "fetching"
+            },
+            "transitions": {
+              "idle": {
+                "fetch todos": {
+                  "__func": "fetchTodos"
+                },
+                "add new todo": {
+                  "__func": "addNewTodo"
+                },
+                "delete todo": {
+                  "__func": "deleteTodo"
+                },
+                "edit todo": {
+                  "__func": "editTodo"
+                },
+                "change status": {
+                  "__func": "changeStatus"
+                }
+              },
+              "fetching": {
+                "todos loaded": {
+                  "__func": "todosLoaded"
+                },
+                "error": {
+                  "__func": "error"
+                }
+              },
+              "error": {
+                "fetch todos": {
+                  "__func": "fetchTodos"
+                }
+              }
+            },
+            "isIdle": {
+              "__func": "<anonymous>"
+            },
+            "fetchTodos": {
+              "__func": "<anonymous>"
+            },
+            "addNewTodo": {
+              "__func": "<anonymous>"
+            },
+            "deleteTodo": {
+              "__func": "<anonymous>"
+            },
+            "editTodo": {
+              "__func": "<anonymous>"
+            },
+            "changeStatus": {
+              "__func": "<anonymous>"
+            },
+            "isFetching": {
+              "__func": "<anonymous>"
+            },
+            "todosLoaded": {
+              "__func": "<anonymous>"
+            },
+            "error": {
+              "__func": "<anonymous>"
+            },
+            "isError": {
+              "__func": "<anonymous>"
+            },
+            "destroy": {
+              "__func": "<anonymous>"
+            }
+          }
+        ],
         "middlewares": 2
       },
-      "origin": "http://localhost:3000/"
+      "origin": "http://localhost:3000/",
+      "index": 9
     },
     {
       "source": "stent",
-      "time": 1512307701481,
+      "time": 1512336620286,
       "machines": [
         {
           "name": "ToDos",
           "state": {
             "name": "fetching"
-          },
-          "transitions": {
-            "idle": {
-              "fetch todos": {
-                "__func": "fetchTodos"
-              },
-              "add new todo": {
-                "__func": "addNewTodo"
-              },
-              "delete todo": {
-                "__func": "deleteTodo"
-              },
-              "edit todo": {
-                "__func": "editTodo"
-              },
-              "change status": {
-                "__func": "changeStatus"
-              }
-            },
-            "fetching": {
-              "todos loaded": {
-                "__func": "todosLoaded"
-              },
-              "error": {
-                "__func": "error"
-              }
-            },
-            "error": {
-              "fetch todos": {
-                "__func": "fetchTodos"
-              }
-            }
-          },
-          "isIdle": {
-            "__func": "<anonymous>"
-          },
-          "fetchTodos": {
-            "__func": "<anonymous>"
-          },
-          "addNewTodo": {
-            "__func": "<anonymous>"
-          },
-          "deleteTodo": {
-            "__func": "<anonymous>"
-          },
-          "editTodo": {
-            "__func": "<anonymous>"
-          },
-          "changeStatus": {
-            "__func": "<anonymous>"
-          },
-          "isFetching": {
-            "__func": "<anonymous>"
-          },
-          "todosLoaded": {
-            "__func": "<anonymous>"
-          },
-          "error": {
-            "__func": "<anonymous>"
-          },
-          "isError": {
-            "__func": "<anonymous>"
-          },
-          "destroy": {
-            "__func": "<anonymous>"
           }
         }
       ],
       "type": "onMachineDisconnected",
       "meta": {
         "component": "ToDos",
-        "machines": 1,
+        "machines": [
+          {
+            "name": "ToDos",
+            "state": {
+              "name": "fetching"
+            },
+            "transitions": {
+              "idle": {
+                "fetch todos": {
+                  "__func": "fetchTodos"
+                },
+                "add new todo": {
+                  "__func": "addNewTodo"
+                },
+                "delete todo": {
+                  "__func": "deleteTodo"
+                },
+                "edit todo": {
+                  "__func": "editTodo"
+                },
+                "change status": {
+                  "__func": "changeStatus"
+                }
+              },
+              "fetching": {
+                "todos loaded": {
+                  "__func": "todosLoaded"
+                },
+                "error": {
+                  "__func": "error"
+                }
+              },
+              "error": {
+                "fetch todos": {
+                  "__func": "fetchTodos"
+                }
+              }
+            },
+            "isIdle": {
+              "__func": "<anonymous>"
+            },
+            "fetchTodos": {
+              "__func": "<anonymous>"
+            },
+            "addNewTodo": {
+              "__func": "<anonymous>"
+            },
+            "deleteTodo": {
+              "__func": "<anonymous>"
+            },
+            "editTodo": {
+              "__func": "<anonymous>"
+            },
+            "changeStatus": {
+              "__func": "<anonymous>"
+            },
+            "isFetching": {
+              "__func": "<anonymous>"
+            },
+            "todosLoaded": {
+              "__func": "<anonymous>"
+            },
+            "error": {
+              "__func": "<anonymous>"
+            },
+            "isError": {
+              "__func": "<anonymous>"
+            },
+            "destroy": {
+              "__func": "<anonymous>"
+            }
+          }
+        ],
         "middlewares": 2
       },
-      "origin": "http://localhost:3000/"
+      "origin": "http://localhost:3000/",
+      "index": 10
     },
     {
       "source": "stent",
-      "time": 1512307701483,
+      "time": 1512336620288,
       "machines": [
         {
           "name": "ToDos",
@@ -29712,12 +29755,12 @@ module.exports={
             "done": true
           },
           {
-            "label": "d",
-            "done": true
-          },
-          {
             "label": "a new one",
             "done": false
+          },
+          {
+            "label": "somenedsa",
+            "done": true
           }
         ]
       ],
@@ -29793,14 +29836,14 @@ module.exports={
         }
       },
       "meta": {
-        "machines": 1,
         "middlewares": 2
       },
-      "origin": "http://localhost:3000/"
+      "origin": "http://localhost:3000/",
+      "index": 11
     },
     {
       "source": "stent",
-      "time": 1512307701483,
+      "time": 1512336620288,
       "machines": [
         {
           "name": "ToDos",
@@ -29882,14 +29925,14 @@ module.exports={
         }
       },
       "meta": {
-        "machines": 1,
         "middlewares": 2
       },
-      "origin": "http://localhost:3000/"
+      "origin": "http://localhost:3000/",
+      "index": 12
     },
     {
       "source": "stent",
-      "time": 1512307701484,
+      "time": 1512336620288,
       "machines": [
         {
           "name": "ToDos",
@@ -29901,12 +29944,12 @@ module.exports={
                 "done": true
               },
               {
-                "label": "d",
-                "done": true
-              },
-              {
                 "label": "a new one",
                 "done": false
+              },
+              {
+                "label": "somenedsa",
+                "done": true
               }
             ]
           }
@@ -29923,12 +29966,12 @@ module.exports={
               "done": true
             },
             {
-              "label": "d",
-              "done": true
-            },
-            {
               "label": "a new one",
               "done": false
+            },
+            {
+              "label": "somenedsa",
+              "done": true
             }
           ]
         },
@@ -29999,14 +30042,14 @@ module.exports={
         }
       },
       "meta": {
-        "machines": 1,
         "middlewares": 2
       },
-      "origin": "http://localhost:3000/"
+      "origin": "http://localhost:3000/",
+      "index": 13
     },
     {
       "source": "stent",
-      "time": 1512307701485,
+      "time": 1512336620289,
       "machines": [
         {
           "name": "ToDos",
@@ -30018,93 +30061,115 @@ module.exports={
                 "done": true
               },
               {
-                "label": "d",
-                "done": true
-              },
-              {
                 "label": "a new one",
                 "done": false
+              },
+              {
+                "label": "somenedsa",
+                "done": true
               }
             ]
-          },
-          "transitions": {
-            "idle": {
-              "fetch todos": {
-                "__func": "fetchTodos"
-              },
-              "add new todo": {
-                "__func": "addNewTodo"
-              },
-              "delete todo": {
-                "__func": "deleteTodo"
-              },
-              "edit todo": {
-                "__func": "editTodo"
-              },
-              "change status": {
-                "__func": "changeStatus"
-              }
-            },
-            "fetching": {
-              "todos loaded": {
-                "__func": "todosLoaded"
-              },
-              "error": {
-                "__func": "error"
-              }
-            },
-            "error": {
-              "fetch todos": {
-                "__func": "fetchTodos"
-              }
-            }
-          },
-          "isIdle": {
-            "__func": "<anonymous>"
-          },
-          "fetchTodos": {
-            "__func": "<anonymous>"
-          },
-          "addNewTodo": {
-            "__func": "<anonymous>"
-          },
-          "deleteTodo": {
-            "__func": "<anonymous>"
-          },
-          "editTodo": {
-            "__func": "<anonymous>"
-          },
-          "changeStatus": {
-            "__func": "<anonymous>"
-          },
-          "isFetching": {
-            "__func": "<anonymous>"
-          },
-          "todosLoaded": {
-            "__func": "<anonymous>"
-          },
-          "error": {
-            "__func": "<anonymous>"
-          },
-          "isError": {
-            "__func": "<anonymous>"
-          },
-          "destroy": {
-            "__func": "<anonymous>"
           }
         }
       ],
       "type": "onMachineConnected",
       "meta": {
         "component": "AddNewTodo",
-        "machines": 1,
+        "machines": [
+          {
+            "name": "ToDos",
+            "state": {
+              "name": "idle",
+              "todos": [
+                {
+                  "label": "Another thing here",
+                  "done": true
+                },
+                {
+                  "label": "a new one",
+                  "done": false
+                },
+                {
+                  "label": "somenedsa",
+                  "done": true
+                }
+              ]
+            },
+            "transitions": {
+              "idle": {
+                "fetch todos": {
+                  "__func": "fetchTodos"
+                },
+                "add new todo": {
+                  "__func": "addNewTodo"
+                },
+                "delete todo": {
+                  "__func": "deleteTodo"
+                },
+                "edit todo": {
+                  "__func": "editTodo"
+                },
+                "change status": {
+                  "__func": "changeStatus"
+                }
+              },
+              "fetching": {
+                "todos loaded": {
+                  "__func": "todosLoaded"
+                },
+                "error": {
+                  "__func": "error"
+                }
+              },
+              "error": {
+                "fetch todos": {
+                  "__func": "fetchTodos"
+                }
+              }
+            },
+            "isIdle": {
+              "__func": "<anonymous>"
+            },
+            "fetchTodos": {
+              "__func": "<anonymous>"
+            },
+            "addNewTodo": {
+              "__func": "<anonymous>"
+            },
+            "deleteTodo": {
+              "__func": "<anonymous>"
+            },
+            "editTodo": {
+              "__func": "<anonymous>"
+            },
+            "changeStatus": {
+              "__func": "<anonymous>"
+            },
+            "isFetching": {
+              "__func": "<anonymous>"
+            },
+            "todosLoaded": {
+              "__func": "<anonymous>"
+            },
+            "error": {
+              "__func": "<anonymous>"
+            },
+            "isError": {
+              "__func": "<anonymous>"
+            },
+            "destroy": {
+              "__func": "<anonymous>"
+            }
+          }
+        ],
         "middlewares": 2
       },
-      "origin": "http://localhost:3000/"
+      "origin": "http://localhost:3000/",
+      "index": 14
     },
     {
       "source": "stent",
-      "time": 1512307701486,
+      "time": 1512336620290,
       "machines": [
         {
           "name": "ToDos",
@@ -30116,93 +30181,115 @@ module.exports={
                 "done": true
               },
               {
-                "label": "d",
-                "done": true
-              },
-              {
                 "label": "a new one",
                 "done": false
+              },
+              {
+                "label": "somenedsa",
+                "done": true
               }
             ]
-          },
-          "transitions": {
-            "idle": {
-              "fetch todos": {
-                "__func": "fetchTodos"
-              },
-              "add new todo": {
-                "__func": "addNewTodo"
-              },
-              "delete todo": {
-                "__func": "deleteTodo"
-              },
-              "edit todo": {
-                "__func": "editTodo"
-              },
-              "change status": {
-                "__func": "changeStatus"
-              }
-            },
-            "fetching": {
-              "todos loaded": {
-                "__func": "todosLoaded"
-              },
-              "error": {
-                "__func": "error"
-              }
-            },
-            "error": {
-              "fetch todos": {
-                "__func": "fetchTodos"
-              }
-            }
-          },
-          "isIdle": {
-            "__func": "<anonymous>"
-          },
-          "fetchTodos": {
-            "__func": "<anonymous>"
-          },
-          "addNewTodo": {
-            "__func": "<anonymous>"
-          },
-          "deleteTodo": {
-            "__func": "<anonymous>"
-          },
-          "editTodo": {
-            "__func": "<anonymous>"
-          },
-          "changeStatus": {
-            "__func": "<anonymous>"
-          },
-          "isFetching": {
-            "__func": "<anonymous>"
-          },
-          "todosLoaded": {
-            "__func": "<anonymous>"
-          },
-          "error": {
-            "__func": "<anonymous>"
-          },
-          "isError": {
-            "__func": "<anonymous>"
-          },
-          "destroy": {
-            "__func": "<anonymous>"
           }
         }
       ],
       "type": "onMachineConnected",
       "meta": {
         "component": "ToDos",
-        "machines": 1,
+        "machines": [
+          {
+            "name": "ToDos",
+            "state": {
+              "name": "idle",
+              "todos": [
+                {
+                  "label": "Another thing here",
+                  "done": true
+                },
+                {
+                  "label": "a new one",
+                  "done": false
+                },
+                {
+                  "label": "somenedsa",
+                  "done": true
+                }
+              ]
+            },
+            "transitions": {
+              "idle": {
+                "fetch todos": {
+                  "__func": "fetchTodos"
+                },
+                "add new todo": {
+                  "__func": "addNewTodo"
+                },
+                "delete todo": {
+                  "__func": "deleteTodo"
+                },
+                "edit todo": {
+                  "__func": "editTodo"
+                },
+                "change status": {
+                  "__func": "changeStatus"
+                }
+              },
+              "fetching": {
+                "todos loaded": {
+                  "__func": "todosLoaded"
+                },
+                "error": {
+                  "__func": "error"
+                }
+              },
+              "error": {
+                "fetch todos": {
+                  "__func": "fetchTodos"
+                }
+              }
+            },
+            "isIdle": {
+              "__func": "<anonymous>"
+            },
+            "fetchTodos": {
+              "__func": "<anonymous>"
+            },
+            "addNewTodo": {
+              "__func": "<anonymous>"
+            },
+            "deleteTodo": {
+              "__func": "<anonymous>"
+            },
+            "editTodo": {
+              "__func": "<anonymous>"
+            },
+            "changeStatus": {
+              "__func": "<anonymous>"
+            },
+            "isFetching": {
+              "__func": "<anonymous>"
+            },
+            "todosLoaded": {
+              "__func": "<anonymous>"
+            },
+            "error": {
+              "__func": "<anonymous>"
+            },
+            "isError": {
+              "__func": "<anonymous>"
+            },
+            "destroy": {
+              "__func": "<anonymous>"
+            }
+          }
+        ],
         "middlewares": 2
       },
-      "origin": "http://localhost:3000/"
+      "origin": "http://localhost:3000/",
+      "index": 15
     },
     {
       "source": "stent",
-      "time": 1512307701487,
+      "time": 1512336620291,
       "machines": [
         {
           "name": "ToDos",
@@ -30214,93 +30301,115 @@ module.exports={
                 "done": true
               },
               {
-                "label": "d",
-                "done": true
-              },
-              {
                 "label": "a new one",
                 "done": false
+              },
+              {
+                "label": "somenedsa",
+                "done": true
               }
             ]
-          },
-          "transitions": {
-            "idle": {
-              "fetch todos": {
-                "__func": "fetchTodos"
-              },
-              "add new todo": {
-                "__func": "addNewTodo"
-              },
-              "delete todo": {
-                "__func": "deleteTodo"
-              },
-              "edit todo": {
-                "__func": "editTodo"
-              },
-              "change status": {
-                "__func": "changeStatus"
-              }
-            },
-            "fetching": {
-              "todos loaded": {
-                "__func": "todosLoaded"
-              },
-              "error": {
-                "__func": "error"
-              }
-            },
-            "error": {
-              "fetch todos": {
-                "__func": "fetchTodos"
-              }
-            }
-          },
-          "isIdle": {
-            "__func": "<anonymous>"
-          },
-          "fetchTodos": {
-            "__func": "<anonymous>"
-          },
-          "addNewTodo": {
-            "__func": "<anonymous>"
-          },
-          "deleteTodo": {
-            "__func": "<anonymous>"
-          },
-          "editTodo": {
-            "__func": "<anonymous>"
-          },
-          "changeStatus": {
-            "__func": "<anonymous>"
-          },
-          "isFetching": {
-            "__func": "<anonymous>"
-          },
-          "todosLoaded": {
-            "__func": "<anonymous>"
-          },
-          "error": {
-            "__func": "<anonymous>"
-          },
-          "isError": {
-            "__func": "<anonymous>"
-          },
-          "destroy": {
-            "__func": "<anonymous>"
           }
         }
       ],
       "type": "onMachineConnected",
       "meta": {
         "component": "Todo",
-        "machines": 1,
+        "machines": [
+          {
+            "name": "ToDos",
+            "state": {
+              "name": "idle",
+              "todos": [
+                {
+                  "label": "Another thing here",
+                  "done": true
+                },
+                {
+                  "label": "a new one",
+                  "done": false
+                },
+                {
+                  "label": "somenedsa",
+                  "done": true
+                }
+              ]
+            },
+            "transitions": {
+              "idle": {
+                "fetch todos": {
+                  "__func": "fetchTodos"
+                },
+                "add new todo": {
+                  "__func": "addNewTodo"
+                },
+                "delete todo": {
+                  "__func": "deleteTodo"
+                },
+                "edit todo": {
+                  "__func": "editTodo"
+                },
+                "change status": {
+                  "__func": "changeStatus"
+                }
+              },
+              "fetching": {
+                "todos loaded": {
+                  "__func": "todosLoaded"
+                },
+                "error": {
+                  "__func": "error"
+                }
+              },
+              "error": {
+                "fetch todos": {
+                  "__func": "fetchTodos"
+                }
+              }
+            },
+            "isIdle": {
+              "__func": "<anonymous>"
+            },
+            "fetchTodos": {
+              "__func": "<anonymous>"
+            },
+            "addNewTodo": {
+              "__func": "<anonymous>"
+            },
+            "deleteTodo": {
+              "__func": "<anonymous>"
+            },
+            "editTodo": {
+              "__func": "<anonymous>"
+            },
+            "changeStatus": {
+              "__func": "<anonymous>"
+            },
+            "isFetching": {
+              "__func": "<anonymous>"
+            },
+            "todosLoaded": {
+              "__func": "<anonymous>"
+            },
+            "error": {
+              "__func": "<anonymous>"
+            },
+            "isError": {
+              "__func": "<anonymous>"
+            },
+            "destroy": {
+              "__func": "<anonymous>"
+            }
+          }
+        ],
         "middlewares": 2
       },
-      "origin": "http://localhost:3000/"
+      "origin": "http://localhost:3000/",
+      "index": 16
     },
     {
       "source": "stent",
-      "time": 1512307701488,
+      "time": 1512336620291,
       "machines": [
         {
           "name": "ToDos",
@@ -30312,12 +30421,12 @@ module.exports={
                 "done": true
               },
               {
-                "label": "d",
-                "done": true
-              },
-              {
                 "label": "a new one",
                 "done": false
+              },
+              {
+                "label": "somenedsa",
+                "done": true
               }
             ]
           }
@@ -30363,61 +30472,14 @@ module.exports={
         }
       },
       "meta": {
-        "machines": 2,
         "middlewares": 2
       },
-      "origin": "http://localhost:3000/"
+      "origin": "http://localhost:3000/",
+      "index": 17
     },
     {
       "source": "stent",
-      "time": 1512307701489,
-      "machines": [
-        {
-          "name": "_@@@1",
-          "state": {
-            "name": "idle"
-          },
-          "transitions": {
-            "idle": {
-              "edit": "editing"
-            },
-            "editing": {
-              "save": {
-                "__func": "save"
-              },
-              "cancel": "idle"
-            }
-          },
-          "isIdle": {
-            "__func": "<anonymous>"
-          },
-          "edit": {
-            "__func": "<anonymous>"
-          },
-          "isEditing": {
-            "__func": "<anonymous>"
-          },
-          "save": {
-            "__func": "<anonymous>"
-          },
-          "cancel": {
-            "__func": "<anonymous>"
-          },
-          "destroy": {
-            "__func": "<anonymous>"
-          }
-        }
-      ],
-      "type": "onMachineConnected",
-      "meta": {
-        "machines": 2,
-        "middlewares": 2
-      },
-      "origin": "http://localhost:3000/"
-    },
-    {
-      "source": "stent",
-      "time": 1512307701491,
+      "time": 1512336620292,
       "machines": [
         {
           "name": "ToDos",
@@ -30429,93 +30491,196 @@ module.exports={
                 "done": true
               },
               {
-                "label": "d",
+                "label": "a new one",
+                "done": false
+              },
+              {
+                "label": "somenedsa",
+                "done": true
+              }
+            ]
+          }
+        },
+        {
+          "name": "_@@@1",
+          "state": {
+            "name": "idle"
+          }
+        }
+      ],
+      "type": "onMachineConnected",
+      "meta": {
+        "machines": [
+          {
+            "name": "_@@@1",
+            "state": {
+              "name": "idle"
+            },
+            "transitions": {
+              "idle": {
+                "edit": "editing"
+              },
+              "editing": {
+                "save": {
+                  "__func": "save"
+                },
+                "cancel": "idle"
+              }
+            },
+            "isIdle": {
+              "__func": "<anonymous>"
+            },
+            "edit": {
+              "__func": "<anonymous>"
+            },
+            "isEditing": {
+              "__func": "<anonymous>"
+            },
+            "save": {
+              "__func": "<anonymous>"
+            },
+            "cancel": {
+              "__func": "<anonymous>"
+            },
+            "destroy": {
+              "__func": "<anonymous>"
+            }
+          }
+        ],
+        "middlewares": 2
+      },
+      "origin": "http://localhost:3000/",
+      "index": 18
+    },
+    {
+      "source": "stent",
+      "time": 1512336620293,
+      "machines": [
+        {
+          "name": "ToDos",
+          "state": {
+            "name": "idle",
+            "todos": [
+              {
+                "label": "Another thing here",
                 "done": true
               },
               {
                 "label": "a new one",
                 "done": false
+              },
+              {
+                "label": "somenedsa",
+                "done": true
               }
             ]
-          },
-          "transitions": {
-            "idle": {
-              "fetch todos": {
-                "__func": "fetchTodos"
-              },
-              "add new todo": {
-                "__func": "addNewTodo"
-              },
-              "delete todo": {
-                "__func": "deleteTodo"
-              },
-              "edit todo": {
-                "__func": "editTodo"
-              },
-              "change status": {
-                "__func": "changeStatus"
-              }
-            },
-            "fetching": {
-              "todos loaded": {
-                "__func": "todosLoaded"
-              },
-              "error": {
-                "__func": "error"
-              }
-            },
-            "error": {
-              "fetch todos": {
-                "__func": "fetchTodos"
-              }
-            }
-          },
-          "isIdle": {
-            "__func": "<anonymous>"
-          },
-          "fetchTodos": {
-            "__func": "<anonymous>"
-          },
-          "addNewTodo": {
-            "__func": "<anonymous>"
-          },
-          "deleteTodo": {
-            "__func": "<anonymous>"
-          },
-          "editTodo": {
-            "__func": "<anonymous>"
-          },
-          "changeStatus": {
-            "__func": "<anonymous>"
-          },
-          "isFetching": {
-            "__func": "<anonymous>"
-          },
-          "todosLoaded": {
-            "__func": "<anonymous>"
-          },
-          "error": {
-            "__func": "<anonymous>"
-          },
-          "isError": {
-            "__func": "<anonymous>"
-          },
-          "destroy": {
-            "__func": "<anonymous>"
+          }
+        },
+        {
+          "name": "_@@@1",
+          "state": {
+            "name": "idle"
           }
         }
       ],
       "type": "onMachineConnected",
       "meta": {
         "component": "Todo",
-        "machines": 2,
+        "machines": [
+          {
+            "name": "ToDos",
+            "state": {
+              "name": "idle",
+              "todos": [
+                {
+                  "label": "Another thing here",
+                  "done": true
+                },
+                {
+                  "label": "a new one",
+                  "done": false
+                },
+                {
+                  "label": "somenedsa",
+                  "done": true
+                }
+              ]
+            },
+            "transitions": {
+              "idle": {
+                "fetch todos": {
+                  "__func": "fetchTodos"
+                },
+                "add new todo": {
+                  "__func": "addNewTodo"
+                },
+                "delete todo": {
+                  "__func": "deleteTodo"
+                },
+                "edit todo": {
+                  "__func": "editTodo"
+                },
+                "change status": {
+                  "__func": "changeStatus"
+                }
+              },
+              "fetching": {
+                "todos loaded": {
+                  "__func": "todosLoaded"
+                },
+                "error": {
+                  "__func": "error"
+                }
+              },
+              "error": {
+                "fetch todos": {
+                  "__func": "fetchTodos"
+                }
+              }
+            },
+            "isIdle": {
+              "__func": "<anonymous>"
+            },
+            "fetchTodos": {
+              "__func": "<anonymous>"
+            },
+            "addNewTodo": {
+              "__func": "<anonymous>"
+            },
+            "deleteTodo": {
+              "__func": "<anonymous>"
+            },
+            "editTodo": {
+              "__func": "<anonymous>"
+            },
+            "changeStatus": {
+              "__func": "<anonymous>"
+            },
+            "isFetching": {
+              "__func": "<anonymous>"
+            },
+            "todosLoaded": {
+              "__func": "<anonymous>"
+            },
+            "error": {
+              "__func": "<anonymous>"
+            },
+            "isError": {
+              "__func": "<anonymous>"
+            },
+            "destroy": {
+              "__func": "<anonymous>"
+            }
+          }
+        ],
         "middlewares": 2
       },
-      "origin": "http://localhost:3000/"
+      "origin": "http://localhost:3000/",
+      "index": 19
     },
     {
       "source": "stent",
-      "time": 1512307701492,
+      "time": 1512336620294,
       "machines": [
         {
           "name": "ToDos",
@@ -30527,12 +30692,12 @@ module.exports={
                 "done": true
               },
               {
-                "label": "d",
-                "done": true
-              },
-              {
                 "label": "a new one",
                 "done": false
+              },
+              {
+                "label": "somenedsa",
+                "done": true
               }
             ]
           }
@@ -30584,61 +30749,14 @@ module.exports={
         }
       },
       "meta": {
-        "machines": 3,
         "middlewares": 2
       },
-      "origin": "http://localhost:3000/"
+      "origin": "http://localhost:3000/",
+      "index": 20
     },
     {
       "source": "stent",
-      "time": 1512307701492,
-      "machines": [
-        {
-          "name": "_@@@2",
-          "state": {
-            "name": "idle"
-          },
-          "transitions": {
-            "idle": {
-              "edit": "editing"
-            },
-            "editing": {
-              "save": {
-                "__func": "save"
-              },
-              "cancel": "idle"
-            }
-          },
-          "isIdle": {
-            "__func": "<anonymous>"
-          },
-          "edit": {
-            "__func": "<anonymous>"
-          },
-          "isEditing": {
-            "__func": "<anonymous>"
-          },
-          "save": {
-            "__func": "<anonymous>"
-          },
-          "cancel": {
-            "__func": "<anonymous>"
-          },
-          "destroy": {
-            "__func": "<anonymous>"
-          }
-        }
-      ],
-      "type": "onMachineConnected",
-      "meta": {
-        "machines": 3,
-        "middlewares": 2
-      },
-      "origin": "http://localhost:3000/"
-    },
-    {
-      "source": "stent",
-      "time": 1512307701493,
+      "time": 1512336620294,
       "machines": [
         {
           "name": "ToDos",
@@ -30650,93 +30768,208 @@ module.exports={
                 "done": true
               },
               {
-                "label": "d",
+                "label": "a new one",
+                "done": false
+              },
+              {
+                "label": "somenedsa",
+                "done": true
+              }
+            ]
+          }
+        },
+        {
+          "name": "_@@@1",
+          "state": {
+            "name": "idle"
+          }
+        },
+        {
+          "name": "_@@@2",
+          "state": {
+            "name": "idle"
+          }
+        }
+      ],
+      "type": "onMachineConnected",
+      "meta": {
+        "machines": [
+          {
+            "name": "_@@@2",
+            "state": {
+              "name": "idle"
+            },
+            "transitions": {
+              "idle": {
+                "edit": "editing"
+              },
+              "editing": {
+                "save": {
+                  "__func": "save"
+                },
+                "cancel": "idle"
+              }
+            },
+            "isIdle": {
+              "__func": "<anonymous>"
+            },
+            "edit": {
+              "__func": "<anonymous>"
+            },
+            "isEditing": {
+              "__func": "<anonymous>"
+            },
+            "save": {
+              "__func": "<anonymous>"
+            },
+            "cancel": {
+              "__func": "<anonymous>"
+            },
+            "destroy": {
+              "__func": "<anonymous>"
+            }
+          }
+        ],
+        "middlewares": 2
+      },
+      "origin": "http://localhost:3000/",
+      "index": 21
+    },
+    {
+      "source": "stent",
+      "time": 1512336620295,
+      "machines": [
+        {
+          "name": "ToDos",
+          "state": {
+            "name": "idle",
+            "todos": [
+              {
+                "label": "Another thing here",
                 "done": true
               },
               {
                 "label": "a new one",
                 "done": false
+              },
+              {
+                "label": "somenedsa",
+                "done": true
               }
             ]
-          },
-          "transitions": {
-            "idle": {
-              "fetch todos": {
-                "__func": "fetchTodos"
-              },
-              "add new todo": {
-                "__func": "addNewTodo"
-              },
-              "delete todo": {
-                "__func": "deleteTodo"
-              },
-              "edit todo": {
-                "__func": "editTodo"
-              },
-              "change status": {
-                "__func": "changeStatus"
-              }
-            },
-            "fetching": {
-              "todos loaded": {
-                "__func": "todosLoaded"
-              },
-              "error": {
-                "__func": "error"
-              }
-            },
-            "error": {
-              "fetch todos": {
-                "__func": "fetchTodos"
-              }
-            }
-          },
-          "isIdle": {
-            "__func": "<anonymous>"
-          },
-          "fetchTodos": {
-            "__func": "<anonymous>"
-          },
-          "addNewTodo": {
-            "__func": "<anonymous>"
-          },
-          "deleteTodo": {
-            "__func": "<anonymous>"
-          },
-          "editTodo": {
-            "__func": "<anonymous>"
-          },
-          "changeStatus": {
-            "__func": "<anonymous>"
-          },
-          "isFetching": {
-            "__func": "<anonymous>"
-          },
-          "todosLoaded": {
-            "__func": "<anonymous>"
-          },
-          "error": {
-            "__func": "<anonymous>"
-          },
-          "isError": {
-            "__func": "<anonymous>"
-          },
-          "destroy": {
-            "__func": "<anonymous>"
+          }
+        },
+        {
+          "name": "_@@@1",
+          "state": {
+            "name": "idle"
+          }
+        },
+        {
+          "name": "_@@@2",
+          "state": {
+            "name": "idle"
           }
         }
       ],
       "type": "onMachineConnected",
       "meta": {
         "component": "Todo",
-        "machines": 3,
+        "machines": [
+          {
+            "name": "ToDos",
+            "state": {
+              "name": "idle",
+              "todos": [
+                {
+                  "label": "Another thing here",
+                  "done": true
+                },
+                {
+                  "label": "a new one",
+                  "done": false
+                },
+                {
+                  "label": "somenedsa",
+                  "done": true
+                }
+              ]
+            },
+            "transitions": {
+              "idle": {
+                "fetch todos": {
+                  "__func": "fetchTodos"
+                },
+                "add new todo": {
+                  "__func": "addNewTodo"
+                },
+                "delete todo": {
+                  "__func": "deleteTodo"
+                },
+                "edit todo": {
+                  "__func": "editTodo"
+                },
+                "change status": {
+                  "__func": "changeStatus"
+                }
+              },
+              "fetching": {
+                "todos loaded": {
+                  "__func": "todosLoaded"
+                },
+                "error": {
+                  "__func": "error"
+                }
+              },
+              "error": {
+                "fetch todos": {
+                  "__func": "fetchTodos"
+                }
+              }
+            },
+            "isIdle": {
+              "__func": "<anonymous>"
+            },
+            "fetchTodos": {
+              "__func": "<anonymous>"
+            },
+            "addNewTodo": {
+              "__func": "<anonymous>"
+            },
+            "deleteTodo": {
+              "__func": "<anonymous>"
+            },
+            "editTodo": {
+              "__func": "<anonymous>"
+            },
+            "changeStatus": {
+              "__func": "<anonymous>"
+            },
+            "isFetching": {
+              "__func": "<anonymous>"
+            },
+            "todosLoaded": {
+              "__func": "<anonymous>"
+            },
+            "error": {
+              "__func": "<anonymous>"
+            },
+            "isError": {
+              "__func": "<anonymous>"
+            },
+            "destroy": {
+              "__func": "<anonymous>"
+            }
+          }
+        ],
         "middlewares": 2
       },
-      "origin": "http://localhost:3000/"
+      "origin": "http://localhost:3000/",
+      "index": 22
     },
     {
       "source": "stent",
-      "time": 1512307701494,
+      "time": 1512336620295,
       "machines": [
         {
           "name": "ToDos",
@@ -30748,12 +30981,12 @@ module.exports={
                 "done": true
               },
               {
-                "label": "d",
-                "done": true
-              },
-              {
                 "label": "a new one",
                 "done": false
+              },
+              {
+                "label": "somenedsa",
+                "done": true
               }
             ]
           }
@@ -30811,61 +31044,14 @@ module.exports={
         }
       },
       "meta": {
-        "machines": 4,
         "middlewares": 2
       },
-      "origin": "http://localhost:3000/"
+      "origin": "http://localhost:3000/",
+      "index": 23
     },
     {
       "source": "stent",
-      "time": 1512307701494,
-      "machines": [
-        {
-          "name": "_@@@3",
-          "state": {
-            "name": "idle"
-          },
-          "transitions": {
-            "idle": {
-              "edit": "editing"
-            },
-            "editing": {
-              "save": {
-                "__func": "save"
-              },
-              "cancel": "idle"
-            }
-          },
-          "isIdle": {
-            "__func": "<anonymous>"
-          },
-          "edit": {
-            "__func": "<anonymous>"
-          },
-          "isEditing": {
-            "__func": "<anonymous>"
-          },
-          "save": {
-            "__func": "<anonymous>"
-          },
-          "cancel": {
-            "__func": "<anonymous>"
-          },
-          "destroy": {
-            "__func": "<anonymous>"
-          }
-        }
-      ],
-      "type": "onMachineConnected",
-      "meta": {
-        "machines": 4,
-        "middlewares": 2
-      },
-      "origin": "http://localhost:3000/"
-    },
-    {
-      "source": "stent",
-      "time": 1512307701497,
+      "time": 1512336620295,
       "machines": [
         {
           "name": "ToDos",
@@ -30877,12 +31063,99 @@ module.exports={
                 "done": true
               },
               {
-                "label": "d",
+                "label": "a new one",
+                "done": false
+              },
+              {
+                "label": "somenedsa",
+                "done": true
+              }
+            ]
+          }
+        },
+        {
+          "name": "_@@@1",
+          "state": {
+            "name": "idle"
+          }
+        },
+        {
+          "name": "_@@@2",
+          "state": {
+            "name": "idle"
+          }
+        },
+        {
+          "name": "_@@@3",
+          "state": {
+            "name": "idle"
+          }
+        }
+      ],
+      "type": "onMachineConnected",
+      "meta": {
+        "machines": [
+          {
+            "name": "_@@@3",
+            "state": {
+              "name": "idle"
+            },
+            "transitions": {
+              "idle": {
+                "edit": "editing"
+              },
+              "editing": {
+                "save": {
+                  "__func": "save"
+                },
+                "cancel": "idle"
+              }
+            },
+            "isIdle": {
+              "__func": "<anonymous>"
+            },
+            "edit": {
+              "__func": "<anonymous>"
+            },
+            "isEditing": {
+              "__func": "<anonymous>"
+            },
+            "save": {
+              "__func": "<anonymous>"
+            },
+            "cancel": {
+              "__func": "<anonymous>"
+            },
+            "destroy": {
+              "__func": "<anonymous>"
+            }
+          }
+        ],
+        "middlewares": 2
+      },
+      "origin": "http://localhost:3000/",
+      "index": 24
+    },
+    {
+      "source": "stent",
+      "time": 1512336620298,
+      "machines": [
+        {
+          "name": "ToDos",
+          "state": {
+            "name": "idle",
+            "todos": [
+              {
+                "label": "Another thing here",
                 "done": true
               },
               {
                 "label": "a new one",
                 "done": false
+              },
+              {
+                "label": "somenedsa",
+                "done": true
               }
             ]
           }
@@ -30915,12 +31188,12 @@ module.exports={
             "done": true
           },
           {
-            "label": "d",
-            "done": true
-          },
-          {
             "label": "a new one",
             "done": false
+          },
+          {
+            "label": "somenedsa",
+            "done": true
           }
         ]
       ],
@@ -30934,12 +31207,12 @@ module.exports={
               "done": true
             },
             {
-              "label": "d",
-              "done": true
-            },
-            {
               "label": "a new one",
               "done": false
+            },
+            {
+              "label": "somenedsa",
+              "done": true
             }
           ]
         },
@@ -31010,14 +31283,14 @@ module.exports={
         }
       },
       "meta": {
-        "machines": 4,
         "middlewares": 2
       },
-      "origin": "http://localhost:3000/"
+      "origin": "http://localhost:3000/",
+      "index": 25
     },
     {
       "source": "stent",
-      "time": 1512307701497,
+      "time": 1512336620299,
       "machines": [
         {
           "name": "ToDos",
@@ -31029,12 +31302,12 @@ module.exports={
                 "done": true
               },
               {
-                "label": "d",
-                "done": true
-              },
-              {
                 "label": "a new one",
                 "done": false
+              },
+              {
+                "label": "somenedsa",
+                "done": true
               }
             ]
           }
@@ -31060,14 +31333,14 @@ module.exports={
       ],
       "type": "onGeneratorStep",
       "meta": {
-        "machines": 4,
         "middlewares": 2
       },
-      "origin": "http://localhost:3000/"
+      "origin": "http://localhost:3000/",
+      "index": 26
     },
     {
       "source": "stent",
-      "time": 1512307702619,
+      "time": 1512336621574,
       "machines": [
         {
           "name": "ToDos",
@@ -31079,12 +31352,12 @@ module.exports={
                 "done": true
               },
               {
-                "label": "d",
-                "done": true
-              },
-              {
                 "label": "a new one",
                 "done": false
+              },
+              {
+                "label": "somenedsa",
+                "done": true
               }
             ]
           }
@@ -31111,8 +31384,8 @@ module.exports={
       "type": "onActionDispatched",
       "actionName": "change status",
       "args": [
-        2,
-        true
+        0,
+        false
       ],
       "machine": {
         "name": "ToDos",
@@ -31124,12 +31397,12 @@ module.exports={
               "done": true
             },
             {
-              "label": "d",
-              "done": true
-            },
-            {
               "label": "a new one",
               "done": false
+            },
+            {
+              "label": "somenedsa",
+              "done": true
             }
           ]
         },
@@ -31200,14 +31473,14 @@ module.exports={
         }
       },
       "meta": {
-        "machines": 4,
         "middlewares": 2
       },
-      "origin": "http://localhost:3000/"
+      "origin": "http://localhost:3000/",
+      "index": 27
     },
     {
       "source": "stent",
-      "time": 1512307702620,
+      "time": 1512336621575,
       "machines": [
         {
           "name": "ToDos",
@@ -31216,14 +31489,14 @@ module.exports={
             "todos": [
               {
                 "label": "Another thing here",
-                "done": true
-              },
-              {
-                "label": "d",
-                "done": true
+                "done": false
               },
               {
                 "label": "a new one",
+                "done": false
+              },
+              {
+                "label": "somenedsa",
                 "done": true
               }
             ]
@@ -31255,14 +31528,14 @@ module.exports={
           [
             {
               "label": "Another thing here",
-              "done": true
-            },
-            {
-              "label": "d",
-              "done": true
+              "done": false
             },
             {
               "label": "a new one",
+              "done": false
+            },
+            {
+              "label": "somenedsa",
               "done": true
             }
           ]
@@ -31270,14 +31543,14 @@ module.exports={
         "func": "saveTodos"
       },
       "meta": {
-        "machines": 4,
         "middlewares": 2
       },
-      "origin": "http://localhost:3000/"
+      "origin": "http://localhost:3000/",
+      "index": 28
     },
     {
       "source": "stent",
-      "time": 1512307702620,
+      "time": 1512336621576,
       "machines": [
         {
           "name": "ToDos",
@@ -31286,14 +31559,14 @@ module.exports={
             "todos": [
               {
                 "label": "Another thing here",
-                "done": true
-              },
-              {
-                "label": "d",
-                "done": true
+                "done": false
               },
               {
                 "label": "a new one",
+                "done": false
+              },
+              {
+                "label": "somenedsa",
                 "done": true
               }
             ]
@@ -31325,14 +31598,14 @@ module.exports={
           [
             {
               "label": "Another thing here",
-              "done": true
-            },
-            {
-              "label": "d",
-              "done": true
+              "done": false
             },
             {
               "label": "a new one",
+              "done": false
+            },
+            {
+              "label": "somenedsa",
               "done": true
             }
           ]
@@ -31340,14 +31613,14 @@ module.exports={
         "func": "save"
       },
       "meta": {
-        "machines": 4,
         "middlewares": 2
       },
-      "origin": "http://localhost:3000/"
+      "origin": "http://localhost:3000/",
+      "index": 29
     },
     {
       "source": "stent",
-      "time": 1512307702621,
+      "time": 1512336621577,
       "machines": [
         {
           "name": "ToDos",
@@ -31356,14 +31629,14 @@ module.exports={
             "todos": [
               {
                 "label": "Another thing here",
-                "done": true
-              },
-              {
-                "label": "d",
-                "done": true
+                "done": false
               },
               {
                 "label": "a new one",
+                "done": false
+              },
+              {
+                "label": "somenedsa",
                 "done": true
               }
             ]
@@ -31394,27 +31667,27 @@ module.exports={
         "todos": [
           {
             "label": "Another thing here",
-            "done": true
-          },
-          {
-            "label": "d",
-            "done": true
+            "done": false
           },
           {
             "label": "a new one",
+            "done": false
+          },
+          {
+            "label": "somenedsa",
             "done": true
           }
         ]
       },
       "meta": {
-        "machines": 4,
         "middlewares": 2
       },
-      "origin": "http://localhost:3000/"
+      "origin": "http://localhost:3000/",
+      "index": 30
     },
     {
       "source": "stent",
-      "time": 1512307702621,
+      "time": 1512336621577,
       "machines": [
         {
           "name": "ToDos",
@@ -31423,14 +31696,14 @@ module.exports={
             "todos": [
               {
                 "label": "Another thing here",
-                "done": true
-              },
-              {
-                "label": "d",
-                "done": true
+                "done": false
               },
               {
                 "label": "a new one",
+                "done": false
+              },
+              {
+                "label": "somenedsa",
                 "done": true
               }
             ]
@@ -31461,27 +31734,27 @@ module.exports={
         "todos": [
           {
             "label": "Another thing here",
-            "done": true
-          },
-          {
-            "label": "d",
-            "done": true
+            "done": false
           },
           {
             "label": "a new one",
+            "done": false
+          },
+          {
+            "label": "somenedsa",
             "done": true
           }
         ]
       },
       "meta": {
-        "machines": 4,
         "middlewares": 2
       },
-      "origin": "http://localhost:3000/"
+      "origin": "http://localhost:3000/",
+      "index": 31
     },
     {
       "source": "stent",
-      "time": 1512307702622,
+      "time": 1512336621577,
       "machines": [
         {
           "name": "ToDos",
@@ -31490,14 +31763,14 @@ module.exports={
             "todos": [
               {
                 "label": "Another thing here",
-                "done": true
-              },
-              {
-                "label": "d",
-                "done": true
+                "done": false
               },
               {
                 "label": "a new one",
+                "done": false
+              },
+              {
+                "label": "somenedsa",
                 "done": true
               }
             ]
@@ -31530,14 +31803,14 @@ module.exports={
           "todos": [
             {
               "label": "Another thing here",
-              "done": true
-            },
-            {
-              "label": "d",
-              "done": true
+              "done": false
             },
             {
               "label": "a new one",
+              "done": false
+            },
+            {
+              "label": "somenedsa",
               "done": true
             }
           ]
@@ -31609,14 +31882,14 @@ module.exports={
         }
       },
       "meta": {
-        "machines": 4,
         "middlewares": 2
       },
-      "origin": "http://localhost:3000/"
+      "origin": "http://localhost:3000/",
+      "index": 32
     },
     {
       "source": "stent",
-      "time": 1512307702622,
+      "time": 1512336621577,
       "machines": [
         {
           "name": "ToDos",
@@ -31625,14 +31898,14 @@ module.exports={
             "todos": [
               {
                 "label": "Another thing here",
-                "done": true
-              },
-              {
-                "label": "d",
-                "done": true
+                "done": false
               },
               {
                 "label": "a new one",
+                "done": false
+              },
+              {
+                "label": "somenedsa",
                 "done": true
               }
             ]
@@ -31665,14 +31938,14 @@ module.exports={
           "todos": [
             {
               "label": "Another thing here",
-              "done": true
-            },
-            {
-              "label": "d",
-              "done": true
+              "done": false
             },
             {
               "label": "a new one",
+              "done": false
+            },
+            {
+              "label": "somenedsa",
               "done": true
             }
           ]
@@ -31744,14 +32017,14 @@ module.exports={
         }
       },
       "meta": {
-        "machines": 4,
         "middlewares": 2
       },
-      "origin": "http://localhost:3000/"
+      "origin": "http://localhost:3000/",
+      "index": 33
     },
     {
       "source": "stent",
-      "time": 1512307703146,
+      "time": 1512336622173,
       "machines": [
         {
           "name": "ToDos",
@@ -31760,14 +32033,14 @@ module.exports={
             "todos": [
               {
                 "label": "Another thing here",
-                "done": true
-              },
-              {
-                "label": "d",
-                "done": true
+                "done": false
               },
               {
                 "label": "a new one",
+                "done": false
+              },
+              {
+                "label": "somenedsa",
                 "done": true
               }
             ]
@@ -31796,7 +32069,7 @@ module.exports={
       "actionName": "change status",
       "args": [
         1,
-        false
+        true
       ],
       "machine": {
         "name": "ToDos",
@@ -31805,14 +32078,14 @@ module.exports={
           "todos": [
             {
               "label": "Another thing here",
-              "done": true
-            },
-            {
-              "label": "d",
-              "done": true
+              "done": false
             },
             {
               "label": "a new one",
+              "done": false
+            },
+            {
+              "label": "somenedsa",
               "done": true
             }
           ]
@@ -31884,14 +32157,14 @@ module.exports={
         }
       },
       "meta": {
-        "machines": 4,
         "middlewares": 2
       },
-      "origin": "http://localhost:3000/"
+      "origin": "http://localhost:3000/",
+      "index": 34
     },
     {
       "source": "stent",
-      "time": 1512307703147,
+      "time": 1512336622174,
       "machines": [
         {
           "name": "ToDos",
@@ -31900,14 +32173,14 @@ module.exports={
             "todos": [
               {
                 "label": "Another thing here",
-                "done": true
-              },
-              {
-                "label": "d",
                 "done": false
               },
               {
                 "label": "a new one",
+                "done": true
+              },
+              {
+                "label": "somenedsa",
                 "done": true
               }
             ]
@@ -31939,14 +32212,14 @@ module.exports={
           [
             {
               "label": "Another thing here",
-              "done": true
-            },
-            {
-              "label": "d",
               "done": false
             },
             {
               "label": "a new one",
+              "done": true
+            },
+            {
+              "label": "somenedsa",
               "done": true
             }
           ]
@@ -31954,14 +32227,14 @@ module.exports={
         "func": "saveTodos"
       },
       "meta": {
-        "machines": 4,
         "middlewares": 2
       },
-      "origin": "http://localhost:3000/"
+      "origin": "http://localhost:3000/",
+      "index": 35
     },
     {
       "source": "stent",
-      "time": 1512307703147,
+      "time": 1512336622174,
       "machines": [
         {
           "name": "ToDos",
@@ -31970,14 +32243,14 @@ module.exports={
             "todos": [
               {
                 "label": "Another thing here",
-                "done": true
-              },
-              {
-                "label": "d",
                 "done": false
               },
               {
                 "label": "a new one",
+                "done": true
+              },
+              {
+                "label": "somenedsa",
                 "done": true
               }
             ]
@@ -32009,14 +32282,14 @@ module.exports={
           [
             {
               "label": "Another thing here",
-              "done": true
-            },
-            {
-              "label": "d",
               "done": false
             },
             {
               "label": "a new one",
+              "done": true
+            },
+            {
+              "label": "somenedsa",
               "done": true
             }
           ]
@@ -32024,14 +32297,14 @@ module.exports={
         "func": "save"
       },
       "meta": {
-        "machines": 4,
         "middlewares": 2
       },
-      "origin": "http://localhost:3000/"
+      "origin": "http://localhost:3000/",
+      "index": 36
     },
     {
       "source": "stent",
-      "time": 1512307703148,
+      "time": 1512336622175,
       "machines": [
         {
           "name": "ToDos",
@@ -32040,14 +32313,14 @@ module.exports={
             "todos": [
               {
                 "label": "Another thing here",
-                "done": true
-              },
-              {
-                "label": "d",
                 "done": false
               },
               {
                 "label": "a new one",
+                "done": true
+              },
+              {
+                "label": "somenedsa",
                 "done": true
               }
             ]
@@ -32078,27 +32351,27 @@ module.exports={
         "todos": [
           {
             "label": "Another thing here",
-            "done": true
-          },
-          {
-            "label": "d",
             "done": false
           },
           {
             "label": "a new one",
             "done": true
+          },
+          {
+            "label": "somenedsa",
+            "done": true
           }
         ]
       },
       "meta": {
-        "machines": 4,
         "middlewares": 2
       },
-      "origin": "http://localhost:3000/"
+      "origin": "http://localhost:3000/",
+      "index": 37
     },
     {
       "source": "stent",
-      "time": 1512307703148,
+      "time": 1512336622175,
       "machines": [
         {
           "name": "ToDos",
@@ -32107,14 +32380,14 @@ module.exports={
             "todos": [
               {
                 "label": "Another thing here",
-                "done": true
-              },
-              {
-                "label": "d",
                 "done": false
               },
               {
                 "label": "a new one",
+                "done": true
+              },
+              {
+                "label": "somenedsa",
                 "done": true
               }
             ]
@@ -32145,27 +32418,27 @@ module.exports={
         "todos": [
           {
             "label": "Another thing here",
-            "done": true
-          },
-          {
-            "label": "d",
             "done": false
           },
           {
             "label": "a new one",
             "done": true
+          },
+          {
+            "label": "somenedsa",
+            "done": true
           }
         ]
       },
       "meta": {
-        "machines": 4,
         "middlewares": 2
       },
-      "origin": "http://localhost:3000/"
+      "origin": "http://localhost:3000/",
+      "index": 38
     },
     {
       "source": "stent",
-      "time": 1512307703148,
+      "time": 1512336622175,
       "machines": [
         {
           "name": "ToDos",
@@ -32174,14 +32447,14 @@ module.exports={
             "todos": [
               {
                 "label": "Another thing here",
-                "done": true
-              },
-              {
-                "label": "d",
                 "done": false
               },
               {
                 "label": "a new one",
+                "done": true
+              },
+              {
+                "label": "somenedsa",
                 "done": true
               }
             ]
@@ -32214,14 +32487,14 @@ module.exports={
           "todos": [
             {
               "label": "Another thing here",
-              "done": true
-            },
-            {
-              "label": "d",
               "done": false
             },
             {
               "label": "a new one",
+              "done": true
+            },
+            {
+              "label": "somenedsa",
               "done": true
             }
           ]
@@ -32293,14 +32566,14 @@ module.exports={
         }
       },
       "meta": {
-        "machines": 4,
         "middlewares": 2
       },
-      "origin": "http://localhost:3000/"
+      "origin": "http://localhost:3000/",
+      "index": 39
     },
     {
       "source": "stent",
-      "time": 1512307703148,
+      "time": 1512336622175,
       "machines": [
         {
           "name": "ToDos",
@@ -32309,14 +32582,14 @@ module.exports={
             "todos": [
               {
                 "label": "Another thing here",
-                "done": true
-              },
-              {
-                "label": "d",
                 "done": false
               },
               {
                 "label": "a new one",
+                "done": true
+              },
+              {
+                "label": "somenedsa",
                 "done": true
               }
             ]
@@ -32349,14 +32622,14 @@ module.exports={
           "todos": [
             {
               "label": "Another thing here",
-              "done": true
-            },
-            {
-              "label": "d",
               "done": false
             },
             {
               "label": "a new one",
+              "done": true
+            },
+            {
+              "label": "somenedsa",
               "done": true
             }
           ]
@@ -32428,14 +32701,14 @@ module.exports={
         }
       },
       "meta": {
-        "machines": 4,
         "middlewares": 2
       },
-      "origin": "http://localhost:3000/"
+      "origin": "http://localhost:3000/",
+      "index": 40
     },
     {
       "source": "stent",
-      "time": 1512307704314,
+      "time": 1512336624285,
       "machines": [
         {
           "name": "ToDos",
@@ -32444,149 +32717,14 @@ module.exports={
             "todos": [
               {
                 "label": "Another thing here",
-                "done": true
-              },
-              {
-                "label": "d",
                 "done": false
               },
               {
                 "label": "a new one",
                 "done": true
-              }
-            ]
-          }
-        },
-        {
-          "name": "_@@@1",
-          "state": {
-            "name": "idle"
-          }
-        },
-        {
-          "name": "_@@@2",
-          "state": {
-            "name": "idle"
-          }
-        },
-        {
-          "name": "_@@@3",
-          "state": {
-            "name": "idle"
-          }
-        }
-      ],
-      "type": "onActionDispatched",
-      "actionName": "delete todo",
-      "args": [
-        1
-      ],
-      "machine": {
-        "name": "ToDos",
-        "state": {
-          "name": "idle",
-          "todos": [
-            {
-              "label": "Another thing here",
-              "done": true
-            },
-            {
-              "label": "d",
-              "done": false
-            },
-            {
-              "label": "a new one",
-              "done": true
-            }
-          ]
-        },
-        "transitions": {
-          "idle": {
-            "fetch todos": {
-              "__func": "fetchTodos"
-            },
-            "add new todo": {
-              "__func": "addNewTodo"
-            },
-            "delete todo": {
-              "__func": "deleteTodo"
-            },
-            "edit todo": {
-              "__func": "editTodo"
-            },
-            "change status": {
-              "__func": "changeStatus"
-            }
-          },
-          "fetching": {
-            "todos loaded": {
-              "__func": "todosLoaded"
-            },
-            "error": {
-              "__func": "error"
-            }
-          },
-          "error": {
-            "fetch todos": {
-              "__func": "fetchTodos"
-            }
-          }
-        },
-        "isIdle": {
-          "__func": "<anonymous>"
-        },
-        "fetchTodos": {
-          "__func": "<anonymous>"
-        },
-        "addNewTodo": {
-          "__func": "<anonymous>"
-        },
-        "deleteTodo": {
-          "__func": "<anonymous>"
-        },
-        "editTodo": {
-          "__func": "<anonymous>"
-        },
-        "changeStatus": {
-          "__func": "<anonymous>"
-        },
-        "isFetching": {
-          "__func": "<anonymous>"
-        },
-        "todosLoaded": {
-          "__func": "<anonymous>"
-        },
-        "error": {
-          "__func": "<anonymous>"
-        },
-        "isError": {
-          "__func": "<anonymous>"
-        },
-        "destroy": {
-          "__func": "<anonymous>"
-        }
-      },
-      "meta": {
-        "machines": 4,
-        "middlewares": 2
-      },
-      "origin": "http://localhost:3000/"
-    },
-    {
-      "source": "stent",
-      "time": 1512307704315,
-      "machines": [
-        {
-          "name": "ToDos",
-          "state": {
-            "name": "idle",
-            "todos": [
-              {
-                "label": "Another thing here",
-                "done": true
               },
               {
-                "label": "a new one",
+                "label": "somenedsa",
                 "done": true
               }
             ]
@@ -32606,1067 +32744,6 @@ module.exports={
         },
         {
           "name": "_@@@3",
-          "state": {
-            "name": "idle"
-          }
-        }
-      ],
-      "type": "onGeneratorStep",
-      "yielded": {
-        "__type": "call",
-        "args": [
-          [
-            {
-              "label": "Another thing here",
-              "done": true
-            },
-            {
-              "label": "a new one",
-              "done": true
-            }
-          ]
-        ],
-        "func": "saveTodos"
-      },
-      "meta": {
-        "machines": 4,
-        "middlewares": 2
-      },
-      "origin": "http://localhost:3000/"
-    },
-    {
-      "source": "stent",
-      "time": 1512307704315,
-      "machines": [
-        {
-          "name": "ToDos",
-          "state": {
-            "name": "idle",
-            "todos": [
-              {
-                "label": "Another thing here",
-                "done": true
-              },
-              {
-                "label": "a new one",
-                "done": true
-              }
-            ]
-          }
-        },
-        {
-          "name": "_@@@1",
-          "state": {
-            "name": "idle"
-          }
-        },
-        {
-          "name": "_@@@2",
-          "state": {
-            "name": "idle"
-          }
-        },
-        {
-          "name": "_@@@3",
-          "state": {
-            "name": "idle"
-          }
-        }
-      ],
-      "type": "onGeneratorStep",
-      "yielded": {
-        "__type": "call",
-        "args": [
-          [
-            {
-              "label": "Another thing here",
-              "done": true
-            },
-            {
-              "label": "a new one",
-              "done": true
-            }
-          ]
-        ],
-        "func": "save"
-      },
-      "meta": {
-        "machines": 4,
-        "middlewares": 2
-      },
-      "origin": "http://localhost:3000/"
-    },
-    {
-      "source": "stent",
-      "time": 1512307704316,
-      "machines": [
-        {
-          "name": "ToDos",
-          "state": {
-            "name": "idle",
-            "todos": [
-              {
-                "label": "Another thing here",
-                "done": true
-              },
-              {
-                "label": "a new one",
-                "done": true
-              }
-            ]
-          }
-        },
-        {
-          "name": "_@@@1",
-          "state": {
-            "name": "idle"
-          }
-        },
-        {
-          "name": "_@@@2",
-          "state": {
-            "name": "idle"
-          }
-        },
-        {
-          "name": "_@@@3",
-          "state": {
-            "name": "idle"
-          }
-        }
-      ],
-      "type": "onGeneratorStep",
-      "yielded": {
-        "name": "idle",
-        "todos": [
-          {
-            "label": "Another thing here",
-            "done": true
-          },
-          {
-            "label": "a new one",
-            "done": true
-          }
-        ]
-      },
-      "meta": {
-        "machines": 4,
-        "middlewares": 2
-      },
-      "origin": "http://localhost:3000/"
-    },
-    {
-      "source": "stent",
-      "time": 1512307704316,
-      "machines": [
-        {
-          "name": "ToDos",
-          "state": {
-            "name": "idle",
-            "todos": [
-              {
-                "label": "Another thing here",
-                "done": true
-              },
-              {
-                "label": "a new one",
-                "done": true
-              }
-            ]
-          }
-        },
-        {
-          "name": "_@@@1",
-          "state": {
-            "name": "idle"
-          }
-        },
-        {
-          "name": "_@@@2",
-          "state": {
-            "name": "idle"
-          }
-        },
-        {
-          "name": "_@@@3",
-          "state": {
-            "name": "idle"
-          }
-        }
-      ],
-      "type": "onGeneratorStep",
-      "yielded": {
-        "name": "idle",
-        "todos": [
-          {
-            "label": "Another thing here",
-            "done": true
-          },
-          {
-            "label": "a new one",
-            "done": true
-          }
-        ]
-      },
-      "meta": {
-        "machines": 4,
-        "middlewares": 2
-      },
-      "origin": "http://localhost:3000/"
-    },
-    {
-      "source": "stent",
-      "time": 1512307704316,
-      "machines": [
-        {
-          "name": "ToDos",
-          "state": {
-            "name": "idle",
-            "todos": [
-              {
-                "label": "Another thing here",
-                "done": true
-              },
-              {
-                "label": "a new one",
-                "done": true
-              }
-            ]
-          }
-        },
-        {
-          "name": "_@@@1",
-          "state": {
-            "name": "idle"
-          }
-        },
-        {
-          "name": "_@@@2",
-          "state": {
-            "name": "idle"
-          }
-        },
-        {
-          "name": "_@@@3",
-          "state": {
-            "name": "idle"
-          }
-        }
-      ],
-      "type": "onStateWillChange",
-      "machine": {
-        "name": "ToDos",
-        "state": {
-          "name": "idle",
-          "todos": [
-            {
-              "label": "Another thing here",
-              "done": true
-            },
-            {
-              "label": "a new one",
-              "done": true
-            }
-          ]
-        },
-        "transitions": {
-          "idle": {
-            "fetch todos": {
-              "__func": "fetchTodos"
-            },
-            "add new todo": {
-              "__func": "addNewTodo"
-            },
-            "delete todo": {
-              "__func": "deleteTodo"
-            },
-            "edit todo": {
-              "__func": "editTodo"
-            },
-            "change status": {
-              "__func": "changeStatus"
-            }
-          },
-          "fetching": {
-            "todos loaded": {
-              "__func": "todosLoaded"
-            },
-            "error": {
-              "__func": "error"
-            }
-          },
-          "error": {
-            "fetch todos": {
-              "__func": "fetchTodos"
-            }
-          }
-        },
-        "isIdle": {
-          "__func": "<anonymous>"
-        },
-        "fetchTodos": {
-          "__func": "<anonymous>"
-        },
-        "addNewTodo": {
-          "__func": "<anonymous>"
-        },
-        "deleteTodo": {
-          "__func": "<anonymous>"
-        },
-        "editTodo": {
-          "__func": "<anonymous>"
-        },
-        "changeStatus": {
-          "__func": "<anonymous>"
-        },
-        "isFetching": {
-          "__func": "<anonymous>"
-        },
-        "todosLoaded": {
-          "__func": "<anonymous>"
-        },
-        "error": {
-          "__func": "<anonymous>"
-        },
-        "isError": {
-          "__func": "<anonymous>"
-        },
-        "destroy": {
-          "__func": "<anonymous>"
-        }
-      },
-      "meta": {
-        "machines": 4,
-        "middlewares": 2
-      },
-      "origin": "http://localhost:3000/"
-    },
-    {
-      "source": "stent",
-      "time": 1512307704316,
-      "machines": [
-        {
-          "name": "ToDos",
-          "state": {
-            "name": "idle",
-            "todos": [
-              {
-                "label": "Another thing here",
-                "done": true
-              },
-              {
-                "label": "a new one",
-                "done": true
-              }
-            ]
-          }
-        },
-        {
-          "name": "_@@@1",
-          "state": {
-            "name": "idle"
-          }
-        },
-        {
-          "name": "_@@@2",
-          "state": {
-            "name": "idle"
-          }
-        },
-        {
-          "name": "_@@@3",
-          "state": {
-            "name": "idle"
-          }
-        }
-      ],
-      "type": "onStateChanged",
-      "machine": {
-        "name": "ToDos",
-        "state": {
-          "name": "idle",
-          "todos": [
-            {
-              "label": "Another thing here",
-              "done": true
-            },
-            {
-              "label": "a new one",
-              "done": true
-            }
-          ]
-        },
-        "transitions": {
-          "idle": {
-            "fetch todos": {
-              "__func": "fetchTodos"
-            },
-            "add new todo": {
-              "__func": "addNewTodo"
-            },
-            "delete todo": {
-              "__func": "deleteTodo"
-            },
-            "edit todo": {
-              "__func": "editTodo"
-            },
-            "change status": {
-              "__func": "changeStatus"
-            }
-          },
-          "fetching": {
-            "todos loaded": {
-              "__func": "todosLoaded"
-            },
-            "error": {
-              "__func": "error"
-            }
-          },
-          "error": {
-            "fetch todos": {
-              "__func": "fetchTodos"
-            }
-          }
-        },
-        "isIdle": {
-          "__func": "<anonymous>"
-        },
-        "fetchTodos": {
-          "__func": "<anonymous>"
-        },
-        "addNewTodo": {
-          "__func": "<anonymous>"
-        },
-        "deleteTodo": {
-          "__func": "<anonymous>"
-        },
-        "editTodo": {
-          "__func": "<anonymous>"
-        },
-        "changeStatus": {
-          "__func": "<anonymous>"
-        },
-        "isFetching": {
-          "__func": "<anonymous>"
-        },
-        "todosLoaded": {
-          "__func": "<anonymous>"
-        },
-        "error": {
-          "__func": "<anonymous>"
-        },
-        "isError": {
-          "__func": "<anonymous>"
-        },
-        "destroy": {
-          "__func": "<anonymous>"
-        }
-      },
-      "meta": {
-        "machines": 4,
-        "middlewares": 2
-      },
-      "origin": "http://localhost:3000/"
-    },
-    {
-      "source": "stent",
-      "time": 1512307704319,
-      "machines": [
-        {
-          "name": "ToDos",
-          "state": {
-            "name": "idle",
-            "todos": [
-              {
-                "label": "Another thing here",
-                "done": true
-              },
-              {
-                "label": "a new one",
-                "done": true
-              }
-            ]
-          },
-          "transitions": {
-            "idle": {
-              "fetch todos": {
-                "__func": "fetchTodos"
-              },
-              "add new todo": {
-                "__func": "addNewTodo"
-              },
-              "delete todo": {
-                "__func": "deleteTodo"
-              },
-              "edit todo": {
-                "__func": "editTodo"
-              },
-              "change status": {
-                "__func": "changeStatus"
-              }
-            },
-            "fetching": {
-              "todos loaded": {
-                "__func": "todosLoaded"
-              },
-              "error": {
-                "__func": "error"
-              }
-            },
-            "error": {
-              "fetch todos": {
-                "__func": "fetchTodos"
-              }
-            }
-          },
-          "isIdle": {
-            "__func": "<anonymous>"
-          },
-          "fetchTodos": {
-            "__func": "<anonymous>"
-          },
-          "addNewTodo": {
-            "__func": "<anonymous>"
-          },
-          "deleteTodo": {
-            "__func": "<anonymous>"
-          },
-          "editTodo": {
-            "__func": "<anonymous>"
-          },
-          "changeStatus": {
-            "__func": "<anonymous>"
-          },
-          "isFetching": {
-            "__func": "<anonymous>"
-          },
-          "todosLoaded": {
-            "__func": "<anonymous>"
-          },
-          "error": {
-            "__func": "<anonymous>"
-          },
-          "isError": {
-            "__func": "<anonymous>"
-          },
-          "destroy": {
-            "__func": "<anonymous>"
-          }
-        }
-      ],
-      "type": "onMachineDisconnected",
-      "meta": {
-        "component": "Todo",
-        "machines": 4,
-        "middlewares": 2
-      },
-      "origin": "http://localhost:3000/"
-    },
-    {
-      "source": "stent",
-      "time": 1512307704320,
-      "machines": [
-        {
-          "name": "ToDos",
-          "state": {
-            "name": "idle",
-            "todos": [
-              {
-                "label": "Another thing here",
-                "done": true
-              },
-              {
-                "label": "a new one",
-                "done": true
-              }
-            ]
-          },
-          "transitions": {
-            "idle": {
-              "fetch todos": {
-                "__func": "fetchTodos"
-              },
-              "add new todo": {
-                "__func": "addNewTodo"
-              },
-              "delete todo": {
-                "__func": "deleteTodo"
-              },
-              "edit todo": {
-                "__func": "editTodo"
-              },
-              "change status": {
-                "__func": "changeStatus"
-              }
-            },
-            "fetching": {
-              "todos loaded": {
-                "__func": "todosLoaded"
-              },
-              "error": {
-                "__func": "error"
-              }
-            },
-            "error": {
-              "fetch todos": {
-                "__func": "fetchTodos"
-              }
-            }
-          },
-          "isIdle": {
-            "__func": "<anonymous>"
-          },
-          "fetchTodos": {
-            "__func": "<anonymous>"
-          },
-          "addNewTodo": {
-            "__func": "<anonymous>"
-          },
-          "deleteTodo": {
-            "__func": "<anonymous>"
-          },
-          "editTodo": {
-            "__func": "<anonymous>"
-          },
-          "changeStatus": {
-            "__func": "<anonymous>"
-          },
-          "isFetching": {
-            "__func": "<anonymous>"
-          },
-          "todosLoaded": {
-            "__func": "<anonymous>"
-          },
-          "error": {
-            "__func": "<anonymous>"
-          },
-          "isError": {
-            "__func": "<anonymous>"
-          },
-          "destroy": {
-            "__func": "<anonymous>"
-          }
-        }
-      ],
-      "type": "onMachineDisconnected",
-      "meta": {
-        "machines": 3,
-        "middlewares": 2
-      },
-      "origin": "http://localhost:3000/"
-    },
-    {
-      "source": "stent",
-      "time": 1512307704320,
-      "machines": [
-        {
-          "name": "ToDos",
-          "state": {
-            "name": "idle",
-            "todos": [
-              {
-                "label": "Another thing here",
-                "done": true
-              },
-              {
-                "label": "a new one",
-                "done": true
-              }
-            ]
-          },
-          "transitions": {
-            "idle": {
-              "fetch todos": {
-                "__func": "fetchTodos"
-              },
-              "add new todo": {
-                "__func": "addNewTodo"
-              },
-              "delete todo": {
-                "__func": "deleteTodo"
-              },
-              "edit todo": {
-                "__func": "editTodo"
-              },
-              "change status": {
-                "__func": "changeStatus"
-              }
-            },
-            "fetching": {
-              "todos loaded": {
-                "__func": "todosLoaded"
-              },
-              "error": {
-                "__func": "error"
-              }
-            },
-            "error": {
-              "fetch todos": {
-                "__func": "fetchTodos"
-              }
-            }
-          },
-          "isIdle": {
-            "__func": "<anonymous>"
-          },
-          "fetchTodos": {
-            "__func": "<anonymous>"
-          },
-          "addNewTodo": {
-            "__func": "<anonymous>"
-          },
-          "deleteTodo": {
-            "__func": "<anonymous>"
-          },
-          "editTodo": {
-            "__func": "<anonymous>"
-          },
-          "changeStatus": {
-            "__func": "<anonymous>"
-          },
-          "isFetching": {
-            "__func": "<anonymous>"
-          },
-          "todosLoaded": {
-            "__func": "<anonymous>"
-          },
-          "error": {
-            "__func": "<anonymous>"
-          },
-          "isError": {
-            "__func": "<anonymous>"
-          },
-          "destroy": {
-            "__func": "<anonymous>"
-          }
-        }
-      ],
-      "type": "onMachineDisconnected",
-      "meta": {
-        "machines": 3,
-        "middlewares": 2
-      },
-      "origin": "http://localhost:3000/"
-    },
-    {
-      "source": "stent",
-      "time": 1512307704320,
-      "machines": [
-        {
-          "name": "ToDos",
-          "state": {
-            "name": "idle",
-            "todos": [
-              {
-                "label": "Another thing here",
-                "done": true
-              },
-              {
-                "label": "a new one",
-                "done": true
-              }
-            ]
-          },
-          "transitions": {
-            "idle": {
-              "fetch todos": {
-                "__func": "fetchTodos"
-              },
-              "add new todo": {
-                "__func": "addNewTodo"
-              },
-              "delete todo": {
-                "__func": "deleteTodo"
-              },
-              "edit todo": {
-                "__func": "editTodo"
-              },
-              "change status": {
-                "__func": "changeStatus"
-              }
-            },
-            "fetching": {
-              "todos loaded": {
-                "__func": "todosLoaded"
-              },
-              "error": {
-                "__func": "error"
-              }
-            },
-            "error": {
-              "fetch todos": {
-                "__func": "fetchTodos"
-              }
-            }
-          },
-          "isIdle": {
-            "__func": "<anonymous>"
-          },
-          "fetchTodos": {
-            "__func": "<anonymous>"
-          },
-          "addNewTodo": {
-            "__func": "<anonymous>"
-          },
-          "deleteTodo": {
-            "__func": "<anonymous>"
-          },
-          "editTodo": {
-            "__func": "<anonymous>"
-          },
-          "changeStatus": {
-            "__func": "<anonymous>"
-          },
-          "isFetching": {
-            "__func": "<anonymous>"
-          },
-          "todosLoaded": {
-            "__func": "<anonymous>"
-          },
-          "error": {
-            "__func": "<anonymous>"
-          },
-          "isError": {
-            "__func": "<anonymous>"
-          },
-          "destroy": {
-            "__func": "<anonymous>"
-          }
-        }
-      ],
-      "type": "onMachineDisconnected",
-      "meta": {
-        "machines": 3,
-        "middlewares": 2
-      },
-      "origin": "http://localhost:3000/"
-    },
-    {
-      "source": "stent",
-      "time": 1512307704321,
-      "machines": [
-        {
-          "name": "_@@@1",
-          "state": {
-            "name": "idle"
-          },
-          "transitions": {
-            "idle": {
-              "edit": "editing"
-            },
-            "editing": {
-              "save": {
-                "__func": "save"
-              },
-              "cancel": "idle"
-            }
-          },
-          "isIdle": {
-            "__func": "<anonymous>"
-          },
-          "edit": {
-            "__func": "<anonymous>"
-          },
-          "isEditing": {
-            "__func": "<anonymous>"
-          },
-          "save": {
-            "__func": "<anonymous>"
-          },
-          "cancel": {
-            "__func": "<anonymous>"
-          },
-          "destroy": {
-            "__func": "<anonymous>"
-          }
-        }
-      ],
-      "type": "onMachineDisconnected",
-      "meta": {
-        "machines": 3,
-        "middlewares": 2
-      },
-      "origin": "http://localhost:3000/"
-    },
-    {
-      "source": "stent",
-      "time": 1512307704321,
-      "machines": [
-        {
-          "name": "ToDos",
-          "state": {
-            "name": "idle",
-            "todos": [
-              {
-                "label": "Another thing here",
-                "done": true
-              },
-              {
-                "label": "a new one",
-                "done": true
-              }
-            ]
-          },
-          "transitions": {
-            "idle": {
-              "fetch todos": {
-                "__func": "fetchTodos"
-              },
-              "add new todo": {
-                "__func": "addNewTodo"
-              },
-              "delete todo": {
-                "__func": "deleteTodo"
-              },
-              "edit todo": {
-                "__func": "editTodo"
-              },
-              "change status": {
-                "__func": "changeStatus"
-              }
-            },
-            "fetching": {
-              "todos loaded": {
-                "__func": "todosLoaded"
-              },
-              "error": {
-                "__func": "error"
-              }
-            },
-            "error": {
-              "fetch todos": {
-                "__func": "fetchTodos"
-              }
-            }
-          },
-          "isIdle": {
-            "__func": "<anonymous>"
-          },
-          "fetchTodos": {
-            "__func": "<anonymous>"
-          },
-          "addNewTodo": {
-            "__func": "<anonymous>"
-          },
-          "deleteTodo": {
-            "__func": "<anonymous>"
-          },
-          "editTodo": {
-            "__func": "<anonymous>"
-          },
-          "changeStatus": {
-            "__func": "<anonymous>"
-          },
-          "isFetching": {
-            "__func": "<anonymous>"
-          },
-          "todosLoaded": {
-            "__func": "<anonymous>"
-          },
-          "error": {
-            "__func": "<anonymous>"
-          },
-          "isError": {
-            "__func": "<anonymous>"
-          },
-          "destroy": {
-            "__func": "<anonymous>"
-          }
-        }
-      ],
-      "type": "onMachineDisconnected",
-      "meta": {
-        "machines": 3,
-        "middlewares": 2
-      },
-      "origin": "http://localhost:3000/"
-    },
-    {
-      "source": "stent",
-      "time": 1512307704321,
-      "machines": [
-        {
-          "name": "_@@@2",
-          "state": {
-            "name": "idle"
-          },
-          "transitions": {
-            "idle": {
-              "edit": "editing"
-            },
-            "editing": {
-              "save": {
-                "__func": "save"
-              },
-              "cancel": "idle"
-            }
-          },
-          "isIdle": {
-            "__func": "<anonymous>"
-          },
-          "edit": {
-            "__func": "<anonymous>"
-          },
-          "isEditing": {
-            "__func": "<anonymous>"
-          },
-          "save": {
-            "__func": "<anonymous>"
-          },
-          "cancel": {
-            "__func": "<anonymous>"
-          },
-          "destroy": {
-            "__func": "<anonymous>"
-          }
-        }
-      ],
-      "type": "onMachineDisconnected",
-      "meta": {
-        "machines": 3,
-        "middlewares": 2
-      },
-      "origin": "http://localhost:3000/"
-    },
-    {
-      "source": "stent",
-      "time": 1512307704322,
-      "machines": [],
-      "type": "onMachineDisconnected",
-      "meta": {
-        "machines": 3,
-        "middlewares": 2
-      },
-      "origin": "http://localhost:3000/"
-    },
-    {
-      "source": "stent",
-      "time": 1512307707481,
-      "machines": [
-        {
-          "name": "ToDos",
-          "state": {
-            "name": "idle",
-            "todos": [
-              {
-                "label": "Another thing here",
-                "done": true
-              },
-              {
-                "label": "a new one",
-                "done": true
-              }
-            ]
-          }
-        },
-        {
-          "name": "_@@@1",
-          "state": {
-            "name": "idle"
-          }
-        },
-        {
-          "name": "_@@@2",
           "state": {
             "name": "idle"
           }
@@ -33676,7 +32753,7 @@ module.exports={
       "actionName": "add new todo",
       "args": [
         {
-          "label": "somenedsa",
+          "label": "No way",
           "done": false
         }
       ],
@@ -33687,10 +32764,14 @@ module.exports={
           "todos": [
             {
               "label": "Another thing here",
-              "done": true
+              "done": false
             },
             {
               "label": "a new one",
+              "done": true
+            },
+            {
+              "label": "somenedsa",
               "done": true
             }
           ]
@@ -33762,14 +32843,14 @@ module.exports={
         }
       },
       "meta": {
-        "machines": 3,
         "middlewares": 2
       },
-      "origin": "http://localhost:3000/"
+      "origin": "http://localhost:3000/",
+      "index": 41
     },
     {
       "source": "stent",
-      "time": 1512307707482,
+      "time": 1512336624285,
       "machines": [
         {
           "name": "ToDos",
@@ -33778,10 +32859,14 @@ module.exports={
             "todos": [
               {
                 "label": "Another thing here",
-                "done": true
+                "done": false
               },
               {
                 "label": "a new one",
+                "done": true
+              },
+              {
+                "label": "somenedsa",
                 "done": true
               }
             ]
@@ -33798,6 +32883,12 @@ module.exports={
           "state": {
             "name": "idle"
           }
+        },
+        {
+          "name": "_@@@3",
+          "state": {
+            "name": "idle"
+          }
         }
       ],
       "type": "onGeneratorStep",
@@ -33807,7 +32898,7 @@ module.exports={
           [
             {
               "label": "Another thing here",
-              "done": true
+              "done": false
             },
             {
               "label": "a new one",
@@ -33815,6 +32906,10 @@ module.exports={
             },
             {
               "label": "somenedsa",
+              "done": true
+            },
+            {
+              "label": "No way",
               "done": false
             }
           ]
@@ -33822,14 +32917,14 @@ module.exports={
         "func": "saveTodos"
       },
       "meta": {
-        "machines": 3,
         "middlewares": 2
       },
-      "origin": "http://localhost:3000/"
+      "origin": "http://localhost:3000/",
+      "index": 42
     },
     {
       "source": "stent",
-      "time": 1512307707482,
+      "time": 1512336624286,
       "machines": [
         {
           "name": "ToDos",
@@ -33838,10 +32933,14 @@ module.exports={
             "todos": [
               {
                 "label": "Another thing here",
-                "done": true
+                "done": false
               },
               {
                 "label": "a new one",
+                "done": true
+              },
+              {
+                "label": "somenedsa",
                 "done": true
               }
             ]
@@ -33855,6 +32954,12 @@ module.exports={
         },
         {
           "name": "_@@@2",
+          "state": {
+            "name": "idle"
+          }
+        },
+        {
+          "name": "_@@@3",
           "state": {
             "name": "idle"
           }
@@ -33867,7 +32972,7 @@ module.exports={
           [
             {
               "label": "Another thing here",
-              "done": true
+              "done": false
             },
             {
               "label": "a new one",
@@ -33875,6 +32980,10 @@ module.exports={
             },
             {
               "label": "somenedsa",
+              "done": true
+            },
+            {
+              "label": "No way",
               "done": false
             }
           ]
@@ -33882,14 +32991,14 @@ module.exports={
         "func": "save"
       },
       "meta": {
-        "machines": 3,
         "middlewares": 2
       },
-      "origin": "http://localhost:3000/"
+      "origin": "http://localhost:3000/",
+      "index": 43
     },
     {
       "source": "stent",
-      "time": 1512307707484,
+      "time": 1512336624287,
       "machines": [
         {
           "name": "ToDos",
@@ -33898,10 +33007,14 @@ module.exports={
             "todos": [
               {
                 "label": "Another thing here",
-                "done": true
+                "done": false
               },
               {
                 "label": "a new one",
+                "done": true
+              },
+              {
+                "label": "somenedsa",
                 "done": true
               }
             ]
@@ -33915,6 +33028,12 @@ module.exports={
         },
         {
           "name": "_@@@2",
+          "state": {
+            "name": "idle"
+          }
+        },
+        {
+          "name": "_@@@3",
           "state": {
             "name": "idle"
           }
@@ -33926,7 +33045,7 @@ module.exports={
         "todos": [
           {
             "label": "Another thing here",
-            "done": true
+            "done": false
           },
           {
             "label": "a new one",
@@ -33934,19 +33053,23 @@ module.exports={
           },
           {
             "label": "somenedsa",
+            "done": true
+          },
+          {
+            "label": "No way",
             "done": false
           }
         ]
       },
       "meta": {
-        "machines": 3,
         "middlewares": 2
       },
-      "origin": "http://localhost:3000/"
+      "origin": "http://localhost:3000/",
+      "index": 44
     },
     {
       "source": "stent",
-      "time": 1512307707484,
+      "time": 1512336624287,
       "machines": [
         {
           "name": "ToDos",
@@ -33955,10 +33078,14 @@ module.exports={
             "todos": [
               {
                 "label": "Another thing here",
-                "done": true
+                "done": false
               },
               {
                 "label": "a new one",
+                "done": true
+              },
+              {
+                "label": "somenedsa",
                 "done": true
               }
             ]
@@ -33972,6 +33099,12 @@ module.exports={
         },
         {
           "name": "_@@@2",
+          "state": {
+            "name": "idle"
+          }
+        },
+        {
+          "name": "_@@@3",
           "state": {
             "name": "idle"
           }
@@ -33983,7 +33116,7 @@ module.exports={
         "todos": [
           {
             "label": "Another thing here",
-            "done": true
+            "done": false
           },
           {
             "label": "a new one",
@@ -33991,19 +33124,23 @@ module.exports={
           },
           {
             "label": "somenedsa",
+            "done": true
+          },
+          {
+            "label": "No way",
             "done": false
           }
         ]
       },
       "meta": {
-        "machines": 3,
         "middlewares": 2
       },
-      "origin": "http://localhost:3000/"
+      "origin": "http://localhost:3000/",
+      "index": 45
     },
     {
       "source": "stent",
-      "time": 1512307707484,
+      "time": 1512336624288,
       "machines": [
         {
           "name": "ToDos",
@@ -34012,10 +33149,14 @@ module.exports={
             "todos": [
               {
                 "label": "Another thing here",
-                "done": true
+                "done": false
               },
               {
                 "label": "a new one",
+                "done": true
+              },
+              {
+                "label": "somenedsa",
                 "done": true
               }
             ]
@@ -34029,6 +33170,12 @@ module.exports={
         },
         {
           "name": "_@@@2",
+          "state": {
+            "name": "idle"
+          }
+        },
+        {
+          "name": "_@@@3",
           "state": {
             "name": "idle"
           }
@@ -34042,10 +33189,14 @@ module.exports={
           "todos": [
             {
               "label": "Another thing here",
-              "done": true
+              "done": false
             },
             {
               "label": "a new one",
+              "done": true
+            },
+            {
+              "label": "somenedsa",
               "done": true
             }
           ]
@@ -34117,14 +33268,14 @@ module.exports={
         }
       },
       "meta": {
-        "machines": 3,
         "middlewares": 2
       },
-      "origin": "http://localhost:3000/"
+      "origin": "http://localhost:3000/",
+      "index": 46
     },
     {
       "source": "stent",
-      "time": 1512307707484,
+      "time": 1512336624288,
       "machines": [
         {
           "name": "ToDos",
@@ -34133,7 +33284,7 @@ module.exports={
             "todos": [
               {
                 "label": "Another thing here",
-                "done": true
+                "done": false
               },
               {
                 "label": "a new one",
@@ -34141,6 +33292,10 @@ module.exports={
               },
               {
                 "label": "somenedsa",
+                "done": true
+              },
+              {
+                "label": "No way",
                 "done": false
               }
             ]
@@ -34157,6 +33312,12 @@ module.exports={
           "state": {
             "name": "idle"
           }
+        },
+        {
+          "name": "_@@@3",
+          "state": {
+            "name": "idle"
+          }
         }
       ],
       "type": "onStateChanged",
@@ -34167,7 +33328,7 @@ module.exports={
           "todos": [
             {
               "label": "Another thing here",
-              "done": true
+              "done": false
             },
             {
               "label": "a new one",
@@ -34175,6 +33336,10 @@ module.exports={
             },
             {
               "label": "somenedsa",
+              "done": true
+            },
+            {
+              "label": "No way",
               "done": false
             }
           ]
@@ -34246,14 +33411,14 @@ module.exports={
         }
       },
       "meta": {
-        "machines": 3,
         "middlewares": 2
       },
-      "origin": "http://localhost:3000/"
+      "origin": "http://localhost:3000/",
+      "index": 47
     },
     {
       "source": "stent",
-      "time": 1512307707487,
+      "time": 1512336624292,
       "machines": [
         {
           "name": "ToDos",
@@ -34262,105 +33427,7 @@ module.exports={
             "todos": [
               {
                 "label": "Another thing here",
-                "done": true
-              },
-              {
-                "label": "a new one",
-                "done": true
-              },
-              {
-                "label": "somenedsa",
                 "done": false
-              }
-            ]
-          },
-          "transitions": {
-            "idle": {
-              "fetch todos": {
-                "__func": "fetchTodos"
-              },
-              "add new todo": {
-                "__func": "addNewTodo"
-              },
-              "delete todo": {
-                "__func": "deleteTodo"
-              },
-              "edit todo": {
-                "__func": "editTodo"
-              },
-              "change status": {
-                "__func": "changeStatus"
-              }
-            },
-            "fetching": {
-              "todos loaded": {
-                "__func": "todosLoaded"
-              },
-              "error": {
-                "__func": "error"
-              }
-            },
-            "error": {
-              "fetch todos": {
-                "__func": "fetchTodos"
-              }
-            }
-          },
-          "isIdle": {
-            "__func": "<anonymous>"
-          },
-          "fetchTodos": {
-            "__func": "<anonymous>"
-          },
-          "addNewTodo": {
-            "__func": "<anonymous>"
-          },
-          "deleteTodo": {
-            "__func": "<anonymous>"
-          },
-          "editTodo": {
-            "__func": "<anonymous>"
-          },
-          "changeStatus": {
-            "__func": "<anonymous>"
-          },
-          "isFetching": {
-            "__func": "<anonymous>"
-          },
-          "todosLoaded": {
-            "__func": "<anonymous>"
-          },
-          "error": {
-            "__func": "<anonymous>"
-          },
-          "isError": {
-            "__func": "<anonymous>"
-          },
-          "destroy": {
-            "__func": "<anonymous>"
-          }
-        }
-      ],
-      "type": "onMachineConnected",
-      "meta": {
-        "component": "Todo",
-        "machines": 3,
-        "middlewares": 2
-      },
-      "origin": "http://localhost:3000/"
-    },
-    {
-      "source": "stent",
-      "time": 1512307707487,
-      "machines": [
-        {
-          "name": "ToDos",
-          "state": {
-            "name": "idle",
-            "todos": [
-              {
-                "label": "Another thing here",
-                "done": true
               },
               {
                 "label": "a new one",
@@ -34368,6 +33435,10 @@ module.exports={
               },
               {
                 "label": "somenedsa",
+                "done": true
+              },
+              {
+                "label": "No way",
                 "done": false
               }
             ]
@@ -34381,6 +33452,158 @@ module.exports={
         },
         {
           "name": "_@@@2",
+          "state": {
+            "name": "idle"
+          }
+        },
+        {
+          "name": "_@@@3",
+          "state": {
+            "name": "idle"
+          }
+        }
+      ],
+      "type": "onMachineConnected",
+      "meta": {
+        "component": "Todo",
+        "machines": [
+          {
+            "name": "ToDos",
+            "state": {
+              "name": "idle",
+              "todos": [
+                {
+                  "label": "Another thing here",
+                  "done": false
+                },
+                {
+                  "label": "a new one",
+                  "done": true
+                },
+                {
+                  "label": "somenedsa",
+                  "done": true
+                },
+                {
+                  "label": "No way",
+                  "done": false
+                }
+              ]
+            },
+            "transitions": {
+              "idle": {
+                "fetch todos": {
+                  "__func": "fetchTodos"
+                },
+                "add new todo": {
+                  "__func": "addNewTodo"
+                },
+                "delete todo": {
+                  "__func": "deleteTodo"
+                },
+                "edit todo": {
+                  "__func": "editTodo"
+                },
+                "change status": {
+                  "__func": "changeStatus"
+                }
+              },
+              "fetching": {
+                "todos loaded": {
+                  "__func": "todosLoaded"
+                },
+                "error": {
+                  "__func": "error"
+                }
+              },
+              "error": {
+                "fetch todos": {
+                  "__func": "fetchTodos"
+                }
+              }
+            },
+            "isIdle": {
+              "__func": "<anonymous>"
+            },
+            "fetchTodos": {
+              "__func": "<anonymous>"
+            },
+            "addNewTodo": {
+              "__func": "<anonymous>"
+            },
+            "deleteTodo": {
+              "__func": "<anonymous>"
+            },
+            "editTodo": {
+              "__func": "<anonymous>"
+            },
+            "changeStatus": {
+              "__func": "<anonymous>"
+            },
+            "isFetching": {
+              "__func": "<anonymous>"
+            },
+            "todosLoaded": {
+              "__func": "<anonymous>"
+            },
+            "error": {
+              "__func": "<anonymous>"
+            },
+            "isError": {
+              "__func": "<anonymous>"
+            },
+            "destroy": {
+              "__func": "<anonymous>"
+            }
+          }
+        ],
+        "middlewares": 2
+      },
+      "origin": "http://localhost:3000/",
+      "index": 48
+    },
+    {
+      "source": "stent",
+      "time": 1512336624292,
+      "machines": [
+        {
+          "name": "ToDos",
+          "state": {
+            "name": "idle",
+            "todos": [
+              {
+                "label": "Another thing here",
+                "done": false
+              },
+              {
+                "label": "a new one",
+                "done": true
+              },
+              {
+                "label": "somenedsa",
+                "done": true
+              },
+              {
+                "label": "No way",
+                "done": false
+              }
+            ]
+          }
+        },
+        {
+          "name": "_@@@1",
+          "state": {
+            "name": "idle"
+          }
+        },
+        {
+          "name": "_@@@2",
+          "state": {
+            "name": "idle"
+          }
+        },
+        {
+          "name": "_@@@3",
           "state": {
             "name": "idle"
           }
@@ -34426,61 +33649,14 @@ module.exports={
         }
       },
       "meta": {
-        "machines": 4,
         "middlewares": 2
       },
-      "origin": "http://localhost:3000/"
+      "origin": "http://localhost:3000/",
+      "index": 49
     },
     {
       "source": "stent",
-      "time": 1512307707487,
-      "machines": [
-        {
-          "name": "_@@@4",
-          "state": {
-            "name": "idle"
-          },
-          "transitions": {
-            "idle": {
-              "edit": "editing"
-            },
-            "editing": {
-              "save": {
-                "__func": "save"
-              },
-              "cancel": "idle"
-            }
-          },
-          "isIdle": {
-            "__func": "<anonymous>"
-          },
-          "edit": {
-            "__func": "<anonymous>"
-          },
-          "isEditing": {
-            "__func": "<anonymous>"
-          },
-          "save": {
-            "__func": "<anonymous>"
-          },
-          "cancel": {
-            "__func": "<anonymous>"
-          },
-          "destroy": {
-            "__func": "<anonymous>"
-          }
-        }
-      ],
-      "type": "onMachineConnected",
-      "meta": {
-        "machines": 4,
-        "middlewares": 2
-      },
-      "origin": "http://localhost:3000/"
-    },
-    {
-      "source": "stent",
-      "time": 1512307709114,
+      "time": 1512336624293,
       "machines": [
         {
           "name": "ToDos",
@@ -34489,7 +33665,7 @@ module.exports={
             "todos": [
               {
                 "label": "Another thing here",
-                "done": true
+                "done": false
               },
               {
                 "label": "a new one",
@@ -34497,6 +33673,10 @@ module.exports={
               },
               {
                 "label": "somenedsa",
+                "done": true
+              },
+              {
+                "label": "No way",
                 "done": false
               }
             ]
@@ -34515,6 +33695,109 @@ module.exports={
           }
         },
         {
+          "name": "_@@@3",
+          "state": {
+            "name": "idle"
+          }
+        },
+        {
+          "name": "_@@@4",
+          "state": {
+            "name": "idle"
+          }
+        }
+      ],
+      "type": "onMachineConnected",
+      "meta": {
+        "machines": [
+          {
+            "name": "_@@@4",
+            "state": {
+              "name": "idle"
+            },
+            "transitions": {
+              "idle": {
+                "edit": "editing"
+              },
+              "editing": {
+                "save": {
+                  "__func": "save"
+                },
+                "cancel": "idle"
+              }
+            },
+            "isIdle": {
+              "__func": "<anonymous>"
+            },
+            "edit": {
+              "__func": "<anonymous>"
+            },
+            "isEditing": {
+              "__func": "<anonymous>"
+            },
+            "save": {
+              "__func": "<anonymous>"
+            },
+            "cancel": {
+              "__func": "<anonymous>"
+            },
+            "destroy": {
+              "__func": "<anonymous>"
+            }
+          }
+        ],
+        "middlewares": 2
+      },
+      "origin": "http://localhost:3000/",
+      "index": 50
+    },
+    {
+      "source": "stent",
+      "time": 1512336625734,
+      "machines": [
+        {
+          "name": "ToDos",
+          "state": {
+            "name": "idle",
+            "todos": [
+              {
+                "label": "Another thing here",
+                "done": false
+              },
+              {
+                "label": "a new one",
+                "done": true
+              },
+              {
+                "label": "somenedsa",
+                "done": true
+              },
+              {
+                "label": "No way",
+                "done": false
+              }
+            ]
+          }
+        },
+        {
+          "name": "_@@@1",
+          "state": {
+            "name": "idle"
+          }
+        },
+        {
+          "name": "_@@@2",
+          "state": {
+            "name": "idle"
+          }
+        },
+        {
+          "name": "_@@@3",
+          "state": {
+            "name": "idle"
+          }
+        },
+        {
           "name": "_@@@4",
           "state": {
             "name": "idle"
@@ -34522,10 +33805,9 @@ module.exports={
         }
       ],
       "type": "onActionDispatched",
-      "actionName": "change status",
+      "actionName": "delete todo",
       "args": [
-        2,
-        true
+        3
       ],
       "machine": {
         "name": "ToDos",
@@ -34534,7 +33816,7 @@ module.exports={
           "todos": [
             {
               "label": "Another thing here",
-              "done": true
+              "done": false
             },
             {
               "label": "a new one",
@@ -34542,6 +33824,10 @@ module.exports={
             },
             {
               "label": "somenedsa",
+              "done": true
+            },
+            {
+              "label": "No way",
               "done": false
             }
           ]
@@ -34613,14 +33899,14 @@ module.exports={
         }
       },
       "meta": {
-        "machines": 4,
         "middlewares": 2
       },
-      "origin": "http://localhost:3000/"
+      "origin": "http://localhost:3000/",
+      "index": 51
     },
     {
       "source": "stent",
-      "time": 1512307709114,
+      "time": 1512336625734,
       "machines": [
         {
           "name": "ToDos",
@@ -34629,7 +33915,7 @@ module.exports={
             "todos": [
               {
                 "label": "Another thing here",
-                "done": true
+                "done": false
               },
               {
                 "label": "a new one",
@@ -34655,6 +33941,12 @@ module.exports={
           }
         },
         {
+          "name": "_@@@3",
+          "state": {
+            "name": "idle"
+          }
+        },
+        {
           "name": "_@@@4",
           "state": {
             "name": "idle"
@@ -34668,7 +33960,7 @@ module.exports={
           [
             {
               "label": "Another thing here",
-              "done": true
+              "done": false
             },
             {
               "label": "a new one",
@@ -34683,14 +33975,14 @@ module.exports={
         "func": "saveTodos"
       },
       "meta": {
-        "machines": 4,
         "middlewares": 2
       },
-      "origin": "http://localhost:3000/"
+      "origin": "http://localhost:3000/",
+      "index": 52
     },
     {
       "source": "stent",
-      "time": 1512307709114,
+      "time": 1512336625734,
       "machines": [
         {
           "name": "ToDos",
@@ -34699,7 +33991,7 @@ module.exports={
             "todos": [
               {
                 "label": "Another thing here",
-                "done": true
+                "done": false
               },
               {
                 "label": "a new one",
@@ -34720,6 +34012,12 @@ module.exports={
         },
         {
           "name": "_@@@2",
+          "state": {
+            "name": "idle"
+          }
+        },
+        {
+          "name": "_@@@3",
           "state": {
             "name": "idle"
           }
@@ -34738,7 +34036,7 @@ module.exports={
           [
             {
               "label": "Another thing here",
-              "done": true
+              "done": false
             },
             {
               "label": "a new one",
@@ -34753,14 +34051,14 @@ module.exports={
         "func": "save"
       },
       "meta": {
-        "machines": 4,
         "middlewares": 2
       },
-      "origin": "http://localhost:3000/"
+      "origin": "http://localhost:3000/",
+      "index": 53
     },
     {
       "source": "stent",
-      "time": 1512307709115,
+      "time": 1512336625735,
       "machines": [
         {
           "name": "ToDos",
@@ -34769,7 +34067,7 @@ module.exports={
             "todos": [
               {
                 "label": "Another thing here",
-                "done": true
+                "done": false
               },
               {
                 "label": "a new one",
@@ -34790,6 +34088,12 @@ module.exports={
         },
         {
           "name": "_@@@2",
+          "state": {
+            "name": "idle"
+          }
+        },
+        {
+          "name": "_@@@3",
           "state": {
             "name": "idle"
           }
@@ -34807,7 +34111,7 @@ module.exports={
         "todos": [
           {
             "label": "Another thing here",
-            "done": true
+            "done": false
           },
           {
             "label": "a new one",
@@ -34820,14 +34124,14 @@ module.exports={
         ]
       },
       "meta": {
-        "machines": 4,
         "middlewares": 2
       },
-      "origin": "http://localhost:3000/"
+      "origin": "http://localhost:3000/",
+      "index": 54
     },
     {
       "source": "stent",
-      "time": 1512307709115,
+      "time": 1512336625735,
       "machines": [
         {
           "name": "ToDos",
@@ -34836,7 +34140,7 @@ module.exports={
             "todos": [
               {
                 "label": "Another thing here",
-                "done": true
+                "done": false
               },
               {
                 "label": "a new one",
@@ -34857,6 +34161,12 @@ module.exports={
         },
         {
           "name": "_@@@2",
+          "state": {
+            "name": "idle"
+          }
+        },
+        {
+          "name": "_@@@3",
           "state": {
             "name": "idle"
           }
@@ -34874,7 +34184,7 @@ module.exports={
         "todos": [
           {
             "label": "Another thing here",
-            "done": true
+            "done": false
           },
           {
             "label": "a new one",
@@ -34887,14 +34197,14 @@ module.exports={
         ]
       },
       "meta": {
-        "machines": 4,
         "middlewares": 2
       },
-      "origin": "http://localhost:3000/"
+      "origin": "http://localhost:3000/",
+      "index": 55
     },
     {
       "source": "stent",
-      "time": 1512307709115,
+      "time": 1512336625735,
       "machines": [
         {
           "name": "ToDos",
@@ -34903,7 +34213,7 @@ module.exports={
             "todos": [
               {
                 "label": "Another thing here",
-                "done": true
+                "done": false
               },
               {
                 "label": "a new one",
@@ -34924,6 +34234,12 @@ module.exports={
         },
         {
           "name": "_@@@2",
+          "state": {
+            "name": "idle"
+          }
+        },
+        {
+          "name": "_@@@3",
           "state": {
             "name": "idle"
           }
@@ -34943,7 +34259,7 @@ module.exports={
           "todos": [
             {
               "label": "Another thing here",
-              "done": true
+              "done": false
             },
             {
               "label": "a new one",
@@ -35022,14 +34338,14 @@ module.exports={
         }
       },
       "meta": {
-        "machines": 4,
         "middlewares": 2
       },
-      "origin": "http://localhost:3000/"
+      "origin": "http://localhost:3000/",
+      "index": 56
     },
     {
       "source": "stent",
-      "time": 1512307709116,
+      "time": 1512336625736,
       "machines": [
         {
           "name": "ToDos",
@@ -35038,7 +34354,7 @@ module.exports={
             "todos": [
               {
                 "label": "Another thing here",
-                "done": true
+                "done": false
               },
               {
                 "label": "a new one",
@@ -35064,6 +34380,12 @@ module.exports={
           }
         },
         {
+          "name": "_@@@3",
+          "state": {
+            "name": "idle"
+          }
+        },
+        {
           "name": "_@@@4",
           "state": {
             "name": "idle"
@@ -35078,7 +34400,7 @@ module.exports={
           "todos": [
             {
               "label": "Another thing here",
-              "done": true
+              "done": false
             },
             {
               "label": "a new one",
@@ -35157,10 +34479,2603 @@ module.exports={
         }
       },
       "meta": {
-        "machines": 4,
         "middlewares": 2
       },
-      "origin": "http://localhost:3000/"
+      "origin": "http://localhost:3000/",
+      "index": 57
+    },
+    {
+      "source": "stent",
+      "time": 1512336625738,
+      "machines": [
+        {
+          "name": "ToDos",
+          "state": {
+            "name": "idle",
+            "todos": [
+              {
+                "label": "Another thing here",
+                "done": false
+              },
+              {
+                "label": "a new one",
+                "done": true
+              },
+              {
+                "label": "somenedsa",
+                "done": true
+              }
+            ]
+          }
+        },
+        {
+          "name": "_@@@1",
+          "state": {
+            "name": "idle"
+          }
+        },
+        {
+          "name": "_@@@2",
+          "state": {
+            "name": "idle"
+          }
+        },
+        {
+          "name": "_@@@3",
+          "state": {
+            "name": "idle"
+          }
+        },
+        {
+          "name": "_@@@4",
+          "state": {
+            "name": "idle"
+          }
+        }
+      ],
+      "type": "onMachineDisconnected",
+      "meta": {
+        "component": "Todo",
+        "machines": [
+          {
+            "name": "ToDos",
+            "state": {
+              "name": "idle",
+              "todos": [
+                {
+                  "label": "Another thing here",
+                  "done": false
+                },
+                {
+                  "label": "a new one",
+                  "done": true
+                },
+                {
+                  "label": "somenedsa",
+                  "done": true
+                }
+              ]
+            },
+            "transitions": {
+              "idle": {
+                "fetch todos": {
+                  "__func": "fetchTodos"
+                },
+                "add new todo": {
+                  "__func": "addNewTodo"
+                },
+                "delete todo": {
+                  "__func": "deleteTodo"
+                },
+                "edit todo": {
+                  "__func": "editTodo"
+                },
+                "change status": {
+                  "__func": "changeStatus"
+                }
+              },
+              "fetching": {
+                "todos loaded": {
+                  "__func": "todosLoaded"
+                },
+                "error": {
+                  "__func": "error"
+                }
+              },
+              "error": {
+                "fetch todos": {
+                  "__func": "fetchTodos"
+                }
+              }
+            },
+            "isIdle": {
+              "__func": "<anonymous>"
+            },
+            "fetchTodos": {
+              "__func": "<anonymous>"
+            },
+            "addNewTodo": {
+              "__func": "<anonymous>"
+            },
+            "deleteTodo": {
+              "__func": "<anonymous>"
+            },
+            "editTodo": {
+              "__func": "<anonymous>"
+            },
+            "changeStatus": {
+              "__func": "<anonymous>"
+            },
+            "isFetching": {
+              "__func": "<anonymous>"
+            },
+            "todosLoaded": {
+              "__func": "<anonymous>"
+            },
+            "error": {
+              "__func": "<anonymous>"
+            },
+            "isError": {
+              "__func": "<anonymous>"
+            },
+            "destroy": {
+              "__func": "<anonymous>"
+            }
+          }
+        ],
+        "middlewares": 2
+      },
+      "origin": "http://localhost:3000/",
+      "index": 58
+    },
+    {
+      "source": "stent",
+      "time": 1512336625738,
+      "machines": [
+        {
+          "name": "ToDos",
+          "state": {
+            "name": "idle",
+            "todos": [
+              {
+                "label": "Another thing here",
+                "done": false
+              },
+              {
+                "label": "a new one",
+                "done": true
+              },
+              {
+                "label": "somenedsa",
+                "done": true
+              }
+            ]
+          }
+        },
+        {
+          "name": "_@@@1",
+          "state": {
+            "name": "idle"
+          }
+        },
+        {
+          "name": "_@@@2",
+          "state": {
+            "name": "idle"
+          }
+        },
+        {
+          "name": "_@@@3",
+          "state": {
+            "name": "idle"
+          }
+        }
+      ],
+      "type": "onMachineDisconnected",
+      "meta": {
+        "machines": [
+          {
+            "name": "ToDos",
+            "state": {
+              "name": "idle",
+              "todos": [
+                {
+                  "label": "Another thing here",
+                  "done": false
+                },
+                {
+                  "label": "a new one",
+                  "done": true
+                },
+                {
+                  "label": "somenedsa",
+                  "done": true
+                }
+              ]
+            },
+            "transitions": {
+              "idle": {
+                "fetch todos": {
+                  "__func": "fetchTodos"
+                },
+                "add new todo": {
+                  "__func": "addNewTodo"
+                },
+                "delete todo": {
+                  "__func": "deleteTodo"
+                },
+                "edit todo": {
+                  "__func": "editTodo"
+                },
+                "change status": {
+                  "__func": "changeStatus"
+                }
+              },
+              "fetching": {
+                "todos loaded": {
+                  "__func": "todosLoaded"
+                },
+                "error": {
+                  "__func": "error"
+                }
+              },
+              "error": {
+                "fetch todos": {
+                  "__func": "fetchTodos"
+                }
+              }
+            },
+            "isIdle": {
+              "__func": "<anonymous>"
+            },
+            "fetchTodos": {
+              "__func": "<anonymous>"
+            },
+            "addNewTodo": {
+              "__func": "<anonymous>"
+            },
+            "deleteTodo": {
+              "__func": "<anonymous>"
+            },
+            "editTodo": {
+              "__func": "<anonymous>"
+            },
+            "changeStatus": {
+              "__func": "<anonymous>"
+            },
+            "isFetching": {
+              "__func": "<anonymous>"
+            },
+            "todosLoaded": {
+              "__func": "<anonymous>"
+            },
+            "error": {
+              "__func": "<anonymous>"
+            },
+            "isError": {
+              "__func": "<anonymous>"
+            },
+            "destroy": {
+              "__func": "<anonymous>"
+            }
+          }
+        ],
+        "middlewares": 2
+      },
+      "origin": "http://localhost:3000/",
+      "index": 59
+    },
+    {
+      "source": "stent",
+      "time": 1512336625739,
+      "machines": [
+        {
+          "name": "ToDos",
+          "state": {
+            "name": "idle",
+            "todos": [
+              {
+                "label": "Another thing here",
+                "done": false
+              },
+              {
+                "label": "a new one",
+                "done": true
+              },
+              {
+                "label": "somenedsa",
+                "done": true
+              }
+            ]
+          }
+        },
+        {
+          "name": "_@@@1",
+          "state": {
+            "name": "idle"
+          }
+        },
+        {
+          "name": "_@@@2",
+          "state": {
+            "name": "idle"
+          }
+        },
+        {
+          "name": "_@@@3",
+          "state": {
+            "name": "idle"
+          }
+        }
+      ],
+      "type": "onMachineDisconnected",
+      "meta": {
+        "machines": [
+          {
+            "name": "ToDos",
+            "state": {
+              "name": "idle",
+              "todos": [
+                {
+                  "label": "Another thing here",
+                  "done": false
+                },
+                {
+                  "label": "a new one",
+                  "done": true
+                },
+                {
+                  "label": "somenedsa",
+                  "done": true
+                }
+              ]
+            },
+            "transitions": {
+              "idle": {
+                "fetch todos": {
+                  "__func": "fetchTodos"
+                },
+                "add new todo": {
+                  "__func": "addNewTodo"
+                },
+                "delete todo": {
+                  "__func": "deleteTodo"
+                },
+                "edit todo": {
+                  "__func": "editTodo"
+                },
+                "change status": {
+                  "__func": "changeStatus"
+                }
+              },
+              "fetching": {
+                "todos loaded": {
+                  "__func": "todosLoaded"
+                },
+                "error": {
+                  "__func": "error"
+                }
+              },
+              "error": {
+                "fetch todos": {
+                  "__func": "fetchTodos"
+                }
+              }
+            },
+            "isIdle": {
+              "__func": "<anonymous>"
+            },
+            "fetchTodos": {
+              "__func": "<anonymous>"
+            },
+            "addNewTodo": {
+              "__func": "<anonymous>"
+            },
+            "deleteTodo": {
+              "__func": "<anonymous>"
+            },
+            "editTodo": {
+              "__func": "<anonymous>"
+            },
+            "changeStatus": {
+              "__func": "<anonymous>"
+            },
+            "isFetching": {
+              "__func": "<anonymous>"
+            },
+            "todosLoaded": {
+              "__func": "<anonymous>"
+            },
+            "error": {
+              "__func": "<anonymous>"
+            },
+            "isError": {
+              "__func": "<anonymous>"
+            },
+            "destroy": {
+              "__func": "<anonymous>"
+            }
+          }
+        ],
+        "middlewares": 2
+      },
+      "origin": "http://localhost:3000/",
+      "index": 60
+    },
+    {
+      "source": "stent",
+      "time": 1512336625739,
+      "machines": [
+        {
+          "name": "ToDos",
+          "state": {
+            "name": "idle",
+            "todos": [
+              {
+                "label": "Another thing here",
+                "done": false
+              },
+              {
+                "label": "a new one",
+                "done": true
+              },
+              {
+                "label": "somenedsa",
+                "done": true
+              }
+            ]
+          }
+        },
+        {
+          "name": "_@@@1",
+          "state": {
+            "name": "idle"
+          }
+        },
+        {
+          "name": "_@@@2",
+          "state": {
+            "name": "idle"
+          }
+        },
+        {
+          "name": "_@@@3",
+          "state": {
+            "name": "idle"
+          }
+        }
+      ],
+      "type": "onMachineDisconnected",
+      "meta": {
+        "machines": [
+          {
+            "name": "ToDos",
+            "state": {
+              "name": "idle",
+              "todos": [
+                {
+                  "label": "Another thing here",
+                  "done": false
+                },
+                {
+                  "label": "a new one",
+                  "done": true
+                },
+                {
+                  "label": "somenedsa",
+                  "done": true
+                }
+              ]
+            },
+            "transitions": {
+              "idle": {
+                "fetch todos": {
+                  "__func": "fetchTodos"
+                },
+                "add new todo": {
+                  "__func": "addNewTodo"
+                },
+                "delete todo": {
+                  "__func": "deleteTodo"
+                },
+                "edit todo": {
+                  "__func": "editTodo"
+                },
+                "change status": {
+                  "__func": "changeStatus"
+                }
+              },
+              "fetching": {
+                "todos loaded": {
+                  "__func": "todosLoaded"
+                },
+                "error": {
+                  "__func": "error"
+                }
+              },
+              "error": {
+                "fetch todos": {
+                  "__func": "fetchTodos"
+                }
+              }
+            },
+            "isIdle": {
+              "__func": "<anonymous>"
+            },
+            "fetchTodos": {
+              "__func": "<anonymous>"
+            },
+            "addNewTodo": {
+              "__func": "<anonymous>"
+            },
+            "deleteTodo": {
+              "__func": "<anonymous>"
+            },
+            "editTodo": {
+              "__func": "<anonymous>"
+            },
+            "changeStatus": {
+              "__func": "<anonymous>"
+            },
+            "isFetching": {
+              "__func": "<anonymous>"
+            },
+            "todosLoaded": {
+              "__func": "<anonymous>"
+            },
+            "error": {
+              "__func": "<anonymous>"
+            },
+            "isError": {
+              "__func": "<anonymous>"
+            },
+            "destroy": {
+              "__func": "<anonymous>"
+            }
+          }
+        ],
+        "middlewares": 2
+      },
+      "origin": "http://localhost:3000/",
+      "index": 61
+    },
+    {
+      "source": "stent",
+      "time": 1512336625740,
+      "machines": [
+        {
+          "name": "ToDos",
+          "state": {
+            "name": "idle",
+            "todos": [
+              {
+                "label": "Another thing here",
+                "done": false
+              },
+              {
+                "label": "a new one",
+                "done": true
+              },
+              {
+                "label": "somenedsa",
+                "done": true
+              }
+            ]
+          }
+        },
+        {
+          "name": "_@@@1",
+          "state": {
+            "name": "idle"
+          }
+        },
+        {
+          "name": "_@@@2",
+          "state": {
+            "name": "idle"
+          }
+        },
+        {
+          "name": "_@@@3",
+          "state": {
+            "name": "idle"
+          }
+        }
+      ],
+      "type": "onMachineDisconnected",
+      "meta": {
+        "machines": [
+          {
+            "name": "_@@@1",
+            "state": {
+              "name": "idle"
+            },
+            "transitions": {
+              "idle": {
+                "edit": "editing"
+              },
+              "editing": {
+                "save": {
+                  "__func": "save"
+                },
+                "cancel": "idle"
+              }
+            },
+            "isIdle": {
+              "__func": "<anonymous>"
+            },
+            "edit": {
+              "__func": "<anonymous>"
+            },
+            "isEditing": {
+              "__func": "<anonymous>"
+            },
+            "save": {
+              "__func": "<anonymous>"
+            },
+            "cancel": {
+              "__func": "<anonymous>"
+            },
+            "destroy": {
+              "__func": "<anonymous>"
+            }
+          }
+        ],
+        "middlewares": 2
+      },
+      "origin": "http://localhost:3000/",
+      "index": 62
+    },
+    {
+      "source": "stent",
+      "time": 1512336625740,
+      "machines": [
+        {
+          "name": "ToDos",
+          "state": {
+            "name": "idle",
+            "todos": [
+              {
+                "label": "Another thing here",
+                "done": false
+              },
+              {
+                "label": "a new one",
+                "done": true
+              },
+              {
+                "label": "somenedsa",
+                "done": true
+              }
+            ]
+          }
+        },
+        {
+          "name": "_@@@1",
+          "state": {
+            "name": "idle"
+          }
+        },
+        {
+          "name": "_@@@2",
+          "state": {
+            "name": "idle"
+          }
+        },
+        {
+          "name": "_@@@3",
+          "state": {
+            "name": "idle"
+          }
+        }
+      ],
+      "type": "onMachineDisconnected",
+      "meta": {
+        "machines": [
+          {
+            "name": "ToDos",
+            "state": {
+              "name": "idle",
+              "todos": [
+                {
+                  "label": "Another thing here",
+                  "done": false
+                },
+                {
+                  "label": "a new one",
+                  "done": true
+                },
+                {
+                  "label": "somenedsa",
+                  "done": true
+                }
+              ]
+            },
+            "transitions": {
+              "idle": {
+                "fetch todos": {
+                  "__func": "fetchTodos"
+                },
+                "add new todo": {
+                  "__func": "addNewTodo"
+                },
+                "delete todo": {
+                  "__func": "deleteTodo"
+                },
+                "edit todo": {
+                  "__func": "editTodo"
+                },
+                "change status": {
+                  "__func": "changeStatus"
+                }
+              },
+              "fetching": {
+                "todos loaded": {
+                  "__func": "todosLoaded"
+                },
+                "error": {
+                  "__func": "error"
+                }
+              },
+              "error": {
+                "fetch todos": {
+                  "__func": "fetchTodos"
+                }
+              }
+            },
+            "isIdle": {
+              "__func": "<anonymous>"
+            },
+            "fetchTodos": {
+              "__func": "<anonymous>"
+            },
+            "addNewTodo": {
+              "__func": "<anonymous>"
+            },
+            "deleteTodo": {
+              "__func": "<anonymous>"
+            },
+            "editTodo": {
+              "__func": "<anonymous>"
+            },
+            "changeStatus": {
+              "__func": "<anonymous>"
+            },
+            "isFetching": {
+              "__func": "<anonymous>"
+            },
+            "todosLoaded": {
+              "__func": "<anonymous>"
+            },
+            "error": {
+              "__func": "<anonymous>"
+            },
+            "isError": {
+              "__func": "<anonymous>"
+            },
+            "destroy": {
+              "__func": "<anonymous>"
+            }
+          }
+        ],
+        "middlewares": 2
+      },
+      "origin": "http://localhost:3000/",
+      "index": 63
+    },
+    {
+      "source": "stent",
+      "time": 1512336625740,
+      "machines": [
+        {
+          "name": "ToDos",
+          "state": {
+            "name": "idle",
+            "todos": [
+              {
+                "label": "Another thing here",
+                "done": false
+              },
+              {
+                "label": "a new one",
+                "done": true
+              },
+              {
+                "label": "somenedsa",
+                "done": true
+              }
+            ]
+          }
+        },
+        {
+          "name": "_@@@1",
+          "state": {
+            "name": "idle"
+          }
+        },
+        {
+          "name": "_@@@2",
+          "state": {
+            "name": "idle"
+          }
+        },
+        {
+          "name": "_@@@3",
+          "state": {
+            "name": "idle"
+          }
+        }
+      ],
+      "type": "onMachineDisconnected",
+      "meta": {
+        "machines": [
+          {
+            "name": "_@@@2",
+            "state": {
+              "name": "idle"
+            },
+            "transitions": {
+              "idle": {
+                "edit": "editing"
+              },
+              "editing": {
+                "save": {
+                  "__func": "save"
+                },
+                "cancel": "idle"
+              }
+            },
+            "isIdle": {
+              "__func": "<anonymous>"
+            },
+            "edit": {
+              "__func": "<anonymous>"
+            },
+            "isEditing": {
+              "__func": "<anonymous>"
+            },
+            "save": {
+              "__func": "<anonymous>"
+            },
+            "cancel": {
+              "__func": "<anonymous>"
+            },
+            "destroy": {
+              "__func": "<anonymous>"
+            }
+          }
+        ],
+        "middlewares": 2
+      },
+      "origin": "http://localhost:3000/",
+      "index": 64
+    },
+    {
+      "source": "stent",
+      "time": 1512336625741,
+      "machines": [
+        {
+          "name": "ToDos",
+          "state": {
+            "name": "idle",
+            "todos": [
+              {
+                "label": "Another thing here",
+                "done": false
+              },
+              {
+                "label": "a new one",
+                "done": true
+              },
+              {
+                "label": "somenedsa",
+                "done": true
+              }
+            ]
+          }
+        },
+        {
+          "name": "_@@@1",
+          "state": {
+            "name": "idle"
+          }
+        },
+        {
+          "name": "_@@@2",
+          "state": {
+            "name": "idle"
+          }
+        },
+        {
+          "name": "_@@@3",
+          "state": {
+            "name": "idle"
+          }
+        }
+      ],
+      "type": "onMachineDisconnected",
+      "meta": {
+        "machines": [
+          {
+            "name": "ToDos",
+            "state": {
+              "name": "idle",
+              "todos": [
+                {
+                  "label": "Another thing here",
+                  "done": false
+                },
+                {
+                  "label": "a new one",
+                  "done": true
+                },
+                {
+                  "label": "somenedsa",
+                  "done": true
+                }
+              ]
+            },
+            "transitions": {
+              "idle": {
+                "fetch todos": {
+                  "__func": "fetchTodos"
+                },
+                "add new todo": {
+                  "__func": "addNewTodo"
+                },
+                "delete todo": {
+                  "__func": "deleteTodo"
+                },
+                "edit todo": {
+                  "__func": "editTodo"
+                },
+                "change status": {
+                  "__func": "changeStatus"
+                }
+              },
+              "fetching": {
+                "todos loaded": {
+                  "__func": "todosLoaded"
+                },
+                "error": {
+                  "__func": "error"
+                }
+              },
+              "error": {
+                "fetch todos": {
+                  "__func": "fetchTodos"
+                }
+              }
+            },
+            "isIdle": {
+              "__func": "<anonymous>"
+            },
+            "fetchTodos": {
+              "__func": "<anonymous>"
+            },
+            "addNewTodo": {
+              "__func": "<anonymous>"
+            },
+            "deleteTodo": {
+              "__func": "<anonymous>"
+            },
+            "editTodo": {
+              "__func": "<anonymous>"
+            },
+            "changeStatus": {
+              "__func": "<anonymous>"
+            },
+            "isFetching": {
+              "__func": "<anonymous>"
+            },
+            "todosLoaded": {
+              "__func": "<anonymous>"
+            },
+            "error": {
+              "__func": "<anonymous>"
+            },
+            "isError": {
+              "__func": "<anonymous>"
+            },
+            "destroy": {
+              "__func": "<anonymous>"
+            }
+          }
+        ],
+        "middlewares": 2
+      },
+      "origin": "http://localhost:3000/",
+      "index": 65
+    },
+    {
+      "source": "stent",
+      "time": 1512336625741,
+      "machines": [
+        {
+          "name": "ToDos",
+          "state": {
+            "name": "idle",
+            "todos": [
+              {
+                "label": "Another thing here",
+                "done": false
+              },
+              {
+                "label": "a new one",
+                "done": true
+              },
+              {
+                "label": "somenedsa",
+                "done": true
+              }
+            ]
+          }
+        },
+        {
+          "name": "_@@@1",
+          "state": {
+            "name": "idle"
+          }
+        },
+        {
+          "name": "_@@@2",
+          "state": {
+            "name": "idle"
+          }
+        },
+        {
+          "name": "_@@@3",
+          "state": {
+            "name": "idle"
+          }
+        }
+      ],
+      "type": "onMachineDisconnected",
+      "meta": {
+        "machines": [
+          {
+            "name": "_@@@3",
+            "state": {
+              "name": "idle"
+            },
+            "transitions": {
+              "idle": {
+                "edit": "editing"
+              },
+              "editing": {
+                "save": {
+                  "__func": "save"
+                },
+                "cancel": "idle"
+              }
+            },
+            "isIdle": {
+              "__func": "<anonymous>"
+            },
+            "edit": {
+              "__func": "<anonymous>"
+            },
+            "isEditing": {
+              "__func": "<anonymous>"
+            },
+            "save": {
+              "__func": "<anonymous>"
+            },
+            "cancel": {
+              "__func": "<anonymous>"
+            },
+            "destroy": {
+              "__func": "<anonymous>"
+            }
+          }
+        ],
+        "middlewares": 2
+      },
+      "origin": "http://localhost:3000/",
+      "index": 66
+    },
+    {
+      "source": "stent",
+      "time": 1512336625741,
+      "machines": [
+        {
+          "name": "ToDos",
+          "state": {
+            "name": "idle",
+            "todos": [
+              {
+                "label": "Another thing here",
+                "done": false
+              },
+              {
+                "label": "a new one",
+                "done": true
+              },
+              {
+                "label": "somenedsa",
+                "done": true
+              }
+            ]
+          }
+        },
+        {
+          "name": "_@@@1",
+          "state": {
+            "name": "idle"
+          }
+        },
+        {
+          "name": "_@@@2",
+          "state": {
+            "name": "idle"
+          }
+        },
+        {
+          "name": "_@@@3",
+          "state": {
+            "name": "idle"
+          }
+        }
+      ],
+      "type": "onMachineDisconnected",
+      "meta": {
+        "machines": [],
+        "middlewares": 2
+      },
+      "origin": "http://localhost:3000/",
+      "index": 67
+    },
+    {
+      "source": "stent",
+      "time": 1512336626837,
+      "machines": [
+        {
+          "name": "ToDos",
+          "state": {
+            "name": "idle",
+            "todos": [
+              {
+                "label": "Another thing here",
+                "done": false
+              },
+              {
+                "label": "a new one",
+                "done": true
+              },
+              {
+                "label": "somenedsa",
+                "done": true
+              }
+            ]
+          }
+        },
+        {
+          "name": "_@@@1",
+          "state": {
+            "name": "idle"
+          }
+        },
+        {
+          "name": "_@@@2",
+          "state": {
+            "name": "idle"
+          }
+        },
+        {
+          "name": "_@@@3",
+          "state": {
+            "name": "idle"
+          }
+        }
+      ],
+      "type": "onActionDispatched",
+      "actionName": "delete todo",
+      "args": [
+        2
+      ],
+      "machine": {
+        "name": "ToDos",
+        "state": {
+          "name": "idle",
+          "todos": [
+            {
+              "label": "Another thing here",
+              "done": false
+            },
+            {
+              "label": "a new one",
+              "done": true
+            },
+            {
+              "label": "somenedsa",
+              "done": true
+            }
+          ]
+        },
+        "transitions": {
+          "idle": {
+            "fetch todos": {
+              "__func": "fetchTodos"
+            },
+            "add new todo": {
+              "__func": "addNewTodo"
+            },
+            "delete todo": {
+              "__func": "deleteTodo"
+            },
+            "edit todo": {
+              "__func": "editTodo"
+            },
+            "change status": {
+              "__func": "changeStatus"
+            }
+          },
+          "fetching": {
+            "todos loaded": {
+              "__func": "todosLoaded"
+            },
+            "error": {
+              "__func": "error"
+            }
+          },
+          "error": {
+            "fetch todos": {
+              "__func": "fetchTodos"
+            }
+          }
+        },
+        "isIdle": {
+          "__func": "<anonymous>"
+        },
+        "fetchTodos": {
+          "__func": "<anonymous>"
+        },
+        "addNewTodo": {
+          "__func": "<anonymous>"
+        },
+        "deleteTodo": {
+          "__func": "<anonymous>"
+        },
+        "editTodo": {
+          "__func": "<anonymous>"
+        },
+        "changeStatus": {
+          "__func": "<anonymous>"
+        },
+        "isFetching": {
+          "__func": "<anonymous>"
+        },
+        "todosLoaded": {
+          "__func": "<anonymous>"
+        },
+        "error": {
+          "__func": "<anonymous>"
+        },
+        "isError": {
+          "__func": "<anonymous>"
+        },
+        "destroy": {
+          "__func": "<anonymous>"
+        }
+      },
+      "meta": {
+        "middlewares": 2
+      },
+      "origin": "http://localhost:3000/",
+      "index": 68
+    },
+    {
+      "source": "stent",
+      "time": 1512336626838,
+      "machines": [
+        {
+          "name": "ToDos",
+          "state": {
+            "name": "idle",
+            "todos": [
+              {
+                "label": "Another thing here",
+                "done": false
+              },
+              {
+                "label": "a new one",
+                "done": true
+              }
+            ]
+          }
+        },
+        {
+          "name": "_@@@1",
+          "state": {
+            "name": "idle"
+          }
+        },
+        {
+          "name": "_@@@2",
+          "state": {
+            "name": "idle"
+          }
+        },
+        {
+          "name": "_@@@3",
+          "state": {
+            "name": "idle"
+          }
+        }
+      ],
+      "type": "onGeneratorStep",
+      "yielded": {
+        "__type": "call",
+        "args": [
+          [
+            {
+              "label": "Another thing here",
+              "done": false
+            },
+            {
+              "label": "a new one",
+              "done": true
+            }
+          ]
+        ],
+        "func": "saveTodos"
+      },
+      "meta": {
+        "middlewares": 2
+      },
+      "origin": "http://localhost:3000/",
+      "index": 69
+    },
+    {
+      "source": "stent",
+      "time": 1512336626838,
+      "machines": [
+        {
+          "name": "ToDos",
+          "state": {
+            "name": "idle",
+            "todos": [
+              {
+                "label": "Another thing here",
+                "done": false
+              },
+              {
+                "label": "a new one",
+                "done": true
+              }
+            ]
+          }
+        },
+        {
+          "name": "_@@@1",
+          "state": {
+            "name": "idle"
+          }
+        },
+        {
+          "name": "_@@@2",
+          "state": {
+            "name": "idle"
+          }
+        },
+        {
+          "name": "_@@@3",
+          "state": {
+            "name": "idle"
+          }
+        }
+      ],
+      "type": "onGeneratorStep",
+      "yielded": {
+        "__type": "call",
+        "args": [
+          [
+            {
+              "label": "Another thing here",
+              "done": false
+            },
+            {
+              "label": "a new one",
+              "done": true
+            }
+          ]
+        ],
+        "func": "save"
+      },
+      "meta": {
+        "middlewares": 2
+      },
+      "origin": "http://localhost:3000/",
+      "index": 70
+    },
+    {
+      "source": "stent",
+      "time": 1512336626838,
+      "machines": [
+        {
+          "name": "ToDos",
+          "state": {
+            "name": "idle",
+            "todos": [
+              {
+                "label": "Another thing here",
+                "done": false
+              },
+              {
+                "label": "a new one",
+                "done": true
+              }
+            ]
+          }
+        },
+        {
+          "name": "_@@@1",
+          "state": {
+            "name": "idle"
+          }
+        },
+        {
+          "name": "_@@@2",
+          "state": {
+            "name": "idle"
+          }
+        },
+        {
+          "name": "_@@@3",
+          "state": {
+            "name": "idle"
+          }
+        }
+      ],
+      "type": "onGeneratorStep",
+      "yielded": {
+        "name": "idle",
+        "todos": [
+          {
+            "label": "Another thing here",
+            "done": false
+          },
+          {
+            "label": "a new one",
+            "done": true
+          }
+        ]
+      },
+      "meta": {
+        "middlewares": 2
+      },
+      "origin": "http://localhost:3000/",
+      "index": 71
+    },
+    {
+      "source": "stent",
+      "time": 1512336626838,
+      "machines": [
+        {
+          "name": "ToDos",
+          "state": {
+            "name": "idle",
+            "todos": [
+              {
+                "label": "Another thing here",
+                "done": false
+              },
+              {
+                "label": "a new one",
+                "done": true
+              }
+            ]
+          }
+        },
+        {
+          "name": "_@@@1",
+          "state": {
+            "name": "idle"
+          }
+        },
+        {
+          "name": "_@@@2",
+          "state": {
+            "name": "idle"
+          }
+        },
+        {
+          "name": "_@@@3",
+          "state": {
+            "name": "idle"
+          }
+        }
+      ],
+      "type": "onGeneratorStep",
+      "yielded": {
+        "name": "idle",
+        "todos": [
+          {
+            "label": "Another thing here",
+            "done": false
+          },
+          {
+            "label": "a new one",
+            "done": true
+          }
+        ]
+      },
+      "meta": {
+        "middlewares": 2
+      },
+      "origin": "http://localhost:3000/",
+      "index": 72
+    },
+    {
+      "source": "stent",
+      "time": 1512336626839,
+      "machines": [
+        {
+          "name": "ToDos",
+          "state": {
+            "name": "idle",
+            "todos": [
+              {
+                "label": "Another thing here",
+                "done": false
+              },
+              {
+                "label": "a new one",
+                "done": true
+              }
+            ]
+          }
+        },
+        {
+          "name": "_@@@1",
+          "state": {
+            "name": "idle"
+          }
+        },
+        {
+          "name": "_@@@2",
+          "state": {
+            "name": "idle"
+          }
+        },
+        {
+          "name": "_@@@3",
+          "state": {
+            "name": "idle"
+          }
+        }
+      ],
+      "type": "onStateWillChange",
+      "machine": {
+        "name": "ToDos",
+        "state": {
+          "name": "idle",
+          "todos": [
+            {
+              "label": "Another thing here",
+              "done": false
+            },
+            {
+              "label": "a new one",
+              "done": true
+            }
+          ]
+        },
+        "transitions": {
+          "idle": {
+            "fetch todos": {
+              "__func": "fetchTodos"
+            },
+            "add new todo": {
+              "__func": "addNewTodo"
+            },
+            "delete todo": {
+              "__func": "deleteTodo"
+            },
+            "edit todo": {
+              "__func": "editTodo"
+            },
+            "change status": {
+              "__func": "changeStatus"
+            }
+          },
+          "fetching": {
+            "todos loaded": {
+              "__func": "todosLoaded"
+            },
+            "error": {
+              "__func": "error"
+            }
+          },
+          "error": {
+            "fetch todos": {
+              "__func": "fetchTodos"
+            }
+          }
+        },
+        "isIdle": {
+          "__func": "<anonymous>"
+        },
+        "fetchTodos": {
+          "__func": "<anonymous>"
+        },
+        "addNewTodo": {
+          "__func": "<anonymous>"
+        },
+        "deleteTodo": {
+          "__func": "<anonymous>"
+        },
+        "editTodo": {
+          "__func": "<anonymous>"
+        },
+        "changeStatus": {
+          "__func": "<anonymous>"
+        },
+        "isFetching": {
+          "__func": "<anonymous>"
+        },
+        "todosLoaded": {
+          "__func": "<anonymous>"
+        },
+        "error": {
+          "__func": "<anonymous>"
+        },
+        "isError": {
+          "__func": "<anonymous>"
+        },
+        "destroy": {
+          "__func": "<anonymous>"
+        }
+      },
+      "meta": {
+        "middlewares": 2
+      },
+      "origin": "http://localhost:3000/",
+      "index": 73
+    },
+    {
+      "source": "stent",
+      "time": 1512336626840,
+      "machines": [
+        {
+          "name": "ToDos",
+          "state": {
+            "name": "idle",
+            "todos": [
+              {
+                "label": "Another thing here",
+                "done": false
+              },
+              {
+                "label": "a new one",
+                "done": true
+              }
+            ]
+          }
+        },
+        {
+          "name": "_@@@1",
+          "state": {
+            "name": "idle"
+          }
+        },
+        {
+          "name": "_@@@2",
+          "state": {
+            "name": "idle"
+          }
+        },
+        {
+          "name": "_@@@3",
+          "state": {
+            "name": "idle"
+          }
+        }
+      ],
+      "type": "onStateChanged",
+      "machine": {
+        "name": "ToDos",
+        "state": {
+          "name": "idle",
+          "todos": [
+            {
+              "label": "Another thing here",
+              "done": false
+            },
+            {
+              "label": "a new one",
+              "done": true
+            }
+          ]
+        },
+        "transitions": {
+          "idle": {
+            "fetch todos": {
+              "__func": "fetchTodos"
+            },
+            "add new todo": {
+              "__func": "addNewTodo"
+            },
+            "delete todo": {
+              "__func": "deleteTodo"
+            },
+            "edit todo": {
+              "__func": "editTodo"
+            },
+            "change status": {
+              "__func": "changeStatus"
+            }
+          },
+          "fetching": {
+            "todos loaded": {
+              "__func": "todosLoaded"
+            },
+            "error": {
+              "__func": "error"
+            }
+          },
+          "error": {
+            "fetch todos": {
+              "__func": "fetchTodos"
+            }
+          }
+        },
+        "isIdle": {
+          "__func": "<anonymous>"
+        },
+        "fetchTodos": {
+          "__func": "<anonymous>"
+        },
+        "addNewTodo": {
+          "__func": "<anonymous>"
+        },
+        "deleteTodo": {
+          "__func": "<anonymous>"
+        },
+        "editTodo": {
+          "__func": "<anonymous>"
+        },
+        "changeStatus": {
+          "__func": "<anonymous>"
+        },
+        "isFetching": {
+          "__func": "<anonymous>"
+        },
+        "todosLoaded": {
+          "__func": "<anonymous>"
+        },
+        "error": {
+          "__func": "<anonymous>"
+        },
+        "isError": {
+          "__func": "<anonymous>"
+        },
+        "destroy": {
+          "__func": "<anonymous>"
+        }
+      },
+      "meta": {
+        "middlewares": 2
+      },
+      "origin": "http://localhost:3000/",
+      "index": 74
+    },
+    {
+      "source": "stent",
+      "time": 1512336626842,
+      "machines": [
+        {
+          "name": "ToDos",
+          "state": {
+            "name": "idle",
+            "todos": [
+              {
+                "label": "Another thing here",
+                "done": false
+              },
+              {
+                "label": "a new one",
+                "done": true
+              }
+            ]
+          }
+        },
+        {
+          "name": "_@@@1",
+          "state": {
+            "name": "idle"
+          }
+        },
+        {
+          "name": "_@@@2",
+          "state": {
+            "name": "idle"
+          }
+        },
+        {
+          "name": "_@@@3",
+          "state": {
+            "name": "idle"
+          }
+        }
+      ],
+      "type": "onMachineDisconnected",
+      "meta": {
+        "component": "Todo",
+        "machines": [
+          {
+            "name": "ToDos",
+            "state": {
+              "name": "idle",
+              "todos": [
+                {
+                  "label": "Another thing here",
+                  "done": false
+                },
+                {
+                  "label": "a new one",
+                  "done": true
+                }
+              ]
+            },
+            "transitions": {
+              "idle": {
+                "fetch todos": {
+                  "__func": "fetchTodos"
+                },
+                "add new todo": {
+                  "__func": "addNewTodo"
+                },
+                "delete todo": {
+                  "__func": "deleteTodo"
+                },
+                "edit todo": {
+                  "__func": "editTodo"
+                },
+                "change status": {
+                  "__func": "changeStatus"
+                }
+              },
+              "fetching": {
+                "todos loaded": {
+                  "__func": "todosLoaded"
+                },
+                "error": {
+                  "__func": "error"
+                }
+              },
+              "error": {
+                "fetch todos": {
+                  "__func": "fetchTodos"
+                }
+              }
+            },
+            "isIdle": {
+              "__func": "<anonymous>"
+            },
+            "fetchTodos": {
+              "__func": "<anonymous>"
+            },
+            "addNewTodo": {
+              "__func": "<anonymous>"
+            },
+            "deleteTodo": {
+              "__func": "<anonymous>"
+            },
+            "editTodo": {
+              "__func": "<anonymous>"
+            },
+            "changeStatus": {
+              "__func": "<anonymous>"
+            },
+            "isFetching": {
+              "__func": "<anonymous>"
+            },
+            "todosLoaded": {
+              "__func": "<anonymous>"
+            },
+            "error": {
+              "__func": "<anonymous>"
+            },
+            "isError": {
+              "__func": "<anonymous>"
+            },
+            "destroy": {
+              "__func": "<anonymous>"
+            }
+          }
+        ],
+        "middlewares": 2
+      },
+      "origin": "http://localhost:3000/",
+      "index": 75
+    },
+    {
+      "source": "stent",
+      "time": 1512336626842,
+      "machines": [
+        {
+          "name": "ToDos",
+          "state": {
+            "name": "idle",
+            "todos": [
+              {
+                "label": "Another thing here",
+                "done": false
+              },
+              {
+                "label": "a new one",
+                "done": true
+              }
+            ]
+          }
+        },
+        {
+          "name": "_@@@1",
+          "state": {
+            "name": "idle"
+          }
+        },
+        {
+          "name": "_@@@2",
+          "state": {
+            "name": "idle"
+          }
+        }
+      ],
+      "type": "onMachineDisconnected",
+      "meta": {
+        "machines": [
+          {
+            "name": "ToDos",
+            "state": {
+              "name": "idle",
+              "todos": [
+                {
+                  "label": "Another thing here",
+                  "done": false
+                },
+                {
+                  "label": "a new one",
+                  "done": true
+                }
+              ]
+            },
+            "transitions": {
+              "idle": {
+                "fetch todos": {
+                  "__func": "fetchTodos"
+                },
+                "add new todo": {
+                  "__func": "addNewTodo"
+                },
+                "delete todo": {
+                  "__func": "deleteTodo"
+                },
+                "edit todo": {
+                  "__func": "editTodo"
+                },
+                "change status": {
+                  "__func": "changeStatus"
+                }
+              },
+              "fetching": {
+                "todos loaded": {
+                  "__func": "todosLoaded"
+                },
+                "error": {
+                  "__func": "error"
+                }
+              },
+              "error": {
+                "fetch todos": {
+                  "__func": "fetchTodos"
+                }
+              }
+            },
+            "isIdle": {
+              "__func": "<anonymous>"
+            },
+            "fetchTodos": {
+              "__func": "<anonymous>"
+            },
+            "addNewTodo": {
+              "__func": "<anonymous>"
+            },
+            "deleteTodo": {
+              "__func": "<anonymous>"
+            },
+            "editTodo": {
+              "__func": "<anonymous>"
+            },
+            "changeStatus": {
+              "__func": "<anonymous>"
+            },
+            "isFetching": {
+              "__func": "<anonymous>"
+            },
+            "todosLoaded": {
+              "__func": "<anonymous>"
+            },
+            "error": {
+              "__func": "<anonymous>"
+            },
+            "isError": {
+              "__func": "<anonymous>"
+            },
+            "destroy": {
+              "__func": "<anonymous>"
+            }
+          }
+        ],
+        "middlewares": 2
+      },
+      "origin": "http://localhost:3000/",
+      "index": 76
+    },
+    {
+      "source": "stent",
+      "time": 1512336626842,
+      "machines": [
+        {
+          "name": "ToDos",
+          "state": {
+            "name": "idle",
+            "todos": [
+              {
+                "label": "Another thing here",
+                "done": false
+              },
+              {
+                "label": "a new one",
+                "done": true
+              }
+            ]
+          }
+        },
+        {
+          "name": "_@@@1",
+          "state": {
+            "name": "idle"
+          }
+        },
+        {
+          "name": "_@@@2",
+          "state": {
+            "name": "idle"
+          }
+        }
+      ],
+      "type": "onMachineDisconnected",
+      "meta": {
+        "machines": [
+          {
+            "name": "ToDos",
+            "state": {
+              "name": "idle",
+              "todos": [
+                {
+                  "label": "Another thing here",
+                  "done": false
+                },
+                {
+                  "label": "a new one",
+                  "done": true
+                }
+              ]
+            },
+            "transitions": {
+              "idle": {
+                "fetch todos": {
+                  "__func": "fetchTodos"
+                },
+                "add new todo": {
+                  "__func": "addNewTodo"
+                },
+                "delete todo": {
+                  "__func": "deleteTodo"
+                },
+                "edit todo": {
+                  "__func": "editTodo"
+                },
+                "change status": {
+                  "__func": "changeStatus"
+                }
+              },
+              "fetching": {
+                "todos loaded": {
+                  "__func": "todosLoaded"
+                },
+                "error": {
+                  "__func": "error"
+                }
+              },
+              "error": {
+                "fetch todos": {
+                  "__func": "fetchTodos"
+                }
+              }
+            },
+            "isIdle": {
+              "__func": "<anonymous>"
+            },
+            "fetchTodos": {
+              "__func": "<anonymous>"
+            },
+            "addNewTodo": {
+              "__func": "<anonymous>"
+            },
+            "deleteTodo": {
+              "__func": "<anonymous>"
+            },
+            "editTodo": {
+              "__func": "<anonymous>"
+            },
+            "changeStatus": {
+              "__func": "<anonymous>"
+            },
+            "isFetching": {
+              "__func": "<anonymous>"
+            },
+            "todosLoaded": {
+              "__func": "<anonymous>"
+            },
+            "error": {
+              "__func": "<anonymous>"
+            },
+            "isError": {
+              "__func": "<anonymous>"
+            },
+            "destroy": {
+              "__func": "<anonymous>"
+            }
+          }
+        ],
+        "middlewares": 2
+      },
+      "origin": "http://localhost:3000/",
+      "index": 77
+    },
+    {
+      "source": "stent",
+      "time": 1512336626843,
+      "machines": [
+        {
+          "name": "ToDos",
+          "state": {
+            "name": "idle",
+            "todos": [
+              {
+                "label": "Another thing here",
+                "done": false
+              },
+              {
+                "label": "a new one",
+                "done": true
+              }
+            ]
+          }
+        },
+        {
+          "name": "_@@@1",
+          "state": {
+            "name": "idle"
+          }
+        },
+        {
+          "name": "_@@@2",
+          "state": {
+            "name": "idle"
+          }
+        }
+      ],
+      "type": "onMachineDisconnected",
+      "meta": {
+        "machines": [
+          {
+            "name": "ToDos",
+            "state": {
+              "name": "idle",
+              "todos": [
+                {
+                  "label": "Another thing here",
+                  "done": false
+                },
+                {
+                  "label": "a new one",
+                  "done": true
+                }
+              ]
+            },
+            "transitions": {
+              "idle": {
+                "fetch todos": {
+                  "__func": "fetchTodos"
+                },
+                "add new todo": {
+                  "__func": "addNewTodo"
+                },
+                "delete todo": {
+                  "__func": "deleteTodo"
+                },
+                "edit todo": {
+                  "__func": "editTodo"
+                },
+                "change status": {
+                  "__func": "changeStatus"
+                }
+              },
+              "fetching": {
+                "todos loaded": {
+                  "__func": "todosLoaded"
+                },
+                "error": {
+                  "__func": "error"
+                }
+              },
+              "error": {
+                "fetch todos": {
+                  "__func": "fetchTodos"
+                }
+              }
+            },
+            "isIdle": {
+              "__func": "<anonymous>"
+            },
+            "fetchTodos": {
+              "__func": "<anonymous>"
+            },
+            "addNewTodo": {
+              "__func": "<anonymous>"
+            },
+            "deleteTodo": {
+              "__func": "<anonymous>"
+            },
+            "editTodo": {
+              "__func": "<anonymous>"
+            },
+            "changeStatus": {
+              "__func": "<anonymous>"
+            },
+            "isFetching": {
+              "__func": "<anonymous>"
+            },
+            "todosLoaded": {
+              "__func": "<anonymous>"
+            },
+            "error": {
+              "__func": "<anonymous>"
+            },
+            "isError": {
+              "__func": "<anonymous>"
+            },
+            "destroy": {
+              "__func": "<anonymous>"
+            }
+          }
+        ],
+        "middlewares": 2
+      },
+      "origin": "http://localhost:3000/",
+      "index": 78
+    },
+    {
+      "source": "stent",
+      "time": 1512336626843,
+      "machines": [
+        {
+          "name": "ToDos",
+          "state": {
+            "name": "idle",
+            "todos": [
+              {
+                "label": "Another thing here",
+                "done": false
+              },
+              {
+                "label": "a new one",
+                "done": true
+              }
+            ]
+          }
+        },
+        {
+          "name": "_@@@1",
+          "state": {
+            "name": "idle"
+          }
+        },
+        {
+          "name": "_@@@2",
+          "state": {
+            "name": "idle"
+          }
+        }
+      ],
+      "type": "onMachineDisconnected",
+      "meta": {
+        "machines": [
+          {
+            "name": "_@@@1",
+            "state": {
+              "name": "idle"
+            },
+            "transitions": {
+              "idle": {
+                "edit": "editing"
+              },
+              "editing": {
+                "save": {
+                  "__func": "save"
+                },
+                "cancel": "idle"
+              }
+            },
+            "isIdle": {
+              "__func": "<anonymous>"
+            },
+            "edit": {
+              "__func": "<anonymous>"
+            },
+            "isEditing": {
+              "__func": "<anonymous>"
+            },
+            "save": {
+              "__func": "<anonymous>"
+            },
+            "cancel": {
+              "__func": "<anonymous>"
+            },
+            "destroy": {
+              "__func": "<anonymous>"
+            }
+          }
+        ],
+        "middlewares": 2
+      },
+      "origin": "http://localhost:3000/",
+      "index": 79
+    },
+    {
+      "source": "stent",
+      "time": 1512336626844,
+      "machines": [
+        {
+          "name": "ToDos",
+          "state": {
+            "name": "idle",
+            "todos": [
+              {
+                "label": "Another thing here",
+                "done": false
+              },
+              {
+                "label": "a new one",
+                "done": true
+              }
+            ]
+          }
+        },
+        {
+          "name": "_@@@1",
+          "state": {
+            "name": "idle"
+          }
+        },
+        {
+          "name": "_@@@2",
+          "state": {
+            "name": "idle"
+          }
+        }
+      ],
+      "type": "onMachineDisconnected",
+      "meta": {
+        "machines": [
+          {
+            "name": "ToDos",
+            "state": {
+              "name": "idle",
+              "todos": [
+                {
+                  "label": "Another thing here",
+                  "done": false
+                },
+                {
+                  "label": "a new one",
+                  "done": true
+                }
+              ]
+            },
+            "transitions": {
+              "idle": {
+                "fetch todos": {
+                  "__func": "fetchTodos"
+                },
+                "add new todo": {
+                  "__func": "addNewTodo"
+                },
+                "delete todo": {
+                  "__func": "deleteTodo"
+                },
+                "edit todo": {
+                  "__func": "editTodo"
+                },
+                "change status": {
+                  "__func": "changeStatus"
+                }
+              },
+              "fetching": {
+                "todos loaded": {
+                  "__func": "todosLoaded"
+                },
+                "error": {
+                  "__func": "error"
+                }
+              },
+              "error": {
+                "fetch todos": {
+                  "__func": "fetchTodos"
+                }
+              }
+            },
+            "isIdle": {
+              "__func": "<anonymous>"
+            },
+            "fetchTodos": {
+              "__func": "<anonymous>"
+            },
+            "addNewTodo": {
+              "__func": "<anonymous>"
+            },
+            "deleteTodo": {
+              "__func": "<anonymous>"
+            },
+            "editTodo": {
+              "__func": "<anonymous>"
+            },
+            "changeStatus": {
+              "__func": "<anonymous>"
+            },
+            "isFetching": {
+              "__func": "<anonymous>"
+            },
+            "todosLoaded": {
+              "__func": "<anonymous>"
+            },
+            "error": {
+              "__func": "<anonymous>"
+            },
+            "isError": {
+              "__func": "<anonymous>"
+            },
+            "destroy": {
+              "__func": "<anonymous>"
+            }
+          }
+        ],
+        "middlewares": 2
+      },
+      "origin": "http://localhost:3000/",
+      "index": 80
+    },
+    {
+      "source": "stent",
+      "time": 1512336626844,
+      "machines": [
+        {
+          "name": "ToDos",
+          "state": {
+            "name": "idle",
+            "todos": [
+              {
+                "label": "Another thing here",
+                "done": false
+              },
+              {
+                "label": "a new one",
+                "done": true
+              }
+            ]
+          }
+        },
+        {
+          "name": "_@@@1",
+          "state": {
+            "name": "idle"
+          }
+        },
+        {
+          "name": "_@@@2",
+          "state": {
+            "name": "idle"
+          }
+        }
+      ],
+      "type": "onMachineDisconnected",
+      "meta": {
+        "machines": [
+          {
+            "name": "_@@@2",
+            "state": {
+              "name": "idle"
+            },
+            "transitions": {
+              "idle": {
+                "edit": "editing"
+              },
+              "editing": {
+                "save": {
+                  "__func": "save"
+                },
+                "cancel": "idle"
+              }
+            },
+            "isIdle": {
+              "__func": "<anonymous>"
+            },
+            "edit": {
+              "__func": "<anonymous>"
+            },
+            "isEditing": {
+              "__func": "<anonymous>"
+            },
+            "save": {
+              "__func": "<anonymous>"
+            },
+            "cancel": {
+              "__func": "<anonymous>"
+            },
+            "destroy": {
+              "__func": "<anonymous>"
+            }
+          }
+        ],
+        "middlewares": 2
+      },
+      "origin": "http://localhost:3000/",
+      "index": 81
+    },
+    {
+      "source": "stent",
+      "time": 1512336626844,
+      "machines": [
+        {
+          "name": "ToDos",
+          "state": {
+            "name": "idle",
+            "todos": [
+              {
+                "label": "Another thing here",
+                "done": false
+              },
+              {
+                "label": "a new one",
+                "done": true
+              }
+            ]
+          }
+        },
+        {
+          "name": "_@@@1",
+          "state": {
+            "name": "idle"
+          }
+        },
+        {
+          "name": "_@@@2",
+          "state": {
+            "name": "idle"
+          }
+        }
+      ],
+      "type": "onMachineDisconnected",
+      "meta": {
+        "machines": [],
+        "middlewares": 2
+      },
+      "origin": "http://localhost:3000/",
+      "index": 82
     }
   ]
 }
@@ -35233,21 +37148,6 @@ var App = function (_React$Component) {
       return _react2.default.createElement(
         'div',
         null,
-        _react2.default.createElement(
-          'nav',
-          null,
-          _react2.default.createElement('i', { className: 'fa fa-heart logo', 'aria-hidden': 'true' }),
-          _react2.default.createElement(
-            'a',
-            { href: '#', className: page === _constants.PAGES.LOG ? 'selected' : '' },
-            'Log'
-          ),
-          _react2.default.createElement(
-            'a',
-            { href: '#', className: page === _constants.PAGES.MACHINES ? 'selected' : '' },
-            'Machines'
-          )
-        ),
         this._renderPage()
       );
     }
@@ -35292,6 +37192,12 @@ var _formatMilliseconds = require('../helpers/formatMilliseconds');
 
 var _formatMilliseconds2 = _interopRequireDefault(_formatMilliseconds);
 
+var _treeTheme = require('../helpers/treeTheme');
+
+var _treeTheme2 = _interopRequireDefault(_treeTheme);
+
+var _stent = require('stent');
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -35300,26 +37206,6 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var treeTheme = {
-  scheme: 'chalk',
-  author: 'chris kempson (http://chriskempson.com)',
-  base00: '#151515',
-  base01: '#202020',
-  base02: '#303030',
-  base03: '#505050',
-  base04: '#b0b0b0',
-  base05: '#d0d0d0',
-  base06: '#e0e0e0',
-  base07: '#f5f5f5',
-  base08: '#fb9fb1',
-  base09: '#eda987',
-  base0A: '#ddb26f',
-  base0B: '#acc267',
-  base0C: '#12cfc0',
-  base0D: '#6fc2ef',
-  base0E: '#e1a3ee',
-  base0F: '#deaf8f'
-};
 var getItemString = function getItemString(type, data, itemType, itemString) {
   if (type === 'Array') return _react2.default.createElement(
     'span',
@@ -35341,6 +37227,24 @@ function renderMachinesAsTree(machines) {
   }, {});
 }
 
+var nav = _stent.Machine.create('Nav', {
+  state: { name: 'state' },
+  transitions: {
+    'state': {
+      'view action': 'action',
+      'view machines': 'machines'
+    },
+    'action': {
+      'view state': 'state',
+      'view machines': 'machines'
+    },
+    'machines': {
+      'view state': 'state',
+      'view action': 'action'
+    }
+  }
+});
+
 var PageLog = function (_React$Component) {
   _inherits(PageLog, _React$Component);
 
@@ -35361,7 +37265,14 @@ var PageLog = function (_React$Component) {
   _createClass(PageLog, [{
     key: 'componentDidUpdate',
     value: function componentDidUpdate() {
-      // this.logWrapper.scrollTop = this.logWrapper.scrollHeight;
+      if (this.state.snapshotIndex === null) {
+        this.log.scrollTop = this.log.scrollHeight;
+      }
+    }
+  }, {
+    key: '_setSnapshotIndex',
+    value: function _setSnapshotIndex(index) {
+      this.setState({ snapshotIndex: index === this.props.actions.length - 1 ? null : index });
     }
   }, {
     key: '_onFilterTypeChanged',
@@ -35458,7 +37369,7 @@ var PageLog = function (_React$Component) {
           key: action.index,
           className: action.type + ' actionRow relative',
           onClick: function onClick() {
-            return _this4.setState({ snapshotIndex: action.index });
+            return _this4._setSnapshotIndex(action.index);
           } },
         actionRepresentation[0],
         this.snapshotIndex === action.index && _react2.default.createElement('i', { className: 'fa fa-thumb-tack snapshotMarker' })
@@ -35495,7 +37406,7 @@ var PageLog = function (_React$Component) {
 
       return _react2.default.createElement(_reactJsonTree2.default, {
         data: renderMachinesAsTree(snapshotAction.machines),
-        theme: treeTheme,
+        theme: _treeTheme2.default,
         getItemString: getItemString
       });
     }
@@ -35504,7 +37415,12 @@ var PageLog = function (_React$Component) {
     value: function render() {
       var _this5 = this;
 
-      var clear = this.props.clear;
+      var _props = this.props,
+          clear = _props.clear,
+          navViewState = _props.navViewState,
+          navViewAction = _props.navViewAction,
+          navViewMachines = _props.navViewMachines,
+          navState = _props.navState;
 
 
       return _react2.default.createElement(
@@ -35512,31 +37428,54 @@ var PageLog = function (_React$Component) {
         { className: 'pageLog' },
         _react2.default.createElement(
           'div',
-          { className: 'logNav' },
-          this.props.actions.length > 0 ? [_react2.default.createElement(
-            'a',
-            { onClick: function onClick() {
-                return clear();
-              }, key: 'clear' },
-            _react2.default.createElement('i', { className: 'fa fa-ban' }),
-            ' clear'
-          ), this._renderFilterSelector(), this._renderFilter()] : null
-        ),
-        _react2.default.createElement(
-          'div',
-          { className: 'logWrapper', ref: function ref(el) {
-              return _this5.logWrapper = el;
-            } },
+          { className: 'logLeft' },
+          _react2.default.createElement(
+            'div',
+            { className: 'logNav' },
+            this.props.actions.length > 0 ? [_react2.default.createElement(
+              'a',
+              { onClick: function onClick() {
+                  return clear();
+                }, key: 'clear', className: 'ml1 try2' },
+              _react2.default.createElement('i', { className: 'fa fa-ban' }),
+              ' clear'
+            ), this._renderFilterSelector(), this._renderFilter()] : null
+          ),
           _react2.default.createElement(
             'ul',
-            { className: 'log' },
+            { className: 'log', ref: function ref(el) {
+                return _this5.log = el;
+              } },
             this._renderActions()
           )
         ),
         _react2.default.createElement(
           'div',
-          { className: 'logTree' },
-          this._renderTree()
+          { className: 'logRight' },
+          _react2.default.createElement(
+            'div',
+            { className: 'logNav fullHeight' },
+            _react2.default.createElement(
+              'a',
+              { onClick: navViewState, className: navState === 'state' ? 'selected' : null },
+              'State'
+            ),
+            _react2.default.createElement(
+              'a',
+              { onClick: navViewAction, className: navState === 'action' ? 'selected' : null },
+              'Action'
+            ),
+            _react2.default.createElement(
+              'a',
+              { onClick: navViewMachines, className: navState === 'machines' ? 'selected' : null },
+              'Machines'
+            )
+          ),
+          _react2.default.createElement(
+            'div',
+            { className: 'logTree' },
+            navState === 'state' ? this._renderTree() : null
+          )
         )
       );
     }
@@ -35732,16 +37671,23 @@ var PageLog = function (_React$Component) {
 
 ;
 
-exports.default = (0, _react3.connect)(PageLog).with('DevTools').map(function (_ref7) {
+exports.default = (0, _react3.connect)((0, _react3.connect)(PageLog).with('DevTools').map(function (_ref7) {
   var flushActions = _ref7.flushActions;
   return {
     clear: function clear() {
       return flushActions();
     }
   };
+})).with('Nav').map(function (n) {
+  return {
+    navViewState: n.viewState,
+    navViewAction: n.viewAction,
+    navViewMachines: n.viewMachines,
+    navState: n.state.name
+  };
 });
 
-},{"../helpers/formatMilliseconds":378,"../helpers/getMachineName":379,"react":357,"react-json-tree":321,"stent/lib/react":373}],377:[function(require,module,exports){
+},{"../helpers/formatMilliseconds":378,"../helpers/getMachineName":379,"../helpers/treeTheme":381,"react":357,"react-json-tree":321,"stent":371,"stent/lib/react":373}],377:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -35817,6 +37763,55 @@ function normalizeAction(action) {
 },{}],381:[function(require,module,exports){
 'use strict';
 
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var treeTheme = {
+  extend: {
+    scheme: 'chalk',
+    author: 'chris kempson (http://chriskempson.com)',
+    base00: '#151515',
+    base01: '#202020',
+    base02: '#303030',
+    base03: '#505050',
+    base04: '#b0b0b0',
+    base05: '#d0d0d0',
+    base06: '#e0e0e0',
+    base07: '#f5f5f5',
+    base08: '#fb9fb1',
+    base09: '#eda987',
+    base0A: '#ddb26f',
+    base0B: '#acc267',
+    base0C: '#12cfc0',
+    base0D: '#6fc2ef',
+    base0E: '#e1a3ee',
+    base0F: '#deaf8f'
+  },
+  tree: {
+    backgroundColor: '#e6e6e6',
+    marginTop: 2,
+    marginRight: 0,
+    marginBottom: 0,
+    marginLeft: 0
+  },
+  nestedNodeLabel: function nestedNodeLabel(_ref, expanded) {
+    var style = _ref.style;
+    return {
+      style: _extends({}, style, {
+        color: expanded ? '#000' : '#000'
+      })
+    };
+  }
+};
+
+exports.default = treeTheme;
+
+},{}],382:[function(require,module,exports){
+'use strict';
+
 var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
@@ -35849,7 +37844,7 @@ _bridge2.default.on(function (action) {
 
 _reactDom2.default.render(_react2.default.createElement(_App2.default, null), document.querySelector('#container'));
 
-},{"./components/App.jsx":375,"./services/bridge":382,"./stent/machines":383,"react":357,"react-dom":184,"stent":371,"stent/lib/react":373}],382:[function(require,module,exports){
+},{"./components/App.jsx":375,"./services/bridge":383,"./stent/machines":384,"react":357,"react-dom":184,"stent":371,"stent/lib/react":373}],383:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -35879,7 +37874,7 @@ wire();
 
 exports.default = bridge;
 
-},{}],383:[function(require,module,exports){
+},{}],384:[function(require,module,exports){
 'use strict';
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
@@ -35927,13 +37922,13 @@ var machine = _stent.Machine.create('DevTools', {
   }
 });
 
-setTimeout(function () {
-  _exampleState2.default.actions.forEach(machine.actionReceived);
-}, 20);
+// setTimeout(function () {
+//   exampleState.actions.forEach(machine.actionReceived);
+// }, 20);
 
 // exposing this machine for development purposes
 // setTimeout(() => {
 //   console.log(JSON.stringify(machine.state, null, 2));
 // }, 10000);
 
-},{"../_mocks/example.state.json":374,"../constants":377,"../helpers/normalize":380,"stent":371}]},{},[381]);
+},{"../_mocks/example.state.json":374,"../constants":377,"../helpers/normalize":380,"stent":371}]},{},[382]);
