@@ -37174,6 +37174,8 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
 var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
@@ -37206,26 +37208,50 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var getItemString = function getItemString(type, data, itemType, itemString) {
-  if (type === 'Array') return _react2.default.createElement(
-    'span',
-    null,
-    '// (',
-    itemString,
-    ')'
-  );
-  return null;
-};
-function renderMachinesAsTree(machines) {
+function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
+
+var renderMachinesAsTree = function renderMachinesAsTree() {
+  var machines = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
+
   var unnamed = 1;
-  return machines.reduce(function (tree, machine) {
+  return renderJSON(machines.reduce(function (tree, machine) {
     var machineName = (0, _getMachineName2.default)(machine);
 
     if (machineName === '<unnamed>') machineName = '<unnamed(' + ++unnamed + ')>';
     tree[machineName] = machine.state;
     return tree;
-  }, {});
-}
+  }, {}));
+};
+var renderActionAsTree = function renderActionAsTree(_ref, actions) {
+  var source = _ref.source,
+      time = _ref.time,
+      machines = _ref.machines,
+      origin = _ref.origin,
+      index = _ref.index,
+      rest = _objectWithoutProperties(_ref, ['source', 'time', 'machines', 'origin', 'index']);
+
+  var diff = time - actions[0].time;
+
+  return renderJSON(_extends({
+    time: '+' + (0, _formatMilliseconds2.default)(diff)
+  }, rest));
+};
+var renderJSON = function renderJSON(json) {
+  return _react2.default.createElement(_reactJsonTree2.default, {
+    data: json,
+    theme: _treeTheme2.default,
+    getItemString: function getItemString(type, data, itemType, itemString) {
+      if (type === 'Array') return _react2.default.createElement(
+        'span',
+        null,
+        '// (',
+        itemString,
+        ')'
+      );
+      return null;
+    }
+  });
+};
 
 var nav = _stent.Machine.create('Nav', {
   state: { name: 'state' },
@@ -37404,11 +37430,7 @@ var PageLog = function (_React$Component) {
 
       if (!snapshotAction) return null;
 
-      return _react2.default.createElement(_reactJsonTree2.default, {
-        data: renderMachinesAsTree(snapshotAction.machines),
-        theme: _treeTheme2.default,
-        getItemString: getItemString
-      });
+      return renderMachinesAsTree(snapshotAction.machines);
     }
   }, {
     key: 'render',
@@ -37420,7 +37442,8 @@ var PageLog = function (_React$Component) {
           navViewState = _props.navViewState,
           navViewAction = _props.navViewAction,
           navViewMachines = _props.navViewMachines,
-          navState = _props.navState;
+          navState = _props.navState,
+          actions = _props.actions;
 
 
       return _react2.default.createElement(
@@ -37458,31 +37481,36 @@ var PageLog = function (_React$Component) {
             _react2.default.createElement(
               'a',
               { onClick: navViewState, className: navState === 'state' ? 'selected' : null },
+              _react2.default.createElement('i', { className: 'fa fa-heart-o mr05' }),
               'State'
             ),
             _react2.default.createElement(
               'a',
               { onClick: navViewAction, className: navState === 'action' ? 'selected' : null },
+              _react2.default.createElement('i', { className: 'fa fa-arrow-right mr05' }),
               'Action'
             ),
             _react2.default.createElement(
               'a',
               { onClick: navViewMachines, className: navState === 'machines' ? 'selected' : null },
+              _react2.default.createElement('i', { className: 'fa fa-gears mr05' }),
               'Machines'
             )
           ),
           _react2.default.createElement(
             'div',
             { className: 'logTree' },
-            navState === 'state' ? this._renderTree() : null
+            navState === 'state' ? this._renderTree() : null,
+            navState === 'action' ? renderActionAsTree(actions[this.snapshotIndex], actions) : null,
+            navState === 'machines' ? 'Work in progress ...' : null
           )
         )
       );
     }
   }, {
     key: 'onMachineCreated',
-    value: function onMachineCreated(_ref) {
-      var machine = _ref.machine;
+    value: function onMachineCreated(_ref2) {
+      var machine = _ref2.machine;
 
       return [_react2.default.createElement(
         'div',
@@ -37498,9 +37526,9 @@ var PageLog = function (_React$Component) {
     }
   }, {
     key: 'onMachineConnected',
-    value: function onMachineConnected(_ref2) {
-      var machines = _ref2.machines,
-          meta = _ref2.meta;
+    value: function onMachineConnected(_ref3) {
+      var machines = _ref3.machines,
+          meta = _ref3.meta;
 
       var machinesConnectedTo = machines.map(_getMachineName2.default).join(', ');
       var component = meta.component ? _react2.default.createElement(
@@ -37524,10 +37552,10 @@ var PageLog = function (_React$Component) {
     }
   }, {
     key: 'onActionDispatched',
-    value: function onActionDispatched(_ref3) {
-      var actionName = _ref3.actionName,
-          machine = _ref3.machine,
-          args = _ref3.args;
+    value: function onActionDispatched(_ref4) {
+      var actionName = _ref4.actionName,
+          machine = _ref4.machine,
+          args = _ref4.args;
 
       return [_react2.default.createElement(
         'div',
@@ -37548,8 +37576,8 @@ var PageLog = function (_React$Component) {
     }
   }, {
     key: 'onGeneratorStep',
-    value: function onGeneratorStep(_ref4) {
-      var yielded = _ref4.yielded;
+    value: function onGeneratorStep(_ref5) {
+      var yielded = _ref5.yielded;
 
       var message = '';
       var messageNoTags = '';
@@ -37609,8 +37637,8 @@ var PageLog = function (_React$Component) {
 
   }, {
     key: 'onStateChanged',
-    value: function onStateChanged(_ref5) {
-      var machine = _ref5.machine;
+    value: function onStateChanged(_ref6) {
+      var machine = _ref6.machine;
 
       return [_react2.default.createElement(
         'div',
@@ -37631,9 +37659,9 @@ var PageLog = function (_React$Component) {
     }
   }, {
     key: 'onMachineDisconnected',
-    value: function onMachineDisconnected(_ref6) {
-      var machines = _ref6.machines,
-          meta = _ref6.meta;
+    value: function onMachineDisconnected(_ref7) {
+      var machines = _ref7.machines,
+          meta = _ref7.meta;
 
       var machinesConnectedTo = machines.map(_getMachineName2.default).join(', ');
       var component = meta.component ? _react2.default.createElement(
@@ -37671,8 +37699,8 @@ var PageLog = function (_React$Component) {
 
 ;
 
-exports.default = (0, _react3.connect)((0, _react3.connect)(PageLog).with('DevTools').map(function (_ref7) {
-  var flushActions = _ref7.flushActions;
+exports.default = (0, _react3.connect)((0, _react3.connect)(PageLog).with('DevTools').map(function (_ref8) {
+  var flushActions = _ref8.flushActions;
   return {
     clear: function clear() {
       return flushActions();
@@ -37922,9 +37950,9 @@ var machine = _stent.Machine.create('DevTools', {
   }
 });
 
-// setTimeout(function () {
-//   exampleState.actions.forEach(machine.actionReceived);
-// }, 20);
+setTimeout(function () {
+  _exampleState2.default.actions.forEach(machine.actionReceived);
+}, 20);
 
 // exposing this machine for development purposes
 // setTimeout(() => {

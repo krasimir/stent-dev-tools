@@ -6,19 +6,33 @@ import formatMilliseconds from '../helpers/formatMilliseconds';
 import treeTheme from '../helpers/treeTheme';
 import { Machine } from 'stent';
 
-const getItemString = (type, data, itemType, itemString) => {
-  if (type === 'Array') return <span>// ({ itemString })</span>;
-  return null;
-};
-function renderMachinesAsTree(machines) {
+const renderMachinesAsTree = function(machines = []) {
   var unnamed = 1;
-  return machines.reduce((tree, machine) => {
+  return renderJSON(machines.reduce((tree, machine) => {
     var machineName = getMachineName(machine);
 
     if (machineName === '<unnamed>') machineName = `<unnamed(${ ++unnamed })>`
     tree[machineName] = machine.state;
     return tree;
-  }, {})
+  }, {}));
+}
+const renderActionAsTree = function ({ source, time, machines, origin, index, ...rest }, actions) {
+  const diff = time - actions[0].time;
+
+  return renderJSON({
+    time: '+' + formatMilliseconds(diff),
+    ...rest
+  });
+}
+const renderJSON = function (json) {
+  return <JSONTree
+    data={ json }
+    theme={ treeTheme }
+    getItemString={ function (type, data, itemType, itemString) {
+      if (type === 'Array') return <span>// ({ itemString })</span>;
+      return null;
+    } }
+  />;
 }
 
 const nav = Machine.create('Nav', {
@@ -146,14 +160,10 @@ class PageLog extends React.Component {
 
     if (!snapshotAction) return null;
 
-    return <JSONTree
-      data={ renderMachinesAsTree(snapshotAction.machines) }
-      theme={ treeTheme }
-      getItemString={ getItemString }
-    />;
+    return renderMachinesAsTree(snapshotAction.machines);
   }
   render() {
-    const { clear, navViewState, navViewAction, navViewMachines, navState } = this.props;
+    const { clear, navViewState, navViewAction, navViewMachines, navState, actions } = this.props;
 
     return (
       <div className='pageLog'>
@@ -173,12 +183,17 @@ class PageLog extends React.Component {
         </div>
         <div className='logRight'>
           <div className='logNav fullHeight'>
-            <a onClick={ navViewState } className={ navState === 'state' ? 'selected' : null }>State</a>
-            <a onClick={ navViewAction } className={ navState === 'action' ? 'selected' : null }>Action</a>
-            <a onClick={ navViewMachines } className={ navState === 'machines' ? 'selected' : null }>Machines</a>
+            <a onClick={ navViewState } className={ navState === 'state' ? 'selected' : null }>
+              <i className='fa fa-heart-o mr05'></i>State</a>
+            <a onClick={ navViewAction } className={ navState === 'action' ? 'selected' : null }>
+              <i className='fa fa-arrow-right mr05'></i>Action</a>
+            <a onClick={ navViewMachines } className={ navState === 'machines' ? 'selected' : null }>
+              <i className='fa fa-gears mr05'></i>Machines</a>
           </div>
           <div className='logTree'>
             { navState === 'state' ? this._renderTree() : null }
+            { navState === 'action' ? renderActionAsTree(actions[this.snapshotIndex], actions) : null }
+            { navState === 'machines' ? 'Work in progress ...' : null }
           </div>
         </div>
       </div>

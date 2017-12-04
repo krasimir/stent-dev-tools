@@ -26,6 +26,9 @@ body, html {
 .ml1 {
   margin-left: 1em;
 }
+.mr05 {
+  margin-right: 0.5em;
+}
 .try2 {
   transform: translateY(2px);
 }
