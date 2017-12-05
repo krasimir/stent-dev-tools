@@ -37186,19 +37186,15 @@ var _getMachineName2 = _interopRequireDefault(_getMachineName);
 
 var _react3 = require('stent/lib/react');
 
-var _reactJsonTree = require('react-json-tree');
-
-var _reactJsonTree2 = _interopRequireDefault(_reactJsonTree);
-
 var _formatMilliseconds = require('../helpers/formatMilliseconds');
 
 var _formatMilliseconds2 = _interopRequireDefault(_formatMilliseconds);
 
-var _treeTheme = require('../helpers/treeTheme');
-
-var _treeTheme2 = _interopRequireDefault(_treeTheme);
-
 var _stent = require('stent');
+
+var _renderJSON = require('../helpers/renderJSON');
+
+var _renderJSON2 = _interopRequireDefault(_renderJSON);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -37214,7 +37210,8 @@ var renderMachinesAsTree = function renderMachinesAsTree() {
   var machines = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
 
   var unnamed = 1;
-  return renderJSON(machines.reduce(function (tree, machine) {
+
+  return (0, _renderJSON2.default)(machines.reduce(function (tree, machine) {
     var machineName = (0, _getMachineName2.default)(machine);
 
     if (machineName === '<unnamed>') machineName = '<unnamed(' + ++unnamed + ')>';
@@ -37222,7 +37219,12 @@ var renderMachinesAsTree = function renderMachinesAsTree() {
     return tree;
   }, {}));
 };
-var renderActionAsTree = function renderActionAsTree(_ref, actions) {
+
+var renderActionAsTree = function renderActionAsTree() {
+  var _ref = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+
+  var actions = arguments[1];
+
   var source = _ref.source,
       time = _ref.time,
       machines = _ref.machines,
@@ -37230,46 +37232,14 @@ var renderActionAsTree = function renderActionAsTree(_ref, actions) {
       index = _ref.index,
       rest = _objectWithoutProperties(_ref, ['source', 'time', 'machines', 'origin', 'index']);
 
+  if (typeof source === 'undefined') return null;
+
   var diff = time - actions[0].time;
 
-  return renderJSON(_extends({
+  return (0, _renderJSON2.default)(_extends({
     time: '+' + (0, _formatMilliseconds2.default)(diff)
   }, rest));
 };
-var renderJSON = function renderJSON(json) {
-  return _react2.default.createElement(_reactJsonTree2.default, {
-    data: json,
-    theme: _treeTheme2.default,
-    getItemString: function getItemString(type, data, itemType, itemString) {
-      if (type === 'Array') return _react2.default.createElement(
-        'span',
-        null,
-        '// (',
-        itemString,
-        ')'
-      );
-      return null;
-    }
-  });
-};
-
-var nav = _stent.Machine.create('Nav', {
-  state: { name: 'state' },
-  transitions: {
-    'state': {
-      'view action': 'action',
-      'view machines': 'machines'
-    },
-    'action': {
-      'view state': 'state',
-      'view machines': 'machines'
-    },
-    'machines': {
-      'view state': 'state',
-      'view action': 'action'
-    }
-  }
-});
 
 var PageLog = function (_React$Component) {
   _inherits(PageLog, _React$Component);
@@ -37402,26 +37372,6 @@ var PageLog = function (_React$Component) {
       );
     }
   }, {
-    key: '_renderActions',
-    value: function _renderActions() {
-      return this.props.actions.map(this._renderAction);
-      // const actionsByTime = this.props.actions.reduce((result, action) => {
-      //   if (!result[action.time]) result[action.time] = [];
-      //   result[action.time].push(action);
-      //   return result;
-      // }, {});
-      // let actions = Object.keys(actionsByTime).map(time => ({
-      //   time,
-      //   actions: actionsByTime[time]
-      // }));
-
-      // actions = actions.sort((a, b) => a.time - b.time);
-
-      // return actions.map(({ time, actions }) => {
-      //   return [this._renderTimeSplit(time)].concat(actions.map(this._renderAction));
-      // });
-    }
-  }, {
     key: '_renderTree',
     value: function _renderTree() {
       var actions = this.props.actions;
@@ -37429,7 +37379,6 @@ var PageLog = function (_React$Component) {
       var snapshotAction = actions[this.snapshotIndex];
 
       if (!snapshotAction) return null;
-
       return renderMachinesAsTree(snapshotAction.machines);
     }
   }, {
@@ -37469,7 +37418,7 @@ var PageLog = function (_React$Component) {
             { className: 'log', ref: function ref(el) {
                 return _this5.log = el;
               } },
-            this._renderActions()
+            actions.map(this._renderAction)
           )
         ),
         _react2.default.createElement(
@@ -37633,8 +37582,6 @@ var PageLog = function (_React$Component) {
         message
       ), messageNoTags];
     }
-    // onStateWillChange() {}
-
   }, {
     key: 'onStateChanged',
     value: function onStateChanged(_ref6) {
@@ -37715,7 +37662,7 @@ exports.default = (0, _react3.connect)((0, _react3.connect)(PageLog).with('DevTo
   };
 });
 
-},{"../helpers/formatMilliseconds":378,"../helpers/getMachineName":379,"../helpers/treeTheme":381,"react":357,"react-json-tree":321,"stent":371,"stent/lib/react":373}],377:[function(require,module,exports){
+},{"../helpers/formatMilliseconds":378,"../helpers/getMachineName":379,"../helpers/renderJSON":381,"react":357,"stent":371,"stent/lib/react":373}],377:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -37795,6 +37742,46 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactJsonTree = require('react-json-tree');
+
+var _reactJsonTree2 = _interopRequireDefault(_reactJsonTree);
+
+var _treeTheme = require('../helpers/treeTheme');
+
+var _treeTheme2 = _interopRequireDefault(_treeTheme);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var renderJSON = function renderJSON(json) {
+  return _react2.default.createElement(_reactJsonTree2.default, {
+    data: json,
+    theme: _treeTheme2.default,
+    getItemString: function getItemString(type, data, itemType, itemString) {
+      if (type === 'Array') return _react2.default.createElement(
+        'span',
+        null,
+        '// (',
+        itemString,
+        ')'
+      );
+      return null;
+    }
+  });
+};
+
+exports.default = renderJSON;
+
+},{"../helpers/treeTheme":382,"react":357,"react-json-tree":321}],382:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 var treeTheme = {
@@ -37837,7 +37824,7 @@ var treeTheme = {
 
 exports.default = treeTheme;
 
-},{}],382:[function(require,module,exports){
+},{}],383:[function(require,module,exports){
 'use strict';
 
 var _react = require('react');
@@ -37872,7 +37859,7 @@ _bridge2.default.on(function (action) {
 
 _reactDom2.default.render(_react2.default.createElement(_App2.default, null), document.querySelector('#container'));
 
-},{"./components/App.jsx":375,"./services/bridge":383,"./stent/machines":384,"react":357,"react-dom":184,"stent":371,"stent/lib/react":373}],383:[function(require,module,exports){
+},{"./components/App.jsx":375,"./services/bridge":384,"./stent/machines":385,"react":357,"react-dom":184,"stent":371,"stent/lib/react":373}],384:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -37902,7 +37889,7 @@ wire();
 
 exports.default = bridge;
 
-},{}],384:[function(require,module,exports){
+},{}],385:[function(require,module,exports){
 'use strict';
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
@@ -37951,7 +37938,13 @@ var machine = _stent.Machine.create('DevTools', {
 });
 
 setTimeout(function () {
-  _exampleState2.default.actions.forEach(machine.actionReceived);
+  _exampleState2.default.actions.forEach(function (action, i) {
+    (function (timeout) {
+      setTimeout(function () {
+        return machine.actionReceived(action);
+      }, timeout);
+    })(i * (Math.random() * 200));
+  });
 }, 20);
 
 // exposing this machine for development purposes
@@ -37959,4 +37952,24 @@ setTimeout(function () {
 //   console.log(JSON.stringify(machine.state, null, 2));
 // }, 10000);
 
-},{"../_mocks/example.state.json":374,"../constants":377,"../helpers/normalize":380,"stent":371}]},{},[382]);
+// Extension navigation
+_stent.Machine.create('Nav', {
+  state: { name: 'state' },
+  transitions: {
+    'state': {
+      'view action': 'action',
+      'view machines': 'machines'
+    },
+    'action': {
+      'view state': 'state',
+      'view machines': 'machines'
+    },
+
+    'machines': {
+      'view state': 'state',
+      'view action': 'action'
+    }
+  }
+});
+
+},{"../_mocks/example.state.json":374,"../constants":377,"../helpers/normalize":380,"stent":371}]},{},[383]);

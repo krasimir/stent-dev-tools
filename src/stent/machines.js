@@ -30,10 +30,34 @@ const machine = Machine.create('DevTools', {
 });
 
 setTimeout(function () {
-  exampleState.actions.forEach(machine.actionReceived);
+  exampleState.actions.forEach((action, i) => {
+    (function (timeout) {
+      setTimeout(() => machine.actionReceived(action), timeout)
+    })(i*(Math.random() * 200));
+  });
 }, 20);
 
 // exposing this machine for development purposes
 // setTimeout(() => {
 //   console.log(JSON.stringify(machine.state, null, 2));
 // }, 10000);
+
+// Extension navigation
+Machine.create('Nav', {
+  state: { name: 'state' },
+  transitions: {
+    'state': {
+      'view action': 'action',
+      'view machines': 'machines'
+    },
+    'action': {
+      'view state': 'state',
+      'view machines': 'machines'
+    },
+   
+    'machines': {
+      'view state': 'state',
+      'view action': 'action'
+    }
+  }
+});

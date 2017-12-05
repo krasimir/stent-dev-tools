@@ -1,57 +1,32 @@
 import React from 'react';
 import getMachineName from '../helpers/getMachineName';
 import { connect } from 'stent/lib/react';
-import JSONTree from 'react-json-tree';
 import formatMilliseconds from '../helpers/formatMilliseconds';
-import treeTheme from '../helpers/treeTheme';
 import { Machine } from 'stent';
+import renderJSON from '../helpers/renderJSON';
 
-const renderMachinesAsTree = function(machines = []) {
+const renderMachinesAsTree = function (machines = []) {
   var unnamed = 1;
+
   return renderJSON(machines.reduce((tree, machine) => {
     var machineName = getMachineName(machine);
 
-    if (machineName === '<unnamed>') machineName = `<unnamed(${ ++unnamed })>`
+    if (machineName === '<unnamed>') machineName = `<unnamed(${ ++unnamed })>`;
     tree[machineName] = machine.state;
     return tree;
   }, {}));
-}
-const renderActionAsTree = function ({ source, time, machines, origin, index, ...rest }, actions) {
+};
+
+const renderActionAsTree = function ({ source, time, machines, origin, index, ...rest } = {}, actions) {
+  if (typeof source === 'undefined') return null;
+
   const diff = time - actions[0].time;
 
   return renderJSON({
     time: '+' + formatMilliseconds(diff),
     ...rest
   });
-}
-const renderJSON = function (json) {
-  return <JSONTree
-    data={ json }
-    theme={ treeTheme }
-    getItemString={ function (type, data, itemType, itemString) {
-      if (type === 'Array') return <span>// ({ itemString })</span>;
-      return null;
-    } }
-  />;
-}
-
-const nav = Machine.create('Nav', {
-  state: { name: 'state' }, 
-  transitions: {
-    'state': {
-      'view action': 'action',
-      'view machines': 'machines'
-    },
-    'action': {
-      'view state': 'state',
-      'view machines': 'machines'
-    },
-    'machines': {
-      'view state': 'state',
-      'view action': 'action'
-    }
-  } 
-});
+};
 
 class PageLog extends React.Component {
   constructor(props) {
@@ -62,7 +37,7 @@ class PageLog extends React.Component {
       filterByType: null,
       filter: null,
       snapshotIndex: null
-    }
+    };
   }
   componentDidUpdate() {
     if (this.state.snapshotIndex === null) {
@@ -76,7 +51,7 @@ class PageLog extends React.Component {
     return snapshotIndex === null ? actions.length - 1 : snapshotIndex;
   }
   _setSnapshotIndex(index) {
-    this.setState({ snapshotIndex: index === this.props.actions.length-1 ? null : index });
+    this.setState({ snapshotIndex: index === this.props.actions.length - 1 ? null : index });
   }
   _onFilterTypeChanged(filter) {
     this.setState({ filterByType: filter === 'all' ? null : filter });
@@ -136,30 +111,11 @@ class PageLog extends React.Component {
       </li>
     );
   }
-  _renderActions() {
-    return this.props.actions.map(this._renderAction);
-    // const actionsByTime = this.props.actions.reduce((result, action) => {
-    //   if (!result[action.time]) result[action.time] = [];
-    //   result[action.time].push(action);
-    //   return result;
-    // }, {});
-    // let actions = Object.keys(actionsByTime).map(time => ({
-    //   time,
-    //   actions: actionsByTime[time]
-    // }));
-
-    // actions = actions.sort((a, b) => a.time - b.time);
-
-    // return actions.map(({ time, actions }) => {
-    //   return [this._renderTimeSplit(time)].concat(actions.map(this._renderAction));
-    // });
-  }
   _renderTree() {
     const { actions } = this.props;
     const snapshotAction = actions[this.snapshotIndex];
 
     if (!snapshotAction) return null;
-
     return renderMachinesAsTree(snapshotAction.machines);
   }
   render() {
@@ -178,7 +134,7 @@ class PageLog extends React.Component {
             ] : null }
           </div>
           <ul className='log' ref={ el => (this.log = el) }>
-            { this._renderActions() }
+            { actions.map(this._renderAction) }
           </ul>
         </div>
         <div className='logRight'>
@@ -261,7 +217,6 @@ class PageLog extends React.Component {
       messageNoTags
     ];
   }
-  // onStateWillChange() {}
   onStateChanged({ machine }) {
     return [
       (
