@@ -29,11 +29,11 @@ const machine = Machine.create('DevTools', {
   }
 });
 
-setTimeout(function () {
-  exampleState.actions.forEach((action, i) => {
-    setTimeout(() => machine.actionReceived(action), i * 10);
-  });
-}, 20);
+// setTimeout(function () {
+//   exampleState.actions.forEach((action, i) => {
+//     setTimeout(() => machine.actionReceived(action), i * 10);
+//   });
+// }, 20);
 
 // exposing this machine for development purposes
 // setTimeout(() => {

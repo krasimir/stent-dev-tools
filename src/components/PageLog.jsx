@@ -142,7 +142,7 @@ class PageLog extends React.Component {
             <a onClick={ navViewState } className={ navState === 'state' ? 'selected' : null }>
               <i className='fa fa-heart-o mr05'></i>State</a>
             <a onClick={ navViewAction } className={ navState === 'action' ? 'selected' : null }>
-              <i className='fa fa-arrow-right mr05'></i>Action</a>
+              <i className='fa fa-angle-double-right mr05'></i>Action</a>
             <a onClick={ navViewMachines } className={ navState === 'machines' ? 'selected' : null }>
               <i className='fa fa-gears mr05'></i>Machines</a>
           </div>
@@ -184,7 +184,7 @@ class PageLog extends React.Component {
     return [
       (
         <div>
-          <i className='fa fa-arrow-right'></i>
+          <i className='fa fa-angle-double-right'></i>
           <strong>{ actionName }</strong> dispatched to <strong>{ getMachineName(machine) }</strong>
         </div>
       ),
@@ -197,7 +197,7 @@ class PageLog extends React.Component {
 
     if (typeof yielded === 'string') {
       message = <span>generator yielded <strong>&#123; name: { yielded } }</strong></span>;
-      messageNoTags = `generator yielded to ${ yielded }`;
+      messageNoTags = `generator yielded ${ yielded }`;
     } else if (typeof yielded === 'object') {
       if (yielded.__type === 'call') {
         message = (
@@ -226,7 +226,7 @@ class PageLog extends React.Component {
       (
         <div>
           <i className='fa fa-check-circle-o'></i>
-          generator completed { short }
+          generator <strong>completed</strong> { short }
         </div>
       ),
       `generator completed with ${ short }`
@@ -239,7 +239,7 @@ class PageLog extends React.Component {
       (
         <div>
           <i className='fa fa-arrow-circle-right'></i>
-          generator resumed { short }
+          generator <strong>resumed</strong> { short }
         </div>
       ),
       `generator resumed with ${ short }`
@@ -268,7 +268,7 @@ class PageLog extends React.Component {
         </div>
       ),
       `${ meta.component ? meta.component : '' } disconnected from ${ machinesConnectedTo }`
-    ]
+    ];
   }
 };
 

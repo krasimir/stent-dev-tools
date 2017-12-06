@@ -164,7 +164,7 @@ body, html {
 .onActionDispatched {
   background: rgb(192, 189, 202) !important;
 }
-.onGeneratorStep {
+.onGeneratorStep, .onGeneratorEnd, .onGeneratorResumed {
   background: rgb(201, 202, 189) !important;
 }
 .onStateChanged {

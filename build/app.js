@@ -33513,7 +33513,7 @@ var PageLog = function (_React$Component) {
             _react2.default.createElement(
               'a',
               { onClick: navViewAction, className: navState === 'action' ? 'selected' : null },
-              _react2.default.createElement('i', { className: 'fa fa-arrow-right mr05' }),
+              _react2.default.createElement('i', { className: 'fa fa-angle-double-right mr05' }),
               'Action'
             ),
             _react2.default.createElement(
@@ -33586,7 +33586,7 @@ var PageLog = function (_React$Component) {
       return [_react2.default.createElement(
         'div',
         null,
-        _react2.default.createElement('i', { className: 'fa fa-arrow-right' }),
+        _react2.default.createElement('i', { className: 'fa fa-angle-double-right' }),
         _react2.default.createElement(
           'strong',
           null,
@@ -33621,7 +33621,7 @@ var PageLog = function (_React$Component) {
             ' }'
           )
         );
-        messageNoTags = 'generator yielded to ' + yielded;
+        messageNoTags = 'generator yielded ' + yielded;
       } else if ((typeof yielded === 'undefined' ? 'undefined' : _typeof(yielded)) === 'object') {
         if (yielded.__type === 'call') {
           message = _react2.default.createElement(
@@ -33671,7 +33671,13 @@ var PageLog = function (_React$Component) {
         'div',
         null,
         _react2.default.createElement('i', { className: 'fa fa-check-circle-o' }),
-        'generator completed ',
+        'generator ',
+        _react2.default.createElement(
+          'strong',
+          null,
+          'completed'
+        ),
+        ' ',
         short
       ), 'generator completed with ' + short];
     }
@@ -33686,7 +33692,13 @@ var PageLog = function (_React$Component) {
         'div',
         null,
         _react2.default.createElement('i', { className: 'fa fa-arrow-circle-right' }),
-        'generator resumed ',
+        'generator ',
+        _react2.default.createElement(
+          'strong',
+          null,
+          'resumed'
+        ),
+        ' ',
         short
       ), 'generator resumed with ' + short];
     }
@@ -34061,13 +34073,11 @@ var machine = _stent.Machine.create('DevTools', {
   }
 });
 
-setTimeout(function () {
-  _exampleState2.default.actions.forEach(function (action, i) {
-    setTimeout(function () {
-      return machine.actionReceived(action);
-    }, i * 10);
-  });
-}, 20);
+// setTimeout(function () {
+//   exampleState.actions.forEach((action, i) => {
+//     setTimeout(() => machine.actionReceived(action), i * 10);
+//   });
+// }, 20);
 
 // exposing this machine for development purposes
 // setTimeout(() => {
