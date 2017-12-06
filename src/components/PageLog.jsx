@@ -2,8 +2,8 @@ import React from 'react';
 import getMachineName from '../helpers/getMachineName';
 import { connect } from 'stent/lib/react';
 import formatMilliseconds from '../helpers/formatMilliseconds';
-import { Machine } from 'stent';
 import renderJSON from '../helpers/renderJSON';
+import shortenJSON from '../helpers/shortenJSON';
 
 const renderMachinesAsTree = function (machines = []) {
   var unnamed = 1;
@@ -17,7 +17,7 @@ const renderMachinesAsTree = function (machines = []) {
   }, {}));
 };
 
-const renderActionAsTree = function ({ source, time, machines, origin, index, ...rest } = {}, actions) {
+const renderActionAsTree = function ({ source, time, machines, origin, index, uid, ...rest } = {}, actions) {
   if (typeof source === 'undefined') return null;
 
   const diff = time - actions[0].time;
@@ -76,7 +76,7 @@ class PageLog extends React.Component {
       <select onChange={ e => this._onFilterTypeChanged(e.target.value) } className='left' key='filter1'>
         { options.map((type, i) => <option value={ type } key={ i }>{ type }</option>) }
       </select>
-    )
+    );
   }
   _renderFilter() {
     return (
@@ -89,7 +89,7 @@ class PageLog extends React.Component {
     );
   }
   _renderAction(action) {
-    const { filterByType, filter, snapshotIndex } = this.state;
+    const { filterByType, filter } = this.state;
 
     if (!this[action.type]) {
       return null;
@@ -153,7 +153,7 @@ class PageLog extends React.Component {
           </div>
         </div>
       </div>
-    )
+    );
   }
   onMachineCreated({ machine }) {
     return [
@@ -178,7 +178,7 @@ class PageLog extends React.Component {
         </div>
       ),
       `${ meta.component ? meta.component : '' } connected to ${ machinesConnectedTo }`
-    ]
+    ];
   }
   onActionDispatched({ actionName, machine, args }) {
     return [
@@ -189,32 +189,60 @@ class PageLog extends React.Component {
         </div>
       ),
       `${ actionName } dispatched to ${ getMachineName(machine) }`
-    ]
+    ];
   }
   onGeneratorStep({ yielded }) {
     var message = '';
     var messageNoTags = '';
 
     if (typeof yielded === 'string') {
-      message = <span>transition to <strong>&#123; name: { yielded } }</strong></span>;
-      messageNoTags = `transition to ${ yielded }`;
+      message = <span>generator yielded <strong>&#123; name: { yielded } }</strong></span>;
+      messageNoTags = `generator yielded to ${ yielded }`;
     } else if (typeof yielded === 'object') {
       if (yielded.__type === 'call') {
-        message = <span>please call <strong>{ yielded.func }</strong> with ...</span>;
-        messageNoTags = `please call ${ yielded.func } with ...`
+        message = (
+          <span>calling <strong>{ yielded.func }</strong> with { shortenJSON(yielded.args) }</span>
+        );
+        messageNoTags = `calling ${ yielded.func }`;
       } else if (yielded.name) {
-        message = <span>transition to <strong>&#123; name: { yielded.name }, ...}</strong></span>;
-        messageNoTags = `transition to ${ yielded.name }`;
+        message = <span>generator yielded <strong>&#123; name: { yielded.name }, ...}</strong></span>;
+        messageNoTags = `generator yielded ${ yielded.name }`;
       }
     }
     return [
       (
         <div>
-          <i className='fa fa-spinner'></i>
+          <i className='fa fa-arrow-circle-left'></i>
           { message }
         </div>
       ),
       messageNoTags
+    ];
+  }
+  onGeneratorEnd({ value }) {
+    const short = value ? `with ${ shortenJSON(value) }` : '';
+
+    return [
+      (
+        <div>
+          <i className='fa fa-check-circle-o'></i>
+          generator completed { short }
+        </div>
+      ),
+      `generator completed with ${ short }`
+    ];
+  }
+  onGeneratorResumed({ value }) {
+    const short = value ? `with ${ shortenJSON(value) }` : '';
+
+    return [
+      (
+        <div>
+          <i className='fa fa-arrow-circle-right'></i>
+          generator resumed { short }
+        </div>
+      ),
+      `generator resumed with ${ short }`
     ];
   }
   onStateChanged({ machine }) {
@@ -226,7 +254,7 @@ class PageLog extends React.Component {
         </div>
       ),
       `${ getMachineName(machine) }'s state changed to ${ machine.state.name }`
-    ]
+    ];
   }
   onMachineDisconnected({ machines, meta }) {
     const machinesConnectedTo = machines.map(getMachineName).join(', ');

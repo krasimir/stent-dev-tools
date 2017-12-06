@@ -16,7 +16,7 @@ const machine = Machine.create('DevTools', {
       'action received': function ({ actions, ...rest }, action) {
         if (action.pageRefresh === true) {
           this.flushActions();
-          return;
+          return undefined;
         }
         action.index = actions.length;
         actions.push(normalizeAction(action));
@@ -31,9 +31,7 @@ const machine = Machine.create('DevTools', {
 
 setTimeout(function () {
   exampleState.actions.forEach((action, i) => {
-    (function (timeout) {
-      setTimeout(() => machine.actionReceived(action), timeout)
-    })(i*(Math.random() * 200));
+    setTimeout(() => machine.actionReceived(action), i * 10);
   });
 }, 20);
 
@@ -54,7 +52,6 @@ Machine.create('Nav', {
       'view state': 'state',
       'view machines': 'machines'
     },
-   
     'machines': {
       'view state': 'state',
       'view action': 'action'

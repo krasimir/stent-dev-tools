@@ -3,4 +3,4 @@ export default function getMachineName({ name }) {
     return '<unnamed>';
   }
   return name;
-}
+};
