@@ -2,7 +2,7 @@
 
 Chrome extension to monitor state machines created by [Stent](https://github.com/krasimir/stent) library.
 
-### Posting a message the extension
+### Posting a message to the extension
 
 ```js
 window.top.postMessage({
@@ -15,4 +15,4 @@ window.top.postMessage({
 }, '*');
 ```
 
-*`icon` value is could be picked from [here](http://fontawesome.io/icons/)*
+*`icon` is one of the FontAwesome icons. Check out [here](http://fontawesome.io/icons/)*
