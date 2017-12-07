@@ -1,31 +1,28 @@
 import React from 'react';
-import getMachineName from '../helpers/getMachineName';
 import { connect } from 'stent/lib/react';
 import formatMilliseconds from '../helpers/formatMilliseconds';
-import renderJSON from '../helpers/renderJSON';
-import shortenJSON from '../helpers/shortenJSON';
+import renderMachinesAsTree from '../helpers/renderMachineAsTree';
+import renderActionAsTree from '../helpers/renderActionAsTree';
+import onMachineCreated from './handlers/onMachineCreated';
+import onMachineConnected from './handlers/onMachineConnected';
+import onMachineDisconnected from './handlers/onMachineDisconnected';
+import onActionDispatched from './handlers/onActionDispatched';
+import onActionProcessed from './handlers/onActionProcessed';
+import onGeneratorStep from './handlers/onGeneratorStep';
+import onGeneratorEnd from './handlers/onGeneratorEnd';
+import onGeneratorResumed from './handlers/onGeneratorResumed';
+import onStateChanged from './handlers/onStateChanged';
 
-const renderMachinesAsTree = function (machines = []) {
-  var unnamed = 1;
-
-  return renderJSON(machines.reduce((tree, machine) => {
-    var machineName = getMachineName(machine);
-
-    if (machineName === '<unnamed>') machineName = `<unnamed(${ ++unnamed })>`;
-    tree[machineName] = machine.state;
-    return tree;
-  }, {}));
-};
-
-const renderActionAsTree = function ({ source, time, machines, origin, index, uid, ...rest } = {}, actions) {
-  if (typeof source === 'undefined') return null;
-
-  const diff = time - actions[0].time;
-
-  return renderJSON({
-    time: '+' + formatMilliseconds(diff),
-    ...rest
-  });
+const handlers = {
+  onMachineCreated,
+  onMachineConnected,
+  onMachineDisconnected,
+  onActionDispatched,
+  onActionProcessed,
+  onGeneratorStep,
+  onGeneratorEnd,
+  onGeneratorResumed,
+  onStateChanged
 };
 
 class PageLog extends React.Component {
@@ -115,13 +112,13 @@ class PageLog extends React.Component {
     var filteredOut = false;
 
     // no render method to handle it
-    if (!this[action.type]) return null;
+    if (!handlers[action.type]) return null;
     // filter by type
     if (filterByType !== null && action.type !== filterByType) filteredOut = true;
     // filter by frame
     if (action.uid !== frame) return null;
 
-    const actionRepresentation = this[action.type](action);
+    const actionRepresentation = handlers[action.type](action);
 
     // filter by text
     if (filter !== null && !actionRepresentation[1].toLowerCase().match(new RegExp(filter, 'ig'))) {
@@ -138,7 +135,7 @@ class PageLog extends React.Component {
       </li>
     );
   }
-  _renderTree() {
+  _renderState() {
     const { actions } = this.props;
     const snapshotAction = actions[this.snapshotIndex];
 
@@ -146,7 +143,7 @@ class PageLog extends React.Component {
     return renderMachinesAsTree(snapshotAction.machines);
   }
   render() {
-    const { clear, navViewState, navViewAction, navViewMachines, navState, actions } = this.props;
+    const { clear, navViewState, navViewEvent, navViewAnalysis, navState, actions } = this.props;
 
     return (
       <div className='pageLog'>
@@ -169,151 +166,19 @@ class PageLog extends React.Component {
           <div className='logNav fullHeight'>
             <a onClick={ navViewState } className={ navState === 'state' ? 'selected' : null }>
               <i className='fa fa-heart-o mr05'></i>State</a>
-            <a onClick={ navViewAction } className={ navState === 'action' ? 'selected' : null }>
-              <i className='fa fa-share mr05'></i>Action</a>
-            <a onClick={ navViewMachines } className={ navState === 'machines' ? 'selected' : null }>
-              <i className='fa fa-gears mr05'></i>Machines</a>
+            <a onClick={ navViewEvent } className={ navState === 'event' ? 'selected' : null }>
+              <i className='fa fa-dot-circle-o mr05'></i>Event</a>
+            <a onClick={ navViewAnalysis } className={ navState === 'analysis' ? 'selected' : null }>
+              <i className='fa fa-bar-chart-o mr05'></i>Analysis</a>
           </div>
           <div className='logTree'>
-            { navState === 'state' ? this._renderTree() : null }
-            { navState === 'action' ? renderActionAsTree(actions[this.snapshotIndex], actions) : null }
-            { navState === 'machines' ? 'Work in progress ...' : null }
+            { navState === 'state' ? this._renderState() : null }
+            { navState === 'event' ? renderActionAsTree(actions[this.snapshotIndex], actions) : null }
+            { navState === 'analysis' ? 'Work in progress ...' : null }
           </div>
         </div>
       </div>
     );
-  }
-  onMachineCreated({ machine }) {
-    return [
-      (
-        <div>
-          <i className='fa fa-plus'></i>
-          <strong>{ getMachineName(machine) }</strong> machine created
-        </div>
-      ),
-      `${ getMachineName(machine) } machine created`
-    ];
-  }
-  onMachineConnected({ machines, meta }) {
-    const machinesConnectedTo = machines.map(getMachineName).join(', ');
-    const component = meta.component ? <strong>{ `<${ meta.component }>` }</strong> : null;
-
-    return [
-      (
-        <div>
-          <i className='fa fa-link'></i>
-          { component } connected to <strong>{ machinesConnectedTo }</strong>
-        </div>
-      ),
-      `${ meta.component ? meta.component : '' } connected to ${ machinesConnectedTo }`
-    ];
-  }
-  onActionDispatched({ actionName, machine, args }) {
-    return [
-      (
-        <div>
-          <i className='fa fa-share'></i>
-          <strong>{ actionName }</strong>
-          <i className='fa fa-long-arrow-right' style={{ marginRight: '0.5em', marginLeft: '0.5em' }}></i>
-          <strong>{ getMachineName(machine) }</strong>
-        </div>
-      ),
-      `${ actionName } ${ getMachineName(machine) }`
-    ];
-  }
-  onActionProcessed({ actionName, machine, args }) {
-    return [
-      (
-        <div>
-          <i className='fa fa-thumbs-o-up'></i>
-          <strong>{ actionName }</strong>
-          <i className='fa fa-long-arrow-right' style={{ marginRight: '0.5em', marginLeft: '0.5em' }}></i>
-          <strong>{ getMachineName(machine) }</strong>
-        </div>
-      ),
-      `${ actionName }  successfully processed (sent to ${ getMachineName(machine) })`
-    ];
-  }
-  onGeneratorStep({ yielded }) {
-    var message = '';
-    var messageNoTags = '';
-
-    if (typeof yielded === 'string') {
-      message = <span>generator yielded <strong>&#123; name: { yielded } }</strong></span>;
-      messageNoTags = `generator yielded ${ yielded }`;
-    } else if (typeof yielded === 'object') {
-      if (yielded.__type === 'call') {
-        const argsText = yielded.args.length === 0 ? 'with no arguments' : `with ${ shortenJSON(yielded.args) }`;
-
-        message = (
-          <span>calling <strong>{ yielded.func }</strong> { argsText }</span>
-        );
-        messageNoTags = `calling ${ yielded.func }`;
-      } else if (yielded.name) {
-        message = <span>generator yielded <strong>&#123; name: { yielded.name }, ...}</strong></span>;
-        messageNoTags = `generator yielded ${ yielded.name }`;
-      }
-    }
-    return [
-      (
-        <div>
-          <i className='fa fa-arrow-circle-left'></i>
-          { message }
-        </div>
-      ),
-      messageNoTags
-    ];
-  }
-  onGeneratorEnd({ value }) {
-    const short = value ? `with ${ shortenJSON(value) }` : '';
-
-    return [
-      (
-        <div>
-          <i className='fa fa-check-circle-o'></i>
-          generator <strong>completed</strong> { short }
-        </div>
-      ),
-      `generator completed with ${ short }`
-    ];
-  }
-  onGeneratorResumed({ value }) {
-    const short = value ? `with ${ shortenJSON(value) }` : '';
-
-    return [
-      (
-        <div>
-          <i className='fa fa-arrow-circle-right'></i>
-          generator <strong>resumed</strong> { short }
-        </div>
-      ),
-      `generator resumed with ${ short }`
-    ];
-  }
-  onStateChanged({ machine }) {
-    return [
-      (
-        <div>
-          <i className='fa fa-heart'></i>
-          <strong>{ getMachineName(machine) }</strong>'s state changed to <strong>{ machine.state.name }</strong>
-        </div>
-      ),
-      `${ getMachineName(machine) }'s state changed to ${ machine.state.name }`
-    ];
-  }
-  onMachineDisconnected({ machines, meta }) {
-    const machinesConnectedTo = machines.map(getMachineName).join(', ');
-    const component = meta.component ? <strong>{ `<${ meta.component }>` }</strong> : null;
-
-    return [
-      (
-        <div>
-          <i className='fa fa-unlink'></i>
-          { component } disconnected from <strong>{ machinesConnectedTo }</strong>
-        </div>
-      ),
-      `${ meta.component ? meta.component : '' } disconnected from ${ machinesConnectedTo }`
-    ];
   }
 };
 
@@ -326,8 +191,8 @@ export default connect(
 ).with('Nav').map(n => {
   return {
     navViewState: n.viewState,
-    navViewAction: n.viewAction,
-    navViewMachines: n.viewMachines,
+    navViewEvent: n.viewEvent,
+    navViewAnalysis: n.viewAnalysis,
     navState: n.state.name
   };
 });

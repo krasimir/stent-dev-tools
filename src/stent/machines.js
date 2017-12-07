@@ -1,3 +1,5 @@
+/* eslint-disable no-undef */
+
 import { Machine } from 'stent';
 import exampleState from '../_mocks/example.state.json';
 import { PAGES } from '../constants';
@@ -29,33 +31,38 @@ const machine = Machine.create('DevTools', {
   }
 });
 
-// setTimeout(function () {
-//   console.log('About to inject ' + exampleState.actions.length + ' actions');
-//   exampleState.actions.forEach((action, i) => {
-//     setTimeout(() => machine.actionReceived(action), i * 10);
-//   });
-// }, 20);
-
-// exposing this machine for development purposes
-// setTimeout(() => {
-//   console.log(JSON.stringify(machine.state, null, 2));
-// }, 10000);
-
 // Extension navigation
 Machine.create('Nav', {
   state: { name: 'state' },
   transitions: {
     'state': {
-      'view action': 'action',
-      'view machines': 'machines'
+      'view event': 'event',
+      'view analysis': 'analysis'
     },
-    'action': {
+    'event': {
       'view state': 'state',
-      'view machines': 'machines'
+      'view analysis': 'analysis'
     },
-    'machines': {
+    'analysis': {
       'view state': 'state',
-      'view action': 'action'
+      'view event': 'event'
     }
   }
 });
+
+// shortcuts
+Mousetrap.bind('ctrl+`', function (e) {
+  console.log(JSON.stringify(machine.state, null, 2));
+});
+
+// development goodies
+if (typeof window !== 'undefined' && window.location && window.location.href) {
+  if (window.location.href.indexOf('populate=1') > 0) {
+    setTimeout(function () {
+      console.log('About to inject ' + exampleState.actions.length + ' actions');
+      exampleState.actions.forEach((action, i) => {
+        setTimeout(() => machine.actionReceived(action), i * 10);
+      });
+    }, 20);
+  };
+}
