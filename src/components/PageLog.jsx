@@ -2,8 +2,7 @@
 
 import React from 'react';
 import { connect } from 'stent/lib/react';
-import renderMachinesAsTree from '../helpers/renderMachineAsTree';
-import renderActionAsTree from '../helpers/renderActionAsTree';
+import { renderMachinesAsTree, renderActionAsTree, renderStateAsTree } from '../helpers/renderAsTree';
 import onMachineCreated from './handlers/onMachineCreated';
 import onMachineConnected from './handlers/onMachineConnected';
 import onMachineDisconnected from './handlers/onMachineDisconnected';
@@ -13,7 +12,10 @@ import onGeneratorStep from './handlers/onGeneratorStep';
 import onGeneratorEnd from './handlers/onGeneratorEnd';
 import onGeneratorResumed from './handlers/onGeneratorResumed';
 import onStateChanged from './handlers/onStateChanged';
+import UnrecognizedAction from './handlers/UnrecognizedAction';
 import TimeDiff from './TimeDiff.jsx';
+
+const NOP_HANDLER = () => [ null, '' ];
 
 const handlers = {
   onMachineCreated,
@@ -24,7 +26,8 @@ const handlers = {
   onGeneratorStep,
   onGeneratorEnd,
   onGeneratorResumed,
-  onStateChanged
+  onStateChanged,
+  onStateWillChange: NOP_HANDLER
 };
 
 function calculateDiffTime(action, previousAction) {
@@ -41,7 +44,7 @@ class PageLog extends React.Component {
     this.state = {
       filterByType: null,
       filter: null,
-      frame: null,
+      source: null,
       snapshotIndex: null
     };
   }
@@ -52,7 +55,7 @@ class PageLog extends React.Component {
   }
   componentWillReceiveProps(newProps) {
     if (newProps.actions.length === 1) {
-      this.setState({ frame: newProps.actions[0].uid });
+      this.setState({ source: newProps.actions[0].uid });
     }
   }
   get snapshotIndex() {
@@ -70,8 +73,8 @@ class PageLog extends React.Component {
   _onFilterChange(filter) {
     this.setState({ filter: filter === '' ? null : filter });
   }
-  _onFrameChange(frame) {
-    this.setState({ frame });
+  _onSourceChange(source) {
+    this.setState({ source });
   }
   _renderFilterSelector() {
     const options = this.props.actions.reduce((result, action) => {
@@ -96,30 +99,35 @@ class PageLog extends React.Component {
         onChange={ event => this._onFilterChange(event.target.value) } />
     );
   }
-  _renderFrameSelector() {
+  _renderSourceSelector() {
     const options = this.props.actions.reduce((result, action) => {
       if (!result.find(o => o === action.uid)) result.push(action.uid);
       return result;
     }, []);
 
     return (
-      <select onChange={ e => this._onFrameChange(e.target.value) } className='left mr1' key='filter3'>
-        { options.map((uid, i) => <option value={ uid } key={ i }>{ `<frame ${ i + 1 }>` }</option>) }
+      <select onChange={ e => this._onSourceChange(e.target.value) } className='left mr1' key='filter3'>
+        { options.map((uid, i) => <option value={ uid } key={ i }>{ `<source ${ i + 1 }>` }</option>) }
       </select>
     );
   }
   _renderAction(action, i) {
-    const { filterByType, filter, frame } = this.state;
-    var filteredOut = false;
+    const { filterByType, filter, source } = this.state;
+    var filteredOut = false, actionRepresentation;
 
-    // no render method to handle it
-    if (!handlers[action.type]) return null;
+    // filter by source
+    if (action.uid !== source) return null;
     // filter by type
     if (filterByType !== null && action.type !== filterByType) filteredOut = true;
-    // filter by frame
-    if (action.uid !== frame) return null;
 
-    const actionRepresentation = handlers[action.type](action);
+    // no render method to handle it
+    if (!handlers[action.type]) {
+      actionRepresentation = UnrecognizedAction(action);
+    } else {
+      actionRepresentation = handlers[action.type](action);
+    }
+
+    if (actionRepresentation[0] === null) return null;
 
     // filter by text
     if (filter !== null && !actionRepresentation[1].toLowerCase().match(new RegExp(filter, 'ig'))) {
@@ -144,7 +152,10 @@ class PageLog extends React.Component {
     const snapshotAction = actions[this.snapshotIndex];
 
     if (!snapshotAction) return null;
-    return renderMachinesAsTree(snapshotAction.machines);
+    if (snapshotAction.type in handlers) {
+      return renderMachinesAsTree(snapshotAction.state);
+    }
+    return renderStateAsTree(snapshotAction.state);
   }
   render() {
     const { clear, navViewState, navViewEvent, navViewAnalysis, navState, actions } = this.props;
@@ -157,7 +168,7 @@ class PageLog extends React.Component {
               <a onClick={ () => clear() } key='clear' className='right mr1 try2'>
                 <i className='fa fa-ban'></i> clear
               </a>,
-              this._renderFrameSelector(),
+              this._renderSourceSelector(),
               this._renderFilterSelector(),
               this._renderFilter()
             ] : null }

@@ -2,8 +2,8 @@
 import React from 'react';
 import getMachineName from '../../helpers/getMachineName';
 
-export default function onMachineConnected({ machines, meta }) {
-  const machinesConnectedTo = machines.map(getMachineName).join(', ');
+export default function onMachineConnected({ state, meta }) {
+  const machinesConnectedTo = state.map(getMachineName).join(', ');
   const component = meta.component ? <strong>{ `<${ meta.component }>` }</strong> : null;
 
   return [
