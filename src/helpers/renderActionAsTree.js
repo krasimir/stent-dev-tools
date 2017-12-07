@@ -9,5 +9,5 @@ export default function renderActionAsTree({ source, time, machines, origin, ind
   return renderJSON({
     time: '+' + formatMilliseconds(diff),
     ...rest
-  });
+  }, 'Event');
 };

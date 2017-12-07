@@ -1,10 +1,50 @@
 /* eslint-disable no-unused-vars */
 import React from 'react';
 import JSONTree from 'react-json-tree';
-import treeTheme from '../helpers/treeTheme';
 
-function labelRenderer(key, parentKey, a, rootKey) {
-  return <strong>{ key[0] }</strong>;
+const treeTheme = {
+  extend: {
+    scheme: 'chalk',
+    author: 'chris kempson (http://chriskempson.com)',
+    base00: '#151515',
+    base01: '#202020',
+    base02: '#303030',
+    base03: '#505050',
+    base04: '#b0b0b0',
+    base05: '#d0d0d0',
+    base06: '#e0e0e0',
+    base07: '#f5f5f5',
+    base08: '#fb9fb1',
+    base09: '#eda987',
+    base0A: '#ddb26f',
+    base0B: '#acc267',
+    base0C: '#12cfc0',
+    base0D: '#6fc2ef',
+    base0E: '#e1a3ee',
+    base0F: '#deaf8f'
+  },
+  tree: {
+    backgroundColor: '#e6e6e6',
+    marginTop: 2,
+    marginRight: 0,
+    marginBottom: 0,
+    marginLeft: 0
+  },
+  nestedNodeLabel: ({ style }, expanded) => ({
+    style: {
+      ...style,
+      color: expanded ? '#000' : '#000'
+    }
+  })
+};
+
+function labelRenderer(what) {
+  return (key, parentKey, expanded, rootKey) => {
+    if (key[0] === 'root' && parentKey === 'Object' && rootKey === true) {
+      return what;
+    }
+    return <strong>{ key[0] }</strong>;
+  };
 }
 function shouldExpandNode(keyName, data, level) {
   if (typeof data === 'object' && Object.keys(data).length > 5) {
@@ -16,10 +56,10 @@ function shouldExpandNode(keyName, data, level) {
   return false;
 }
 function valueRenderer(raw) {
-  return <em>{raw}</em>;
+  return <em>{ raw }</em>;
 }
 
-const renderJSON = function (json) {
+const renderJSON = function (json, what = 'root') {
   return <JSONTree
     data={ json }
     theme={ treeTheme }
@@ -27,10 +67,10 @@ const renderJSON = function (json) {
       if (type === 'Array') return <span>// array ({ itemString })</span>;
       return null;
     } }
-    labelRenderer={ labelRenderer }
+    labelRenderer={ labelRenderer(what) }
     shouldExpandNode={ shouldExpandNode }
     valueRenderer={ valueRenderer }
-    hideRoot={ true }
+    hideRoot={ false }
   />;
 };
 

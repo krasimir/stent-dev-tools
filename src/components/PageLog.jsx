@@ -1,6 +1,7 @@
+/* eslint-disable no-unused-vars */
+
 import React from 'react';
 import { connect } from 'stent/lib/react';
-import formatMilliseconds from '../helpers/formatMilliseconds';
 import renderMachinesAsTree from '../helpers/renderMachineAsTree';
 import renderActionAsTree from '../helpers/renderActionAsTree';
 import onMachineCreated from './handlers/onMachineCreated';
@@ -12,6 +13,7 @@ import onGeneratorStep from './handlers/onGeneratorStep';
 import onGeneratorEnd from './handlers/onGeneratorEnd';
 import onGeneratorResumed from './handlers/onGeneratorResumed';
 import onStateChanged from './handlers/onStateChanged';
+import TimeDiff from './TimeDiff.jsx';
 
 const handlers = {
   onMachineCreated,
@@ -23,6 +25,12 @@ const handlers = {
   onGeneratorEnd,
   onGeneratorResumed,
   onStateChanged
+};
+
+function calculateDiffTime(action, previousAction) {
+  if (!previousAction) return 0;
+
+  return action.time - previousAction.time;
 };
 
 class PageLog extends React.Component {
@@ -65,13 +73,6 @@ class PageLog extends React.Component {
   _onFrameChange(frame) {
     this.setState({ frame });
   }
-  _renderTimeSplit(time) {
-    if (this.props.actions.length === 0) return null;
-
-    const diff = time - this.props.actions[0].time;
-
-    return <div className='timeSplit'><a>+ { formatMilliseconds(diff) }</a></div>;
-  }
   _renderFilterSelector() {
     const options = this.props.actions.reduce((result, action) => {
       if (!result.find(o => o === action.type) && this[action.type]) result.push(action.type);
@@ -107,7 +108,7 @@ class PageLog extends React.Component {
       </select>
     );
   }
-  _renderAction(action) {
+  _renderAction(action, i) {
     const { filterByType, filter, frame } = this.state;
     var filteredOut = false;
 
@@ -125,11 +126,14 @@ class PageLog extends React.Component {
       filteredOut = true;
     }
 
+    const timeDiff = calculateDiffTime(action, this.props.actions[i - 1]);
+
     return (
       <li
         key={ action.index }
         className={ action.type + ' actionRow relative ' + (filteredOut ? 'filteredOut' : '') }
-        onClick={ () => this._setSnapshotIndex(action.index) } >
+        onClick={ () => this._setSnapshotIndex(action.index) }>
+        { timeDiff > 0 && <TimeDiff diff={ timeDiff } /> }
         { actionRepresentation[0] }
         { this.snapshotIndex === action.index && <i className='fa fa-thumb-tack snapshotMarker'></i> }
       </li>

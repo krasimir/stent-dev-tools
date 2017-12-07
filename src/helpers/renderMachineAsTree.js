@@ -10,5 +10,5 @@ export default function renderMachinesAsTree(machines = []) {
     if (machineName === '<unnamed>') machineName = `<unnamed(${ ++unnamed })>`;
     tree[machineName] = machine.state;
     return tree;
-  }, {}));
+  }, {}), 'Machines');
 };

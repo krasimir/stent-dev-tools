@@ -29673,7 +29673,7 @@ exports.default = (0, _react3.connect)(App).with('DevTools').map(function (_ref)
   return { page: state.page, actions: state.actions };
 });
 
-},{"../constants":386,"./PageLog.jsx":376,"react":357,"react-dom":184,"stent/lib/react":373}],376:[function(require,module,exports){
+},{"../constants":387,"./PageLog.jsx":376,"react":357,"react-dom":184,"stent/lib/react":373}],376:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -29687,10 +29687,6 @@ var _react = require('react');
 var _react2 = _interopRequireDefault(_react);
 
 var _react3 = require('stent/lib/react');
-
-var _formatMilliseconds = require('../helpers/formatMilliseconds');
-
-var _formatMilliseconds2 = _interopRequireDefault(_formatMilliseconds);
 
 var _renderMachineAsTree = require('../helpers/renderMachineAsTree');
 
@@ -29736,13 +29732,17 @@ var _onStateChanged = require('./handlers/onStateChanged');
 
 var _onStateChanged2 = _interopRequireDefault(_onStateChanged);
 
+var _TimeDiff = require('./TimeDiff.jsx');
+
+var _TimeDiff2 = _interopRequireDefault(_TimeDiff);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } /* eslint-disable no-unused-vars */
 
 var handlers = {
   onMachineCreated: _onMachineCreated2.default,
@@ -29754,6 +29754,12 @@ var handlers = {
   onGeneratorEnd: _onGeneratorEnd2.default,
   onGeneratorResumed: _onGeneratorResumed2.default,
   onStateChanged: _onStateChanged2.default
+};
+
+function calculateDiffTime(action, previousAction) {
+  if (!previousAction) return 0;
+
+  return action.time - previousAction.time;
 };
 
 var PageLog = function (_React$Component) {
@@ -29807,24 +29813,6 @@ var PageLog = function (_React$Component) {
     key: '_onFrameChange',
     value: function _onFrameChange(frame) {
       this.setState({ frame: frame });
-    }
-  }, {
-    key: '_renderTimeSplit',
-    value: function _renderTimeSplit(time) {
-      if (this.props.actions.length === 0) return null;
-
-      var diff = time - this.props.actions[0].time;
-
-      return _react2.default.createElement(
-        'div',
-        { className: 'timeSplit' },
-        _react2.default.createElement(
-          'a',
-          null,
-          '+ ',
-          (0, _formatMilliseconds2.default)(diff)
-        )
-      );
     }
   }, {
     key: '_renderFilterSelector',
@@ -29895,7 +29883,7 @@ var PageLog = function (_React$Component) {
     }
   }, {
     key: '_renderAction',
-    value: function _renderAction(action) {
+    value: function _renderAction(action, i) {
       var _this5 = this;
 
       var _state = this.state,
@@ -29919,6 +29907,8 @@ var PageLog = function (_React$Component) {
         filteredOut = true;
       }
 
+      var timeDiff = calculateDiffTime(action, this.props.actions[i - 1]);
+
       return _react2.default.createElement(
         'li',
         {
@@ -29927,6 +29917,7 @@ var PageLog = function (_React$Component) {
           onClick: function onClick() {
             return _this5._setSnapshotIndex(action.index);
           } },
+        timeDiff > 0 && _react2.default.createElement(_TimeDiff2.default, { diff: timeDiff }),
         actionRepresentation[0],
         this.snapshotIndex === action.index && _react2.default.createElement('i', { className: 'fa fa-thumb-tack snapshotMarker' })
       );
@@ -30048,7 +30039,39 @@ exports.default = (0, _react3.connect)((0, _react3.connect)(PageLog).with('DevTo
   };
 });
 
-},{"../helpers/formatMilliseconds":387,"../helpers/renderActionAsTree":390,"../helpers/renderMachineAsTree":392,"./handlers/onActionDispatched":377,"./handlers/onActionProcessed":378,"./handlers/onGeneratorEnd":379,"./handlers/onGeneratorResumed":380,"./handlers/onGeneratorStep":381,"./handlers/onMachineConnected":382,"./handlers/onMachineCreated":383,"./handlers/onMachineDisconnected":384,"./handlers/onStateChanged":385,"react":357,"stent/lib/react":373}],377:[function(require,module,exports){
+},{"../helpers/renderActionAsTree":391,"../helpers/renderMachineAsTree":393,"./TimeDiff.jsx":377,"./handlers/onActionDispatched":378,"./handlers/onActionProcessed":379,"./handlers/onGeneratorEnd":380,"./handlers/onGeneratorResumed":381,"./handlers/onGeneratorStep":382,"./handlers/onMachineConnected":383,"./handlers/onMachineCreated":384,"./handlers/onMachineDisconnected":385,"./handlers/onStateChanged":386,"react":357,"stent/lib/react":373}],377:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = TimeDiff;
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _formatMilliseconds = require('../helpers/formatMilliseconds');
+
+var _formatMilliseconds2 = _interopRequireDefault(_formatMilliseconds);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+/* eslint-disable no-unused-vars */
+
+function TimeDiff(_ref) {
+  var diff = _ref.diff;
+
+  return _react2.default.createElement(
+    'small',
+    { className: 'right mr1' },
+    _react2.default.createElement('i', { className: 'fa fa-clock-o', style: { marginRight: '0.5em' } }),
+    '+',
+    (0, _formatMilliseconds2.default)(diff)
+  );
+}
+
+},{"../helpers/formatMilliseconds":388,"react":357}],378:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -30090,7 +30113,7 @@ function onActionDispatched(_ref) {
   ), actionName + ' ' + (0, _getMachineName2.default)(machine)];
 }
 
-},{"../../helpers/getMachineName":388,"react":357}],378:[function(require,module,exports){
+},{"../../helpers/getMachineName":389,"react":357}],379:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -30132,7 +30155,7 @@ function onActionProcessed(_ref) {
   ), actionName + '  successfully processed (sent to ' + (0, _getMachineName2.default)(machine) + ')'];
 }
 
-},{"../../helpers/getMachineName":388,"react":357}],379:[function(require,module,exports){
+},{"../../helpers/getMachineName":389,"react":357}],380:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -30174,7 +30197,7 @@ function onGeneratorEnd(_ref) {
   ), 'generator completed with ' + short];
 } /* eslint-disable no-unused-vars */
 
-},{"../../helpers/getMachineName":388,"../../helpers/shortenJSON":393,"react":357}],380:[function(require,module,exports){
+},{"../../helpers/getMachineName":389,"../../helpers/shortenJSON":394,"react":357}],381:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -30216,7 +30239,7 @@ function onGeneratorResumed(_ref) {
   ), 'generator resumed with ' + short];
 } /* eslint-disable no-unused-vars */
 
-},{"../../helpers/getMachineName":388,"../../helpers/shortenJSON":393,"react":357}],381:[function(require,module,exports){
+},{"../../helpers/getMachineName":389,"../../helpers/shortenJSON":394,"react":357}],382:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -30303,7 +30326,7 @@ function onGeneratorStep(_ref) {
   ), messageNoTags];
 }
 
-},{"../../helpers/getMachineName":388,"../../helpers/shortenJSON":393,"react":357}],382:[function(require,module,exports){
+},{"../../helpers/getMachineName":389,"../../helpers/shortenJSON":394,"react":357}],383:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -30347,7 +30370,7 @@ function onMachineConnected(_ref) {
   ), (meta.component ? meta.component : '') + ' connected to ' + machinesConnectedTo];
 }
 
-},{"../../helpers/getMachineName":388,"react":357}],383:[function(require,module,exports){
+},{"../../helpers/getMachineName":389,"react":357}],384:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -30382,7 +30405,7 @@ function onMachineCreated(_ref) {
   ), (0, _getMachineName2.default)(machine) + ' machine created'];
 };
 
-},{"../../helpers/getMachineName":388,"react":357}],384:[function(require,module,exports){
+},{"../../helpers/getMachineName":389,"react":357}],385:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -30426,7 +30449,7 @@ function onMachineDisconnected(_ref) {
   ), (meta.component ? meta.component : '') + ' disconnected from ' + machinesConnectedTo];
 }
 
-},{"../../helpers/getMachineName":388,"react":357}],385:[function(require,module,exports){
+},{"../../helpers/getMachineName":389,"react":357}],386:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -30466,7 +30489,7 @@ function onStateChanged(_ref) {
   ), (0, _getMachineName2.default)(machine) + '\'s state changed to ' + machine.state.name];
 }
 
-},{"../../helpers/getMachineName":388,"react":357}],386:[function(require,module,exports){
+},{"../../helpers/getMachineName":389,"react":357}],387:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -30478,7 +30501,7 @@ var PAGES = exports.PAGES = {
   MACHINES: 'MACHINES'
 };
 
-},{}],387:[function(require,module,exports){
+},{}],388:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -30512,7 +30535,7 @@ function formatMilliseconds(millisec) {
   return minutes + ":" + seconds + ':' + ms;
 }
 
-},{}],388:[function(require,module,exports){
+},{}],389:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -30528,7 +30551,7 @@ function getMachineName(_ref) {
   return name;
 };
 
-},{}],389:[function(require,module,exports){
+},{}],390:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -30539,7 +30562,7 @@ function normalizeAction(action) {
   return action;
 }
 
-},{}],390:[function(require,module,exports){
+},{}],391:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -30581,17 +30604,19 @@ function renderActionAsTree() {
 
   return (0, _renderJSON2.default)(_extends({
     time: '+' + (0, _formatMilliseconds2.default)(diff)
-  }, rest));
+  }, rest), 'Event');
 };
 
-},{"./formatMilliseconds":387,"./renderJSON":391}],391:[function(require,module,exports){
+},{"./formatMilliseconds":388,"./renderJSON":392}],392:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; /* eslint-disable no-unused-vars */
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; /* eslint-disable no-unused-vars */
 
 
 var _react = require('react');
@@ -30602,115 +30627,7 @@ var _reactJsonTree = require('react-json-tree');
 
 var _reactJsonTree2 = _interopRequireDefault(_reactJsonTree);
 
-var _treeTheme = require('../helpers/treeTheme');
-
-var _treeTheme2 = _interopRequireDefault(_treeTheme);
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function labelRenderer(key, parentKey, a, rootKey) {
-  return _react2.default.createElement(
-    'strong',
-    null,
-    key[0]
-  );
-}
-function shouldExpandNode(keyName, data, level) {
-  if ((typeof data === 'undefined' ? 'undefined' : _typeof(data)) === 'object' && Object.keys(data).length > 5) {
-    return false;
-  }
-  if (level < 2) {
-    return true;
-  }
-  return false;
-}
-function valueRenderer(raw) {
-  return _react2.default.createElement(
-    'em',
-    null,
-    raw
-  );
-}
-
-var renderJSON = function renderJSON(json) {
-  return _react2.default.createElement(_reactJsonTree2.default, {
-    data: json,
-    theme: _treeTheme2.default,
-    getItemString: function getItemString(type, data, itemType, itemString) {
-      if (type === 'Array') return _react2.default.createElement(
-        'span',
-        null,
-        '// array (',
-        itemString,
-        ')'
-      );
-      return null;
-    },
-    labelRenderer: labelRenderer,
-    shouldExpandNode: shouldExpandNode,
-    valueRenderer: valueRenderer,
-    hideRoot: true
-  });
-};
-
-exports.default = renderJSON;
-
-},{"../helpers/treeTheme":394,"react":357,"react-json-tree":321}],392:[function(require,module,exports){
-'use strict';
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = renderMachinesAsTree;
-
-var _getMachineName = require('./getMachineName');
-
-var _getMachineName2 = _interopRequireDefault(_getMachineName);
-
-var _renderJSON = require('./renderJSON');
-
-var _renderJSON2 = _interopRequireDefault(_renderJSON);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function renderMachinesAsTree() {
-  var machines = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
-
-  var unnamed = 1;
-
-  return (0, _renderJSON2.default)(machines.reduce(function (tree, machine) {
-    var machineName = (0, _getMachineName2.default)(machine);
-
-    if (machineName === '<unnamed>') machineName = '<unnamed(' + ++unnamed + ')>';
-    tree[machineName] = machine.state;
-    return tree;
-  }, {}));
-};
-
-},{"./getMachineName":388,"./renderJSON":391}],393:[function(require,module,exports){
-'use strict';
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = shortenJSON;
-var STR_LIMIT = 40;
-
-function shortenJSON(data) {
-  var str = JSON.stringify(data);
-
-  if (str.length <= STR_LIMIT) return str;
-  return str.substr(0, STR_LIMIT) + '...';
-};
-
-},{}],394:[function(require,module,exports){
-'use strict';
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 var treeTheme = {
   extend: {
@@ -30750,7 +30667,107 @@ var treeTheme = {
   }
 };
 
-exports.default = treeTheme;
+function labelRenderer(what) {
+  return function (key, parentKey, expanded, rootKey) {
+    if (key[0] === 'root' && parentKey === 'Object' && rootKey === true) {
+      return what;
+    }
+    return _react2.default.createElement(
+      'strong',
+      null,
+      key[0]
+    );
+  };
+}
+function shouldExpandNode(keyName, data, level) {
+  if ((typeof data === 'undefined' ? 'undefined' : _typeof(data)) === 'object' && Object.keys(data).length > 5) {
+    return false;
+  }
+  if (level < 2) {
+    return true;
+  }
+  return false;
+}
+function valueRenderer(raw) {
+  return _react2.default.createElement(
+    'em',
+    null,
+    raw
+  );
+}
+
+var renderJSON = function renderJSON(json) {
+  var what = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'root';
+
+  return _react2.default.createElement(_reactJsonTree2.default, {
+    data: json,
+    theme: treeTheme,
+    getItemString: function getItemString(type, data, itemType, itemString) {
+      if (type === 'Array') return _react2.default.createElement(
+        'span',
+        null,
+        '// array (',
+        itemString,
+        ')'
+      );
+      return null;
+    },
+    labelRenderer: labelRenderer(what),
+    shouldExpandNode: shouldExpandNode,
+    valueRenderer: valueRenderer,
+    hideRoot: false
+  });
+};
+
+exports.default = renderJSON;
+
+},{"react":357,"react-json-tree":321}],393:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = renderMachinesAsTree;
+
+var _getMachineName = require('./getMachineName');
+
+var _getMachineName2 = _interopRequireDefault(_getMachineName);
+
+var _renderJSON = require('./renderJSON');
+
+var _renderJSON2 = _interopRequireDefault(_renderJSON);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function renderMachinesAsTree() {
+  var machines = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
+
+  var unnamed = 1;
+
+  return (0, _renderJSON2.default)(machines.reduce(function (tree, machine) {
+    var machineName = (0, _getMachineName2.default)(machine);
+
+    if (machineName === '<unnamed>') machineName = '<unnamed(' + ++unnamed + ')>';
+    tree[machineName] = machine.state;
+    return tree;
+  }, {}), 'Machines');
+};
+
+},{"./getMachineName":389,"./renderJSON":392}],394:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = shortenJSON;
+var STR_LIMIT = 40;
+
+function shortenJSON(data) {
+  var str = JSON.stringify(data);
+
+  if (str.length <= STR_LIMIT) return str;
+  return str.substr(0, STR_LIMIT) + '...';
+};
 
 },{}],395:[function(require,module,exports){
 'use strict';
@@ -30903,4 +30920,4 @@ if (typeof window !== 'undefined' && window.location && window.location.href) {
   };
 }
 
-},{"../_mocks/example.state.json":374,"../constants":386,"../helpers/normalize":389,"stent":371}]},{},[395]);
+},{"../_mocks/example.state.json":374,"../constants":387,"../helpers/normalize":390,"stent":371}]},{},[395]);
