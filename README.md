@@ -1,6 +1,6 @@
 # Stent Dev Tools
 
-Chrome extension to monitor state machines created by [Stent](https://github.com/krasimir/stent) library.
+Chrome extension to monitor state machines created by [Stent](https://github.com/krasimir/stent) library and not only.
 
 ### Posting a message to the extension
 
@@ -15,4 +15,4 @@ window.top.postMessage({
 }, '*');
 ```
 
-*`icon` is one of the FontAwesome icons. Check out [here](http://fontawesome.io/icons/)*
+*`icon` is one of the FontAwesome icons. Check out [here](http://fontawesome.io/icons/).*
