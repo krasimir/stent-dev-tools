@@ -36,12 +36,18 @@ class PageLog extends React.Component {
     this.state = {
       filterByType: null,
       filter: null,
+      frame: null,
       snapshotIndex: null
     };
   }
   componentDidUpdate() {
     if (this.state.snapshotIndex === null) {
       this.log.scrollTop = this.log.scrollHeight;
+    }
+  }
+  componentWillReceiveProps(newProps) {
+    if (newProps.actions.length === 1) {
+      this.setState({ frame: newProps.actions[0].uid });
     }
   }
   get snapshotIndex() {
@@ -59,6 +65,9 @@ class PageLog extends React.Component {
   _onFilterChange(filter) {
     this.setState({ filter: filter === '' ? null : filter });
   }
+  _onFrameChange(frame) {
+    this.setState({ frame });
+  }
   _renderTimeSplit(time) {
     if (this.props.actions.length === 0) return null;
 
@@ -68,7 +77,7 @@ class PageLog extends React.Component {
   }
   _renderFilterSelector() {
     const options = this.props.actions.reduce((result, action) => {
-      if (!result.find(o => o === action.type)) result.push(action.type);
+      if (!result.find(o => o === action.type) && this[action.type]) result.push(action.type);
       return result;
     }, ['all']);
 
@@ -81,6 +90,7 @@ class PageLog extends React.Component {
   _renderFilter() {
     return (
       <input
+        style={{ width: '50px' }}
         type='text'
         className='filter left'
         placeholder='filter'
@@ -88,23 +98,40 @@ class PageLog extends React.Component {
         onChange={ event => this._onFilterChange(event.target.value) } />
     );
   }
-  _renderAction(action) {
-    const { filterByType, filter } = this.state;
+  _renderFrameSelector() {
+    const options = this.props.actions.reduce((result, action) => {
+      if (!result.find(o => o === action.uid)) result.push(action.uid);
+      return result;
+    }, []);
 
-    if (!this[action.type]) {
-      return null;
-    }
-    if (filterByType !== null && action.type !== filterByType) return null;
+    return (
+      <select onChange={ e => this._onFrameChange(e.target.value) } className='left mr1' key='filter3'>
+        { options.map((uid, i) => <option value={ uid } key={ i }>{ `<frame ${ i + 1 }>` }</option>) }
+      </select>
+    );
+  }
+  _renderAction(action) {
+    const { filterByType, filter, frame } = this.state;
+    var filteredOut = false;
+
+    // no render method to handle it
+    if (!this[action.type]) return null;
+    // filter by type
+    if (filterByType !== null && action.type !== filterByType) filteredOut = true;
+    // filter by frame
+    if (action.uid !== frame) return null;
 
     const actionRepresentation = this[action.type](action);
 
+    // filter by text
     if (filter !== null && !actionRepresentation[1].toLowerCase().match(new RegExp(filter, 'ig'))) {
-      return null;
+      filteredOut = true;
     }
+
     return (
       <li
         key={ action.index }
-        className={ action.type + ' actionRow relative' }
+        className={ action.type + ' actionRow relative ' + (filteredOut ? 'filteredOut' : '') }
         onClick={ () => this._setSnapshotIndex(action.index) } >
         { actionRepresentation[0] }
         { this.snapshotIndex === action.index && <i className='fa fa-thumb-tack snapshotMarker'></i> }
@@ -126,9 +153,10 @@ class PageLog extends React.Component {
         <div className='logLeft'>
           <div className='logNav'>
             { this.props.actions.length > 0 ? [
-              <a onClick={ () => clear() } key='clear' className='ml1 try2'>
+              <a onClick={ () => clear() } key='clear' className='right mr1 try2'>
                 <i className='fa fa-ban'></i> clear
               </a>,
+              this._renderFrameSelector(),
               this._renderFilterSelector(),
               this._renderFilter()
             ] : null }
@@ -142,7 +170,7 @@ class PageLog extends React.Component {
             <a onClick={ navViewState } className={ navState === 'state' ? 'selected' : null }>
               <i className='fa fa-heart-o mr05'></i>State</a>
             <a onClick={ navViewAction } className={ navState === 'action' ? 'selected' : null }>
-              <i className='fa fa-angle-double-right mr05'></i>Action</a>
+              <i className='fa fa-share mr05'></i>Action</a>
             <a onClick={ navViewMachines } className={ navState === 'machines' ? 'selected' : null }>
               <i className='fa fa-gears mr05'></i>Machines</a>
           </div>
@@ -184,11 +212,26 @@ class PageLog extends React.Component {
     return [
       (
         <div>
-          <i className='fa fa-angle-double-right'></i>
-          <strong>{ actionName }</strong> dispatched to <strong>{ getMachineName(machine) }</strong>
+          <i className='fa fa-share'></i>
+          <strong>{ actionName }</strong>
+          <i className='fa fa-long-arrow-right' style={{ marginRight: '0.5em', marginLeft: '0.5em' }}></i>
+          <strong>{ getMachineName(machine) }</strong>
         </div>
       ),
-      `${ actionName } dispatched to ${ getMachineName(machine) }`
+      `${ actionName } ${ getMachineName(machine) }`
+    ];
+  }
+  onActionProcessed({ actionName, machine, args }) {
+    return [
+      (
+        <div>
+          <i className='fa fa-thumbs-o-up'></i>
+          <strong>{ actionName }</strong>
+          <i className='fa fa-long-arrow-right' style={{ marginRight: '0.5em', marginLeft: '0.5em' }}></i>
+          <strong>{ getMachineName(machine) }</strong>
+        </div>
+      ),
+      `${ actionName }  successfully processed (sent to ${ getMachineName(machine) })`
     ];
   }
   onGeneratorStep({ yielded }) {
@@ -200,8 +243,10 @@ class PageLog extends React.Component {
       messageNoTags = `generator yielded ${ yielded }`;
     } else if (typeof yielded === 'object') {
       if (yielded.__type === 'call') {
+        const argsText = yielded.args.length === 0 ? 'with no arguments' : `with ${ shortenJSON(yielded.args) }`;
+
         message = (
-          <span>calling <strong>{ yielded.func }</strong> with { shortenJSON(yielded.args) }</span>
+          <span>calling <strong>{ yielded.func }</strong> { argsText }</span>
         );
         messageNoTags = `calling ${ yielded.func }`;
       } else if (yielded.name) {
@@ -249,7 +294,7 @@ class PageLog extends React.Component {
     return [
       (
         <div>
-          <i className='fa fa-arrow-right'></i>
+          <i className='fa fa-heart'></i>
           <strong>{ getMachineName(machine) }</strong>'s state changed to <strong>{ machine.state.name }</strong>
         </div>
       ),
@@ -284,5 +329,5 @@ export default connect(
     navViewAction: n.viewAction,
     navViewMachines: n.viewMachines,
     navState: n.state.name
-  }
+  };
 });

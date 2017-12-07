@@ -30,6 +30,7 @@ const machine = Machine.create('DevTools', {
 });
 
 // setTimeout(function () {
+//   console.log('About to inject ' + exampleState.actions.length + ' actions');
 //   exampleState.actions.forEach((action, i) => {
 //     setTimeout(() => machine.actionReceived(action), i * 10);
 //   });
