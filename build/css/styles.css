@@ -157,8 +157,9 @@ body, html {
   width: 100px;
 }
 .log .actionRow {
+  margin-bottom: 1px;
   cursor: pointer;
-  transition: opacity 1000ms ease;
+  transition: opacity 1000ms ease, border-bottom 200ms ease;
 }
 .log .actionRow:hover {
   opacity: 0.8;
@@ -186,6 +187,9 @@ body, html {
 }
 .onGeneratorStep, .onGeneratorEnd, .onGeneratorResumed {
   background: rgb(201, 202, 189) !important;
+}
+.withMarker {
+  border-bottom: solid 2px #f00;
 }
 .onStateChanged {
   background: rgb(201, 172, 186) !important;

@@ -2,6 +2,7 @@
 
 import { Machine } from 'stent';
 import exampleState from '../_mocks/example.state.json';
+import exampleStateRedux from '../_mocks/example.redux.json';
 import { PAGES } from '../constants';
 import { normalizeAction } from '../helpers/normalize';
 
@@ -26,6 +27,14 @@ const machine = Machine.create('DevTools', {
       },
       'flush actions': function () {
         return { actions: [], name: 'working', page: PAGES.LOG };
+      },
+      'add marker': function ({ actions, ...rest }, index) {
+        if (index === null) {
+          actions[actions.length - 1].withMarker = true;
+        } else {
+          actions[index].withMarker = true;
+        }
+        return { ...rest, actions };
       }
     }
   }
@@ -57,10 +66,18 @@ Mousetrap.bind('ctrl+`', function (e) {
 
 // development goodies
 if (typeof window !== 'undefined' && window.location && window.location.href) {
-  if (window.location.href.indexOf('populate=1') > 0) {
+  if (window.location.href.indexOf('populate=') > 0) {
+    let s;
+
+    if (window.location.href.indexOf('populate=1') > 0) {
+      s = exampleState;
+    } else if (window.location.href.indexOf('populate=2') > 0) {
+      s = exampleStateRedux;
+    }
+
     setTimeout(function () {
-      console.log('About to inject ' + exampleState.actions.length + ' actions');
-      exampleState.actions.forEach((action, i) => {
+      console.log('About to inject ' + s.actions.length + ' actions');
+      s.actions.forEach((action, i) => {
         setTimeout(() => machine.actionReceived(action), i * 10);
       });
     }, 20);

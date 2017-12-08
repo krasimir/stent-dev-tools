@@ -1,6 +1,7 @@
 /* eslint-disable no-unused-vars */
 import React from 'react';
 import JSONTree from 'react-json-tree';
+import renderJSONPreview from './renderJSONPreview';
 
 const treeTheme = {
   extend: {
@@ -53,14 +54,18 @@ function valueRenderer(raw) {
   return <em>{ raw }</em>;
 }
 
+function getItemString(type, data, itemType, itemString) {
+  if (data !== null && data !== undefined) {
+    return <span>{ renderJSONPreview(data) }</span>;
+  }
+  return null;
+}
+
 const renderJSON = function (json, what = 'root') {
   return <JSONTree
     data={ json }
     theme={ treeTheme }
-    getItemString={ function (type, data, itemType, itemString) {
-      if (type === 'Array') return <span>// array ({ itemString })</span>;
-      return null;
-    } }
+    getItemString={ getItemString }
     labelRenderer={ labelRenderer(what) }
     shouldExpandNode={ shouldExpandNode }
     valueRenderer={ valueRenderer }

@@ -135,12 +135,19 @@ class PageLog extends React.Component {
     }
 
     const timeDiff = calculateDiffTime(action, this.props.actions[i - 1]);
+    const className =
+      (action.type ? action.type : '') +
+      ' actionRow relative' +
+      (filteredOut ? ' filteredOut' : '') +
+      (action.withMarker ? ' withMarker' : '');
+    const style = action.color ? { backgroundColor: action.color } : {};
 
     return (
       <li
         key={ action.index }
-        className={ action.type + ' actionRow relative ' + (filteredOut ? 'filteredOut' : '') }
-        onClick={ () => this._setSnapshotIndex(action.index) }>
+        className={ className }
+        onClick={ () => this._setSnapshotIndex(action.index) }
+        style={ style }>
         { timeDiff > 0 && <TimeDiff diff={ timeDiff } /> }
         { actionRepresentation[0] }
         { this.snapshotIndex === action.index && <i className='fa fa-thumb-tack snapshotMarker'></i> }
@@ -158,7 +165,7 @@ class PageLog extends React.Component {
     return renderStateAsTree(snapshotAction.state);
   }
   render() {
-    const { clear, navViewState, navViewEvent, navViewAnalysis, navState, actions } = this.props;
+    const { clear, marker, navViewState, navViewEvent, navViewAnalysis, navState, actions } = this.props;
 
     return (
       <div className='pageLog'>
@@ -166,8 +173,13 @@ class PageLog extends React.Component {
           <div className='logNav'>
             { this.props.actions.length > 0 ? [
               <a onClick={ () => clear() } key='clear' className='right mr1 try2'>
-                <i className='fa fa-ban'></i> clear
+                <i className='fa fa-ban'></i>
               </a>,
+              actions.length > 0 && (
+                <a onClick={ () => marker(this.state.snapshotIndex) } key='marker' className='right mr1 try2'>
+                  <i className='fa fa-bookmark'></i>
+                </a>
+              ),
               this._renderSourceSelector(),
               this._renderFilterSelector(),
               this._renderFilter()
@@ -200,8 +212,9 @@ class PageLog extends React.Component {
 export default connect(
   connect(PageLog)
     .with('DevTools')
-    .map(({ flushActions }) => ({
-      clear: () => flushActions()
+    .map(({ flushActions, addMarker }) => ({
+      clear: () => flushActions(),
+      marker: index => addMarker(index)
     }))
 ).with('Nav').map(n => {
   return {

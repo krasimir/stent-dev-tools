@@ -27,6 +27,7 @@ export function renderActionAsTree({
   uid,
   label,
   icon,
+  withMarker,
   ...rest
 } = {}, actions) {
   if (typeof source === 'undefined') return null;

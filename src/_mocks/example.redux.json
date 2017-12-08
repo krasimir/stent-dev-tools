@@ -6,7 +6,8 @@
       "source": "stent",
       "time": 1512676985381,
       "uid": "redux1512676985276",
-      "icon": "fa-gear",
+      "icon": "fa-bathtub",
+      "color": "#BADA55",
       "state": {
         "contactRequest": {
           "status": "IDLE",
@@ -337,7 +338,6 @@
       "source": "stent",
       "time": 1512676985556,
       "uid": "redux1512676985276",
-      "icon": "fa-gear",
       "state": {
         "contactRequest": {
           "status": "IDLE",
