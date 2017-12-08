@@ -47,12 +47,6 @@ function labelRenderer(what) {
   };
 }
 function shouldExpandNode(keyName, data, level) {
-  if (typeof data === 'object' && Object.keys(data).length > 5) {
-    return false;
-  }
-  if (level < 2) {
-    return true;
-  }
   return false;
 }
 function valueRenderer(raw) {

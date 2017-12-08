@@ -28170,6 +28170,9 @@ var ERROR_UNCOVERED_STATE = exports.ERROR_UNCOVERED_STATE = function ERROR_UNCOV
   return 'You just transitioned the machine to a state (' + state + ') which is not defined or it has no actions. This means that the machine is stuck.';
 };
 var ERROR_NOT_SUPPORTED_HANDLER_TYPE = exports.ERROR_NOT_SUPPORTED_HANDLER_TYPE = 'Wrong handler type passed. Please read the docs https://github.com/krasimir/stent';
+var ERROR_RESERVED_WORD_USED_AS_ACTION = exports.ERROR_RESERVED_WORD_USED_AS_ACTION = function ERROR_RESERVED_WORD_USED_AS_ACTION(word) {
+  return 'Sorry, you can\'t use ' + word + ' as a name for an action. It is reserved.';
+};
 
 // middlewares
 var MIDDLEWARE_PROCESS_ACTION = exports.MIDDLEWARE_PROCESS_ACTION = 'onActionDispatched';
@@ -28177,9 +28180,14 @@ var MIDDLEWARE_ACTION_PROCESSED = exports.MIDDLEWARE_ACTION_PROCESSED = 'onActio
 var MIDDLEWARE_STATE_WILL_CHANGE = exports.MIDDLEWARE_STATE_WILL_CHANGE = 'onStateWillChange';
 var MIDDLEWARE_PROCESS_STATE_CHANGE = exports.MIDDLEWARE_PROCESS_STATE_CHANGE = 'onStateChanged';
 var MIDDLEWARE_GENERATOR_STEP = exports.MIDDLEWARE_GENERATOR_STEP = 'onGeneratorStep';
+var MIDDLEWARE_GENERATOR_END = exports.MIDDLEWARE_GENERATOR_END = 'onGeneratorEnd';
+var MIDDLEWARE_GENERATOR_RESUMED = exports.MIDDLEWARE_GENERATOR_RESUMED = 'onGeneratorResumed';
+var MIDDLEWARE_MACHINE_CREATED = exports.MIDDLEWARE_MACHINE_CREATED = 'onMachineCreated';
+var MIDDLEWARE_MACHINE_CONNECTED = exports.MIDDLEWARE_MACHINE_CONNECTED = 'onMachineConnected';
+var MIDDLEWARE_MACHINE_DISCONNECTED = exports.MIDDLEWARE_MACHINE_DISCONNECTED = 'onMachineDisconnected';
+var MIDDLEWARE_REGISTERED = exports.MIDDLEWARE_REGISTERED = 'onMiddlewareRegister';
 
 // misc
-
 var DEVTOOLS_KEY = exports.DEVTOOLS_KEY = '__hello__stent__';
 },{}],359:[function(require,module,exports){
 'use strict';
@@ -28210,7 +28218,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var IDX = 0;
 var getMachineID = function getMachineID() {
-  return '_' + ++IDX;
+  return '_@@@' + ++IDX;
 };
 
 function createMachine(name, config) {
@@ -28258,14 +28266,24 @@ function createMachine(name, config) {
   return machine;
 }
 module.exports = exports['default'];
-},{"./helpers/handleAction":361,"./helpers/handleActionLatest":362,"./helpers/registerMethods":366,"./helpers/validateConfig":369}],360:[function(require,module,exports){
+},{"./helpers/handleAction":362,"./helpers/handleActionLatest":363,"./helpers/registerMethods":367,"./helpers/validateConfig":371}],360:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
 exports.flush = flush;
+exports.getMapping = getMapping;
+exports.destroy = destroy;
 exports.default = connect;
 
 var _ = require('../');
+
+var _handleMiddleware = require('./handleMiddleware');
+
+var _handleMiddleware2 = _interopRequireDefault(_handleMiddleware);
+
+var _constants = require('../constants');
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var idIndex = 0;
 var mappings = null;
@@ -28298,7 +28316,27 @@ function flush() {
   mappings = null;
 }
 
+function getMapping() {
+  return mappings;
+}
+
+function destroy(machineId) {
+  for (var mId in mappings) {
+    mappings[mId].machines = mappings[mId].machines.filter(function (_ref) {
+      var name = _ref.name;
+      return name !== machineId;
+    });
+    (0, _handleMiddleware2.default)(_constants.MIDDLEWARE_MACHINE_DISCONNECTED, null, mappings[mId].machines);
+    if (mappings[mId].machines.length === 0) {
+      delete mappings[mId];
+    }
+  }
+}
+
 function connect() {
+  var _ref2 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
+      meta = _ref2.meta;
+
   setup();
   var withFunc = function withFunc() {
     for (var _len = arguments.length, names = Array(_len), _key = 0; _key < _len; _key++) {
@@ -28315,10 +28353,12 @@ function connect() {
       !silent && done && done.apply(undefined, machines);
 
       return function disconnect() {
+        (0, _handleMiddleware2.default)(_constants.MIDDLEWARE_MACHINE_DISCONNECTED, null, machines, meta);
         if (mappings && mappings[id]) delete mappings[id];
       };
     };
 
+    (0, _handleMiddleware2.default)(_constants.MIDDLEWARE_MACHINE_CONNECTED, null, machines, meta);
     return {
       'map': mapFunc,
       'mapOnce': function mapOnce(done) {
@@ -28332,7 +28372,20 @@ function connect() {
 
   return { 'with': withFunc };
 }
-},{"../":371}],361:[function(require,module,exports){
+},{"../":373,"../constants":358,"./handleMiddleware":365}],361:[function(require,module,exports){
+'use strict';
+
+exports.__esModule = true;
+exports.default = call;
+function call(func) {
+  for (var _len = arguments.length, args = Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
+    args[_key - 1] = arguments[_key];
+  }
+
+  return { __type: 'call', func: func, args: args };
+};
+module.exports = exports['default'];
+},{}],362:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
@@ -28360,6 +28413,10 @@ var _handleGenerator2 = _interopRequireDefault(_handleGenerator);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function handleAction(machine, action) {
+  for (var _len = arguments.length, payload = Array(_len > 2 ? _len - 2 : 0), _key = 2; _key < _len; _key++) {
+    payload[_key - 2] = arguments[_key];
+  }
+
   var state = machine.state,
       transitions = machine.transitions;
 
@@ -28369,10 +28426,6 @@ function handleAction(machine, action) {
   var handler = transitions[state.name][action];
 
   if (typeof handler === 'undefined') return false;
-
-  for (var _len = arguments.length, payload = Array(_len > 2 ? _len - 2 : 0), _key = 2; _key < _len; _key++) {
-    payload[_key - 2] = arguments[_key];
-  }
 
   _handleMiddleware2.default.apply(undefined, [_constants.MIDDLEWARE_PROCESS_ACTION, machine, action].concat(payload));
 
@@ -28394,6 +28447,7 @@ function handleAction(machine, action) {
 
       return (0, _handleGenerator2.default)(machine, generator, function (response) {
         (0, _updateState2.default)(machine, response);
+        _handleMiddleware2.default.apply(undefined, [_constants.MIDDLEWARE_ACTION_PROCESSED, machine, action].concat(payload));
       });
     } else {
       (0, _updateState2.default)(machine, response);
@@ -28407,7 +28461,7 @@ function handleAction(machine, action) {
   _handleMiddleware2.default.apply(undefined, [_constants.MIDDLEWARE_ACTION_PROCESSED, machine, action].concat(payload));
 };
 module.exports = exports['default'];
-},{"../constants":358,"./handleGenerator":363,"./handleMiddleware":364,"./updateState":368}],362:[function(require,module,exports){
+},{"../constants":358,"./handleGenerator":364,"./handleMiddleware":365,"./updateState":370}],363:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
@@ -28431,7 +28485,7 @@ function handleActionLatest(machine, action) {
   actions[action] = _handleAction2.default.apply(undefined, [machine, action].concat(payload));
 };
 module.exports = exports['default'];
-},{"./handleAction":361}],363:[function(require,module,exports){
+},{"./handleAction":362}],364:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
@@ -28468,9 +28522,9 @@ function handleGenerator(machine, generator, done, resultOfPreviousOperation) {
 
   var iterate = function iterate(result) {
     if (canceled) return;
-    (0, _handleMiddleware2.default)(_constants.MIDDLEWARE_GENERATOR_STEP, machine, result.value);
 
     if (!result.done) {
+      (0, _handleMiddleware2.default)(_constants.MIDDLEWARE_GENERATOR_STEP, machine, result.value);
 
       // yield call
       if (_typeof(result.value) === 'object' && result.value.__type === 'call') {
@@ -28483,27 +28537,33 @@ function handleGenerator(machine, generator, done, resultOfPreviousOperation) {
         // promise
         if (typeof funcResult.then !== 'undefined') {
           funcResult.then(function (result) {
+            (0, _handleMiddleware2.default)(_constants.MIDDLEWARE_GENERATOR_RESUMED, machine, result);
             return iterate(generatorNext(generator, result));
           }, function (error) {
+            (0, _handleMiddleware2.default)(_constants.MIDDLEWARE_GENERATOR_RESUMED, machine, error);
             return iterate(generatorThrow(generator, error));
           });
           // generator
         } else if (typeof funcResult.next === 'function') {
           cancelInsideGenerator = handleGenerator(machine, funcResult, function (generatorResult) {
+            (0, _handleMiddleware2.default)(_constants.MIDDLEWARE_GENERATOR_RESUMED, machine, generatorResult);
             iterate(generatorNext(generator, generatorResult));
           });
         } else {
+          (0, _handleMiddleware2.default)(_constants.MIDDLEWARE_GENERATOR_RESUMED, machine, funcResult);
           iterate(generatorNext(generator, funcResult));
         }
 
         // a return statement of the normal function
       } else {
         (0, _updateState2.default)(machine, result.value);
+        (0, _handleMiddleware2.default)(_constants.MIDDLEWARE_GENERATOR_RESUMED, machine);
         iterate(generatorNext(generator));
       }
 
       // the end of the generator (return statement)
     } else {
+      (0, _handleMiddleware2.default)(_constants.MIDDLEWARE_GENERATOR_END, machine, result.value);
       done(result.value);
     }
   };
@@ -28513,7 +28573,7 @@ function handleGenerator(machine, generator, done, resultOfPreviousOperation) {
   return cancelGenerator;
 }
 module.exports = exports['default'];
-},{"../constants":358,"./handleMiddleware":364,"./updateState":368}],364:[function(require,module,exports){
+},{"../constants":358,"./handleMiddleware":365,"./updateState":370}],365:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
@@ -28546,7 +28606,7 @@ function handleMiddleware(hook, machine) {
   })(0);
 }
 module.exports = exports['default'];
-},{"../":371}],365:[function(require,module,exports){
+},{"../":373}],366:[function(require,module,exports){
 "use strict";
 
 exports.__esModule = true;
@@ -28559,7 +28619,7 @@ function isEmptyObject(obj) {
   return true;
 }
 module.exports = exports['default'];
-},{}],366:[function(require,module,exports){
+},{}],367:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
@@ -28569,7 +28629,11 @@ var _toCamelCase = require('./toCamelCase');
 
 var _toCamelCase2 = _interopRequireDefault(_toCamelCase);
 
+var _constants = require('../constants');
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var reserved = ['name', 'transitions', 'state', 'destroy'];
 
 function registerMethods(machine, transitions, dispatch, dispatchLatest) {
   for (var state in transitions) {
@@ -28581,27 +28645,29 @@ function registerMethods(machine, transitions, dispatch, dispatchLatest) {
     })(state);
 
     for (var action in transitions[state]) {
-      (function (action) {
-        machine[(0, _toCamelCase2.default)(action)] = function () {
+      var normalized = (0, _toCamelCase2.default)(action);
+      if (reserved.indexOf(normalized) >= 0) throw new Error((0, _constants.ERROR_RESERVED_WORD_USED_AS_ACTION)(normalized));
+      (function (n, a) {
+        machine[n] = function () {
           for (var _len = arguments.length, payload = Array(_len), _key = 0; _key < _len; _key++) {
             payload[_key] = arguments[_key];
           }
 
-          return dispatch.apply(undefined, [action].concat(payload));
+          return dispatch.apply(undefined, [a].concat(payload));
         };
-        machine[(0, _toCamelCase2.default)(action)].latest = function () {
+        machine[n].latest = function () {
           for (var _len2 = arguments.length, payload = Array(_len2), _key2 = 0; _key2 < _len2; _key2++) {
             payload[_key2] = arguments[_key2];
           }
 
-          return dispatchLatest.apply(undefined, [action].concat(payload));
+          return dispatchLatest.apply(undefined, [a].concat(payload));
         };
-      })(action);
+      })(normalized, action);
     }
   }
 }
 module.exports = exports['default'];
-},{"./toCamelCase":367}],367:[function(require,module,exports){
+},{"../constants":358,"./toCamelCase":368}],368:[function(require,module,exports){
 "use strict";
 
 exports.__esModule = true;
@@ -28613,7 +28679,20 @@ exports.default = function (text) {
 };
 
 module.exports = exports['default'];
-},{}],368:[function(require,module,exports){
+},{}],369:[function(require,module,exports){
+'use strict';
+
+exports.__esModule = true;
+exports.default = uid;
+function uid() {
+  return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+    var r = Math.random() * 16 | 0,
+        v = c == 'x' ? r : r & 0x3 | 0x8;
+    return v.toString(16);
+  });
+}
+module.exports = exports['default'];
+},{}],370:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
@@ -28656,7 +28735,7 @@ function updateState(machine, state) {
   (0, _handleMiddleware2.default)(_constants.MIDDLEWARE_PROCESS_STATE_CHANGE, machine);
 }
 module.exports = exports['default'];
-},{"../constants":358,"./handleMiddleware":364,"./isEmptyObject":365,"./validateState":370}],369:[function(require,module,exports){
+},{"../constants":358,"./handleMiddleware":365,"./isEmptyObject":366,"./validateState":372}],371:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
@@ -28679,7 +28758,7 @@ function validateConfig(config) {
   return true;
 }
 module.exports = exports['default'];
-},{"../constants":358}],370:[function(require,module,exports){
+},{"../constants":358}],372:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
@@ -28695,7 +28774,7 @@ function validateState(state) {
   throw new Error((0, _constants.ERROR_WRONG_STATE_FORMAT)(state));
 }
 module.exports = exports['default'];
-},{"../constants":358}],371:[function(require,module,exports){
+},{"../constants":358}],373:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
@@ -28713,6 +28792,18 @@ var _connect = require('./helpers/connect');
 
 var _connect2 = _interopRequireDefault(_connect);
 
+var _call = require('./helpers/generators/call');
+
+var _call2 = _interopRequireDefault(_call);
+
+var _handleMiddleware = require('./helpers/handleMiddleware');
+
+var _handleMiddleware2 = _interopRequireDefault(_handleMiddleware);
+
+var _uid = require('./helpers/uid');
+
+var _uid2 = _interopRequireDefault(_uid);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -28724,12 +28815,20 @@ var MachineFactory = function () {
     this.machines = {};
     this.middlewares = [];
     this.connect = _connect2.default;
+    this.call = _call2.default;
   }
 
   MachineFactory.prototype.create = function create(name, config) {
+    var _this = this;
+
     var machine = (0, _createMachine2.default)(name, config, this.middlewares);
 
-    return this.machines[machine.name] = machine;
+    this.machines[machine.name] = machine;
+    (0, _handleMiddleware2.default)(_constants.MIDDLEWARE_MACHINE_CREATED, machine, machine);
+    machine.destroy = function () {
+      return _this.destroy(machine);
+    };
+    return machine;
   };
 
   MachineFactory.prototype.get = function get(name) {
@@ -28739,7 +28838,7 @@ var MachineFactory = function () {
   };
 
   MachineFactory.prototype.flush = function flush() {
-    this.machines = [];
+    this.machines = {};
     this.middlewares = [];
     (0, _connect.flush)();
   };
@@ -28750,6 +28849,18 @@ var MachineFactory = function () {
     } else {
       this.middlewares.push(middleware);
     }
+    if (middleware.__initialize) middleware.__initialize(this, (0, _uid2.default)());
+    if (middleware[_constants.MIDDLEWARE_REGISTERED]) middleware[_constants.MIDDLEWARE_REGISTERED]();
+  };
+
+  MachineFactory.prototype.destroy = function destroy(machine) {
+    var m = machine;
+    if (typeof machine === 'string') {
+      m = this.machines[machine];
+      if (!m) throw new Error((0, _constants.ERROR_MISSING_MACHINE)(machine));
+    }
+    delete this.machines[m.name];
+    (0, _connect.destroy)(m.name);
   };
 
   return MachineFactory;
@@ -28763,7 +28874,7 @@ exports.Machine = factory;
 if (typeof window !== 'undefined') {
   window[_constants.DEVTOOLS_KEY] = factory;
 }
-},{"./constants":358,"./createMachine":359,"./helpers/connect":360}],372:[function(require,module,exports){
+},{"./constants":358,"./createMachine":359,"./helpers/connect":360,"./helpers/generators/call":361,"./helpers/handleMiddleware":365,"./helpers/uid":369}],374:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
@@ -28795,7 +28906,9 @@ exports.default = function (Component) {
           if (once) mapping = 'mapOnce';
           if (silent) mapping = 'mapSilent';
 
-          this._disconnect = (_connect = (0, _connect3.default)()).with.apply(_connect, names)[mapping](function () {
+          this._disconnect = (_connect = (0, _connect3.default)({
+            meta: { component: Component.name }
+          })).with.apply(_connect, names)[mapping](function () {
             if (!done) {
               _this2.forceUpdate();
             } else {
@@ -28847,7 +28960,7 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 module.exports = exports['default'];
-},{"../helpers/connect":360,"react":357}],373:[function(require,module,exports){
+},{"../helpers/connect":360,"react":357}],375:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
@@ -28860,7 +28973,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 exports.default = { connect: _connect2.default };
 module.exports = exports['default'];
-},{"./connect":372}],374:[function(require,module,exports){
+},{"./connect":374}],376:[function(require,module,exports){
 module.exports={
   "name": "working",
   "page": "LOG",
@@ -35378,7 +35491,7 @@ module.exports={
     }
   ]
 }
-},{}],375:[function(require,module,exports){
+},{}],377:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -35462,7 +35575,7 @@ exports.default = (0, _react3.connect)(App).with('DevTools').map(function (_ref)
   return { page: state.page, actions: state.actions };
 });
 
-},{"../constants":388,"./PageLog.jsx":376,"react":357,"react-dom":184,"stent/lib/react":373}],376:[function(require,module,exports){
+},{"../constants":390,"./PageLog.jsx":378,"react":357,"react-dom":184,"stent/lib/react":375}],378:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -35840,7 +35953,7 @@ exports.default = (0, _react3.connect)((0, _react3.connect)(PageLog).with('DevTo
   };
 });
 
-},{"../helpers/renderAsTree":392,"./TimeDiff.jsx":377,"./handlers/UnrecognizedAction":378,"./handlers/onActionDispatched":379,"./handlers/onActionProcessed":380,"./handlers/onGeneratorEnd":381,"./handlers/onGeneratorResumed":382,"./handlers/onGeneratorStep":383,"./handlers/onMachineConnected":384,"./handlers/onMachineCreated":385,"./handlers/onMachineDisconnected":386,"./handlers/onStateChanged":387,"react":357,"stent/lib/react":373}],377:[function(require,module,exports){
+},{"../helpers/renderAsTree":394,"./TimeDiff.jsx":379,"./handlers/UnrecognizedAction":380,"./handlers/onActionDispatched":381,"./handlers/onActionProcessed":382,"./handlers/onGeneratorEnd":383,"./handlers/onGeneratorResumed":384,"./handlers/onGeneratorStep":385,"./handlers/onMachineConnected":386,"./handlers/onMachineCreated":387,"./handlers/onMachineDisconnected":388,"./handlers/onStateChanged":389,"react":357,"stent/lib/react":375}],379:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -35872,7 +35985,7 @@ function TimeDiff(_ref) {
   );
 }
 
-},{"../helpers/formatMilliseconds":389,"react":357}],378:[function(require,module,exports){
+},{"../helpers/formatMilliseconds":391,"react":357}],380:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -35902,7 +36015,7 @@ function UnrecognizedAction(action) {
 } /* eslint-disable no-unused-vars */
 ;
 
-},{"react":357}],379:[function(require,module,exports){
+},{"react":357}],381:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -35944,7 +36057,7 @@ function onActionDispatched(_ref) {
   ), actionName + ' ' + (0, _getMachineName2.default)(machine)];
 }
 
-},{"../../helpers/getMachineName":390,"react":357}],380:[function(require,module,exports){
+},{"../../helpers/getMachineName":392,"react":357}],382:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -35986,7 +36099,7 @@ function onActionProcessed(_ref) {
   ), actionName + '  successfully processed (sent to ' + (0, _getMachineName2.default)(machine) + ')'];
 }
 
-},{"../../helpers/getMachineName":390,"react":357}],381:[function(require,module,exports){
+},{"../../helpers/getMachineName":392,"react":357}],383:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -36028,7 +36141,7 @@ function onGeneratorEnd(_ref) {
   ), 'generator completed with ' + short];
 } /* eslint-disable no-unused-vars */
 
-},{"../../helpers/getMachineName":390,"../../helpers/shortenJSON":394,"react":357}],382:[function(require,module,exports){
+},{"../../helpers/getMachineName":392,"../../helpers/shortenJSON":396,"react":357}],384:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -36070,7 +36183,7 @@ function onGeneratorResumed(_ref) {
   ), 'generator resumed with ' + short];
 } /* eslint-disable no-unused-vars */
 
-},{"../../helpers/getMachineName":390,"../../helpers/shortenJSON":394,"react":357}],383:[function(require,module,exports){
+},{"../../helpers/getMachineName":392,"../../helpers/shortenJSON":396,"react":357}],385:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -36157,7 +36270,7 @@ function onGeneratorStep(_ref) {
   ), messageNoTags];
 }
 
-},{"../../helpers/getMachineName":390,"../../helpers/shortenJSON":394,"react":357}],384:[function(require,module,exports){
+},{"../../helpers/getMachineName":392,"../../helpers/shortenJSON":396,"react":357}],386:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -36201,7 +36314,7 @@ function onMachineConnected(_ref) {
   ), (meta.component ? meta.component : '') + ' connected to ' + machinesConnectedTo];
 }
 
-},{"../../helpers/getMachineName":390,"react":357}],385:[function(require,module,exports){
+},{"../../helpers/getMachineName":392,"react":357}],387:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -36236,7 +36349,7 @@ function onMachineCreated(_ref) {
   ), (0, _getMachineName2.default)(machine) + ' machine created'];
 };
 
-},{"../../helpers/getMachineName":390,"react":357}],386:[function(require,module,exports){
+},{"../../helpers/getMachineName":392,"react":357}],388:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -36280,7 +36393,7 @@ function onMachineDisconnected(_ref) {
   ), (meta.component ? meta.component : '') + ' disconnected from ' + machinesConnectedTo];
 }
 
-},{"../../helpers/getMachineName":390,"react":357}],387:[function(require,module,exports){
+},{"../../helpers/getMachineName":392,"react":357}],389:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -36320,7 +36433,7 @@ function onStateChanged(_ref) {
   ), (0, _getMachineName2.default)(machine) + '\'s state changed to ' + machine.state.name];
 }
 
-},{"../../helpers/getMachineName":390,"react":357}],388:[function(require,module,exports){
+},{"../../helpers/getMachineName":392,"react":357}],390:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -36332,7 +36445,7 @@ var PAGES = exports.PAGES = {
   MACHINES: 'MACHINES'
 };
 
-},{}],389:[function(require,module,exports){
+},{}],391:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -36366,7 +36479,7 @@ function formatMilliseconds(millisec) {
   return minutes + ":" + seconds + ':' + ms;
 }
 
-},{}],390:[function(require,module,exports){
+},{}],392:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -36382,7 +36495,7 @@ function getMachineName(_ref) {
   return name;
 };
 
-},{}],391:[function(require,module,exports){
+},{}],393:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -36393,7 +36506,7 @@ function normalizeAction(action) {
   return action;
 }
 
-},{}],392:[function(require,module,exports){
+},{}],394:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -36449,11 +36562,13 @@ function renderActionAsTree() {
 
   var source = _ref.source,
       time = _ref.time,
-      machines = _ref.machines,
+      state = _ref.state,
       origin = _ref.origin,
       index = _ref.index,
       uid = _ref.uid,
-      rest = _objectWithoutProperties(_ref, ['source', 'time', 'machines', 'origin', 'index', 'uid']);
+      label = _ref.label,
+      icon = _ref.icon,
+      rest = _objectWithoutProperties(_ref, ['source', 'time', 'state', 'origin', 'index', 'uid', 'label', 'icon']);
 
   if (typeof source === 'undefined') return null;
 
@@ -36464,14 +36579,12 @@ function renderActionAsTree() {
   }, rest), 'Event');
 };
 
-},{"./formatMilliseconds":389,"./getMachineName":390,"./renderJSON":393}],393:[function(require,module,exports){
+},{"./formatMilliseconds":391,"./getMachineName":392,"./renderJSON":395}],395:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-
-var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; /* eslint-disable no-unused-vars */
 
@@ -36537,12 +36650,6 @@ function labelRenderer(what) {
   };
 }
 function shouldExpandNode(keyName, data, level) {
-  if ((typeof data === 'undefined' ? 'undefined' : _typeof(data)) === 'object' && Object.keys(data).length > 5) {
-    return false;
-  }
-  if (level < 2) {
-    return true;
-  }
   return false;
 }
 function valueRenderer(raw) {
@@ -36578,7 +36685,7 @@ var renderJSON = function renderJSON(json) {
 
 exports.default = renderJSON;
 
-},{"react":357,"react-json-tree":321}],394:[function(require,module,exports){
+},{"react":357,"react-json-tree":321}],396:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -36594,7 +36701,7 @@ function shortenJSON(data) {
   return str.substr(0, STR_LIMIT) + '...';
 };
 
-},{}],395:[function(require,module,exports){
+},{}],397:[function(require,module,exports){
 'use strict';
 
 var _react = require('react');
@@ -36629,7 +36736,7 @@ _bridge2.default.on(function (action) {
 
 _reactDom2.default.render(_react2.default.createElement(_App2.default, null), document.querySelector('#container'));
 
-},{"./components/App.jsx":375,"./services/bridge":396,"./stent/machines":397,"react":357,"react-dom":184,"stent":371,"stent/lib/react":373}],396:[function(require,module,exports){
+},{"./components/App.jsx":377,"./services/bridge":398,"./stent/machines":399,"react":357,"react-dom":184,"stent":373,"stent/lib/react":375}],398:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -36659,7 +36766,7 @@ wire();
 
 exports.default = bridge;
 
-},{}],397:[function(require,module,exports){
+},{}],399:[function(require,module,exports){
 'use strict';
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
@@ -36745,4 +36852,4 @@ if (typeof window !== 'undefined' && window.location && window.location.href) {
   };
 }
 
-},{"../_mocks/example.state.json":374,"../constants":388,"../helpers/normalize":391,"stent":371}]},{},[395]);
+},{"../_mocks/example.state.json":376,"../constants":390,"../helpers/normalize":393,"stent":373}]},{},[397]);

@@ -1,0 +1,5283 @@
+{
+  "name": "working",
+  "page": "LOG",
+  "actions": [
+    {
+      "source": "stent",
+      "time": 1512676985381,
+      "uid": "redux1512676985276",
+      "icon": "fa-gear",
+      "state": {
+        "contactRequest": {
+          "status": "IDLE",
+          "error": null
+        },
+        "content": {
+          "searchAttribution": null,
+          "questionHelp": null
+        },
+        "l10n": {
+          "current": "en",
+          "locales": [
+            "en",
+            "es",
+            "fr",
+            "de"
+          ],
+          "messages": {}
+        },
+        "questionnaire": {
+          "steps": [
+            {
+              "type": "MATCH_QUESTION",
+              "id": "dd3af86c-1506-58a0-a50b-50c69c8a3f7d",
+              "answer": "Type 2 Diabetes",
+              "value": {
+                "dd3af86c-1506-58a0-a50b-50c69c8a3f7d": "7b8f4e3c-18f6-5d14-92db-dcc7c1417cb1"
+              },
+              "wording": "For what condition are you looking to find a clinical trial?",
+              "returnValue": {
+                "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$",
+                "type": "string"
+              }
+            },
+            {
+              "type": "MATCH_QUESTION",
+              "id": "0f694a7b-d4ab-5b79-b452-5a4447b8c95c",
+              "answer": "New York, NY, United States",
+              "value": {
+                "0f694a7b-d4ab-5b79-b452-5a4447b8c95c": {
+                  "city": "New York",
+                  "country": "United States",
+                  "countryCode": "US",
+                  "formattedAddress": "New York, NY, USA",
+                  "geo": {
+                    "latitude": 40.7127753,
+                    "longitude": -74.0059728
+                  },
+                  "state": "NY",
+                  "streetAddress": "",
+                  "zip": ""
+                }
+              },
+              "wording": "Where are you looking to find a clinical trial?",
+              "returnValue": {
+                "properties": {
+                  "geo": {
+                    "properties": {
+                      "latitude": {
+                        "type": "number"
+                      },
+                      "longitude": {
+                        "type": "number"
+                      }
+                    },
+                    "required": [
+                      "latitude",
+                      "longitude"
+                    ],
+                    "type": "object"
+                  }
+                },
+                "required": [
+                  "geo"
+                ],
+                "type": "object"
+              }
+            },
+            {
+              "type": "MATCH_QUESTION",
+              "id": "f565b298-b6e8-5715-b679-c6486a438459",
+              "answer": "100 miles",
+              "value": {
+                "f565b298-b6e8-5715-b679-c6486a438459": 160934
+              },
+              "wording": "How far are you willing to travel?",
+              "returnValue": {
+                "exclusiveMaximum": false,
+                "exclusiveMinimum": false,
+                "maximum": 40300000,
+                "minimum": 0,
+                "multipleOf": 0.001,
+                "type": "number"
+              }
+            },
+            {
+              "type": "MATCH_QUESTION",
+              "id": "cd0ba5e2-b340-570c-b7b6-5b7a28a4ff6d",
+              "answer": "33",
+              "value": {
+                "cd0ba5e2-b340-570c-b7b6-5b7a28a4ff6d": 33
+              },
+              "canonicalUnit": "a",
+              "wording": "How old are you?",
+              "returnValue": {
+                "exclusiveMaximum": false,
+                "exclusiveMinimum": false,
+                "maximum": 150,
+                "minimum": 0,
+                "multipleOf": 0.001,
+                "type": "number"
+              }
+            },
+            {
+              "type": "MATCH_QUESTION",
+              "id": "7ebd0b7e-1b59-583b-a4e8-42b8e1b5c34e",
+              "answer": "Male",
+              "value": {
+                "7ebd0b7e-1b59-583b-a4e8-42b8e1b5c34e": "male"
+              },
+              "wording": "What is your sex?",
+              "returnValue": {
+                "enum": [
+                  "male",
+                  "female"
+                ],
+                "type": "string"
+              }
+            },
+            {
+              "type": "EMAIL_QUESTION",
+              "id": "d1d413a3-80d4-4062-8375-cd43aa8aa8ed"
+            },
+            {
+              "type": "MATCH_QUESTION",
+              "id": "fc311fd1-a2aa-59ef-80cf-57f845767b92",
+              "wording": "Do you currently have type 2 diabetes mellitus?",
+              "returnValue": {
+                "oneOf": [
+                  {
+                    "description": "type 2 diabetes mellitus",
+                    "type": "boolean"
+                  },
+                  {
+                    "enum": [
+                      "skip",
+                      "idk"
+                    ],
+                    "type": "string"
+                  }
+                ]
+              }
+            }
+          ],
+          "current": 5,
+          "fastForward": false,
+          "pending": false,
+          "progress": 0.3333333333333333,
+          "session": "835fedc6-da1b-4496-a395-7c015bb8ceb3",
+          "universe": null
+        },
+        "registration": {
+          "fields": {
+            "email": {
+              "validators": [
+                null
+              ]
+            }
+          },
+          "values": {
+            "email": ""
+          },
+          "errors": {},
+          "pending": false,
+          "registered": false
+        },
+        "sites": {
+          "locations": [],
+          "selectedCountry": null,
+          "selectedState": null,
+          "selectedCity": null,
+          "selectedLocation": null
+        },
+        "studies": {
+          "matches": [],
+          "totalMatches": 48,
+          "pending": false,
+          "error": null
+        },
+        "studyData": null,
+        "user": {
+          "patientAttributes": {},
+          "userLocation": null,
+          "preferredLocation": {
+            "city": "New York",
+            "country": "United States",
+            "countryCode": "US",
+            "formattedAddress": "New York, NY, USA",
+            "geo": {
+              "latitude": 40.7127753,
+              "longitude": -74.0059728
+            },
+            "state": "NY",
+            "streetAddress": "",
+            "zip": ""
+          },
+          "preferences": {
+            "hideEmailCapture": false
+          }
+        }
+      },
+      "label": "persist/REHYDRATE",
+      "action": {
+        "type": "persist/REHYDRATE",
+        "payload": {
+          "questionnaire": {
+            "steps": [
+              {
+                "type": "MATCH_QUESTION",
+                "id": "dd3af86c-1506-58a0-a50b-50c69c8a3f7d",
+                "answer": "Type 2 Diabetes",
+                "value": {
+                  "dd3af86c-1506-58a0-a50b-50c69c8a3f7d": "7b8f4e3c-18f6-5d14-92db-dcc7c1417cb1"
+                }
+              },
+              {
+                "type": "MATCH_QUESTION",
+                "id": "0f694a7b-d4ab-5b79-b452-5a4447b8c95c",
+                "answer": "New York, NY, United States",
+                "value": {
+                  "0f694a7b-d4ab-5b79-b452-5a4447b8c95c": {
+                    "city": "New York",
+                    "country": "United States",
+                    "countryCode": "US",
+                    "formattedAddress": "New York, NY, USA",
+                    "geo": {
+                      "latitude": 40.7127753,
+                      "longitude": -74.0059728
+                    },
+                    "state": "NY",
+                    "streetAddress": "",
+                    "zip": ""
+                  }
+                }
+              },
+              {
+                "type": "MATCH_QUESTION",
+                "id": "f565b298-b6e8-5715-b679-c6486a438459",
+                "answer": "100 miles",
+                "value": {
+                  "f565b298-b6e8-5715-b679-c6486a438459": 160934
+                }
+              },
+              {
+                "type": "MATCH_QUESTION",
+                "id": "cd0ba5e2-b340-570c-b7b6-5b7a28a4ff6d",
+                "answer": "33",
+                "value": {
+                  "cd0ba5e2-b340-570c-b7b6-5b7a28a4ff6d": 33
+                }
+              },
+              {
+                "type": "MATCH_QUESTION",
+                "id": "7ebd0b7e-1b59-583b-a4e8-42b8e1b5c34e",
+                "answer": "Male",
+                "value": {
+                  "7ebd0b7e-1b59-583b-a4e8-42b8e1b5c34e": "male"
+                }
+              },
+              {
+                "type": "EMAIL_QUESTION",
+                "id": "d1d413a3-80d4-4062-8375-cd43aa8aa8ed"
+              },
+              {
+                "type": "MATCH_QUESTION",
+                "id": "fc311fd1-a2aa-59ef-80cf-57f845767b92"
+              }
+            ],
+            "current": 5,
+            "fastForward": false,
+            "pending": false,
+            "progress": 0.3333333333333333,
+            "session": "835fedc6-da1b-4496-a395-7c015bb8ceb3",
+            "universe": null
+          },
+          "registration": {
+            "fields": {
+              "email": {
+                "validators": [
+                  null
+                ]
+              }
+            },
+            "values": {
+              "email": ""
+            },
+            "errors": {},
+            "pending": false,
+            "registered": false
+          },
+          "user": {
+            "patientAttributes": {},
+            "userLocation": null,
+            "preferredLocation": {
+              "city": "New York",
+              "country": "United States",
+              "countryCode": "US",
+              "formattedAddress": "New York, NY, USA",
+              "geo": {
+                "latitude": 40.7127753,
+                "longitude": -74.0059728
+              },
+              "state": "NY",
+              "streetAddress": "",
+              "zip": ""
+            },
+            "preferences": {
+              "hideEmailCapture": false
+            }
+          }
+        },
+        "error": null
+      },
+      "origin": "http://local.antidote.me/match/2.0/questions/6",
+      "index": 0
+    },
+    {
+      "source": "stent",
+      "time": 1512676985556,
+      "uid": "redux1512676985276",
+      "icon": "fa-gear",
+      "state": {
+        "contactRequest": {
+          "status": "IDLE",
+          "error": null
+        },
+        "content": {
+          "searchAttribution": null,
+          "questionHelp": null
+        },
+        "l10n": {
+          "current": "en",
+          "locales": [
+            "en",
+            "es",
+            "fr",
+            "de"
+          ],
+          "messages": {}
+        },
+        "questionnaire": {
+          "steps": [
+            {
+              "type": "MATCH_QUESTION",
+              "id": "dd3af86c-1506-58a0-a50b-50c69c8a3f7d",
+              "answer": "Type 2 Diabetes",
+              "value": {
+                "dd3af86c-1506-58a0-a50b-50c69c8a3f7d": "7b8f4e3c-18f6-5d14-92db-dcc7c1417cb1"
+              },
+              "wording": "For what condition are you looking to find a clinical trial?",
+              "returnValue": {
+                "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$",
+                "type": "string"
+              }
+            },
+            {
+              "type": "MATCH_QUESTION",
+              "id": "0f694a7b-d4ab-5b79-b452-5a4447b8c95c",
+              "answer": "New York, NY, United States",
+              "value": {
+                "0f694a7b-d4ab-5b79-b452-5a4447b8c95c": {
+                  "city": "New York",
+                  "country": "United States",
+                  "countryCode": "US",
+                  "formattedAddress": "New York, NY, USA",
+                  "geo": {
+                    "latitude": 40.7127753,
+                    "longitude": -74.0059728
+                  },
+                  "state": "NY",
+                  "streetAddress": "",
+                  "zip": ""
+                }
+              },
+              "wording": "Where are you looking to find a clinical trial?",
+              "returnValue": {
+                "properties": {
+                  "geo": {
+                    "properties": {
+                      "latitude": {
+                        "type": "number"
+                      },
+                      "longitude": {
+                        "type": "number"
+                      }
+                    },
+                    "required": [
+                      "latitude",
+                      "longitude"
+                    ],
+                    "type": "object"
+                  }
+                },
+                "required": [
+                  "geo"
+                ],
+                "type": "object"
+              }
+            },
+            {
+              "type": "MATCH_QUESTION",
+              "id": "f565b298-b6e8-5715-b679-c6486a438459",
+              "answer": "100 miles",
+              "value": {
+                "f565b298-b6e8-5715-b679-c6486a438459": 160934
+              },
+              "wording": "How far are you willing to travel?",
+              "returnValue": {
+                "exclusiveMaximum": false,
+                "exclusiveMinimum": false,
+                "maximum": 40300000,
+                "minimum": 0,
+                "multipleOf": 0.001,
+                "type": "number"
+              }
+            },
+            {
+              "type": "MATCH_QUESTION",
+              "id": "cd0ba5e2-b340-570c-b7b6-5b7a28a4ff6d",
+              "answer": "33",
+              "value": {
+                "cd0ba5e2-b340-570c-b7b6-5b7a28a4ff6d": 33
+              },
+              "canonicalUnit": "a",
+              "wording": "How old are you?",
+              "returnValue": {
+                "exclusiveMaximum": false,
+                "exclusiveMinimum": false,
+                "maximum": 150,
+                "minimum": 0,
+                "multipleOf": 0.001,
+                "type": "number"
+              }
+            },
+            {
+              "type": "MATCH_QUESTION",
+              "id": "7ebd0b7e-1b59-583b-a4e8-42b8e1b5c34e",
+              "answer": "Male",
+              "value": {
+                "7ebd0b7e-1b59-583b-a4e8-42b8e1b5c34e": "male"
+              },
+              "wording": "What is your sex?",
+              "returnValue": {
+                "enum": [
+                  "male",
+                  "female"
+                ],
+                "type": "string"
+              }
+            },
+            {
+              "type": "EMAIL_QUESTION",
+              "id": "d1d413a3-80d4-4062-8375-cd43aa8aa8ed"
+            },
+            {
+              "type": "MATCH_QUESTION",
+              "id": "fc311fd1-a2aa-59ef-80cf-57f845767b92",
+              "wording": "Do you currently have type 2 diabetes mellitus?",
+              "returnValue": {
+                "oneOf": [
+                  {
+                    "description": "type 2 diabetes mellitus",
+                    "type": "boolean"
+                  },
+                  {
+                    "enum": [
+                      "skip",
+                      "idk"
+                    ],
+                    "type": "string"
+                  }
+                ]
+              }
+            }
+          ],
+          "current": 5,
+          "fastForward": false,
+          "pending": false,
+          "progress": 0.3333333333333333,
+          "session": "835fedc6-da1b-4496-a395-7c015bb8ceb3",
+          "universe": null
+        },
+        "registration": {
+          "fields": {
+            "email": {
+              "validators": [
+                null
+              ]
+            }
+          },
+          "values": {
+            "email": ""
+          },
+          "errors": {},
+          "pending": false,
+          "registered": false
+        },
+        "sites": {
+          "locations": [],
+          "selectedCountry": null,
+          "selectedState": null,
+          "selectedCity": null,
+          "selectedLocation": null
+        },
+        "studies": {
+          "matches": [],
+          "totalMatches": 48,
+          "pending": false,
+          "error": null
+        },
+        "studyData": null,
+        "user": {
+          "patientAttributes": {},
+          "userLocation": null,
+          "preferredLocation": {
+            "city": "New York",
+            "country": "United States",
+            "countryCode": "US",
+            "formattedAddress": "New York, NY, USA",
+            "geo": {
+              "latitude": 40.7127753,
+              "longitude": -74.0059728
+            },
+            "state": "NY",
+            "streetAddress": "",
+            "zip": ""
+          },
+          "preferences": {
+            "hideEmailCapture": false
+          }
+        }
+      },
+      "label": "MODULE_START",
+      "action": {
+        "type": "MODULE_START",
+        "saga": {
+          "__func": "_callee"
+        }
+      },
+      "origin": "http://local.antidote.me/match/2.0/questions/6",
+      "index": 1
+    },
+    {
+      "source": "stent",
+      "time": 1512676985572,
+      "uid": "redux1512676985276",
+      "icon": "fa-gear",
+      "state": {
+        "contactRequest": {
+          "status": "IDLE",
+          "error": null
+        },
+        "content": {
+          "searchAttribution": null,
+          "questionHelp": null
+        },
+        "l10n": {
+          "current": "en",
+          "locales": [
+            "en",
+            "es",
+            "fr",
+            "de"
+          ],
+          "messages": {}
+        },
+        "questionnaire": {
+          "steps": [
+            {
+              "type": "MATCH_QUESTION",
+              "id": "dd3af86c-1506-58a0-a50b-50c69c8a3f7d",
+              "answer": "Type 2 Diabetes",
+              "value": {
+                "dd3af86c-1506-58a0-a50b-50c69c8a3f7d": "7b8f4e3c-18f6-5d14-92db-dcc7c1417cb1"
+              },
+              "wording": "For what condition are you looking to find a clinical trial?",
+              "returnValue": {
+                "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$",
+                "type": "string"
+              }
+            },
+            {
+              "type": "MATCH_QUESTION",
+              "id": "0f694a7b-d4ab-5b79-b452-5a4447b8c95c",
+              "answer": "New York, NY, United States",
+              "value": {
+                "0f694a7b-d4ab-5b79-b452-5a4447b8c95c": {
+                  "city": "New York",
+                  "country": "United States",
+                  "countryCode": "US",
+                  "formattedAddress": "New York, NY, USA",
+                  "geo": {
+                    "latitude": 40.7127753,
+                    "longitude": -74.0059728
+                  },
+                  "state": "NY",
+                  "streetAddress": "",
+                  "zip": ""
+                }
+              },
+              "wording": "Where are you looking to find a clinical trial?",
+              "returnValue": {
+                "properties": {
+                  "geo": {
+                    "properties": {
+                      "latitude": {
+                        "type": "number"
+                      },
+                      "longitude": {
+                        "type": "number"
+                      }
+                    },
+                    "required": [
+                      "latitude",
+                      "longitude"
+                    ],
+                    "type": "object"
+                  }
+                },
+                "required": [
+                  "geo"
+                ],
+                "type": "object"
+              }
+            },
+            {
+              "type": "MATCH_QUESTION",
+              "id": "f565b298-b6e8-5715-b679-c6486a438459",
+              "answer": "100 miles",
+              "value": {
+                "f565b298-b6e8-5715-b679-c6486a438459": 160934
+              },
+              "wording": "How far are you willing to travel?",
+              "returnValue": {
+                "exclusiveMaximum": false,
+                "exclusiveMinimum": false,
+                "maximum": 40300000,
+                "minimum": 0,
+                "multipleOf": 0.001,
+                "type": "number"
+              }
+            },
+            {
+              "type": "MATCH_QUESTION",
+              "id": "cd0ba5e2-b340-570c-b7b6-5b7a28a4ff6d",
+              "answer": "33",
+              "value": {
+                "cd0ba5e2-b340-570c-b7b6-5b7a28a4ff6d": 33
+              },
+              "canonicalUnit": "a",
+              "wording": "How old are you?",
+              "returnValue": {
+                "exclusiveMaximum": false,
+                "exclusiveMinimum": false,
+                "maximum": 150,
+                "minimum": 0,
+                "multipleOf": 0.001,
+                "type": "number"
+              }
+            },
+            {
+              "type": "MATCH_QUESTION",
+              "id": "7ebd0b7e-1b59-583b-a4e8-42b8e1b5c34e",
+              "answer": "Male",
+              "value": {
+                "7ebd0b7e-1b59-583b-a4e8-42b8e1b5c34e": "male"
+              },
+              "wording": "What is your sex?",
+              "returnValue": {
+                "enum": [
+                  "male",
+                  "female"
+                ],
+                "type": "string"
+              }
+            },
+            {
+              "type": "EMAIL_QUESTION",
+              "id": "d1d413a3-80d4-4062-8375-cd43aa8aa8ed"
+            },
+            {
+              "type": "MATCH_QUESTION",
+              "id": "fc311fd1-a2aa-59ef-80cf-57f845767b92",
+              "wording": "Do you currently have type 2 diabetes mellitus?",
+              "returnValue": {
+                "oneOf": [
+                  {
+                    "description": "type 2 diabetes mellitus",
+                    "type": "boolean"
+                  },
+                  {
+                    "enum": [
+                      "skip",
+                      "idk"
+                    ],
+                    "type": "string"
+                  }
+                ]
+              }
+            }
+          ],
+          "current": 5,
+          "fastForward": false,
+          "pending": false,
+          "progress": 0.3333333333333333,
+          "session": "835fedc6-da1b-4496-a395-7c015bb8ceb3",
+          "universe": null
+        },
+        "registration": {
+          "fields": {
+            "email": {
+              "validators": [
+                null
+              ]
+            }
+          },
+          "values": {
+            "email": ""
+          },
+          "errors": {},
+          "pending": false,
+          "registered": false
+        },
+        "sites": {
+          "locations": [],
+          "selectedCountry": null,
+          "selectedState": null,
+          "selectedCity": null,
+          "selectedLocation": null
+        },
+        "studies": {
+          "matches": [],
+          "totalMatches": 48,
+          "pending": false,
+          "error": null
+        },
+        "studyData": null,
+        "user": {
+          "patientAttributes": {},
+          "userLocation": null,
+          "preferredLocation": {
+            "city": "New York",
+            "country": "United States",
+            "countryCode": "US",
+            "formattedAddress": "New York, NY, USA",
+            "geo": {
+              "latitude": 40.7127753,
+              "longitude": -74.0059728
+            },
+            "state": "NY",
+            "streetAddress": "",
+            "zip": ""
+          },
+          "preferences": {
+            "hideEmailCapture": false
+          }
+        }
+      },
+      "label": "QUESTIONNAIRE_GO_TO_STEP",
+      "action": {
+        "type": "QUESTIONNAIRE_GO_TO_STEP",
+        "current": 5
+      },
+      "origin": "http://local.antidote.me/match/2.0/questions/6",
+      "index": 2
+    },
+    {
+      "source": "stent",
+      "time": 1512676985581,
+      "uid": "redux1512676985276",
+      "icon": "fa-gear",
+      "state": {
+        "contactRequest": {
+          "status": "IDLE",
+          "error": null
+        },
+        "content": {
+          "searchAttribution": null,
+          "questionHelp": null
+        },
+        "l10n": {
+          "current": "en",
+          "locales": [
+            "en",
+            "es",
+            "fr",
+            "de"
+          ],
+          "messages": {}
+        },
+        "questionnaire": {
+          "steps": [
+            {
+              "type": "MATCH_QUESTION",
+              "id": "dd3af86c-1506-58a0-a50b-50c69c8a3f7d",
+              "answer": "Type 2 Diabetes",
+              "value": {
+                "dd3af86c-1506-58a0-a50b-50c69c8a3f7d": "7b8f4e3c-18f6-5d14-92db-dcc7c1417cb1"
+              },
+              "wording": "For what condition are you looking to find a clinical trial?",
+              "returnValue": {
+                "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$",
+                "type": "string"
+              }
+            },
+            {
+              "type": "MATCH_QUESTION",
+              "id": "0f694a7b-d4ab-5b79-b452-5a4447b8c95c",
+              "answer": "New York, NY, United States",
+              "value": {
+                "0f694a7b-d4ab-5b79-b452-5a4447b8c95c": {
+                  "city": "New York",
+                  "country": "United States",
+                  "countryCode": "US",
+                  "formattedAddress": "New York, NY, USA",
+                  "geo": {
+                    "latitude": 40.7127753,
+                    "longitude": -74.0059728
+                  },
+                  "state": "NY",
+                  "streetAddress": "",
+                  "zip": ""
+                }
+              },
+              "wording": "Where are you looking to find a clinical trial?",
+              "returnValue": {
+                "properties": {
+                  "geo": {
+                    "properties": {
+                      "latitude": {
+                        "type": "number"
+                      },
+                      "longitude": {
+                        "type": "number"
+                      }
+                    },
+                    "required": [
+                      "latitude",
+                      "longitude"
+                    ],
+                    "type": "object"
+                  }
+                },
+                "required": [
+                  "geo"
+                ],
+                "type": "object"
+              }
+            },
+            {
+              "type": "MATCH_QUESTION",
+              "id": "f565b298-b6e8-5715-b679-c6486a438459",
+              "answer": "100 miles",
+              "value": {
+                "f565b298-b6e8-5715-b679-c6486a438459": 160934
+              },
+              "wording": "How far are you willing to travel?",
+              "returnValue": {
+                "exclusiveMaximum": false,
+                "exclusiveMinimum": false,
+                "maximum": 40300000,
+                "minimum": 0,
+                "multipleOf": 0.001,
+                "type": "number"
+              }
+            },
+            {
+              "type": "MATCH_QUESTION",
+              "id": "cd0ba5e2-b340-570c-b7b6-5b7a28a4ff6d",
+              "answer": "33",
+              "value": {
+                "cd0ba5e2-b340-570c-b7b6-5b7a28a4ff6d": 33
+              },
+              "canonicalUnit": "a",
+              "wording": "How old are you?",
+              "returnValue": {
+                "exclusiveMaximum": false,
+                "exclusiveMinimum": false,
+                "maximum": 150,
+                "minimum": 0,
+                "multipleOf": 0.001,
+                "type": "number"
+              }
+            },
+            {
+              "type": "MATCH_QUESTION",
+              "id": "7ebd0b7e-1b59-583b-a4e8-42b8e1b5c34e",
+              "answer": "Male",
+              "value": {
+                "7ebd0b7e-1b59-583b-a4e8-42b8e1b5c34e": "male"
+              },
+              "wording": "What is your sex?",
+              "returnValue": {
+                "enum": [
+                  "male",
+                  "female"
+                ],
+                "type": "string"
+              }
+            },
+            {
+              "type": "EMAIL_QUESTION",
+              "id": "d1d413a3-80d4-4062-8375-cd43aa8aa8ed"
+            },
+            {
+              "type": "MATCH_QUESTION",
+              "id": "fc311fd1-a2aa-59ef-80cf-57f845767b92",
+              "wording": "Do you currently have type 2 diabetes mellitus?",
+              "returnValue": {
+                "oneOf": [
+                  {
+                    "description": "type 2 diabetes mellitus",
+                    "type": "boolean"
+                  },
+                  {
+                    "enum": [
+                      "skip",
+                      "idk"
+                    ],
+                    "type": "string"
+                  }
+                ]
+              }
+            }
+          ],
+          "current": 5,
+          "fastForward": false,
+          "pending": false,
+          "progress": 0.3333333333333333,
+          "session": "835fedc6-da1b-4496-a395-7c015bb8ceb3",
+          "universe": null
+        },
+        "registration": {
+          "fields": {
+            "email": {
+              "validators": [
+                null
+              ]
+            }
+          },
+          "values": {
+            "email": ""
+          },
+          "errors": {},
+          "pending": false,
+          "registered": false
+        },
+        "sites": {
+          "locations": [],
+          "selectedCountry": null,
+          "selectedState": null,
+          "selectedCity": null,
+          "selectedLocation": null
+        },
+        "studies": {
+          "matches": [],
+          "totalMatches": 48,
+          "pending": false,
+          "error": null
+        },
+        "studyData": null,
+        "user": {
+          "patientAttributes": {},
+          "userLocation": null,
+          "preferredLocation": {
+            "city": "New York",
+            "country": "United States",
+            "countryCode": "US",
+            "formattedAddress": "New York, NY, USA",
+            "geo": {
+              "latitude": 40.7127753,
+              "longitude": -74.0059728
+            },
+            "state": "NY",
+            "streetAddress": "",
+            "zip": ""
+          },
+          "preferences": {
+            "hideEmailCapture": false
+          }
+        }
+      },
+      "label": "QUESTIONNAIRE_PROGRESS_UPDATE",
+      "action": {
+        "type": "QUESTIONNAIRE_PROGRESS_UPDATE",
+        "progress": 0.3333333333333333
+      },
+      "origin": "http://local.antidote.me/match/2.0/questions/6",
+      "index": 3
+    },
+    {
+      "source": "stent",
+      "time": 1512676985589,
+      "uid": "redux1512676985276",
+      "icon": "fa-gear",
+      "state": {
+        "contactRequest": {
+          "status": "IDLE",
+          "error": null
+        },
+        "content": {
+          "searchAttribution": null,
+          "questionHelp": null
+        },
+        "l10n": {
+          "current": "en",
+          "locales": [
+            "en",
+            "es",
+            "fr",
+            "de"
+          ],
+          "messages": {}
+        },
+        "questionnaire": {
+          "steps": [
+            {
+              "type": "MATCH_QUESTION",
+              "id": "dd3af86c-1506-58a0-a50b-50c69c8a3f7d",
+              "answer": "Type 2 Diabetes",
+              "value": {
+                "dd3af86c-1506-58a0-a50b-50c69c8a3f7d": "7b8f4e3c-18f6-5d14-92db-dcc7c1417cb1"
+              },
+              "wording": "For what condition are you looking to find a clinical trial?",
+              "returnValue": {
+                "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$",
+                "type": "string"
+              }
+            },
+            {
+              "type": "MATCH_QUESTION",
+              "id": "0f694a7b-d4ab-5b79-b452-5a4447b8c95c",
+              "answer": "New York, NY, United States",
+              "value": {
+                "0f694a7b-d4ab-5b79-b452-5a4447b8c95c": {
+                  "city": "New York",
+                  "country": "United States",
+                  "countryCode": "US",
+                  "formattedAddress": "New York, NY, USA",
+                  "geo": {
+                    "latitude": 40.7127753,
+                    "longitude": -74.0059728
+                  },
+                  "state": "NY",
+                  "streetAddress": "",
+                  "zip": ""
+                }
+              },
+              "wording": "Where are you looking to find a clinical trial?",
+              "returnValue": {
+                "properties": {
+                  "geo": {
+                    "properties": {
+                      "latitude": {
+                        "type": "number"
+                      },
+                      "longitude": {
+                        "type": "number"
+                      }
+                    },
+                    "required": [
+                      "latitude",
+                      "longitude"
+                    ],
+                    "type": "object"
+                  }
+                },
+                "required": [
+                  "geo"
+                ],
+                "type": "object"
+              }
+            },
+            {
+              "type": "MATCH_QUESTION",
+              "id": "f565b298-b6e8-5715-b679-c6486a438459",
+              "answer": "100 miles",
+              "value": {
+                "f565b298-b6e8-5715-b679-c6486a438459": 160934
+              },
+              "wording": "How far are you willing to travel?",
+              "returnValue": {
+                "exclusiveMaximum": false,
+                "exclusiveMinimum": false,
+                "maximum": 40300000,
+                "minimum": 0,
+                "multipleOf": 0.001,
+                "type": "number"
+              }
+            },
+            {
+              "type": "MATCH_QUESTION",
+              "id": "cd0ba5e2-b340-570c-b7b6-5b7a28a4ff6d",
+              "answer": "33",
+              "value": {
+                "cd0ba5e2-b340-570c-b7b6-5b7a28a4ff6d": 33
+              },
+              "canonicalUnit": "a",
+              "wording": "How old are you?",
+              "returnValue": {
+                "exclusiveMaximum": false,
+                "exclusiveMinimum": false,
+                "maximum": 150,
+                "minimum": 0,
+                "multipleOf": 0.001,
+                "type": "number"
+              }
+            },
+            {
+              "type": "MATCH_QUESTION",
+              "id": "7ebd0b7e-1b59-583b-a4e8-42b8e1b5c34e",
+              "answer": "Male",
+              "value": {
+                "7ebd0b7e-1b59-583b-a4e8-42b8e1b5c34e": "male"
+              },
+              "wording": "What is your sex?",
+              "returnValue": {
+                "enum": [
+                  "male",
+                  "female"
+                ],
+                "type": "string"
+              }
+            },
+            {
+              "type": "EMAIL_QUESTION",
+              "id": "d1d413a3-80d4-4062-8375-cd43aa8aa8ed"
+            },
+            {
+              "type": "MATCH_QUESTION",
+              "id": "fc311fd1-a2aa-59ef-80cf-57f845767b92",
+              "wording": "Do you currently have type 2 diabetes mellitus?",
+              "returnValue": {
+                "oneOf": [
+                  {
+                    "description": "type 2 diabetes mellitus",
+                    "type": "boolean"
+                  },
+                  {
+                    "enum": [
+                      "skip",
+                      "idk"
+                    ],
+                    "type": "string"
+                  }
+                ]
+              }
+            }
+          ],
+          "current": 5,
+          "fastForward": false,
+          "pending": false,
+          "progress": 0.3333333333333333,
+          "session": "835fedc6-da1b-4496-a395-7c015bb8ceb3",
+          "universe": null
+        },
+        "registration": {
+          "fields": {
+            "email": {
+              "validators": [
+                null
+              ]
+            }
+          },
+          "values": {
+            "email": ""
+          },
+          "errors": {},
+          "pending": false,
+          "registered": false
+        },
+        "sites": {
+          "locations": [],
+          "selectedCountry": null,
+          "selectedState": null,
+          "selectedCity": null,
+          "selectedLocation": null
+        },
+        "studies": {
+          "matches": [],
+          "totalMatches": 48,
+          "pending": false,
+          "error": null
+        },
+        "studyData": null,
+        "user": {
+          "patientAttributes": {},
+          "userLocation": null,
+          "preferredLocation": {
+            "city": "New York",
+            "country": "United States",
+            "countryCode": "US",
+            "formattedAddress": "New York, NY, USA",
+            "geo": {
+              "latitude": 40.7127753,
+              "longitude": -74.0059728
+            },
+            "state": "NY",
+            "streetAddress": "",
+            "zip": ""
+          },
+          "preferences": {
+            "hideEmailCapture": false
+          }
+        }
+      },
+      "label": "SEARCH_REQUEST_ATTRIBUTION_CONTENT",
+      "action": {
+        "type": "SEARCH_REQUEST_ATTRIBUTION_CONTENT",
+        "contentType": "searchAttribution",
+        "contentQuery": {
+          "fields.name": "__unspecified__"
+        }
+      },
+      "origin": "http://local.antidote.me/match/2.0/questions/6",
+      "index": 4
+    },
+    {
+      "source": "stent",
+      "time": 1512676985590,
+      "uid": "redux1512676985276",
+      "icon": "fa-gear",
+      "state": {
+        "contactRequest": {
+          "status": "IDLE",
+          "error": null
+        },
+        "content": {
+          "searchAttribution": null,
+          "questionHelp": null
+        },
+        "l10n": {
+          "current": "en",
+          "locales": [
+            "en",
+            "es",
+            "fr",
+            "de"
+          ],
+          "messages": {}
+        },
+        "questionnaire": {
+          "steps": [
+            {
+              "type": "MATCH_QUESTION",
+              "id": "dd3af86c-1506-58a0-a50b-50c69c8a3f7d",
+              "answer": "Type 2 Diabetes",
+              "value": {
+                "dd3af86c-1506-58a0-a50b-50c69c8a3f7d": "7b8f4e3c-18f6-5d14-92db-dcc7c1417cb1"
+              },
+              "wording": "For what condition are you looking to find a clinical trial?",
+              "returnValue": {
+                "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$",
+                "type": "string"
+              }
+            },
+            {
+              "type": "MATCH_QUESTION",
+              "id": "0f694a7b-d4ab-5b79-b452-5a4447b8c95c",
+              "answer": "New York, NY, United States",
+              "value": {
+                "0f694a7b-d4ab-5b79-b452-5a4447b8c95c": {
+                  "city": "New York",
+                  "country": "United States",
+                  "countryCode": "US",
+                  "formattedAddress": "New York, NY, USA",
+                  "geo": {
+                    "latitude": 40.7127753,
+                    "longitude": -74.0059728
+                  },
+                  "state": "NY",
+                  "streetAddress": "",
+                  "zip": ""
+                }
+              },
+              "wording": "Where are you looking to find a clinical trial?",
+              "returnValue": {
+                "properties": {
+                  "geo": {
+                    "properties": {
+                      "latitude": {
+                        "type": "number"
+                      },
+                      "longitude": {
+                        "type": "number"
+                      }
+                    },
+                    "required": [
+                      "latitude",
+                      "longitude"
+                    ],
+                    "type": "object"
+                  }
+                },
+                "required": [
+                  "geo"
+                ],
+                "type": "object"
+              }
+            },
+            {
+              "type": "MATCH_QUESTION",
+              "id": "f565b298-b6e8-5715-b679-c6486a438459",
+              "answer": "100 miles",
+              "value": {
+                "f565b298-b6e8-5715-b679-c6486a438459": 160934
+              },
+              "wording": "How far are you willing to travel?",
+              "returnValue": {
+                "exclusiveMaximum": false,
+                "exclusiveMinimum": false,
+                "maximum": 40300000,
+                "minimum": 0,
+                "multipleOf": 0.001,
+                "type": "number"
+              }
+            },
+            {
+              "type": "MATCH_QUESTION",
+              "id": "cd0ba5e2-b340-570c-b7b6-5b7a28a4ff6d",
+              "answer": "33",
+              "value": {
+                "cd0ba5e2-b340-570c-b7b6-5b7a28a4ff6d": 33
+              },
+              "canonicalUnit": "a",
+              "wording": "How old are you?",
+              "returnValue": {
+                "exclusiveMaximum": false,
+                "exclusiveMinimum": false,
+                "maximum": 150,
+                "minimum": 0,
+                "multipleOf": 0.001,
+                "type": "number"
+              }
+            },
+            {
+              "type": "MATCH_QUESTION",
+              "id": "7ebd0b7e-1b59-583b-a4e8-42b8e1b5c34e",
+              "answer": "Male",
+              "value": {
+                "7ebd0b7e-1b59-583b-a4e8-42b8e1b5c34e": "male"
+              },
+              "wording": "What is your sex?",
+              "returnValue": {
+                "enum": [
+                  "male",
+                  "female"
+                ],
+                "type": "string"
+              }
+            },
+            {
+              "type": "EMAIL_QUESTION",
+              "id": "d1d413a3-80d4-4062-8375-cd43aa8aa8ed"
+            },
+            {
+              "type": "MATCH_QUESTION",
+              "id": "fc311fd1-a2aa-59ef-80cf-57f845767b92",
+              "wording": "Do you currently have type 2 diabetes mellitus?",
+              "returnValue": {
+                "oneOf": [
+                  {
+                    "description": "type 2 diabetes mellitus",
+                    "type": "boolean"
+                  },
+                  {
+                    "enum": [
+                      "skip",
+                      "idk"
+                    ],
+                    "type": "string"
+                  }
+                ]
+              }
+            }
+          ],
+          "current": 5,
+          "fastForward": false,
+          "pending": false,
+          "progress": 0.3333333333333333,
+          "session": "835fedc6-da1b-4496-a395-7c015bb8ceb3",
+          "universe": null
+        },
+        "registration": {
+          "fields": {
+            "email": {
+              "validators": [
+                null
+              ]
+            }
+          },
+          "values": {
+            "email": ""
+          },
+          "errors": {},
+          "pending": false,
+          "registered": false
+        },
+        "sites": {
+          "locations": [],
+          "selectedCountry": null,
+          "selectedState": null,
+          "selectedCity": null,
+          "selectedLocation": null
+        },
+        "studies": {
+          "matches": [],
+          "totalMatches": 48,
+          "pending": false,
+          "error": null
+        },
+        "studyData": null,
+        "user": {
+          "patientAttributes": {},
+          "userLocation": null,
+          "preferredLocation": {
+            "city": "New York",
+            "country": "United States",
+            "countryCode": "US",
+            "formattedAddress": "New York, NY, USA",
+            "geo": {
+              "latitude": 40.7127753,
+              "longitude": -74.0059728
+            },
+            "state": "NY",
+            "streetAddress": "",
+            "zip": ""
+          },
+          "preferences": {
+            "hideEmailCapture": false
+          }
+        }
+      },
+      "label": "CONTENT_CLEAR",
+      "action": {
+        "type": "CONTENT_CLEAR",
+        "contentType": "searchAttribution"
+      },
+      "origin": "http://local.antidote.me/match/2.0/questions/6",
+      "index": 5
+    },
+    {
+      "source": "stent",
+      "time": 1512676985613,
+      "uid": "redux1512676985276",
+      "icon": "fa-gear",
+      "state": {
+        "contactRequest": {
+          "status": "IDLE",
+          "error": null
+        },
+        "content": {
+          "searchAttribution": null,
+          "questionHelp": null
+        },
+        "l10n": {
+          "current": "en",
+          "locales": [
+            "en",
+            "es",
+            "fr",
+            "de"
+          ],
+          "messages": {}
+        },
+        "questionnaire": {
+          "steps": [
+            {
+              "type": "MATCH_QUESTION",
+              "id": "dd3af86c-1506-58a0-a50b-50c69c8a3f7d",
+              "answer": "Type 2 Diabetes",
+              "value": {
+                "dd3af86c-1506-58a0-a50b-50c69c8a3f7d": "7b8f4e3c-18f6-5d14-92db-dcc7c1417cb1"
+              },
+              "wording": "For what condition are you looking to find a clinical trial?",
+              "returnValue": {
+                "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$",
+                "type": "string"
+              }
+            },
+            {
+              "type": "MATCH_QUESTION",
+              "id": "0f694a7b-d4ab-5b79-b452-5a4447b8c95c",
+              "answer": "New York, NY, United States",
+              "value": {
+                "0f694a7b-d4ab-5b79-b452-5a4447b8c95c": {
+                  "city": "New York",
+                  "country": "United States",
+                  "countryCode": "US",
+                  "formattedAddress": "New York, NY, USA",
+                  "geo": {
+                    "latitude": 40.7127753,
+                    "longitude": -74.0059728
+                  },
+                  "state": "NY",
+                  "streetAddress": "",
+                  "zip": ""
+                }
+              },
+              "wording": "Where are you looking to find a clinical trial?",
+              "returnValue": {
+                "properties": {
+                  "geo": {
+                    "properties": {
+                      "latitude": {
+                        "type": "number"
+                      },
+                      "longitude": {
+                        "type": "number"
+                      }
+                    },
+                    "required": [
+                      "latitude",
+                      "longitude"
+                    ],
+                    "type": "object"
+                  }
+                },
+                "required": [
+                  "geo"
+                ],
+                "type": "object"
+              }
+            },
+            {
+              "type": "MATCH_QUESTION",
+              "id": "f565b298-b6e8-5715-b679-c6486a438459",
+              "answer": "100 miles",
+              "value": {
+                "f565b298-b6e8-5715-b679-c6486a438459": 160934
+              },
+              "wording": "How far are you willing to travel?",
+              "returnValue": {
+                "exclusiveMaximum": false,
+                "exclusiveMinimum": false,
+                "maximum": 40300000,
+                "minimum": 0,
+                "multipleOf": 0.001,
+                "type": "number"
+              }
+            },
+            {
+              "type": "MATCH_QUESTION",
+              "id": "cd0ba5e2-b340-570c-b7b6-5b7a28a4ff6d",
+              "answer": "33",
+              "value": {
+                "cd0ba5e2-b340-570c-b7b6-5b7a28a4ff6d": 33
+              },
+              "canonicalUnit": "a",
+              "wording": "How old are you?",
+              "returnValue": {
+                "exclusiveMaximum": false,
+                "exclusiveMinimum": false,
+                "maximum": 150,
+                "minimum": 0,
+                "multipleOf": 0.001,
+                "type": "number"
+              }
+            },
+            {
+              "type": "MATCH_QUESTION",
+              "id": "7ebd0b7e-1b59-583b-a4e8-42b8e1b5c34e",
+              "answer": "Male",
+              "value": {
+                "7ebd0b7e-1b59-583b-a4e8-42b8e1b5c34e": "male"
+              },
+              "wording": "What is your sex?",
+              "returnValue": {
+                "enum": [
+                  "male",
+                  "female"
+                ],
+                "type": "string"
+              }
+            },
+            {
+              "type": "EMAIL_QUESTION",
+              "id": "d1d413a3-80d4-4062-8375-cd43aa8aa8ed"
+            },
+            {
+              "type": "MATCH_QUESTION",
+              "id": "fc311fd1-a2aa-59ef-80cf-57f845767b92",
+              "wording": "Do you currently have type 2 diabetes mellitus?",
+              "returnValue": {
+                "oneOf": [
+                  {
+                    "description": "type 2 diabetes mellitus",
+                    "type": "boolean"
+                  },
+                  {
+                    "enum": [
+                      "skip",
+                      "idk"
+                    ],
+                    "type": "string"
+                  }
+                ]
+              }
+            }
+          ],
+          "current": 5,
+          "fastForward": false,
+          "pending": false,
+          "progress": 0.3333333333333333,
+          "session": "835fedc6-da1b-4496-a395-7c015bb8ceb3",
+          "universe": null
+        },
+        "registration": {
+          "fields": {
+            "email": {
+              "validators": [
+                null
+              ]
+            }
+          },
+          "values": {
+            "email": ""
+          },
+          "errors": {},
+          "pending": false,
+          "registered": false
+        },
+        "sites": {
+          "locations": [],
+          "selectedCountry": null,
+          "selectedState": null,
+          "selectedCity": null,
+          "selectedLocation": null
+        },
+        "studies": {
+          "matches": [],
+          "totalMatches": 48,
+          "pending": false,
+          "error": null
+        },
+        "studyData": null,
+        "user": {
+          "patientAttributes": {},
+          "userLocation": null,
+          "preferredLocation": {
+            "city": "New York",
+            "country": "United States",
+            "countryCode": "US",
+            "formattedAddress": "New York, NY, USA",
+            "geo": {
+              "latitude": 40.7127753,
+              "longitude": -74.0059728
+            },
+            "state": "NY",
+            "streetAddress": "",
+            "zip": ""
+          },
+          "preferences": {
+            "hideEmailCapture": false
+          }
+        }
+      },
+      "label": "QUESTIONNAIRE_FETCH_HELP_CONTENT",
+      "action": {
+        "type": "QUESTIONNAIRE_FETCH_HELP_CONTENT",
+        "id": "d1d413a3-80d4-4062-8375-cd43aa8aa8ed"
+      },
+      "origin": "http://local.antidote.me/match/2.0/questions/6",
+      "index": 6
+    },
+    {
+      "source": "stent",
+      "time": 1512676985614,
+      "uid": "redux1512676985276",
+      "icon": "fa-gear",
+      "state": {
+        "contactRequest": {
+          "status": "IDLE",
+          "error": null
+        },
+        "content": {
+          "searchAttribution": null,
+          "questionHelp": null
+        },
+        "l10n": {
+          "current": "en",
+          "locales": [
+            "en",
+            "es",
+            "fr",
+            "de"
+          ],
+          "messages": {}
+        },
+        "questionnaire": {
+          "steps": [
+            {
+              "type": "MATCH_QUESTION",
+              "id": "dd3af86c-1506-58a0-a50b-50c69c8a3f7d",
+              "answer": "Type 2 Diabetes",
+              "value": {
+                "dd3af86c-1506-58a0-a50b-50c69c8a3f7d": "7b8f4e3c-18f6-5d14-92db-dcc7c1417cb1"
+              },
+              "wording": "For what condition are you looking to find a clinical trial?",
+              "returnValue": {
+                "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$",
+                "type": "string"
+              }
+            },
+            {
+              "type": "MATCH_QUESTION",
+              "id": "0f694a7b-d4ab-5b79-b452-5a4447b8c95c",
+              "answer": "New York, NY, United States",
+              "value": {
+                "0f694a7b-d4ab-5b79-b452-5a4447b8c95c": {
+                  "city": "New York",
+                  "country": "United States",
+                  "countryCode": "US",
+                  "formattedAddress": "New York, NY, USA",
+                  "geo": {
+                    "latitude": 40.7127753,
+                    "longitude": -74.0059728
+                  },
+                  "state": "NY",
+                  "streetAddress": "",
+                  "zip": ""
+                }
+              },
+              "wording": "Where are you looking to find a clinical trial?",
+              "returnValue": {
+                "properties": {
+                  "geo": {
+                    "properties": {
+                      "latitude": {
+                        "type": "number"
+                      },
+                      "longitude": {
+                        "type": "number"
+                      }
+                    },
+                    "required": [
+                      "latitude",
+                      "longitude"
+                    ],
+                    "type": "object"
+                  }
+                },
+                "required": [
+                  "geo"
+                ],
+                "type": "object"
+              }
+            },
+            {
+              "type": "MATCH_QUESTION",
+              "id": "f565b298-b6e8-5715-b679-c6486a438459",
+              "answer": "100 miles",
+              "value": {
+                "f565b298-b6e8-5715-b679-c6486a438459": 160934
+              },
+              "wording": "How far are you willing to travel?",
+              "returnValue": {
+                "exclusiveMaximum": false,
+                "exclusiveMinimum": false,
+                "maximum": 40300000,
+                "minimum": 0,
+                "multipleOf": 0.001,
+                "type": "number"
+              }
+            },
+            {
+              "type": "MATCH_QUESTION",
+              "id": "cd0ba5e2-b340-570c-b7b6-5b7a28a4ff6d",
+              "answer": "33",
+              "value": {
+                "cd0ba5e2-b340-570c-b7b6-5b7a28a4ff6d": 33
+              },
+              "canonicalUnit": "a",
+              "wording": "How old are you?",
+              "returnValue": {
+                "exclusiveMaximum": false,
+                "exclusiveMinimum": false,
+                "maximum": 150,
+                "minimum": 0,
+                "multipleOf": 0.001,
+                "type": "number"
+              }
+            },
+            {
+              "type": "MATCH_QUESTION",
+              "id": "7ebd0b7e-1b59-583b-a4e8-42b8e1b5c34e",
+              "answer": "Male",
+              "value": {
+                "7ebd0b7e-1b59-583b-a4e8-42b8e1b5c34e": "male"
+              },
+              "wording": "What is your sex?",
+              "returnValue": {
+                "enum": [
+                  "male",
+                  "female"
+                ],
+                "type": "string"
+              }
+            },
+            {
+              "type": "EMAIL_QUESTION",
+              "id": "d1d413a3-80d4-4062-8375-cd43aa8aa8ed"
+            },
+            {
+              "type": "MATCH_QUESTION",
+              "id": "fc311fd1-a2aa-59ef-80cf-57f845767b92",
+              "wording": "Do you currently have type 2 diabetes mellitus?",
+              "returnValue": {
+                "oneOf": [
+                  {
+                    "description": "type 2 diabetes mellitus",
+                    "type": "boolean"
+                  },
+                  {
+                    "enum": [
+                      "skip",
+                      "idk"
+                    ],
+                    "type": "string"
+                  }
+                ]
+              }
+            }
+          ],
+          "current": 5,
+          "fastForward": false,
+          "pending": false,
+          "progress": 0.3333333333333333,
+          "session": "835fedc6-da1b-4496-a395-7c015bb8ceb3",
+          "universe": null
+        },
+        "registration": {
+          "fields": {
+            "email": {
+              "validators": [
+                null
+              ]
+            }
+          },
+          "values": {
+            "email": ""
+          },
+          "errors": {},
+          "pending": false,
+          "registered": false
+        },
+        "sites": {
+          "locations": [],
+          "selectedCountry": null,
+          "selectedState": null,
+          "selectedCity": null,
+          "selectedLocation": null
+        },
+        "studies": {
+          "matches": [],
+          "totalMatches": 48,
+          "pending": false,
+          "error": null
+        },
+        "studyData": null,
+        "user": {
+          "patientAttributes": {},
+          "userLocation": null,
+          "preferredLocation": {
+            "city": "New York",
+            "country": "United States",
+            "countryCode": "US",
+            "formattedAddress": "New York, NY, USA",
+            "geo": {
+              "latitude": 40.7127753,
+              "longitude": -74.0059728
+            },
+            "state": "NY",
+            "streetAddress": "",
+            "zip": ""
+          },
+          "preferences": {
+            "hideEmailCapture": false
+          }
+        }
+      },
+      "label": "CONTENT_CLEAR",
+      "action": {
+        "type": "CONTENT_CLEAR",
+        "contentType": "questionHelp"
+      },
+      "origin": "http://local.antidote.me/match/2.0/questions/6",
+      "index": 7
+    },
+    {
+      "source": "stent",
+      "time": 1512676985745,
+      "uid": "redux1512676985276",
+      "icon": "fa-gear",
+      "state": {
+        "contactRequest": {
+          "status": "IDLE",
+          "error": null
+        },
+        "content": {
+          "searchAttribution": null,
+          "questionHelp": null
+        },
+        "l10n": {
+          "current": "en",
+          "locales": [
+            "en",
+            "es",
+            "fr",
+            "de"
+          ],
+          "messages": {}
+        },
+        "questionnaire": {
+          "steps": [
+            {
+              "type": "MATCH_QUESTION",
+              "id": "dd3af86c-1506-58a0-a50b-50c69c8a3f7d",
+              "answer": "Type 2 Diabetes",
+              "value": {
+                "dd3af86c-1506-58a0-a50b-50c69c8a3f7d": "7b8f4e3c-18f6-5d14-92db-dcc7c1417cb1"
+              },
+              "wording": "For what condition are you looking to find a clinical trial?",
+              "returnValue": {
+                "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$",
+                "type": "string"
+              }
+            },
+            {
+              "type": "MATCH_QUESTION",
+              "id": "0f694a7b-d4ab-5b79-b452-5a4447b8c95c",
+              "answer": "New York, NY, United States",
+              "value": {
+                "0f694a7b-d4ab-5b79-b452-5a4447b8c95c": {
+                  "city": "New York",
+                  "country": "United States",
+                  "countryCode": "US",
+                  "formattedAddress": "New York, NY, USA",
+                  "geo": {
+                    "latitude": 40.7127753,
+                    "longitude": -74.0059728
+                  },
+                  "state": "NY",
+                  "streetAddress": "",
+                  "zip": ""
+                }
+              },
+              "wording": "Where are you looking to find a clinical trial?",
+              "returnValue": {
+                "properties": {
+                  "geo": {
+                    "properties": {
+                      "latitude": {
+                        "type": "number"
+                      },
+                      "longitude": {
+                        "type": "number"
+                      }
+                    },
+                    "required": [
+                      "latitude",
+                      "longitude"
+                    ],
+                    "type": "object"
+                  }
+                },
+                "required": [
+                  "geo"
+                ],
+                "type": "object"
+              }
+            },
+            {
+              "type": "MATCH_QUESTION",
+              "id": "f565b298-b6e8-5715-b679-c6486a438459",
+              "answer": "100 miles",
+              "value": {
+                "f565b298-b6e8-5715-b679-c6486a438459": 160934
+              },
+              "wording": "How far are you willing to travel?",
+              "returnValue": {
+                "exclusiveMaximum": false,
+                "exclusiveMinimum": false,
+                "maximum": 40300000,
+                "minimum": 0,
+                "multipleOf": 0.001,
+                "type": "number"
+              }
+            },
+            {
+              "type": "MATCH_QUESTION",
+              "id": "cd0ba5e2-b340-570c-b7b6-5b7a28a4ff6d",
+              "answer": "33",
+              "value": {
+                "cd0ba5e2-b340-570c-b7b6-5b7a28a4ff6d": 33
+              },
+              "canonicalUnit": "a",
+              "wording": "How old are you?",
+              "returnValue": {
+                "exclusiveMaximum": false,
+                "exclusiveMinimum": false,
+                "maximum": 150,
+                "minimum": 0,
+                "multipleOf": 0.001,
+                "type": "number"
+              }
+            },
+            {
+              "type": "MATCH_QUESTION",
+              "id": "7ebd0b7e-1b59-583b-a4e8-42b8e1b5c34e",
+              "answer": "Male",
+              "value": {
+                "7ebd0b7e-1b59-583b-a4e8-42b8e1b5c34e": "male"
+              },
+              "wording": "What is your sex?",
+              "returnValue": {
+                "enum": [
+                  "male",
+                  "female"
+                ],
+                "type": "string"
+              }
+            },
+            {
+              "type": "EMAIL_QUESTION",
+              "id": "d1d413a3-80d4-4062-8375-cd43aa8aa8ed"
+            },
+            {
+              "type": "MATCH_QUESTION",
+              "id": "fc311fd1-a2aa-59ef-80cf-57f845767b92",
+              "wording": "Do you currently have type 2 diabetes mellitus?",
+              "returnValue": {
+                "oneOf": [
+                  {
+                    "description": "type 2 diabetes mellitus",
+                    "type": "boolean"
+                  },
+                  {
+                    "enum": [
+                      "skip",
+                      "idk"
+                    ],
+                    "type": "string"
+                  }
+                ]
+              }
+            }
+          ],
+          "current": 5,
+          "fastForward": false,
+          "pending": false,
+          "progress": 0.3333333333333333,
+          "session": "835fedc6-da1b-4496-a395-7c015bb8ceb3",
+          "universe": null
+        },
+        "registration": {
+          "fields": {
+            "email": {
+              "validators": [
+                null
+              ]
+            }
+          },
+          "values": {
+            "email": ""
+          },
+          "errors": {},
+          "pending": false,
+          "registered": false
+        },
+        "sites": {
+          "locations": [],
+          "selectedCountry": null,
+          "selectedState": null,
+          "selectedCity": null,
+          "selectedLocation": null
+        },
+        "studies": {
+          "matches": [],
+          "totalMatches": 48,
+          "pending": false,
+          "error": null
+        },
+        "studyData": null,
+        "user": {
+          "patientAttributes": {},
+          "userLocation": null,
+          "preferredLocation": {
+            "city": "New York",
+            "country": "United States",
+            "countryCode": "US",
+            "formattedAddress": "New York, NY, USA",
+            "geo": {
+              "latitude": 40.7127753,
+              "longitude": -74.0059728
+            },
+            "state": "NY",
+            "streetAddress": "",
+            "zip": ""
+          },
+          "preferences": {
+            "hideEmailCapture": false
+          }
+        }
+      },
+      "label": "CONTENT_REQUEST_FAILURE",
+      "action": {
+        "type": "CONTENT_REQUEST_FAILURE",
+        "contentType": "searchAttribution",
+        "contentQuery": {
+          "fields.name": "__unspecified__"
+        }
+      },
+      "origin": "http://local.antidote.me/match/2.0/questions/6",
+      "index": 8
+    },
+    {
+      "source": "stent",
+      "time": 1512676985770,
+      "uid": "redux1512676985276",
+      "icon": "fa-gear",
+      "state": {
+        "contactRequest": {
+          "status": "IDLE",
+          "error": null
+        },
+        "content": {
+          "searchAttribution": null,
+          "questionHelp": null
+        },
+        "l10n": {
+          "current": "en",
+          "locales": [
+            "en",
+            "es",
+            "fr",
+            "de"
+          ],
+          "messages": {}
+        },
+        "questionnaire": {
+          "steps": [
+            {
+              "type": "MATCH_QUESTION",
+              "id": "dd3af86c-1506-58a0-a50b-50c69c8a3f7d",
+              "answer": "Type 2 Diabetes",
+              "value": {
+                "dd3af86c-1506-58a0-a50b-50c69c8a3f7d": "7b8f4e3c-18f6-5d14-92db-dcc7c1417cb1"
+              },
+              "wording": "For what condition are you looking to find a clinical trial?",
+              "returnValue": {
+                "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$",
+                "type": "string"
+              }
+            },
+            {
+              "type": "MATCH_QUESTION",
+              "id": "0f694a7b-d4ab-5b79-b452-5a4447b8c95c",
+              "answer": "New York, NY, United States",
+              "value": {
+                "0f694a7b-d4ab-5b79-b452-5a4447b8c95c": {
+                  "city": "New York",
+                  "country": "United States",
+                  "countryCode": "US",
+                  "formattedAddress": "New York, NY, USA",
+                  "geo": {
+                    "latitude": 40.7127753,
+                    "longitude": -74.0059728
+                  },
+                  "state": "NY",
+                  "streetAddress": "",
+                  "zip": ""
+                }
+              },
+              "wording": "Where are you looking to find a clinical trial?",
+              "returnValue": {
+                "properties": {
+                  "geo": {
+                    "properties": {
+                      "latitude": {
+                        "type": "number"
+                      },
+                      "longitude": {
+                        "type": "number"
+                      }
+                    },
+                    "required": [
+                      "latitude",
+                      "longitude"
+                    ],
+                    "type": "object"
+                  }
+                },
+                "required": [
+                  "geo"
+                ],
+                "type": "object"
+              }
+            },
+            {
+              "type": "MATCH_QUESTION",
+              "id": "f565b298-b6e8-5715-b679-c6486a438459",
+              "answer": "100 miles",
+              "value": {
+                "f565b298-b6e8-5715-b679-c6486a438459": 160934
+              },
+              "wording": "How far are you willing to travel?",
+              "returnValue": {
+                "exclusiveMaximum": false,
+                "exclusiveMinimum": false,
+                "maximum": 40300000,
+                "minimum": 0,
+                "multipleOf": 0.001,
+                "type": "number"
+              }
+            },
+            {
+              "type": "MATCH_QUESTION",
+              "id": "cd0ba5e2-b340-570c-b7b6-5b7a28a4ff6d",
+              "answer": "33",
+              "value": {
+                "cd0ba5e2-b340-570c-b7b6-5b7a28a4ff6d": 33
+              },
+              "canonicalUnit": "a",
+              "wording": "How old are you?",
+              "returnValue": {
+                "exclusiveMaximum": false,
+                "exclusiveMinimum": false,
+                "maximum": 150,
+                "minimum": 0,
+                "multipleOf": 0.001,
+                "type": "number"
+              }
+            },
+            {
+              "type": "MATCH_QUESTION",
+              "id": "7ebd0b7e-1b59-583b-a4e8-42b8e1b5c34e",
+              "answer": "Male",
+              "value": {
+                "7ebd0b7e-1b59-583b-a4e8-42b8e1b5c34e": "male"
+              },
+              "wording": "What is your sex?",
+              "returnValue": {
+                "enum": [
+                  "male",
+                  "female"
+                ],
+                "type": "string"
+              }
+            },
+            {
+              "type": "EMAIL_QUESTION",
+              "id": "d1d413a3-80d4-4062-8375-cd43aa8aa8ed"
+            },
+            {
+              "type": "MATCH_QUESTION",
+              "id": "fc311fd1-a2aa-59ef-80cf-57f845767b92",
+              "wording": "Do you currently have type 2 diabetes mellitus?",
+              "returnValue": {
+                "oneOf": [
+                  {
+                    "description": "type 2 diabetes mellitus",
+                    "type": "boolean"
+                  },
+                  {
+                    "enum": [
+                      "skip",
+                      "idk"
+                    ],
+                    "type": "string"
+                  }
+                ]
+              }
+            }
+          ],
+          "current": 5,
+          "fastForward": false,
+          "pending": false,
+          "progress": 0.3333333333333333,
+          "session": "835fedc6-da1b-4496-a395-7c015bb8ceb3",
+          "universe": null
+        },
+        "registration": {
+          "fields": {
+            "email": {
+              "validators": [
+                null
+              ]
+            }
+          },
+          "values": {
+            "email": ""
+          },
+          "errors": {},
+          "pending": false,
+          "registered": false
+        },
+        "sites": {
+          "locations": [],
+          "selectedCountry": null,
+          "selectedState": null,
+          "selectedCity": null,
+          "selectedLocation": null
+        },
+        "studies": {
+          "matches": [],
+          "totalMatches": 48,
+          "pending": false,
+          "error": null
+        },
+        "studyData": null,
+        "user": {
+          "patientAttributes": {},
+          "userLocation": null,
+          "preferredLocation": {
+            "city": "New York",
+            "country": "United States",
+            "countryCode": "US",
+            "formattedAddress": "New York, NY, USA",
+            "geo": {
+              "latitude": 40.7127753,
+              "longitude": -74.0059728
+            },
+            "state": "NY",
+            "streetAddress": "",
+            "zip": ""
+          },
+          "preferences": {
+            "hideEmailCapture": false
+          }
+        }
+      },
+      "label": "CONTENT_REQUEST_FAILURE",
+      "action": {
+        "type": "CONTENT_REQUEST_FAILURE",
+        "contentType": "questionHelp",
+        "contentQuery": {
+          "fields.id": "d1d413a3-80d4-4062-8375-cd43aa8aa8ed",
+          "locale": "en"
+        }
+      },
+      "origin": "http://local.antidote.me/match/2.0/questions/6",
+      "index": 9
+    },
+    {
+      "source": "stent",
+      "time": 1512676985809,
+      "uid": "redux1512676985276",
+      "icon": "fa-gear",
+      "state": {
+        "contactRequest": {
+          "status": "IDLE",
+          "error": null
+        },
+        "content": {
+          "searchAttribution": null,
+          "questionHelp": null
+        },
+        "l10n": {
+          "current": "en",
+          "locales": [
+            "en",
+            "es",
+            "fr",
+            "de"
+          ],
+          "messages": {}
+        },
+        "questionnaire": {
+          "steps": [
+            {
+              "type": "MATCH_QUESTION",
+              "id": "dd3af86c-1506-58a0-a50b-50c69c8a3f7d",
+              "answer": "Type 2 Diabetes",
+              "value": {
+                "dd3af86c-1506-58a0-a50b-50c69c8a3f7d": "7b8f4e3c-18f6-5d14-92db-dcc7c1417cb1"
+              },
+              "wording": "For what condition are you looking to find a clinical trial?",
+              "returnValue": {
+                "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$",
+                "type": "string"
+              }
+            },
+            {
+              "type": "MATCH_QUESTION",
+              "id": "0f694a7b-d4ab-5b79-b452-5a4447b8c95c",
+              "answer": "New York, NY, United States",
+              "value": {
+                "0f694a7b-d4ab-5b79-b452-5a4447b8c95c": {
+                  "city": "New York",
+                  "country": "United States",
+                  "countryCode": "US",
+                  "formattedAddress": "New York, NY, USA",
+                  "geo": {
+                    "latitude": 40.7127753,
+                    "longitude": -74.0059728
+                  },
+                  "state": "NY",
+                  "streetAddress": "",
+                  "zip": ""
+                }
+              },
+              "wording": "Where are you looking to find a clinical trial?",
+              "returnValue": {
+                "properties": {
+                  "geo": {
+                    "properties": {
+                      "latitude": {
+                        "type": "number"
+                      },
+                      "longitude": {
+                        "type": "number"
+                      }
+                    },
+                    "required": [
+                      "latitude",
+                      "longitude"
+                    ],
+                    "type": "object"
+                  }
+                },
+                "required": [
+                  "geo"
+                ],
+                "type": "object"
+              }
+            },
+            {
+              "type": "MATCH_QUESTION",
+              "id": "f565b298-b6e8-5715-b679-c6486a438459",
+              "answer": "100 miles",
+              "value": {
+                "f565b298-b6e8-5715-b679-c6486a438459": 160934
+              },
+              "wording": "How far are you willing to travel?",
+              "returnValue": {
+                "exclusiveMaximum": false,
+                "exclusiveMinimum": false,
+                "maximum": 40300000,
+                "minimum": 0,
+                "multipleOf": 0.001,
+                "type": "number"
+              }
+            },
+            {
+              "type": "MATCH_QUESTION",
+              "id": "cd0ba5e2-b340-570c-b7b6-5b7a28a4ff6d",
+              "answer": "33",
+              "value": {
+                "cd0ba5e2-b340-570c-b7b6-5b7a28a4ff6d": 33
+              },
+              "canonicalUnit": "a",
+              "wording": "How old are you?",
+              "returnValue": {
+                "exclusiveMaximum": false,
+                "exclusiveMinimum": false,
+                "maximum": 150,
+                "minimum": 0,
+                "multipleOf": 0.001,
+                "type": "number"
+              }
+            },
+            {
+              "type": "MATCH_QUESTION",
+              "id": "7ebd0b7e-1b59-583b-a4e8-42b8e1b5c34e",
+              "answer": "Male",
+              "value": {
+                "7ebd0b7e-1b59-583b-a4e8-42b8e1b5c34e": "male"
+              },
+              "wording": "What is your sex?",
+              "returnValue": {
+                "enum": [
+                  "male",
+                  "female"
+                ],
+                "type": "string"
+              }
+            },
+            {
+              "type": "EMAIL_QUESTION",
+              "id": "d1d413a3-80d4-4062-8375-cd43aa8aa8ed"
+            },
+            {
+              "type": "MATCH_QUESTION",
+              "id": "fc311fd1-a2aa-59ef-80cf-57f845767b92",
+              "wording": "Do you currently have type 2 diabetes mellitus?",
+              "returnValue": {
+                "oneOf": [
+                  {
+                    "description": "type 2 diabetes mellitus",
+                    "type": "boolean"
+                  },
+                  {
+                    "enum": [
+                      "skip",
+                      "idk"
+                    ],
+                    "type": "string"
+                  }
+                ]
+              }
+            }
+          ],
+          "current": 5,
+          "fastForward": false,
+          "pending": false,
+          "progress": 0.3333333333333333,
+          "session": "835fedc6-da1b-4496-a395-7c015bb8ceb3",
+          "universe": null
+        },
+        "registration": {
+          "fields": {
+            "email": {
+              "validators": [
+                {
+                  "__func": "<anonymous>"
+                }
+              ]
+            }
+          },
+          "values": {
+            "email": ""
+          },
+          "errors": {},
+          "pending": false,
+          "registered": false
+        },
+        "sites": {
+          "locations": [],
+          "selectedCountry": null,
+          "selectedState": null,
+          "selectedCity": null,
+          "selectedLocation": null
+        },
+        "studies": {
+          "matches": [],
+          "totalMatches": 48,
+          "pending": false,
+          "error": null
+        },
+        "studyData": null,
+        "user": {
+          "patientAttributes": {},
+          "userLocation": null,
+          "preferredLocation": {
+            "city": "New York",
+            "country": "United States",
+            "countryCode": "US",
+            "formattedAddress": "New York, NY, USA",
+            "geo": {
+              "latitude": 40.7127753,
+              "longitude": -74.0059728
+            },
+            "state": "NY",
+            "streetAddress": "",
+            "zip": ""
+          },
+          "preferences": {
+            "hideEmailCapture": false
+          }
+        }
+      },
+      "label": "REGISTRATION_NEW_FIELD",
+      "action": {
+        "type": "REGISTRATION_NEW_FIELD",
+        "name": "email",
+        "options": {
+          "initialValue": "",
+          "validators": [
+            {
+              "__func": "<anonymous>"
+            }
+          ]
+        }
+      },
+      "origin": "http://local.antidote.me/match/2.0/questions/6",
+      "index": 10
+    },
+    {
+      "source": "stent",
+      "time": 1512676986965,
+      "uid": "redux1512676985276",
+      "icon": "fa-gear",
+      "state": {
+        "contactRequest": {
+          "status": "IDLE",
+          "error": null
+        },
+        "content": {
+          "searchAttribution": null,
+          "questionHelp": null
+        },
+        "l10n": {
+          "current": "en",
+          "locales": [
+            "en",
+            "es",
+            "fr",
+            "de"
+          ],
+          "messages": {}
+        },
+        "questionnaire": {
+          "steps": [
+            {
+              "type": "MATCH_QUESTION",
+              "id": "dd3af86c-1506-58a0-a50b-50c69c8a3f7d",
+              "answer": "Type 2 Diabetes",
+              "value": {
+                "dd3af86c-1506-58a0-a50b-50c69c8a3f7d": "7b8f4e3c-18f6-5d14-92db-dcc7c1417cb1"
+              },
+              "wording": "For what condition are you looking to find a clinical trial?",
+              "returnValue": {
+                "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$",
+                "type": "string"
+              }
+            },
+            {
+              "type": "MATCH_QUESTION",
+              "id": "0f694a7b-d4ab-5b79-b452-5a4447b8c95c",
+              "answer": "New York, NY, United States",
+              "value": {
+                "0f694a7b-d4ab-5b79-b452-5a4447b8c95c": {
+                  "city": "New York",
+                  "country": "United States",
+                  "countryCode": "US",
+                  "formattedAddress": "New York, NY, USA",
+                  "geo": {
+                    "latitude": 40.7127753,
+                    "longitude": -74.0059728
+                  },
+                  "state": "NY",
+                  "streetAddress": "",
+                  "zip": ""
+                }
+              },
+              "wording": "Where are you looking to find a clinical trial?",
+              "returnValue": {
+                "properties": {
+                  "geo": {
+                    "properties": {
+                      "latitude": {
+                        "type": "number"
+                      },
+                      "longitude": {
+                        "type": "number"
+                      }
+                    },
+                    "required": [
+                      "latitude",
+                      "longitude"
+                    ],
+                    "type": "object"
+                  }
+                },
+                "required": [
+                  "geo"
+                ],
+                "type": "object"
+              }
+            },
+            {
+              "type": "MATCH_QUESTION",
+              "id": "f565b298-b6e8-5715-b679-c6486a438459",
+              "answer": "100 miles",
+              "value": {
+                "f565b298-b6e8-5715-b679-c6486a438459": 160934
+              },
+              "wording": "How far are you willing to travel?",
+              "returnValue": {
+                "exclusiveMaximum": false,
+                "exclusiveMinimum": false,
+                "maximum": 40300000,
+                "minimum": 0,
+                "multipleOf": 0.001,
+                "type": "number"
+              }
+            },
+            {
+              "type": "MATCH_QUESTION",
+              "id": "cd0ba5e2-b340-570c-b7b6-5b7a28a4ff6d",
+              "answer": "33",
+              "value": {
+                "cd0ba5e2-b340-570c-b7b6-5b7a28a4ff6d": 33
+              },
+              "canonicalUnit": "a",
+              "wording": "How old are you?",
+              "returnValue": {
+                "exclusiveMaximum": false,
+                "exclusiveMinimum": false,
+                "maximum": 150,
+                "minimum": 0,
+                "multipleOf": 0.001,
+                "type": "number"
+              }
+            },
+            {
+              "type": "MATCH_QUESTION",
+              "id": "7ebd0b7e-1b59-583b-a4e8-42b8e1b5c34e",
+              "answer": "Male",
+              "value": {
+                "7ebd0b7e-1b59-583b-a4e8-42b8e1b5c34e": "male"
+              },
+              "wording": "What is your sex?",
+              "returnValue": {
+                "enum": [
+                  "male",
+                  "female"
+                ],
+                "type": "string"
+              }
+            },
+            {
+              "type": "EMAIL_QUESTION",
+              "id": "d1d413a3-80d4-4062-8375-cd43aa8aa8ed"
+            },
+            {
+              "type": "MATCH_QUESTION",
+              "id": "fc311fd1-a2aa-59ef-80cf-57f845767b92",
+              "wording": "Do you currently have type 2 diabetes mellitus?",
+              "returnValue": {
+                "oneOf": [
+                  {
+                    "description": "type 2 diabetes mellitus",
+                    "type": "boolean"
+                  },
+                  {
+                    "enum": [
+                      "skip",
+                      "idk"
+                    ],
+                    "type": "string"
+                  }
+                ]
+              }
+            }
+          ],
+          "current": 5,
+          "fastForward": false,
+          "pending": false,
+          "progress": 0.3333333333333333,
+          "session": "835fedc6-da1b-4496-a395-7c015bb8ceb3",
+          "universe": null
+        },
+        "registration": {
+          "fields": {
+            "email": {
+              "validators": [
+                {
+                  "__func": "<anonymous>"
+                }
+              ]
+            }
+          },
+          "values": {
+            "email": ""
+          },
+          "errors": {},
+          "pending": false,
+          "registered": false
+        },
+        "sites": {
+          "locations": [],
+          "selectedCountry": null,
+          "selectedState": null,
+          "selectedCity": null,
+          "selectedLocation": null
+        },
+        "studies": {
+          "matches": [],
+          "totalMatches": 48,
+          "pending": false,
+          "error": null
+        },
+        "studyData": null,
+        "user": {
+          "patientAttributes": {},
+          "userLocation": null,
+          "preferredLocation": {
+            "city": "New York",
+            "country": "United States",
+            "countryCode": "US",
+            "formattedAddress": "New York, NY, USA",
+            "geo": {
+              "latitude": 40.7127753,
+              "longitude": -74.0059728
+            },
+            "state": "NY",
+            "streetAddress": "",
+            "zip": ""
+          },
+          "preferences": {
+            "hideEmailCapture": false
+          }
+        }
+      },
+      "label": "QUESTIONNAIRE_NEW_SESSION",
+      "action": {
+        "type": "QUESTIONNAIRE_NEW_SESSION",
+        "session": "835fedc6-da1b-4496-a395-7c015bb8ceb3"
+      },
+      "origin": "http://local.antidote.me/match/2.0/questions/6",
+      "index": 11
+    },
+    {
+      "source": "stent",
+      "time": 1512676986985,
+      "uid": "redux1512676985276",
+      "icon": "fa-gear",
+      "state": {
+        "contactRequest": {
+          "status": "IDLE",
+          "error": null
+        },
+        "content": {
+          "searchAttribution": null,
+          "questionHelp": null
+        },
+        "l10n": {
+          "current": "en",
+          "locales": [
+            "en",
+            "es",
+            "fr",
+            "de"
+          ],
+          "messages": {}
+        },
+        "questionnaire": {
+          "steps": [
+            {
+              "type": "MATCH_QUESTION",
+              "id": "dd3af86c-1506-58a0-a50b-50c69c8a3f7d",
+              "answer": "Type 2 Diabetes",
+              "value": {
+                "dd3af86c-1506-58a0-a50b-50c69c8a3f7d": "7b8f4e3c-18f6-5d14-92db-dcc7c1417cb1"
+              },
+              "wording": "For what condition are you looking to find a clinical trial?",
+              "returnValue": {
+                "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$",
+                "type": "string"
+              }
+            },
+            {
+              "type": "MATCH_QUESTION",
+              "id": "0f694a7b-d4ab-5b79-b452-5a4447b8c95c",
+              "answer": "New York, NY, United States",
+              "value": {
+                "0f694a7b-d4ab-5b79-b452-5a4447b8c95c": {
+                  "city": "New York",
+                  "country": "United States",
+                  "countryCode": "US",
+                  "formattedAddress": "New York, NY, USA",
+                  "geo": {
+                    "latitude": 40.7127753,
+                    "longitude": -74.0059728
+                  },
+                  "state": "NY",
+                  "streetAddress": "",
+                  "zip": ""
+                }
+              },
+              "wording": "Where are you looking to find a clinical trial?",
+              "returnValue": {
+                "properties": {
+                  "geo": {
+                    "properties": {
+                      "latitude": {
+                        "type": "number"
+                      },
+                      "longitude": {
+                        "type": "number"
+                      }
+                    },
+                    "required": [
+                      "latitude",
+                      "longitude"
+                    ],
+                    "type": "object"
+                  }
+                },
+                "required": [
+                  "geo"
+                ],
+                "type": "object"
+              }
+            },
+            {
+              "type": "MATCH_QUESTION",
+              "id": "f565b298-b6e8-5715-b679-c6486a438459",
+              "answer": "100 miles",
+              "value": {
+                "f565b298-b6e8-5715-b679-c6486a438459": 160934
+              },
+              "wording": "How far are you willing to travel?",
+              "returnValue": {
+                "exclusiveMaximum": false,
+                "exclusiveMinimum": false,
+                "maximum": 40300000,
+                "minimum": 0,
+                "multipleOf": 0.001,
+                "type": "number"
+              }
+            },
+            {
+              "type": "MATCH_QUESTION",
+              "id": "cd0ba5e2-b340-570c-b7b6-5b7a28a4ff6d",
+              "answer": "33",
+              "value": {
+                "cd0ba5e2-b340-570c-b7b6-5b7a28a4ff6d": 33
+              },
+              "canonicalUnit": "a",
+              "wording": "How old are you?",
+              "returnValue": {
+                "exclusiveMaximum": false,
+                "exclusiveMinimum": false,
+                "maximum": 150,
+                "minimum": 0,
+                "multipleOf": 0.001,
+                "type": "number"
+              }
+            },
+            {
+              "type": "MATCH_QUESTION",
+              "id": "7ebd0b7e-1b59-583b-a4e8-42b8e1b5c34e",
+              "answer": "Male",
+              "value": {
+                "7ebd0b7e-1b59-583b-a4e8-42b8e1b5c34e": "male"
+              },
+              "wording": "What is your sex?",
+              "returnValue": {
+                "enum": [
+                  "male",
+                  "female"
+                ],
+                "type": "string"
+              }
+            },
+            {
+              "type": "EMAIL_QUESTION",
+              "id": "d1d413a3-80d4-4062-8375-cd43aa8aa8ed"
+            },
+            {
+              "type": "MATCH_QUESTION",
+              "id": "fc311fd1-a2aa-59ef-80cf-57f845767b92",
+              "wording": "Do you currently have type 2 diabetes mellitus?",
+              "returnValue": {
+                "oneOf": [
+                  {
+                    "description": "type 2 diabetes mellitus",
+                    "type": "boolean"
+                  },
+                  {
+                    "enum": [
+                      "skip",
+                      "idk"
+                    ],
+                    "type": "string"
+                  }
+                ]
+              }
+            }
+          ],
+          "current": 5,
+          "fastForward": false,
+          "pending": false,
+          "progress": 0.3333333333333333,
+          "session": "835fedc6-da1b-4496-a395-7c015bb8ceb3",
+          "universe": null
+        },
+        "registration": {
+          "fields": {
+            "email": {
+              "validators": [
+                {
+                  "__func": "<anonymous>"
+                }
+              ]
+            }
+          },
+          "values": {
+            "email": ""
+          },
+          "errors": {},
+          "pending": false,
+          "registered": false
+        },
+        "sites": {
+          "locations": [],
+          "selectedCountry": null,
+          "selectedState": null,
+          "selectedCity": null,
+          "selectedLocation": null
+        },
+        "studies": {
+          "matches": [],
+          "totalMatches": 48,
+          "pending": false,
+          "error": null
+        },
+        "studyData": null,
+        "user": {
+          "patientAttributes": {},
+          "userLocation": null,
+          "preferredLocation": {
+            "city": "New York",
+            "country": "United States",
+            "countryCode": "US",
+            "formattedAddress": "New York, NY, USA",
+            "geo": {
+              "latitude": 40.7127753,
+              "longitude": -74.0059728
+            },
+            "state": "NY",
+            "streetAddress": "",
+            "zip": ""
+          },
+          "preferences": {
+            "hideEmailCapture": false
+          }
+        }
+      },
+      "label": "QUESTIONNAIRE_INITIAL_STEPS",
+      "action": {
+        "type": "QUESTIONNAIRE_INITIAL_STEPS",
+        "steps": [
+          {
+            "type": "MATCH_QUESTION",
+            "id": "dd3af86c-1506-58a0-a50b-50c69c8a3f7d",
+            "answer": "Type 2 Diabetes",
+            "value": {
+              "dd3af86c-1506-58a0-a50b-50c69c8a3f7d": "7b8f4e3c-18f6-5d14-92db-dcc7c1417cb1"
+            },
+            "wording": "For what condition are you looking to find a clinical trial?",
+            "returnValue": {
+              "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$",
+              "type": "string"
+            }
+          },
+          {
+            "type": "MATCH_QUESTION",
+            "id": "0f694a7b-d4ab-5b79-b452-5a4447b8c95c",
+            "answer": "New York, NY, United States",
+            "value": {
+              "0f694a7b-d4ab-5b79-b452-5a4447b8c95c": {
+                "city": "New York",
+                "country": "United States",
+                "countryCode": "US",
+                "formattedAddress": "New York, NY, USA",
+                "geo": {
+                  "latitude": 40.7127753,
+                  "longitude": -74.0059728
+                },
+                "state": "NY",
+                "streetAddress": "",
+                "zip": ""
+              }
+            },
+            "wording": "Where are you looking to find a clinical trial?",
+            "returnValue": {
+              "properties": {
+                "geo": {
+                  "properties": {
+                    "latitude": {
+                      "type": "number"
+                    },
+                    "longitude": {
+                      "type": "number"
+                    }
+                  },
+                  "required": [
+                    "latitude",
+                    "longitude"
+                  ],
+                  "type": "object"
+                }
+              },
+              "required": [
+                "geo"
+              ],
+              "type": "object"
+            }
+          },
+          {
+            "type": "MATCH_QUESTION",
+            "id": "f565b298-b6e8-5715-b679-c6486a438459",
+            "answer": "100 miles",
+            "value": {
+              "f565b298-b6e8-5715-b679-c6486a438459": 160934
+            },
+            "wording": "How far are you willing to travel?",
+            "returnValue": {
+              "exclusiveMaximum": false,
+              "exclusiveMinimum": false,
+              "maximum": 40300000,
+              "minimum": 0,
+              "multipleOf": 0.001,
+              "type": "number"
+            }
+          },
+          {
+            "type": "MATCH_QUESTION",
+            "id": "cd0ba5e2-b340-570c-b7b6-5b7a28a4ff6d",
+            "answer": "33",
+            "value": {
+              "cd0ba5e2-b340-570c-b7b6-5b7a28a4ff6d": 33
+            },
+            "canonicalUnit": "a",
+            "wording": "How old are you?",
+            "returnValue": {
+              "exclusiveMaximum": false,
+              "exclusiveMinimum": false,
+              "maximum": 150,
+              "minimum": 0,
+              "multipleOf": 0.001,
+              "type": "number"
+            }
+          },
+          {
+            "type": "MATCH_QUESTION",
+            "id": "7ebd0b7e-1b59-583b-a4e8-42b8e1b5c34e",
+            "answer": "Male",
+            "value": {
+              "7ebd0b7e-1b59-583b-a4e8-42b8e1b5c34e": "male"
+            },
+            "wording": "What is your sex?",
+            "returnValue": {
+              "enum": [
+                "male",
+                "female"
+              ],
+              "type": "string"
+            }
+          },
+          {
+            "type": "EMAIL_QUESTION",
+            "id": "d1d413a3-80d4-4062-8375-cd43aa8aa8ed"
+          },
+          {
+            "type": "MATCH_QUESTION",
+            "id": "fc311fd1-a2aa-59ef-80cf-57f845767b92",
+            "wording": "Do you currently have type 2 diabetes mellitus?",
+            "returnValue": {
+              "oneOf": [
+                {
+                  "description": "type 2 diabetes mellitus",
+                  "type": "boolean"
+                },
+                {
+                  "enum": [
+                    "skip",
+                    "idk"
+                  ],
+                  "type": "string"
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "origin": "http://local.antidote.me/match/2.0/questions/6",
+      "index": 12
+    },
+    {
+      "source": "stent",
+      "time": 1512676987007,
+      "uid": "redux1512676985276",
+      "icon": "fa-gear",
+      "state": {
+        "contactRequest": {
+          "status": "IDLE",
+          "error": null
+        },
+        "content": {
+          "searchAttribution": null,
+          "questionHelp": null
+        },
+        "l10n": {
+          "current": "en",
+          "locales": [
+            "en",
+            "es",
+            "fr",
+            "de"
+          ],
+          "messages": {}
+        },
+        "questionnaire": {
+          "steps": [
+            {
+              "type": "MATCH_QUESTION",
+              "id": "dd3af86c-1506-58a0-a50b-50c69c8a3f7d",
+              "answer": "Type 2 Diabetes",
+              "value": {
+                "dd3af86c-1506-58a0-a50b-50c69c8a3f7d": "7b8f4e3c-18f6-5d14-92db-dcc7c1417cb1"
+              },
+              "wording": "For what condition are you looking to find a clinical trial?",
+              "returnValue": {
+                "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$",
+                "type": "string"
+              }
+            },
+            {
+              "type": "MATCH_QUESTION",
+              "id": "0f694a7b-d4ab-5b79-b452-5a4447b8c95c",
+              "answer": "New York, NY, United States",
+              "value": {
+                "0f694a7b-d4ab-5b79-b452-5a4447b8c95c": {
+                  "city": "New York",
+                  "country": "United States",
+                  "countryCode": "US",
+                  "formattedAddress": "New York, NY, USA",
+                  "geo": {
+                    "latitude": 40.7127753,
+                    "longitude": -74.0059728
+                  },
+                  "state": "NY",
+                  "streetAddress": "",
+                  "zip": ""
+                }
+              },
+              "wording": "Where are you looking to find a clinical trial?",
+              "returnValue": {
+                "properties": {
+                  "geo": {
+                    "properties": {
+                      "latitude": {
+                        "type": "number"
+                      },
+                      "longitude": {
+                        "type": "number"
+                      }
+                    },
+                    "required": [
+                      "latitude",
+                      "longitude"
+                    ],
+                    "type": "object"
+                  }
+                },
+                "required": [
+                  "geo"
+                ],
+                "type": "object"
+              }
+            },
+            {
+              "type": "MATCH_QUESTION",
+              "id": "f565b298-b6e8-5715-b679-c6486a438459",
+              "answer": "100 miles",
+              "value": {
+                "f565b298-b6e8-5715-b679-c6486a438459": 160934
+              },
+              "wording": "How far are you willing to travel?",
+              "returnValue": {
+                "exclusiveMaximum": false,
+                "exclusiveMinimum": false,
+                "maximum": 40300000,
+                "minimum": 0,
+                "multipleOf": 0.001,
+                "type": "number"
+              }
+            },
+            {
+              "type": "MATCH_QUESTION",
+              "id": "cd0ba5e2-b340-570c-b7b6-5b7a28a4ff6d",
+              "answer": "33",
+              "value": {
+                "cd0ba5e2-b340-570c-b7b6-5b7a28a4ff6d": 33
+              },
+              "canonicalUnit": "a",
+              "wording": "How old are you?",
+              "returnValue": {
+                "exclusiveMaximum": false,
+                "exclusiveMinimum": false,
+                "maximum": 150,
+                "minimum": 0,
+                "multipleOf": 0.001,
+                "type": "number"
+              }
+            },
+            {
+              "type": "MATCH_QUESTION",
+              "id": "7ebd0b7e-1b59-583b-a4e8-42b8e1b5c34e",
+              "answer": "Male",
+              "value": {
+                "7ebd0b7e-1b59-583b-a4e8-42b8e1b5c34e": "male"
+              },
+              "wording": "What is your sex?",
+              "returnValue": {
+                "enum": [
+                  "male",
+                  "female"
+                ],
+                "type": "string"
+              }
+            },
+            {
+              "type": "EMAIL_QUESTION",
+              "id": "d1d413a3-80d4-4062-8375-cd43aa8aa8ed"
+            },
+            {
+              "type": "MATCH_QUESTION",
+              "id": "fc311fd1-a2aa-59ef-80cf-57f845767b92",
+              "wording": "Do you currently have type 2 diabetes mellitus?",
+              "returnValue": {
+                "oneOf": [
+                  {
+                    "description": "type 2 diabetes mellitus",
+                    "type": "boolean"
+                  },
+                  {
+                    "enum": [
+                      "skip",
+                      "idk"
+                    ],
+                    "type": "string"
+                  }
+                ]
+              }
+            }
+          ],
+          "current": 5,
+          "fastForward": false,
+          "pending": false,
+          "progress": 0.3333333333333333,
+          "session": "835fedc6-da1b-4496-a395-7c015bb8ceb3",
+          "universe": null
+        },
+        "registration": {
+          "fields": {
+            "email": {
+              "validators": [
+                {
+                  "__func": "<anonymous>"
+                }
+              ]
+            }
+          },
+          "values": {
+            "email": ""
+          },
+          "errors": {},
+          "pending": false,
+          "registered": false
+        },
+        "sites": {
+          "locations": [],
+          "selectedCountry": null,
+          "selectedState": null,
+          "selectedCity": null,
+          "selectedLocation": null
+        },
+        "studies": {
+          "matches": [],
+          "totalMatches": 48,
+          "pending": false,
+          "error": null
+        },
+        "studyData": null,
+        "user": {
+          "patientAttributes": {},
+          "userLocation": null,
+          "preferredLocation": {
+            "city": "New York",
+            "country": "United States",
+            "countryCode": "US",
+            "formattedAddress": "New York, NY, USA",
+            "geo": {
+              "latitude": 40.7127753,
+              "longitude": -74.0059728
+            },
+            "state": "NY",
+            "streetAddress": "",
+            "zip": ""
+          },
+          "preferences": {
+            "hideEmailCapture": false
+          }
+        }
+      },
+      "label": "QUESTIONNAIRE_UPDATE_QUESTIONS",
+      "action": {
+        "type": "QUESTIONNAIRE_UPDATE_QUESTIONS",
+        "questions": []
+      },
+      "origin": "http://local.antidote.me/match/2.0/questions/6",
+      "index": 13
+    },
+    {
+      "source": "stent",
+      "time": 1512676987030,
+      "uid": "redux1512676985276",
+      "icon": "fa-gear",
+      "state": {
+        "contactRequest": {
+          "status": "IDLE",
+          "error": null
+        },
+        "content": {
+          "searchAttribution": null,
+          "questionHelp": null
+        },
+        "l10n": {
+          "current": "en",
+          "locales": [
+            "en",
+            "es",
+            "fr",
+            "de"
+          ],
+          "messages": {}
+        },
+        "questionnaire": {
+          "steps": [
+            {
+              "type": "MATCH_QUESTION",
+              "id": "dd3af86c-1506-58a0-a50b-50c69c8a3f7d",
+              "answer": "Type 2 Diabetes",
+              "value": {
+                "dd3af86c-1506-58a0-a50b-50c69c8a3f7d": "7b8f4e3c-18f6-5d14-92db-dcc7c1417cb1"
+              },
+              "wording": "For what condition are you looking to find a clinical trial?",
+              "returnValue": {
+                "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$",
+                "type": "string"
+              }
+            },
+            {
+              "type": "MATCH_QUESTION",
+              "id": "0f694a7b-d4ab-5b79-b452-5a4447b8c95c",
+              "answer": "New York, NY, United States",
+              "value": {
+                "0f694a7b-d4ab-5b79-b452-5a4447b8c95c": {
+                  "city": "New York",
+                  "country": "United States",
+                  "countryCode": "US",
+                  "formattedAddress": "New York, NY, USA",
+                  "geo": {
+                    "latitude": 40.7127753,
+                    "longitude": -74.0059728
+                  },
+                  "state": "NY",
+                  "streetAddress": "",
+                  "zip": ""
+                }
+              },
+              "wording": "Where are you looking to find a clinical trial?",
+              "returnValue": {
+                "properties": {
+                  "geo": {
+                    "properties": {
+                      "latitude": {
+                        "type": "number"
+                      },
+                      "longitude": {
+                        "type": "number"
+                      }
+                    },
+                    "required": [
+                      "latitude",
+                      "longitude"
+                    ],
+                    "type": "object"
+                  }
+                },
+                "required": [
+                  "geo"
+                ],
+                "type": "object"
+              }
+            },
+            {
+              "type": "MATCH_QUESTION",
+              "id": "f565b298-b6e8-5715-b679-c6486a438459",
+              "answer": "100 miles",
+              "value": {
+                "f565b298-b6e8-5715-b679-c6486a438459": 160934
+              },
+              "wording": "How far are you willing to travel?",
+              "returnValue": {
+                "exclusiveMaximum": false,
+                "exclusiveMinimum": false,
+                "maximum": 40300000,
+                "minimum": 0,
+                "multipleOf": 0.001,
+                "type": "number"
+              }
+            },
+            {
+              "type": "MATCH_QUESTION",
+              "id": "cd0ba5e2-b340-570c-b7b6-5b7a28a4ff6d",
+              "answer": "33",
+              "value": {
+                "cd0ba5e2-b340-570c-b7b6-5b7a28a4ff6d": 33
+              },
+              "canonicalUnit": "a",
+              "wording": "How old are you?",
+              "returnValue": {
+                "exclusiveMaximum": false,
+                "exclusiveMinimum": false,
+                "maximum": 150,
+                "minimum": 0,
+                "multipleOf": 0.001,
+                "type": "number"
+              }
+            },
+            {
+              "type": "MATCH_QUESTION",
+              "id": "7ebd0b7e-1b59-583b-a4e8-42b8e1b5c34e",
+              "answer": "Male",
+              "value": {
+                "7ebd0b7e-1b59-583b-a4e8-42b8e1b5c34e": "male"
+              },
+              "wording": "What is your sex?",
+              "returnValue": {
+                "enum": [
+                  "male",
+                  "female"
+                ],
+                "type": "string"
+              }
+            },
+            {
+              "type": "EMAIL_QUESTION",
+              "id": "d1d413a3-80d4-4062-8375-cd43aa8aa8ed"
+            },
+            {
+              "type": "MATCH_QUESTION",
+              "id": "fc311fd1-a2aa-59ef-80cf-57f845767b92",
+              "wording": "Do you currently have type 2 diabetes mellitus?",
+              "returnValue": {
+                "oneOf": [
+                  {
+                    "description": "type 2 diabetes mellitus",
+                    "type": "boolean"
+                  },
+                  {
+                    "enum": [
+                      "skip",
+                      "idk"
+                    ],
+                    "type": "string"
+                  }
+                ]
+              }
+            }
+          ],
+          "current": 5,
+          "fastForward": false,
+          "pending": false,
+          "progress": 0.3333333333333333,
+          "session": "835fedc6-da1b-4496-a395-7c015bb8ceb3",
+          "universe": null
+        },
+        "registration": {
+          "fields": {
+            "email": {
+              "validators": [
+                {
+                  "__func": "<anonymous>"
+                }
+              ]
+            }
+          },
+          "values": {
+            "email": ""
+          },
+          "errors": {},
+          "pending": false,
+          "registered": false
+        },
+        "sites": {
+          "locations": [],
+          "selectedCountry": null,
+          "selectedState": null,
+          "selectedCity": null,
+          "selectedLocation": null
+        },
+        "studies": {
+          "matches": [],
+          "totalMatches": 48,
+          "pending": true,
+          "error": null
+        },
+        "studyData": null,
+        "user": {
+          "patientAttributes": {},
+          "userLocation": null,
+          "preferredLocation": {
+            "city": "New York",
+            "country": "United States",
+            "countryCode": "US",
+            "formattedAddress": "New York, NY, USA",
+            "geo": {
+              "latitude": 40.7127753,
+              "longitude": -74.0059728
+            },
+            "state": "NY",
+            "streetAddress": "",
+            "zip": ""
+          },
+          "preferences": {
+            "hideEmailCapture": false
+          }
+        }
+      },
+      "label": "MATCHING_STUDIES_REQUEST",
+      "action": {
+        "type": "MATCHING_STUDIES_REQUEST",
+        "patientAttributes": [
+          {
+            "id": "dd3af86c-1506-58a0-a50b-50c69c8a3f7d",
+            "value": "7b8f4e3c-18f6-5d14-92db-dcc7c1417cb1"
+          },
+          {
+            "id": "0f694a7b-d4ab-5b79-b452-5a4447b8c95c",
+            "value": {
+              "city": "New York",
+              "country": "United States",
+              "countryCode": "US",
+              "formattedAddress": "New York, NY, USA",
+              "geo": {
+                "latitude": 40.7127753,
+                "longitude": -74.0059728
+              },
+              "state": "NY",
+              "streetAddress": "",
+              "zip": ""
+            }
+          },
+          {
+            "id": "f565b298-b6e8-5715-b679-c6486a438459",
+            "value": 160934
+          },
+          {
+            "id": "cd0ba5e2-b340-570c-b7b6-5b7a28a4ff6d",
+            "value": 33
+          },
+          {
+            "id": "7ebd0b7e-1b59-583b-a4e8-42b8e1b5c34e",
+            "value": "male"
+          }
+        ],
+        "options": {}
+      },
+      "origin": "http://local.antidote.me/match/2.0/questions/6",
+      "index": 14
+    },
+    {
+      "source": "stent",
+      "time": 1512676988333,
+      "uid": "redux1512676985276",
+      "icon": "fa-gear",
+      "state": {
+        "contactRequest": {
+          "status": "IDLE",
+          "error": null
+        },
+        "content": {
+          "searchAttribution": null,
+          "questionHelp": null
+        },
+        "l10n": {
+          "current": "en",
+          "locales": [
+            "en",
+            "es",
+            "fr",
+            "de"
+          ],
+          "messages": {}
+        },
+        "questionnaire": {
+          "steps": [
+            {
+              "type": "MATCH_QUESTION",
+              "id": "dd3af86c-1506-58a0-a50b-50c69c8a3f7d",
+              "answer": "Type 2 Diabetes",
+              "value": {
+                "dd3af86c-1506-58a0-a50b-50c69c8a3f7d": "7b8f4e3c-18f6-5d14-92db-dcc7c1417cb1"
+              },
+              "wording": "For what condition are you looking to find a clinical trial?",
+              "returnValue": {
+                "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$",
+                "type": "string"
+              }
+            },
+            {
+              "type": "MATCH_QUESTION",
+              "id": "0f694a7b-d4ab-5b79-b452-5a4447b8c95c",
+              "answer": "New York, NY, United States",
+              "value": {
+                "0f694a7b-d4ab-5b79-b452-5a4447b8c95c": {
+                  "city": "New York",
+                  "country": "United States",
+                  "countryCode": "US",
+                  "formattedAddress": "New York, NY, USA",
+                  "geo": {
+                    "latitude": 40.7127753,
+                    "longitude": -74.0059728
+                  },
+                  "state": "NY",
+                  "streetAddress": "",
+                  "zip": ""
+                }
+              },
+              "wording": "Where are you looking to find a clinical trial?",
+              "returnValue": {
+                "properties": {
+                  "geo": {
+                    "properties": {
+                      "latitude": {
+                        "type": "number"
+                      },
+                      "longitude": {
+                        "type": "number"
+                      }
+                    },
+                    "required": [
+                      "latitude",
+                      "longitude"
+                    ],
+                    "type": "object"
+                  }
+                },
+                "required": [
+                  "geo"
+                ],
+                "type": "object"
+              }
+            },
+            {
+              "type": "MATCH_QUESTION",
+              "id": "f565b298-b6e8-5715-b679-c6486a438459",
+              "answer": "100 miles",
+              "value": {
+                "f565b298-b6e8-5715-b679-c6486a438459": 160934
+              },
+              "wording": "How far are you willing to travel?",
+              "returnValue": {
+                "exclusiveMaximum": false,
+                "exclusiveMinimum": false,
+                "maximum": 40300000,
+                "minimum": 0,
+                "multipleOf": 0.001,
+                "type": "number"
+              }
+            },
+            {
+              "type": "MATCH_QUESTION",
+              "id": "cd0ba5e2-b340-570c-b7b6-5b7a28a4ff6d",
+              "answer": "33",
+              "value": {
+                "cd0ba5e2-b340-570c-b7b6-5b7a28a4ff6d": 33
+              },
+              "canonicalUnit": "a",
+              "wording": "How old are you?",
+              "returnValue": {
+                "exclusiveMaximum": false,
+                "exclusiveMinimum": false,
+                "maximum": 150,
+                "minimum": 0,
+                "multipleOf": 0.001,
+                "type": "number"
+              }
+            },
+            {
+              "type": "MATCH_QUESTION",
+              "id": "7ebd0b7e-1b59-583b-a4e8-42b8e1b5c34e",
+              "answer": "Male",
+              "value": {
+                "7ebd0b7e-1b59-583b-a4e8-42b8e1b5c34e": "male"
+              },
+              "wording": "What is your sex?",
+              "returnValue": {
+                "enum": [
+                  "male",
+                  "female"
+                ],
+                "type": "string"
+              }
+            },
+            {
+              "type": "EMAIL_QUESTION",
+              "id": "d1d413a3-80d4-4062-8375-cd43aa8aa8ed"
+            },
+            {
+              "type": "MATCH_QUESTION",
+              "id": "fc311fd1-a2aa-59ef-80cf-57f845767b92",
+              "wording": "Do you currently have type 2 diabetes mellitus?",
+              "returnValue": {
+                "oneOf": [
+                  {
+                    "description": "type 2 diabetes mellitus",
+                    "type": "boolean"
+                  },
+                  {
+                    "enum": [
+                      "skip",
+                      "idk"
+                    ],
+                    "type": "string"
+                  }
+                ]
+              }
+            }
+          ],
+          "current": 5,
+          "fastForward": false,
+          "pending": false,
+          "progress": 0.3333333333333333,
+          "session": "835fedc6-da1b-4496-a395-7c015bb8ceb3",
+          "universe": null
+        },
+        "registration": {
+          "fields": {
+            "email": {
+              "validators": [
+                {
+                  "__func": "<anonymous>"
+                }
+              ]
+            }
+          },
+          "values": {
+            "email": ""
+          },
+          "errors": {},
+          "pending": false,
+          "registered": false
+        },
+        "sites": {
+          "locations": [],
+          "selectedCountry": null,
+          "selectedState": null,
+          "selectedCity": null,
+          "selectedLocation": null
+        },
+        "studies": {
+          "matches": [],
+          "totalMatches": 48,
+          "pending": false,
+          "error": null
+        },
+        "studyData": null,
+        "user": {
+          "patientAttributes": {},
+          "userLocation": null,
+          "preferredLocation": {
+            "city": "New York",
+            "country": "United States",
+            "countryCode": "US",
+            "formattedAddress": "New York, NY, USA",
+            "geo": {
+              "latitude": 40.7127753,
+              "longitude": -74.0059728
+            },
+            "state": "NY",
+            "streetAddress": "",
+            "zip": ""
+          },
+          "preferences": {
+            "hideEmailCapture": false
+          }
+        }
+      },
+      "label": "MATCHING_STUDIES_REQUEST_SUCCESS",
+      "action": {
+        "type": "MATCHING_STUDIES_REQUEST_SUCCESS",
+        "studies": [],
+        "total": 48
+      },
+      "origin": "http://local.antidote.me/match/2.0/questions/6",
+      "index": 15
+    },
+    {
+      "source": "stent",
+      "time": 1512677049226,
+      "uid": "redux1512676985276",
+      "icon": "fa-gear",
+      "state": {
+        "contactRequest": {
+          "status": "IDLE",
+          "error": null
+        },
+        "content": {
+          "searchAttribution": null,
+          "questionHelp": null
+        },
+        "l10n": {
+          "current": "en",
+          "locales": [
+            "en",
+            "es",
+            "fr",
+            "de"
+          ],
+          "messages": {}
+        },
+        "questionnaire": {
+          "steps": [
+            {
+              "type": "MATCH_QUESTION",
+              "id": "dd3af86c-1506-58a0-a50b-50c69c8a3f7d",
+              "answer": "Type 2 Diabetes",
+              "value": {
+                "dd3af86c-1506-58a0-a50b-50c69c8a3f7d": "7b8f4e3c-18f6-5d14-92db-dcc7c1417cb1"
+              },
+              "wording": "For what condition are you looking to find a clinical trial?",
+              "returnValue": {
+                "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$",
+                "type": "string"
+              }
+            },
+            {
+              "type": "MATCH_QUESTION",
+              "id": "0f694a7b-d4ab-5b79-b452-5a4447b8c95c",
+              "answer": "New York, NY, United States",
+              "value": {
+                "0f694a7b-d4ab-5b79-b452-5a4447b8c95c": {
+                  "city": "New York",
+                  "country": "United States",
+                  "countryCode": "US",
+                  "formattedAddress": "New York, NY, USA",
+                  "geo": {
+                    "latitude": 40.7127753,
+                    "longitude": -74.0059728
+                  },
+                  "state": "NY",
+                  "streetAddress": "",
+                  "zip": ""
+                }
+              },
+              "wording": "Where are you looking to find a clinical trial?",
+              "returnValue": {
+                "properties": {
+                  "geo": {
+                    "properties": {
+                      "latitude": {
+                        "type": "number"
+                      },
+                      "longitude": {
+                        "type": "number"
+                      }
+                    },
+                    "required": [
+                      "latitude",
+                      "longitude"
+                    ],
+                    "type": "object"
+                  }
+                },
+                "required": [
+                  "geo"
+                ],
+                "type": "object"
+              }
+            },
+            {
+              "type": "MATCH_QUESTION",
+              "id": "f565b298-b6e8-5715-b679-c6486a438459",
+              "answer": "100 miles",
+              "value": {
+                "f565b298-b6e8-5715-b679-c6486a438459": 160934
+              },
+              "wording": "How far are you willing to travel?",
+              "returnValue": {
+                "exclusiveMaximum": false,
+                "exclusiveMinimum": false,
+                "maximum": 40300000,
+                "minimum": 0,
+                "multipleOf": 0.001,
+                "type": "number"
+              }
+            },
+            {
+              "type": "MATCH_QUESTION",
+              "id": "cd0ba5e2-b340-570c-b7b6-5b7a28a4ff6d",
+              "answer": "33",
+              "value": {
+                "cd0ba5e2-b340-570c-b7b6-5b7a28a4ff6d": 33
+              },
+              "canonicalUnit": "a",
+              "wording": "How old are you?",
+              "returnValue": {
+                "exclusiveMaximum": false,
+                "exclusiveMinimum": false,
+                "maximum": 150,
+                "minimum": 0,
+                "multipleOf": 0.001,
+                "type": "number"
+              }
+            },
+            {
+              "type": "MATCH_QUESTION",
+              "id": "7ebd0b7e-1b59-583b-a4e8-42b8e1b5c34e",
+              "answer": "Male",
+              "value": {
+                "7ebd0b7e-1b59-583b-a4e8-42b8e1b5c34e": "male"
+              },
+              "wording": "What is your sex?",
+              "returnValue": {
+                "enum": [
+                  "male",
+                  "female"
+                ],
+                "type": "string"
+              }
+            },
+            {
+              "type": "EMAIL_QUESTION",
+              "id": "d1d413a3-80d4-4062-8375-cd43aa8aa8ed"
+            },
+            {
+              "type": "MATCH_QUESTION",
+              "id": "fc311fd1-a2aa-59ef-80cf-57f845767b92",
+              "wording": "Do you currently have type 2 diabetes mellitus?",
+              "returnValue": {
+                "oneOf": [
+                  {
+                    "description": "type 2 diabetes mellitus",
+                    "type": "boolean"
+                  },
+                  {
+                    "enum": [
+                      "skip",
+                      "idk"
+                    ],
+                    "type": "string"
+                  }
+                ]
+              }
+            }
+          ],
+          "current": 4,
+          "fastForward": true,
+          "pending": false,
+          "progress": 0.3333333333333333,
+          "session": "835fedc6-da1b-4496-a395-7c015bb8ceb3",
+          "universe": null
+        },
+        "registration": {
+          "fields": {
+            "email": {
+              "validators": [
+                {
+                  "__func": "<anonymous>"
+                }
+              ]
+            }
+          },
+          "values": {
+            "email": ""
+          },
+          "errors": {},
+          "pending": false,
+          "registered": false
+        },
+        "sites": {
+          "locations": [],
+          "selectedCountry": null,
+          "selectedState": null,
+          "selectedCity": null,
+          "selectedLocation": null
+        },
+        "studies": {
+          "matches": [],
+          "totalMatches": 48,
+          "pending": false,
+          "error": null
+        },
+        "studyData": null,
+        "user": {
+          "patientAttributes": {},
+          "userLocation": null,
+          "preferredLocation": {
+            "city": "New York",
+            "country": "United States",
+            "countryCode": "US",
+            "formattedAddress": "New York, NY, USA",
+            "geo": {
+              "latitude": 40.7127753,
+              "longitude": -74.0059728
+            },
+            "state": "NY",
+            "streetAddress": "",
+            "zip": ""
+          },
+          "preferences": {
+            "hideEmailCapture": false
+          }
+        }
+      },
+      "label": "QUESTIONNAIRE_GO_TO_STEP",
+      "action": {
+        "type": "QUESTIONNAIRE_GO_TO_STEP",
+        "current": 4
+      },
+      "origin": "http://local.antidote.me/match/2.0/questions/5",
+      "index": 16
+    },
+    {
+      "source": "stent",
+      "time": 1512677049231,
+      "uid": "redux1512676985276",
+      "icon": "fa-gear",
+      "state": {
+        "contactRequest": {
+          "status": "IDLE",
+          "error": null
+        },
+        "content": {
+          "searchAttribution": null,
+          "questionHelp": null
+        },
+        "l10n": {
+          "current": "en",
+          "locales": [
+            "en",
+            "es",
+            "fr",
+            "de"
+          ],
+          "messages": {}
+        },
+        "questionnaire": {
+          "steps": [
+            {
+              "type": "MATCH_QUESTION",
+              "id": "dd3af86c-1506-58a0-a50b-50c69c8a3f7d",
+              "answer": "Type 2 Diabetes",
+              "value": {
+                "dd3af86c-1506-58a0-a50b-50c69c8a3f7d": "7b8f4e3c-18f6-5d14-92db-dcc7c1417cb1"
+              },
+              "wording": "For what condition are you looking to find a clinical trial?",
+              "returnValue": {
+                "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$",
+                "type": "string"
+              }
+            },
+            {
+              "type": "MATCH_QUESTION",
+              "id": "0f694a7b-d4ab-5b79-b452-5a4447b8c95c",
+              "answer": "New York, NY, United States",
+              "value": {
+                "0f694a7b-d4ab-5b79-b452-5a4447b8c95c": {
+                  "city": "New York",
+                  "country": "United States",
+                  "countryCode": "US",
+                  "formattedAddress": "New York, NY, USA",
+                  "geo": {
+                    "latitude": 40.7127753,
+                    "longitude": -74.0059728
+                  },
+                  "state": "NY",
+                  "streetAddress": "",
+                  "zip": ""
+                }
+              },
+              "wording": "Where are you looking to find a clinical trial?",
+              "returnValue": {
+                "properties": {
+                  "geo": {
+                    "properties": {
+                      "latitude": {
+                        "type": "number"
+                      },
+                      "longitude": {
+                        "type": "number"
+                      }
+                    },
+                    "required": [
+                      "latitude",
+                      "longitude"
+                    ],
+                    "type": "object"
+                  }
+                },
+                "required": [
+                  "geo"
+                ],
+                "type": "object"
+              }
+            },
+            {
+              "type": "MATCH_QUESTION",
+              "id": "f565b298-b6e8-5715-b679-c6486a438459",
+              "answer": "100 miles",
+              "value": {
+                "f565b298-b6e8-5715-b679-c6486a438459": 160934
+              },
+              "wording": "How far are you willing to travel?",
+              "returnValue": {
+                "exclusiveMaximum": false,
+                "exclusiveMinimum": false,
+                "maximum": 40300000,
+                "minimum": 0,
+                "multipleOf": 0.001,
+                "type": "number"
+              }
+            },
+            {
+              "type": "MATCH_QUESTION",
+              "id": "cd0ba5e2-b340-570c-b7b6-5b7a28a4ff6d",
+              "answer": "33",
+              "value": {
+                "cd0ba5e2-b340-570c-b7b6-5b7a28a4ff6d": 33
+              },
+              "canonicalUnit": "a",
+              "wording": "How old are you?",
+              "returnValue": {
+                "exclusiveMaximum": false,
+                "exclusiveMinimum": false,
+                "maximum": 150,
+                "minimum": 0,
+                "multipleOf": 0.001,
+                "type": "number"
+              }
+            },
+            {
+              "type": "MATCH_QUESTION",
+              "id": "7ebd0b7e-1b59-583b-a4e8-42b8e1b5c34e",
+              "answer": "Male",
+              "value": {
+                "7ebd0b7e-1b59-583b-a4e8-42b8e1b5c34e": "male"
+              },
+              "wording": "What is your sex?",
+              "returnValue": {
+                "enum": [
+                  "male",
+                  "female"
+                ],
+                "type": "string"
+              }
+            },
+            {
+              "type": "EMAIL_QUESTION",
+              "id": "d1d413a3-80d4-4062-8375-cd43aa8aa8ed"
+            },
+            {
+              "type": "MATCH_QUESTION",
+              "id": "fc311fd1-a2aa-59ef-80cf-57f845767b92",
+              "wording": "Do you currently have type 2 diabetes mellitus?",
+              "returnValue": {
+                "oneOf": [
+                  {
+                    "description": "type 2 diabetes mellitus",
+                    "type": "boolean"
+                  },
+                  {
+                    "enum": [
+                      "skip",
+                      "idk"
+                    ],
+                    "type": "string"
+                  }
+                ]
+              }
+            }
+          ],
+          "current": 4,
+          "fastForward": true,
+          "pending": false,
+          "progress": 0.26666666666666666,
+          "session": "835fedc6-da1b-4496-a395-7c015bb8ceb3",
+          "universe": null
+        },
+        "registration": {
+          "fields": {
+            "email": {
+              "validators": [
+                {
+                  "__func": "<anonymous>"
+                }
+              ]
+            }
+          },
+          "values": {
+            "email": ""
+          },
+          "errors": {},
+          "pending": false,
+          "registered": false
+        },
+        "sites": {
+          "locations": [],
+          "selectedCountry": null,
+          "selectedState": null,
+          "selectedCity": null,
+          "selectedLocation": null
+        },
+        "studies": {
+          "matches": [],
+          "totalMatches": 48,
+          "pending": false,
+          "error": null
+        },
+        "studyData": null,
+        "user": {
+          "patientAttributes": {},
+          "userLocation": null,
+          "preferredLocation": {
+            "city": "New York",
+            "country": "United States",
+            "countryCode": "US",
+            "formattedAddress": "New York, NY, USA",
+            "geo": {
+              "latitude": 40.7127753,
+              "longitude": -74.0059728
+            },
+            "state": "NY",
+            "streetAddress": "",
+            "zip": ""
+          },
+          "preferences": {
+            "hideEmailCapture": false
+          }
+        }
+      },
+      "label": "QUESTIONNAIRE_PROGRESS_UPDATE",
+      "action": {
+        "type": "QUESTIONNAIRE_PROGRESS_UPDATE",
+        "progress": 0.26666666666666666
+      },
+      "origin": "http://local.antidote.me/match/2.0/questions/5",
+      "index": 17
+    },
+    {
+      "source": "stent",
+      "time": 1512677049237,
+      "uid": "redux1512676985276",
+      "icon": "fa-gear",
+      "state": {
+        "contactRequest": {
+          "status": "IDLE",
+          "error": null
+        },
+        "content": {
+          "searchAttribution": null,
+          "questionHelp": null
+        },
+        "l10n": {
+          "current": "en",
+          "locales": [
+            "en",
+            "es",
+            "fr",
+            "de"
+          ],
+          "messages": {}
+        },
+        "questionnaire": {
+          "steps": [
+            {
+              "type": "MATCH_QUESTION",
+              "id": "dd3af86c-1506-58a0-a50b-50c69c8a3f7d",
+              "answer": "Type 2 Diabetes",
+              "value": {
+                "dd3af86c-1506-58a0-a50b-50c69c8a3f7d": "7b8f4e3c-18f6-5d14-92db-dcc7c1417cb1"
+              },
+              "wording": "For what condition are you looking to find a clinical trial?",
+              "returnValue": {
+                "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$",
+                "type": "string"
+              }
+            },
+            {
+              "type": "MATCH_QUESTION",
+              "id": "0f694a7b-d4ab-5b79-b452-5a4447b8c95c",
+              "answer": "New York, NY, United States",
+              "value": {
+                "0f694a7b-d4ab-5b79-b452-5a4447b8c95c": {
+                  "city": "New York",
+                  "country": "United States",
+                  "countryCode": "US",
+                  "formattedAddress": "New York, NY, USA",
+                  "geo": {
+                    "latitude": 40.7127753,
+                    "longitude": -74.0059728
+                  },
+                  "state": "NY",
+                  "streetAddress": "",
+                  "zip": ""
+                }
+              },
+              "wording": "Where are you looking to find a clinical trial?",
+              "returnValue": {
+                "properties": {
+                  "geo": {
+                    "properties": {
+                      "latitude": {
+                        "type": "number"
+                      },
+                      "longitude": {
+                        "type": "number"
+                      }
+                    },
+                    "required": [
+                      "latitude",
+                      "longitude"
+                    ],
+                    "type": "object"
+                  }
+                },
+                "required": [
+                  "geo"
+                ],
+                "type": "object"
+              }
+            },
+            {
+              "type": "MATCH_QUESTION",
+              "id": "f565b298-b6e8-5715-b679-c6486a438459",
+              "answer": "100 miles",
+              "value": {
+                "f565b298-b6e8-5715-b679-c6486a438459": 160934
+              },
+              "wording": "How far are you willing to travel?",
+              "returnValue": {
+                "exclusiveMaximum": false,
+                "exclusiveMinimum": false,
+                "maximum": 40300000,
+                "minimum": 0,
+                "multipleOf": 0.001,
+                "type": "number"
+              }
+            },
+            {
+              "type": "MATCH_QUESTION",
+              "id": "cd0ba5e2-b340-570c-b7b6-5b7a28a4ff6d",
+              "answer": "33",
+              "value": {
+                "cd0ba5e2-b340-570c-b7b6-5b7a28a4ff6d": 33
+              },
+              "canonicalUnit": "a",
+              "wording": "How old are you?",
+              "returnValue": {
+                "exclusiveMaximum": false,
+                "exclusiveMinimum": false,
+                "maximum": 150,
+                "minimum": 0,
+                "multipleOf": 0.001,
+                "type": "number"
+              }
+            },
+            {
+              "type": "MATCH_QUESTION",
+              "id": "7ebd0b7e-1b59-583b-a4e8-42b8e1b5c34e",
+              "answer": "Male",
+              "value": {
+                "7ebd0b7e-1b59-583b-a4e8-42b8e1b5c34e": "male"
+              },
+              "wording": "What is your sex?",
+              "returnValue": {
+                "enum": [
+                  "male",
+                  "female"
+                ],
+                "type": "string"
+              }
+            },
+            {
+              "type": "EMAIL_QUESTION",
+              "id": "d1d413a3-80d4-4062-8375-cd43aa8aa8ed"
+            },
+            {
+              "type": "MATCH_QUESTION",
+              "id": "fc311fd1-a2aa-59ef-80cf-57f845767b92",
+              "wording": "Do you currently have type 2 diabetes mellitus?",
+              "returnValue": {
+                "oneOf": [
+                  {
+                    "description": "type 2 diabetes mellitus",
+                    "type": "boolean"
+                  },
+                  {
+                    "enum": [
+                      "skip",
+                      "idk"
+                    ],
+                    "type": "string"
+                  }
+                ]
+              }
+            }
+          ],
+          "current": 4,
+          "fastForward": true,
+          "pending": false,
+          "progress": 0.26666666666666666,
+          "session": "835fedc6-da1b-4496-a395-7c015bb8ceb3",
+          "universe": null
+        },
+        "registration": {
+          "fields": {
+            "email": {
+              "validators": [
+                {
+                  "__func": "<anonymous>"
+                }
+              ]
+            }
+          },
+          "values": {
+            "email": ""
+          },
+          "errors": {},
+          "pending": false,
+          "registered": false
+        },
+        "sites": {
+          "locations": [],
+          "selectedCountry": null,
+          "selectedState": null,
+          "selectedCity": null,
+          "selectedLocation": null
+        },
+        "studies": {
+          "matches": [],
+          "totalMatches": 48,
+          "pending": false,
+          "error": null
+        },
+        "studyData": null,
+        "user": {
+          "patientAttributes": {},
+          "userLocation": null,
+          "preferredLocation": {
+            "city": "New York",
+            "country": "United States",
+            "countryCode": "US",
+            "formattedAddress": "New York, NY, USA",
+            "geo": {
+              "latitude": 40.7127753,
+              "longitude": -74.0059728
+            },
+            "state": "NY",
+            "streetAddress": "",
+            "zip": ""
+          },
+          "preferences": {
+            "hideEmailCapture": false
+          }
+        }
+      },
+      "label": "QUESTIONNAIRE_FETCH_HELP_CONTENT",
+      "action": {
+        "type": "QUESTIONNAIRE_FETCH_HELP_CONTENT",
+        "id": "7ebd0b7e-1b59-583b-a4e8-42b8e1b5c34e"
+      },
+      "origin": "http://local.antidote.me/match/2.0/questions/5",
+      "index": 18
+    },
+    {
+      "source": "stent",
+      "time": 1512677049239,
+      "uid": "redux1512676985276",
+      "icon": "fa-gear",
+      "state": {
+        "contactRequest": {
+          "status": "IDLE",
+          "error": null
+        },
+        "content": {
+          "searchAttribution": null,
+          "questionHelp": null
+        },
+        "l10n": {
+          "current": "en",
+          "locales": [
+            "en",
+            "es",
+            "fr",
+            "de"
+          ],
+          "messages": {}
+        },
+        "questionnaire": {
+          "steps": [
+            {
+              "type": "MATCH_QUESTION",
+              "id": "dd3af86c-1506-58a0-a50b-50c69c8a3f7d",
+              "answer": "Type 2 Diabetes",
+              "value": {
+                "dd3af86c-1506-58a0-a50b-50c69c8a3f7d": "7b8f4e3c-18f6-5d14-92db-dcc7c1417cb1"
+              },
+              "wording": "For what condition are you looking to find a clinical trial?",
+              "returnValue": {
+                "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$",
+                "type": "string"
+              }
+            },
+            {
+              "type": "MATCH_QUESTION",
+              "id": "0f694a7b-d4ab-5b79-b452-5a4447b8c95c",
+              "answer": "New York, NY, United States",
+              "value": {
+                "0f694a7b-d4ab-5b79-b452-5a4447b8c95c": {
+                  "city": "New York",
+                  "country": "United States",
+                  "countryCode": "US",
+                  "formattedAddress": "New York, NY, USA",
+                  "geo": {
+                    "latitude": 40.7127753,
+                    "longitude": -74.0059728
+                  },
+                  "state": "NY",
+                  "streetAddress": "",
+                  "zip": ""
+                }
+              },
+              "wording": "Where are you looking to find a clinical trial?",
+              "returnValue": {
+                "properties": {
+                  "geo": {
+                    "properties": {
+                      "latitude": {
+                        "type": "number"
+                      },
+                      "longitude": {
+                        "type": "number"
+                      }
+                    },
+                    "required": [
+                      "latitude",
+                      "longitude"
+                    ],
+                    "type": "object"
+                  }
+                },
+                "required": [
+                  "geo"
+                ],
+                "type": "object"
+              }
+            },
+            {
+              "type": "MATCH_QUESTION",
+              "id": "f565b298-b6e8-5715-b679-c6486a438459",
+              "answer": "100 miles",
+              "value": {
+                "f565b298-b6e8-5715-b679-c6486a438459": 160934
+              },
+              "wording": "How far are you willing to travel?",
+              "returnValue": {
+                "exclusiveMaximum": false,
+                "exclusiveMinimum": false,
+                "maximum": 40300000,
+                "minimum": 0,
+                "multipleOf": 0.001,
+                "type": "number"
+              }
+            },
+            {
+              "type": "MATCH_QUESTION",
+              "id": "cd0ba5e2-b340-570c-b7b6-5b7a28a4ff6d",
+              "answer": "33",
+              "value": {
+                "cd0ba5e2-b340-570c-b7b6-5b7a28a4ff6d": 33
+              },
+              "canonicalUnit": "a",
+              "wording": "How old are you?",
+              "returnValue": {
+                "exclusiveMaximum": false,
+                "exclusiveMinimum": false,
+                "maximum": 150,
+                "minimum": 0,
+                "multipleOf": 0.001,
+                "type": "number"
+              }
+            },
+            {
+              "type": "MATCH_QUESTION",
+              "id": "7ebd0b7e-1b59-583b-a4e8-42b8e1b5c34e",
+              "answer": "Male",
+              "value": {
+                "7ebd0b7e-1b59-583b-a4e8-42b8e1b5c34e": "male"
+              },
+              "wording": "What is your sex?",
+              "returnValue": {
+                "enum": [
+                  "male",
+                  "female"
+                ],
+                "type": "string"
+              }
+            },
+            {
+              "type": "EMAIL_QUESTION",
+              "id": "d1d413a3-80d4-4062-8375-cd43aa8aa8ed"
+            },
+            {
+              "type": "MATCH_QUESTION",
+              "id": "fc311fd1-a2aa-59ef-80cf-57f845767b92",
+              "wording": "Do you currently have type 2 diabetes mellitus?",
+              "returnValue": {
+                "oneOf": [
+                  {
+                    "description": "type 2 diabetes mellitus",
+                    "type": "boolean"
+                  },
+                  {
+                    "enum": [
+                      "skip",
+                      "idk"
+                    ],
+                    "type": "string"
+                  }
+                ]
+              }
+            }
+          ],
+          "current": 4,
+          "fastForward": true,
+          "pending": false,
+          "progress": 0.26666666666666666,
+          "session": "835fedc6-da1b-4496-a395-7c015bb8ceb3",
+          "universe": null
+        },
+        "registration": {
+          "fields": {
+            "email": {
+              "validators": [
+                {
+                  "__func": "<anonymous>"
+                }
+              ]
+            }
+          },
+          "values": {
+            "email": ""
+          },
+          "errors": {},
+          "pending": false,
+          "registered": false
+        },
+        "sites": {
+          "locations": [],
+          "selectedCountry": null,
+          "selectedState": null,
+          "selectedCity": null,
+          "selectedLocation": null
+        },
+        "studies": {
+          "matches": [],
+          "totalMatches": 48,
+          "pending": false,
+          "error": null
+        },
+        "studyData": null,
+        "user": {
+          "patientAttributes": {},
+          "userLocation": null,
+          "preferredLocation": {
+            "city": "New York",
+            "country": "United States",
+            "countryCode": "US",
+            "formattedAddress": "New York, NY, USA",
+            "geo": {
+              "latitude": 40.7127753,
+              "longitude": -74.0059728
+            },
+            "state": "NY",
+            "streetAddress": "",
+            "zip": ""
+          },
+          "preferences": {
+            "hideEmailCapture": false
+          }
+        }
+      },
+      "label": "CONTENT_CLEAR",
+      "action": {
+        "type": "CONTENT_CLEAR",
+        "contentType": "questionHelp"
+      },
+      "origin": "http://local.antidote.me/match/2.0/questions/5",
+      "index": 19
+    },
+    {
+      "source": "stent",
+      "time": 1512677049360,
+      "uid": "redux1512676985276",
+      "icon": "fa-gear",
+      "state": {
+        "contactRequest": {
+          "status": "IDLE",
+          "error": null
+        },
+        "content": {
+          "searchAttribution": null,
+          "questionHelp": null
+        },
+        "l10n": {
+          "current": "en",
+          "locales": [
+            "en",
+            "es",
+            "fr",
+            "de"
+          ],
+          "messages": {}
+        },
+        "questionnaire": {
+          "steps": [
+            {
+              "type": "MATCH_QUESTION",
+              "id": "dd3af86c-1506-58a0-a50b-50c69c8a3f7d",
+              "answer": "Type 2 Diabetes",
+              "value": {
+                "dd3af86c-1506-58a0-a50b-50c69c8a3f7d": "7b8f4e3c-18f6-5d14-92db-dcc7c1417cb1"
+              },
+              "wording": "For what condition are you looking to find a clinical trial?",
+              "returnValue": {
+                "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$",
+                "type": "string"
+              }
+            },
+            {
+              "type": "MATCH_QUESTION",
+              "id": "0f694a7b-d4ab-5b79-b452-5a4447b8c95c",
+              "answer": "New York, NY, United States",
+              "value": {
+                "0f694a7b-d4ab-5b79-b452-5a4447b8c95c": {
+                  "city": "New York",
+                  "country": "United States",
+                  "countryCode": "US",
+                  "formattedAddress": "New York, NY, USA",
+                  "geo": {
+                    "latitude": 40.7127753,
+                    "longitude": -74.0059728
+                  },
+                  "state": "NY",
+                  "streetAddress": "",
+                  "zip": ""
+                }
+              },
+              "wording": "Where are you looking to find a clinical trial?",
+              "returnValue": {
+                "properties": {
+                  "geo": {
+                    "properties": {
+                      "latitude": {
+                        "type": "number"
+                      },
+                      "longitude": {
+                        "type": "number"
+                      }
+                    },
+                    "required": [
+                      "latitude",
+                      "longitude"
+                    ],
+                    "type": "object"
+                  }
+                },
+                "required": [
+                  "geo"
+                ],
+                "type": "object"
+              }
+            },
+            {
+              "type": "MATCH_QUESTION",
+              "id": "f565b298-b6e8-5715-b679-c6486a438459",
+              "answer": "100 miles",
+              "value": {
+                "f565b298-b6e8-5715-b679-c6486a438459": 160934
+              },
+              "wording": "How far are you willing to travel?",
+              "returnValue": {
+                "exclusiveMaximum": false,
+                "exclusiveMinimum": false,
+                "maximum": 40300000,
+                "minimum": 0,
+                "multipleOf": 0.001,
+                "type": "number"
+              }
+            },
+            {
+              "type": "MATCH_QUESTION",
+              "id": "cd0ba5e2-b340-570c-b7b6-5b7a28a4ff6d",
+              "answer": "33",
+              "value": {
+                "cd0ba5e2-b340-570c-b7b6-5b7a28a4ff6d": 33
+              },
+              "canonicalUnit": "a",
+              "wording": "How old are you?",
+              "returnValue": {
+                "exclusiveMaximum": false,
+                "exclusiveMinimum": false,
+                "maximum": 150,
+                "minimum": 0,
+                "multipleOf": 0.001,
+                "type": "number"
+              }
+            },
+            {
+              "type": "MATCH_QUESTION",
+              "id": "7ebd0b7e-1b59-583b-a4e8-42b8e1b5c34e",
+              "answer": "Male",
+              "value": {
+                "7ebd0b7e-1b59-583b-a4e8-42b8e1b5c34e": "male"
+              },
+              "wording": "What is your sex?",
+              "returnValue": {
+                "enum": [
+                  "male",
+                  "female"
+                ],
+                "type": "string"
+              }
+            },
+            {
+              "type": "EMAIL_QUESTION",
+              "id": "d1d413a3-80d4-4062-8375-cd43aa8aa8ed"
+            },
+            {
+              "type": "MATCH_QUESTION",
+              "id": "fc311fd1-a2aa-59ef-80cf-57f845767b92",
+              "wording": "Do you currently have type 2 diabetes mellitus?",
+              "returnValue": {
+                "oneOf": [
+                  {
+                    "description": "type 2 diabetes mellitus",
+                    "type": "boolean"
+                  },
+                  {
+                    "enum": [
+                      "skip",
+                      "idk"
+                    ],
+                    "type": "string"
+                  }
+                ]
+              }
+            }
+          ],
+          "current": 4,
+          "fastForward": true,
+          "pending": false,
+          "progress": 0.26666666666666666,
+          "session": "835fedc6-da1b-4496-a395-7c015bb8ceb3",
+          "universe": null
+        },
+        "registration": {
+          "fields": {
+            "email": {
+              "validators": [
+                {
+                  "__func": "<anonymous>"
+                }
+              ]
+            }
+          },
+          "values": {
+            "email": ""
+          },
+          "errors": {},
+          "pending": false,
+          "registered": false
+        },
+        "sites": {
+          "locations": [],
+          "selectedCountry": null,
+          "selectedState": null,
+          "selectedCity": null,
+          "selectedLocation": null
+        },
+        "studies": {
+          "matches": [],
+          "totalMatches": 48,
+          "pending": false,
+          "error": null
+        },
+        "studyData": null,
+        "user": {
+          "patientAttributes": {},
+          "userLocation": null,
+          "preferredLocation": {
+            "city": "New York",
+            "country": "United States",
+            "countryCode": "US",
+            "formattedAddress": "New York, NY, USA",
+            "geo": {
+              "latitude": 40.7127753,
+              "longitude": -74.0059728
+            },
+            "state": "NY",
+            "streetAddress": "",
+            "zip": ""
+          },
+          "preferences": {
+            "hideEmailCapture": false
+          }
+        }
+      },
+      "label": "@@router/LOCATION_CHANGE",
+      "action": {
+        "type": "@@router/LOCATION_CHANGE",
+        "payload": {
+          "pathname": "/2.0/questions/5",
+          "search": "",
+          "hash": "",
+          "key": "o39gea"
+        }
+      },
+      "origin": "http://local.antidote.me/match/2.0/questions/5",
+      "index": 20
+    },
+    {
+      "source": "stent",
+      "time": 1512677049717,
+      "uid": "redux1512676985276",
+      "icon": "fa-gear",
+      "state": {
+        "contactRequest": {
+          "status": "IDLE",
+          "error": null
+        },
+        "content": {
+          "searchAttribution": null,
+          "questionHelp": {
+            "query": {
+              "fields.id": "7ebd0b7e-1b59-583b-a4e8-42b8e1b5c34e",
+              "locale": "en"
+            },
+            "entries": [
+              {
+                "id": "7ebd0b7e-1b59-583b-a4e8-42b8e1b5c34e",
+                "questionWording": "<p>What is your sex?</p>\n",
+                "content": "<p>Biological sex is often an eligibility criterion for clinical trials, which means that it may determine which trials you can take part in.</p>\n",
+                "buttonLabel": "Why are we asking this?"
+              }
+            ]
+          }
+        },
+        "l10n": {
+          "current": "en",
+          "locales": [
+            "en",
+            "es",
+            "fr",
+            "de"
+          ],
+          "messages": {}
+        },
+        "questionnaire": {
+          "steps": [
+            {
+              "type": "MATCH_QUESTION",
+              "id": "dd3af86c-1506-58a0-a50b-50c69c8a3f7d",
+              "answer": "Type 2 Diabetes",
+              "value": {
+                "dd3af86c-1506-58a0-a50b-50c69c8a3f7d": "7b8f4e3c-18f6-5d14-92db-dcc7c1417cb1"
+              },
+              "wording": "For what condition are you looking to find a clinical trial?",
+              "returnValue": {
+                "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$",
+                "type": "string"
+              }
+            },
+            {
+              "type": "MATCH_QUESTION",
+              "id": "0f694a7b-d4ab-5b79-b452-5a4447b8c95c",
+              "answer": "New York, NY, United States",
+              "value": {
+                "0f694a7b-d4ab-5b79-b452-5a4447b8c95c": {
+                  "city": "New York",
+                  "country": "United States",
+                  "countryCode": "US",
+                  "formattedAddress": "New York, NY, USA",
+                  "geo": {
+                    "latitude": 40.7127753,
+                    "longitude": -74.0059728
+                  },
+                  "state": "NY",
+                  "streetAddress": "",
+                  "zip": ""
+                }
+              },
+              "wording": "Where are you looking to find a clinical trial?",
+              "returnValue": {
+                "properties": {
+                  "geo": {
+                    "properties": {
+                      "latitude": {
+                        "type": "number"
+                      },
+                      "longitude": {
+                        "type": "number"
+                      }
+                    },
+                    "required": [
+                      "latitude",
+                      "longitude"
+                    ],
+                    "type": "object"
+                  }
+                },
+                "required": [
+                  "geo"
+                ],
+                "type": "object"
+              }
+            },
+            {
+              "type": "MATCH_QUESTION",
+              "id": "f565b298-b6e8-5715-b679-c6486a438459",
+              "answer": "100 miles",
+              "value": {
+                "f565b298-b6e8-5715-b679-c6486a438459": 160934
+              },
+              "wording": "How far are you willing to travel?",
+              "returnValue": {
+                "exclusiveMaximum": false,
+                "exclusiveMinimum": false,
+                "maximum": 40300000,
+                "minimum": 0,
+                "multipleOf": 0.001,
+                "type": "number"
+              }
+            },
+            {
+              "type": "MATCH_QUESTION",
+              "id": "cd0ba5e2-b340-570c-b7b6-5b7a28a4ff6d",
+              "answer": "33",
+              "value": {
+                "cd0ba5e2-b340-570c-b7b6-5b7a28a4ff6d": 33
+              },
+              "canonicalUnit": "a",
+              "wording": "How old are you?",
+              "returnValue": {
+                "exclusiveMaximum": false,
+                "exclusiveMinimum": false,
+                "maximum": 150,
+                "minimum": 0,
+                "multipleOf": 0.001,
+                "type": "number"
+              }
+            },
+            {
+              "type": "MATCH_QUESTION",
+              "id": "7ebd0b7e-1b59-583b-a4e8-42b8e1b5c34e",
+              "answer": "Male",
+              "value": {
+                "7ebd0b7e-1b59-583b-a4e8-42b8e1b5c34e": "male"
+              },
+              "wording": "What is your sex?",
+              "returnValue": {
+                "enum": [
+                  "male",
+                  "female"
+                ],
+                "type": "string"
+              }
+            },
+            {
+              "type": "EMAIL_QUESTION",
+              "id": "d1d413a3-80d4-4062-8375-cd43aa8aa8ed"
+            },
+            {
+              "type": "MATCH_QUESTION",
+              "id": "fc311fd1-a2aa-59ef-80cf-57f845767b92",
+              "wording": "Do you currently have type 2 diabetes mellitus?",
+              "returnValue": {
+                "oneOf": [
+                  {
+                    "description": "type 2 diabetes mellitus",
+                    "type": "boolean"
+                  },
+                  {
+                    "enum": [
+                      "skip",
+                      "idk"
+                    ],
+                    "type": "string"
+                  }
+                ]
+              }
+            }
+          ],
+          "current": 4,
+          "fastForward": true,
+          "pending": false,
+          "progress": 0.26666666666666666,
+          "session": "835fedc6-da1b-4496-a395-7c015bb8ceb3",
+          "universe": null
+        },
+        "registration": {
+          "fields": {
+            "email": {
+              "validators": [
+                {
+                  "__func": "<anonymous>"
+                }
+              ]
+            }
+          },
+          "values": {
+            "email": ""
+          },
+          "errors": {},
+          "pending": false,
+          "registered": false
+        },
+        "sites": {
+          "locations": [],
+          "selectedCountry": null,
+          "selectedState": null,
+          "selectedCity": null,
+          "selectedLocation": null
+        },
+        "studies": {
+          "matches": [],
+          "totalMatches": 48,
+          "pending": false,
+          "error": null
+        },
+        "studyData": null,
+        "user": {
+          "patientAttributes": {},
+          "userLocation": null,
+          "preferredLocation": {
+            "city": "New York",
+            "country": "United States",
+            "countryCode": "US",
+            "formattedAddress": "New York, NY, USA",
+            "geo": {
+              "latitude": 40.7127753,
+              "longitude": -74.0059728
+            },
+            "state": "NY",
+            "streetAddress": "",
+            "zip": ""
+          },
+          "preferences": {
+            "hideEmailCapture": false
+          }
+        }
+      },
+      "label": "CONTENT_REQUEST_SUCCESS",
+      "action": {
+        "type": "CONTENT_REQUEST_SUCCESS",
+        "contentType": "questionHelp",
+        "contentQuery": {
+          "fields.id": "7ebd0b7e-1b59-583b-a4e8-42b8e1b5c34e",
+          "locale": "en"
+        },
+        "fetchedContent": [
+          {
+            "id": "7ebd0b7e-1b59-583b-a4e8-42b8e1b5c34e",
+            "questionWording": "<p>What is your sex?</p>\n",
+            "content": "<p>Biological sex is often an eligibility criterion for clinical trials, which means that it may determine which trials you can take part in.</p>\n",
+            "buttonLabel": "Why are we asking this?"
+          }
+        ]
+      },
+      "origin": "http://local.antidote.me/match/2.0/questions/5",
+      "index": 21
+    }
+  ]
+}

@@ -18,7 +18,17 @@ export function renderStateAsTree(state = {}) {
   return renderJSON(state, 'State');
 };
 
-export function renderActionAsTree({ source, time, machines, origin, index, uid, ...rest } = {}, actions) {
+export function renderActionAsTree({
+  source,
+  time,
+  state,
+  origin,
+  index,
+  uid,
+  label,
+  icon,
+  ...rest
+} = {}, actions) {
   if (typeof source === 'undefined') return null;
 
   const diff = time - actions[0].time;
