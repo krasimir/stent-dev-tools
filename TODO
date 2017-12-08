@@ -1,3 +1,1 @@
-* marker
-* json object preview like in the redux-devtools
 * fix the filter to work with the label if type is missing

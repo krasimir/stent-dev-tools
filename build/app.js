@@ -41009,9 +41009,14 @@ var PageLog = function (_React$Component) {
       var _this2 = this;
 
       var options = this.props.actions.reduce(function (result, action) {
-        if (!result.find(function (o) {
-          return o === action.type;
-        }) && _this2[action.type]) result.push(action.type);
+        if (result.find(function (o) {
+          return o === action.type || o === action.label;
+        })) return result;
+        if (handlers[action.type] && handlers[action.type] !== NOP_HANDLER) {
+          result.push(action.type);
+        } else if (action.label) {
+          result.push(action.label);
+        }
         return result;
       }, ['all']);
 
@@ -41086,7 +41091,14 @@ var PageLog = function (_React$Component) {
       // filter by source
       if (action.uid !== source) return null;
       // filter by type
-      if (filterByType !== null && action.type !== filterByType) filteredOut = true;
+      if (filterByType !== null) {
+        if (action.type && action.type !== filterByType) {
+          filteredOut = true;
+        }
+        if (action.label && action.label !== filterByType) {
+          filteredOut = true;
+        }
+      }
 
       // no render method to handle it
       if (!handlers[action.type]) {

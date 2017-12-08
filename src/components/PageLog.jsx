@@ -78,7 +78,12 @@ class PageLog extends React.Component {
   }
   _renderFilterSelector() {
     const options = this.props.actions.reduce((result, action) => {
-      if (!result.find(o => o === action.type) && this[action.type]) result.push(action.type);
+      if (result.find(o => o === action.type || o === action.label)) return result;
+      if (handlers[action.type] && handlers[action.type] !== NOP_HANDLER) {
+        result.push(action.type);
+      } else if (action.label) {
+        result.push(action.label);
+      }
       return result;
     }, ['all']);
 
@@ -118,7 +123,14 @@ class PageLog extends React.Component {
     // filter by source
     if (action.uid !== source) return null;
     // filter by type
-    if (filterByType !== null && action.type !== filterByType) filteredOut = true;
+    if (filterByType !== null) {
+      if (action.type && action.type !== filterByType) {
+        filteredOut = true;
+      }
+      if (action.label && action.label !== filterByType) {
+        filteredOut = true;
+      }
+    }
 
     // no render method to handle it
     if (!handlers[action.type]) {
