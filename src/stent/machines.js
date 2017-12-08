@@ -8,7 +8,7 @@ import { normalizeAction } from '../helpers/normalize';
 
 const initialState = {
   name: 'working',
-  page: PAGES.LOG,
+  page: PAGES.DASHBOARD,
   actions: []
 };
 
@@ -26,7 +26,7 @@ const machine = Machine.create('DevTools', {
         return { ...rest, actions };
       },
       'flush actions': function () {
-        return { actions: [], name: 'working', page: PAGES.LOG };
+        return { actions: [], name: 'working', page: PAGES.DASHBOARD };
       },
       'add marker': function ({ actions, ...rest }, index) {
         if (index === null) {

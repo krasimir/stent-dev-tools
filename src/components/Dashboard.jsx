@@ -1,5 +1,3 @@
-/* eslint-disable no-unused-vars */
-
 import React from 'react';
 import { connect } from 'stent/lib/react';
 import { renderMachinesAsTree, renderActionAsTree, renderStateAsTree } from '../helpers/renderAsTree';
@@ -14,6 +12,7 @@ import onGeneratorResumed from './handlers/onGeneratorResumed';
 import onStateChanged from './handlers/onStateChanged';
 import UnrecognizedAction from './handlers/UnrecognizedAction';
 import TimeDiff from './TimeDiff.jsx';
+import Settings from './Settings.jsx';
 
 const NOP_HANDLER = () => [ null, '' ];
 
@@ -36,16 +35,16 @@ function calculateDiffTime(action, previousAction) {
   return action.time - previousAction.time;
 };
 
-class PageLog extends React.Component {
+class Dashboard extends React.Component {
   constructor(props) {
     super(props);
 
     this._renderAction = this._renderAction.bind(this);
     this.state = {
-      filterByType: null,
-      filter: null,
+      filterByTypes: null,
       source: null,
-      snapshotIndex: null
+      snapshotIndex: null,
+      settingsVisibility: false
     };
   }
   componentDidUpdate() {
@@ -67,31 +66,8 @@ class PageLog extends React.Component {
   _setSnapshotIndex(index) {
     this.setState({ snapshotIndex: index === this.props.actions.length - 1 ? null : index });
   }
-  _onFilterTypeChanged(filter) {
-    this.setState({ filterByType: filter === 'all' ? null : filter });
-  }
-  _onFilterChange(filter) {
-    this.setState({ filter: filter === '' ? null : filter });
-  }
   _onSourceChange(source) {
     this.setState({ source });
-  }
-  _renderFilterSelector() {
-    const options = this.props.actions.reduce((result, action) => {
-      if (result.find(o => o === action.type || o === action.label)) return result;
-      if (handlers[action.type] && handlers[action.type] !== NOP_HANDLER) {
-        result.push(action.type);
-      } else if (action.label) {
-        result.push(action.label);
-      }
-      return result;
-    }, ['all']);
-
-    return (
-      <select onChange={ e => this._onFilterTypeChanged(e.target.value) } className='left' key='filter1'>
-        { options.map((type, i) => <option value={ type } key={ i }>{ type }</option>) }
-      </select>
-    );
   }
   _renderFilter() {
     return (
@@ -117,20 +93,11 @@ class PageLog extends React.Component {
     );
   }
   _renderAction(action, i) {
-    const { filterByType, filter, source } = this.state;
-    var filteredOut = false, actionRepresentation;
+    const { filterByTypes, source } = this.state;
+    var visible = false, actionRepresentation;
 
     // filter by source
     if (action.uid !== source) return null;
-    // filter by type
-    if (filterByType !== null) {
-      if (action.type && action.type !== filterByType) {
-        filteredOut = true;
-      }
-      if (action.label && action.label !== filterByType) {
-        filteredOut = true;
-      }
-    }
 
     // no render method to handle it
     if (!handlers[action.type]) {
@@ -138,19 +105,24 @@ class PageLog extends React.Component {
     } else {
       actionRepresentation = handlers[action.type](action);
     }
-
     if (actionRepresentation[0] === null) return null;
 
-    // filter by text
-    if (filter !== null && !actionRepresentation[1].toLowerCase().match(new RegExp(filter, 'ig'))) {
-      filteredOut = true;
+    // filter by type
+    if (filterByTypes !== null) {
+      if (action.type && filterByTypes.indexOf(action.type) >= 0) {
+        visible = true;
+      } else if (action.label && filterByTypes.indexOf(action.label) >= 0) {
+        visible = true;
+      }
+    } else {
+      visible = true;
     }
 
     const timeDiff = calculateDiffTime(action, this.props.actions[i - 1]);
     const className =
       (action.type ? action.type : '') +
       ' actionRow relative' +
-      (filteredOut ? ' filteredOut' : '') +
+      (!visible ? ' filteredOut' : '') +
       (action.withMarker ? ' withMarker' : '');
     const style = action.color ? { backgroundColor: action.color } : {};
 
@@ -180,41 +152,49 @@ class PageLog extends React.Component {
     const { clear, marker, navViewState, navViewEvent, navViewAnalysis, navState, actions } = this.props;
 
     return (
-      <div className='pageLog'>
+      <div className='dashboard'>
         <div className='logLeft'>
           <div className='logNav'>
-            { this.props.actions.length > 0 ? [
+            { actions.length > 0 ? [
               <a onClick={ () => clear() } key='clear' className='right mr1 try2'>
                 <i className='fa fa-ban'></i>
               </a>,
-              actions.length > 0 && (
-                <a onClick={ () => marker(this.state.snapshotIndex) } key='marker' className='right mr1 try2'>
-                  <i className='fa fa-bookmark'></i>
-                </a>
-              ),
-              this._renderSourceSelector(),
-              this._renderFilterSelector(),
-              this._renderFilter()
-            ] : null }
+              <a onClick={ () => this.setState({ settingsVisibility: true }) } key='s' className='right mr1 try2'>
+                <i className='fa fa-gear'></i>
+              </a>,
+              <a onClick={ () => marker(this.state.snapshotIndex) } key='marker' className='right mr1 try2'>
+                <i className='fa fa-bookmark'></i>
+              </a>,
+              this._renderSourceSelector()
+            ] : <p style={{ margin: '0.2em 0 0 0' }}>Waiting for events ...</p> }
           </div>
           <ul className='log' ref={ el => (this.log = el) }>
             { actions.map(this._renderAction) }
           </ul>
+          { this.state.settingsVisibility && (
+            <Settings
+              onClose={ () => this.setState({ settingsVisibility: false }) }
+              onChange={ types => this.setState({ filterByTypes: types }) }
+              actions={ actions }
+              types={ this.state.filterByTypes } />
+          ) }
         </div>
         <div className='logRight'>
-          <div className='logNav fullHeight'>
-            <a onClick={ navViewState } className={ navState === 'state' ? 'selected' : null }>
-              <i className='fa fa-heart-o mr05'></i>State</a>
-            <a onClick={ navViewEvent } className={ navState === 'event' ? 'selected' : null }>
-              <i className='fa fa-dot-circle-o mr05'></i>Event</a>
-            <a onClick={ navViewAnalysis } className={ navState === 'analysis' ? 'selected' : null }>
-              <i className='fa fa-bar-chart-o mr05'></i>Analysis</a>
-          </div>
-          <div className='logTree'>
-            { navState === 'state' ? this._renderState() : null }
-            { navState === 'event' ? renderActionAsTree(actions[this.snapshotIndex], actions) : null }
-            { navState === 'analysis' ? 'Work in progress ...' : null }
-          </div>
+          { actions.length > 0 ? [
+            <div className='logNav fullHeight' key='nav'>
+              <a onClick={ navViewState } className={ navState === 'state' ? 'selected' : null }>
+                <i className='fa fa-heart mr05'></i>State</a>
+              <a onClick={ navViewEvent } className={ navState === 'event' ? 'selected' : null }>
+                <i className='fa fa-dot-circle-o mr05'></i>Event</a>
+              <a onClick={ navViewAnalysis } className={ navState === 'analysis' ? 'selected' : null }>
+                <i className='fa fa-bar-chart-o mr05'></i>Analysis</a>
+            </div>,
+            <div className='logTree' key='content'>
+              { navState === 'state' ? this._renderState() : null }
+              { navState === 'event' ? renderActionAsTree(actions[this.snapshotIndex], actions) : null }
+              { navState === 'analysis' ? 'Work in progress ...' : null }
+            </div>
+          ] : null }
         </div>
       </div>
     );
@@ -222,7 +202,7 @@ class PageLog extends React.Component {
 };
 
 export default connect(
-  connect(PageLog)
+  connect(Dashboard)
     .with('DevTools')
     .map(({ flushActions, addMarker }) => ({
       clear: () => flushActions(),

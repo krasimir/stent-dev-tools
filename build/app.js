@@ -40796,9 +40796,9 @@ var _constants = require('../constants');
 
 var _react3 = require('stent/lib/react');
 
-var _PageLog = require('./PageLog.jsx');
+var _Dashboard = require('./Dashboard.jsx');
 
-var _PageLog2 = _interopRequireDefault(_PageLog);
+var _Dashboard2 = _interopRequireDefault(_Dashboard);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -40806,7 +40806,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } /* eslint-disable no-unused-vars */
 
 var App = function (_React$Component) {
   _inherits(App, _React$Component);
@@ -40826,8 +40826,8 @@ var App = function (_React$Component) {
 
 
       switch (page) {
-        case _constants.PAGES.LOG:
-          return _react2.default.createElement(_PageLog2.default, { actions: actions });
+        case _constants.PAGES.DASHBOARD:
+          return _react2.default.createElement(_Dashboard2.default, { actions: actions });
       }
       return _react2.default.createElement(
         'p',
@@ -40838,9 +40838,6 @@ var App = function (_React$Component) {
   }, {
     key: 'render',
     value: function render() {
-      var page = this.props.page;
-
-
       return _react2.default.createElement(
         'div',
         null,
@@ -40859,7 +40856,7 @@ exports.default = (0, _react3.connect)(App).with('DevTools').map(function (_ref)
   return { page: state.page, actions: state.actions };
 });
 
-},{"../constants":391,"./PageLog.jsx":379,"react":357,"react-dom":184,"stent/lib/react":375}],379:[function(require,module,exports){
+},{"../constants":392,"./Dashboard.jsx":379,"react":357,"react-dom":184,"stent/lib/react":375}],379:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -40920,13 +40917,17 @@ var _TimeDiff = require('./TimeDiff.jsx');
 
 var _TimeDiff2 = _interopRequireDefault(_TimeDiff);
 
+var _Settings = require('./Settings.jsx');
+
+var _Settings2 = _interopRequireDefault(_Settings);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } /* eslint-disable no-unused-vars */
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 var NOP_HANDLER = function NOP_HANDLER() {
   return [null, ''];
@@ -40951,25 +40952,25 @@ function calculateDiffTime(action, previousAction) {
   return action.time - previousAction.time;
 };
 
-var PageLog = function (_React$Component) {
-  _inherits(PageLog, _React$Component);
+var Dashboard = function (_React$Component) {
+  _inherits(Dashboard, _React$Component);
 
-  function PageLog(props) {
-    _classCallCheck(this, PageLog);
+  function Dashboard(props) {
+    _classCallCheck(this, Dashboard);
 
-    var _this = _possibleConstructorReturn(this, (PageLog.__proto__ || Object.getPrototypeOf(PageLog)).call(this, props));
+    var _this = _possibleConstructorReturn(this, (Dashboard.__proto__ || Object.getPrototypeOf(Dashboard)).call(this, props));
 
     _this._renderAction = _this._renderAction.bind(_this);
     _this.state = {
-      filterByType: null,
-      filter: null,
+      filterByTypes: null,
       source: null,
-      snapshotIndex: null
+      snapshotIndex: null,
+      settingsVisibility: false
     };
     return _this;
   }
 
-  _createClass(PageLog, [{
+  _createClass(Dashboard, [{
     key: 'componentDidUpdate',
     value: function componentDidUpdate() {
       if (this.state.snapshotIndex === null) {
@@ -40989,55 +40990,14 @@ var PageLog = function (_React$Component) {
       this.setState({ snapshotIndex: index === this.props.actions.length - 1 ? null : index });
     }
   }, {
-    key: '_onFilterTypeChanged',
-    value: function _onFilterTypeChanged(filter) {
-      this.setState({ filterByType: filter === 'all' ? null : filter });
-    }
-  }, {
-    key: '_onFilterChange',
-    value: function _onFilterChange(filter) {
-      this.setState({ filter: filter === '' ? null : filter });
-    }
-  }, {
     key: '_onSourceChange',
     value: function _onSourceChange(source) {
       this.setState({ source: source });
     }
   }, {
-    key: '_renderFilterSelector',
-    value: function _renderFilterSelector() {
-      var _this2 = this;
-
-      var options = this.props.actions.reduce(function (result, action) {
-        if (result.find(function (o) {
-          return o === action.type || o === action.label;
-        })) return result;
-        if (handlers[action.type] && handlers[action.type] !== NOP_HANDLER) {
-          result.push(action.type);
-        } else if (action.label) {
-          result.push(action.label);
-        }
-        return result;
-      }, ['all']);
-
-      return _react2.default.createElement(
-        'select',
-        { onChange: function onChange(e) {
-            return _this2._onFilterTypeChanged(e.target.value);
-          }, className: 'left', key: 'filter1' },
-        options.map(function (type, i) {
-          return _react2.default.createElement(
-            'option',
-            { value: type, key: i },
-            type
-          );
-        })
-      );
-    }
-  }, {
     key: '_renderFilter',
     value: function _renderFilter() {
-      var _this3 = this;
+      var _this2 = this;
 
       return _react2.default.createElement('input', {
         style: { width: '50px' },
@@ -41046,13 +41006,13 @@ var PageLog = function (_React$Component) {
         placeholder: 'filter',
         key: 'filter2',
         onChange: function onChange(event) {
-          return _this3._onFilterChange(event.target.value);
+          return _this2._onFilterChange(event.target.value);
         } });
     }
   }, {
     key: '_renderSourceSelector',
     value: function _renderSourceSelector() {
-      var _this4 = this;
+      var _this3 = this;
 
       var options = this.props.actions.reduce(function (result, action) {
         if (!result.find(function (o) {
@@ -41064,7 +41024,7 @@ var PageLog = function (_React$Component) {
       return _react2.default.createElement(
         'select',
         { onChange: function onChange(e) {
-            return _this4._onSourceChange(e.target.value);
+            return _this3._onSourceChange(e.target.value);
           }, className: 'left mr1', key: 'filter3' },
         options.map(function (uid, i) {
           return _react2.default.createElement(
@@ -41078,27 +41038,17 @@ var PageLog = function (_React$Component) {
   }, {
     key: '_renderAction',
     value: function _renderAction(action, i) {
-      var _this5 = this;
+      var _this4 = this;
 
       var _state = this.state,
-          filterByType = _state.filterByType,
-          filter = _state.filter,
+          filterByTypes = _state.filterByTypes,
           source = _state.source;
 
-      var filteredOut = false,
+      var visible = false,
           actionRepresentation;
 
       // filter by source
       if (action.uid !== source) return null;
-      // filter by type
-      if (filterByType !== null) {
-        if (action.type && action.type !== filterByType) {
-          filteredOut = true;
-        }
-        if (action.label && action.label !== filterByType) {
-          filteredOut = true;
-        }
-      }
 
       // no render method to handle it
       if (!handlers[action.type]) {
@@ -41106,16 +41056,21 @@ var PageLog = function (_React$Component) {
       } else {
         actionRepresentation = handlers[action.type](action);
       }
-
       if (actionRepresentation[0] === null) return null;
 
-      // filter by text
-      if (filter !== null && !actionRepresentation[1].toLowerCase().match(new RegExp(filter, 'ig'))) {
-        filteredOut = true;
+      // filter by type
+      if (filterByTypes !== null) {
+        if (action.type && filterByTypes.indexOf(action.type) >= 0) {
+          visible = true;
+        } else if (action.label && filterByTypes.indexOf(action.label) >= 0) {
+          visible = true;
+        }
+      } else {
+        visible = true;
       }
 
       var timeDiff = calculateDiffTime(action, this.props.actions[i - 1]);
-      var className = (action.type ? action.type : '') + ' actionRow relative' + (filteredOut ? ' filteredOut' : '') + (action.withMarker ? ' withMarker' : '');
+      var className = (action.type ? action.type : '') + ' actionRow relative' + (!visible ? ' filteredOut' : '') + (action.withMarker ? ' withMarker' : '');
       var style = action.color ? { backgroundColor: action.color } : {};
 
       return _react2.default.createElement(
@@ -41124,7 +41079,7 @@ var PageLog = function (_React$Component) {
           key: action.index,
           className: className,
           onClick: function onClick() {
-            return _this5._setSnapshotIndex(action.index);
+            return _this4._setSnapshotIndex(action.index);
           },
           style: style },
         timeDiff > 0 && _react2.default.createElement(_TimeDiff2.default, { diff: timeDiff }),
@@ -41148,7 +41103,7 @@ var PageLog = function (_React$Component) {
   }, {
     key: 'render',
     value: function render() {
-      var _this6 = this;
+      var _this5 = this;
 
       var _props = this.props,
           clear = _props.clear,
@@ -41162,45 +41117,64 @@ var PageLog = function (_React$Component) {
 
       return _react2.default.createElement(
         'div',
-        { className: 'pageLog' },
+        { className: 'dashboard' },
         _react2.default.createElement(
           'div',
           { className: 'logLeft' },
           _react2.default.createElement(
             'div',
             { className: 'logNav' },
-            this.props.actions.length > 0 ? [_react2.default.createElement(
+            actions.length > 0 ? [_react2.default.createElement(
               'a',
               { onClick: function onClick() {
                   return clear();
                 }, key: 'clear', className: 'right mr1 try2' },
               _react2.default.createElement('i', { className: 'fa fa-ban' })
-            ), actions.length > 0 && _react2.default.createElement(
+            ), _react2.default.createElement(
               'a',
               { onClick: function onClick() {
-                  return marker(_this6.state.snapshotIndex);
+                  return _this5.setState({ settingsVisibility: true });
+                }, key: 's', className: 'right mr1 try2' },
+              _react2.default.createElement('i', { className: 'fa fa-gear' })
+            ), _react2.default.createElement(
+              'a',
+              { onClick: function onClick() {
+                  return marker(_this5.state.snapshotIndex);
                 }, key: 'marker', className: 'right mr1 try2' },
               _react2.default.createElement('i', { className: 'fa fa-bookmark' })
-            ), this._renderSourceSelector(), this._renderFilterSelector(), this._renderFilter()] : null
+            ), this._renderSourceSelector()] : _react2.default.createElement(
+              'p',
+              { style: { margin: '0.2em 0 0 0' } },
+              'Waiting for events ...'
+            )
           ),
           _react2.default.createElement(
             'ul',
             { className: 'log', ref: function ref(el) {
-                return _this6.log = el;
+                return _this5.log = el;
               } },
             actions.map(this._renderAction)
-          )
+          ),
+          this.state.settingsVisibility && _react2.default.createElement(_Settings2.default, {
+            onClose: function onClose() {
+              return _this5.setState({ settingsVisibility: false });
+            },
+            onChange: function onChange(types) {
+              return _this5.setState({ filterByTypes: types });
+            },
+            actions: actions,
+            types: this.state.filterByTypes })
         ),
         _react2.default.createElement(
           'div',
           { className: 'logRight' },
-          _react2.default.createElement(
+          actions.length > 0 ? [_react2.default.createElement(
             'div',
-            { className: 'logNav fullHeight' },
+            { className: 'logNav fullHeight', key: 'nav' },
             _react2.default.createElement(
               'a',
               { onClick: navViewState, className: navState === 'state' ? 'selected' : null },
-              _react2.default.createElement('i', { className: 'fa fa-heart-o mr05' }),
+              _react2.default.createElement('i', { className: 'fa fa-heart mr05' }),
               'State'
             ),
             _react2.default.createElement(
@@ -41215,14 +41189,13 @@ var PageLog = function (_React$Component) {
               _react2.default.createElement('i', { className: 'fa fa-bar-chart-o mr05' }),
               'Analysis'
             )
-          ),
-          _react2.default.createElement(
+          ), _react2.default.createElement(
             'div',
-            { className: 'logTree' },
+            { className: 'logTree', key: 'content' },
             navState === 'state' ? this._renderState() : null,
             navState === 'event' ? (0, _renderAsTree.renderActionAsTree)(actions[this.snapshotIndex], actions) : null,
             navState === 'analysis' ? 'Work in progress ...' : null
-          )
+          )] : null
         )
       );
     }
@@ -41237,12 +41210,12 @@ var PageLog = function (_React$Component) {
     }
   }]);
 
-  return PageLog;
+  return Dashboard;
 }(_react2.default.Component);
 
 ;
 
-exports.default = (0, _react3.connect)((0, _react3.connect)(PageLog).with('DevTools').map(function (_ref) {
+exports.default = (0, _react3.connect)((0, _react3.connect)(Dashboard).with('DevTools').map(function (_ref) {
   var flushActions = _ref.flushActions,
       addMarker = _ref.addMarker;
   return {
@@ -41262,7 +41235,121 @@ exports.default = (0, _react3.connect)((0, _react3.connect)(PageLog).with('DevTo
   };
 });
 
-},{"../helpers/renderAsTree":395,"./TimeDiff.jsx":380,"./handlers/UnrecognizedAction":381,"./handlers/onActionDispatched":382,"./handlers/onActionProcessed":383,"./handlers/onGeneratorEnd":384,"./handlers/onGeneratorResumed":385,"./handlers/onGeneratorStep":386,"./handlers/onMachineConnected":387,"./handlers/onMachineCreated":388,"./handlers/onMachineDisconnected":389,"./handlers/onStateChanged":390,"react":357,"stent/lib/react":375}],380:[function(require,module,exports){
+},{"../helpers/renderAsTree":396,"./Settings.jsx":380,"./TimeDiff.jsx":381,"./handlers/UnrecognizedAction":382,"./handlers/onActionDispatched":383,"./handlers/onActionProcessed":384,"./handlers/onGeneratorEnd":385,"./handlers/onGeneratorResumed":386,"./handlers/onGeneratorStep":387,"./handlers/onMachineConnected":388,"./handlers/onMachineCreated":389,"./handlers/onMachineDisconnected":390,"./handlers/onStateChanged":391,"react":357,"stent/lib/react":375}],380:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var Settings = function (_React$Component) {
+  _inherits(Settings, _React$Component);
+
+  function Settings(props) {
+    _classCallCheck(this, Settings);
+
+    var _this = _possibleConstructorReturn(this, (Settings.__proto__ || Object.getPrototypeOf(Settings)).call(this, props));
+
+    var types = _this._extractTypes();
+
+    if (props.types !== null) {
+      Object.keys(types).forEach(function (type) {
+        types[type] = props.types.indexOf(type) >= 0;
+      });
+    }
+
+    _this.state = { types: types };
+    return _this;
+  }
+
+  _createClass(Settings, [{
+    key: '_extractTypes',
+    value: function _extractTypes() {
+      return this.props.actions.reduce(function (result, action) {
+        if (typeof action.type !== 'undefined') {
+          result[action.type] = true;
+        } else if (typeof action.label !== 'undefined') {
+          result[action.label] = true;
+        }
+        return result;
+      }, {});
+    }
+  }, {
+    key: '_onChange',
+    value: function _onChange(type) {
+      var types = this.state.types;
+
+
+      types[type] = !types[type];
+      this.setState({ types: types });
+      this.props.onChange(Object.keys(types).filter(function (type) {
+        return types[type];
+      }));
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      var _this2 = this;
+
+      var onClose = this.props.onClose;
+      var types = this.state.types;
+
+
+      return _react2.default.createElement(
+        'div',
+        { className: 'settings' },
+        _react2.default.createElement(
+          'a',
+          { className: 'close', onClick: onClose },
+          _react2.default.createElement('i', { className: 'fa fa-times' })
+        ),
+        _react2.default.createElement(
+          'p',
+          null,
+          _react2.default.createElement(
+            'strong',
+            null,
+            'Events:'
+          )
+        ),
+        _react2.default.createElement(
+          'div',
+          null,
+          Object.keys(types).map(function (type, i) {
+            return _react2.default.createElement(
+              'label',
+              { key: i, className: 'block mb05' },
+              _react2.default.createElement('input', { type: 'checkbox', checked: types[type], onChange: function onChange(event) {
+                  return _this2._onChange(type);
+                } }),
+              type
+            );
+          })
+        )
+      );
+    }
+  }]);
+
+  return Settings;
+}(_react2.default.Component);
+
+exports.default = Settings;
+
+},{"react":357}],381:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -41280,8 +41367,6 @@ var _formatMilliseconds2 = _interopRequireDefault(_formatMilliseconds);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-/* eslint-disable no-unused-vars */
-
 function TimeDiff(_ref) {
   var diff = _ref.diff;
 
@@ -41294,7 +41379,7 @@ function TimeDiff(_ref) {
   );
 }
 
-},{"../helpers/formatMilliseconds":392,"react":357}],381:[function(require,module,exports){
+},{"../helpers/formatMilliseconds":393,"react":357}],382:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -41324,7 +41409,7 @@ function UnrecognizedAction(action) {
 } /* eslint-disable no-unused-vars */
 ;
 
-},{"react":357}],382:[function(require,module,exports){
+},{"react":357}],383:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -41342,13 +41427,12 @@ var _getMachineName2 = _interopRequireDefault(_getMachineName);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-/* eslint-disable no-unused-vars */
 function onActionDispatched(_ref) {
   var actionName = _ref.actionName,
       machine = _ref.machine,
       args = _ref.args;
 
-  return [_react2.default.createElement(
+  return _react2.default.createElement(
     'div',
     null,
     _react2.default.createElement('i', { className: 'fa fa-share' }),
@@ -41363,10 +41447,10 @@ function onActionDispatched(_ref) {
       null,
       (0, _getMachineName2.default)(machine)
     )
-  ), actionName + ' ' + (0, _getMachineName2.default)(machine)];
+  );
 }
 
-},{"../../helpers/getMachineName":393,"react":357}],383:[function(require,module,exports){
+},{"../../helpers/getMachineName":394,"react":357}],384:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -41384,13 +41468,12 @@ var _getMachineName2 = _interopRequireDefault(_getMachineName);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-/* eslint-disable no-unused-vars */
 function onActionProcessed(_ref) {
   var actionName = _ref.actionName,
       machine = _ref.machine,
       args = _ref.args;
 
-  return [_react2.default.createElement(
+  return _react2.default.createElement(
     'div',
     null,
     _react2.default.createElement('i', { className: 'fa fa-thumbs-o-up' }),
@@ -41405,10 +41488,10 @@ function onActionProcessed(_ref) {
       null,
       (0, _getMachineName2.default)(machine)
     )
-  ), actionName + '  successfully processed (sent to ' + (0, _getMachineName2.default)(machine) + ')'];
+  );
 }
 
-},{"../../helpers/getMachineName":393,"react":357}],384:[function(require,module,exports){
+},{"../../helpers/getMachineName":394,"react":357}],385:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -41435,7 +41518,7 @@ function onGeneratorEnd(_ref) {
 
   var short = value ? 'with ' + (0, _shortenJSON2.default)(value) : '';
 
-  return [_react2.default.createElement(
+  return _react2.default.createElement(
     'div',
     null,
     _react2.default.createElement('i', { className: 'fa fa-check-circle-o' }),
@@ -41447,10 +41530,10 @@ function onGeneratorEnd(_ref) {
     ),
     ' ',
     short
-  ), 'generator completed with ' + short];
-} /* eslint-disable no-unused-vars */
+  );
+}
 
-},{"../../helpers/getMachineName":393,"../../helpers/shortenJSON":398,"react":357}],385:[function(require,module,exports){
+},{"../../helpers/getMachineName":394,"../../helpers/shortenJSON":399,"react":357}],386:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -41477,7 +41560,7 @@ function onGeneratorResumed(_ref) {
 
   var short = value ? 'with ' + (0, _shortenJSON2.default)(value) : '';
 
-  return [_react2.default.createElement(
+  return _react2.default.createElement(
     'div',
     null,
     _react2.default.createElement('i', { className: 'fa fa-arrow-circle-right' }),
@@ -41489,18 +41572,17 @@ function onGeneratorResumed(_ref) {
     ),
     ' ',
     short
-  ), 'generator resumed with ' + short];
-} /* eslint-disable no-unused-vars */
+  );
+}
 
-},{"../../helpers/getMachineName":393,"../../helpers/shortenJSON":398,"react":357}],386:[function(require,module,exports){
+},{"../../helpers/getMachineName":394,"../../helpers/shortenJSON":399,"react":357}],387:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; /* eslint-disable no-unused-vars */
-
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
 exports.default = onGeneratorStep;
 
@@ -41522,7 +41604,6 @@ function onGeneratorStep(_ref) {
   var yielded = _ref.yielded;
 
   var message = '';
-  var messageNoTags = '';
 
   if (typeof yielded === 'string') {
     message = _react2.default.createElement(
@@ -41537,7 +41618,6 @@ function onGeneratorStep(_ref) {
         ' }'
       )
     );
-    messageNoTags = 'generator yielded ' + yielded;
   } else if ((typeof yielded === 'undefined' ? 'undefined' : _typeof(yielded)) === 'object') {
     if (yielded.__type === 'call') {
       var argsText = yielded.args.length === 0 ? 'with no arguments' : 'with ' + (0, _shortenJSON2.default)(yielded.args);
@@ -41554,7 +41634,6 @@ function onGeneratorStep(_ref) {
         ' ',
         argsText
       );
-      messageNoTags = 'calling ' + yielded.func;
     } else if (yielded.name) {
       message = _react2.default.createElement(
         'span',
@@ -41571,15 +41650,15 @@ function onGeneratorStep(_ref) {
       messageNoTags = 'generator yielded ' + yielded.name;
     }
   }
-  return [_react2.default.createElement(
+  return _react2.default.createElement(
     'div',
     null,
     _react2.default.createElement('i', { className: 'fa fa-arrow-circle-left' }),
     message
-  ), messageNoTags];
-}
+  );
+};
 
-},{"../../helpers/getMachineName":393,"../../helpers/shortenJSON":398,"react":357}],387:[function(require,module,exports){
+},{"../../helpers/getMachineName":394,"../../helpers/shortenJSON":399,"react":357}],388:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -41623,7 +41702,7 @@ function onMachineConnected(_ref) {
   ), (meta.component ? meta.component : '') + ' connected to ' + machinesConnectedTo];
 }
 
-},{"../../helpers/getMachineName":393,"react":357}],388:[function(require,module,exports){
+},{"../../helpers/getMachineName":394,"react":357}],389:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -41658,7 +41737,7 @@ function onMachineCreated(_ref) {
   ), (0, _getMachineName2.default)(machine) + ' machine created'];
 };
 
-},{"../../helpers/getMachineName":393,"react":357}],389:[function(require,module,exports){
+},{"../../helpers/getMachineName":394,"react":357}],390:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -41702,7 +41781,7 @@ function onMachineDisconnected(_ref) {
   ), (meta.component ? meta.component : '') + ' disconnected from ' + machinesConnectedTo];
 }
 
-},{"../../helpers/getMachineName":393,"react":357}],390:[function(require,module,exports){
+},{"../../helpers/getMachineName":394,"react":357}],391:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -41742,7 +41821,7 @@ function onStateChanged(_ref) {
   ), (0, _getMachineName2.default)(machine) + '\'s state changed to ' + machine.state.name];
 }
 
-},{"../../helpers/getMachineName":393,"react":357}],391:[function(require,module,exports){
+},{"../../helpers/getMachineName":394,"react":357}],392:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -41750,11 +41829,10 @@ Object.defineProperty(exports, "__esModule", {
 });
 var DEVTOOLS_KEY = exports.DEVTOOLS_KEY = '__hello__stent__';
 var PAGES = exports.PAGES = {
-  LOG: 'LOG',
-  MACHINES: 'MACHINES'
+  DASHBOARD: 'LOG'
 };
 
-},{}],392:[function(require,module,exports){
+},{}],393:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -41788,7 +41866,7 @@ function formatMilliseconds(millisec) {
   return minutes + ":" + seconds + ':' + ms;
 }
 
-},{}],393:[function(require,module,exports){
+},{}],394:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -41804,7 +41882,7 @@ function getMachineName(_ref) {
   return name;
 };
 
-},{}],394:[function(require,module,exports){
+},{}],395:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -41815,7 +41893,7 @@ function normalizeAction(action) {
   return action;
 };
 
-},{}],395:[function(require,module,exports){
+},{}],396:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -41889,7 +41967,7 @@ function renderActionAsTree() {
   }, rest), 'Event');
 };
 
-},{"./formatMilliseconds":392,"./getMachineName":393,"./renderJSON":396}],396:[function(require,module,exports){
+},{"./formatMilliseconds":393,"./getMachineName":394,"./renderJSON":397}],397:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -42001,7 +42079,7 @@ var renderJSON = function renderJSON(json) {
 
 exports.default = renderJSON;
 
-},{"./renderJSONPreview":397,"react":357,"react-json-tree":321}],397:[function(require,module,exports){
+},{"./renderJSONPreview":398,"react":357,"react-json-tree":321}],398:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -42054,7 +42132,7 @@ function renderJSONPreview(data) {
   return result.length > PREVIEW_STR_LIMIT ? result.substr(0, PREVIEW_STR_LIMIT) + '...' : result;
 };
 
-},{}],398:[function(require,module,exports){
+},{}],399:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -42070,7 +42148,7 @@ function shortenJSON(data) {
   return str.substr(0, STR_LIMIT) + '...';
 };
 
-},{}],399:[function(require,module,exports){
+},{}],400:[function(require,module,exports){
 'use strict';
 
 var _react = require('react');
@@ -42105,7 +42183,7 @@ _bridge2.default.on(function (action) {
 
 _reactDom2.default.render(_react2.default.createElement(_App2.default, null), document.querySelector('#container'));
 
-},{"./components/App.jsx":378,"./services/bridge":400,"./stent/machines":401,"react":357,"react-dom":184,"stent":373,"stent/lib/react":375}],400:[function(require,module,exports){
+},{"./components/App.jsx":378,"./services/bridge":401,"./stent/machines":402,"react":357,"react-dom":184,"stent":373,"stent/lib/react":375}],401:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -42135,7 +42213,7 @@ wire();
 
 exports.default = bridge;
 
-},{}],401:[function(require,module,exports){
+},{}],402:[function(require,module,exports){
 'use strict';
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
@@ -42160,7 +42238,7 @@ function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in ob
 
 var initialState = {
   name: 'working',
-  page: _constants.PAGES.LOG,
+  page: _constants.PAGES.DASHBOARD,
   actions: []
 };
 
@@ -42181,7 +42259,7 @@ var machine = _stent.Machine.create('DevTools', {
         return _extends({}, rest, { actions: actions });
       },
       'flush actions': function flushActions() {
-        return { actions: [], name: 'working', page: _constants.PAGES.LOG };
+        return { actions: [], name: 'working', page: _constants.PAGES.DASHBOARD };
       },
       'add marker': function addMarker(_ref2, index) {
         var actions = _ref2.actions,
@@ -42244,4 +42322,4 @@ if (typeof window !== 'undefined' && window.location && window.location.href) {
   };
 }
 
-},{"../_mocks/example.redux.json":376,"../_mocks/example.state.json":377,"../constants":391,"../helpers/normalize":394,"stent":373}]},{},[399]);
+},{"../_mocks/example.redux.json":376,"../_mocks/example.state.json":377,"../constants":392,"../helpers/normalize":395,"stent":373}]},{},[400]);

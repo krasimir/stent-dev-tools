@@ -1,21 +1,21 @@
+/* eslint-disable no-unused-vars */
+
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { PAGES } from '../constants';
 import { connect } from 'stent/lib/react';
-import PageLog from './PageLog.jsx';
+import Dashboard from './Dashboard.jsx';
 
 class App extends React.Component {
   _renderPage() {
     const { actions, page } = this.props;
 
-    switch(page) {
-      case PAGES.LOG: return <PageLog actions={ actions } />
+    switch (page) {
+      case PAGES.DASHBOARD: return <Dashboard actions={ actions } />;
     }
     return <p>...</p>;
   }
   render() {
-    const { page } = this.props;
-
     return (
       <div>
         { this._renderPage() }
@@ -27,5 +27,3 @@ class App extends React.Component {
 export default connect(App)
   .with('DevTools')
   .map(({ state }) => ({ page: state.page, actions: state.actions }));
-
-
