@@ -28170,9 +28170,6 @@ var ERROR_UNCOVERED_STATE = exports.ERROR_UNCOVERED_STATE = function ERROR_UNCOV
   return 'You just transitioned the machine to a state (' + state + ') which is not defined or it has no actions. This means that the machine is stuck.';
 };
 var ERROR_NOT_SUPPORTED_HANDLER_TYPE = exports.ERROR_NOT_SUPPORTED_HANDLER_TYPE = 'Wrong handler type passed. Please read the docs https://github.com/krasimir/stent';
-var ERROR_RESERVED_WORD_USED_AS_ACTION = exports.ERROR_RESERVED_WORD_USED_AS_ACTION = function ERROR_RESERVED_WORD_USED_AS_ACTION(word) {
-  return 'Sorry, you can\'t use ' + word + ' as a name for an action. It is reserved.';
-};
 
 // middlewares
 var MIDDLEWARE_PROCESS_ACTION = exports.MIDDLEWARE_PROCESS_ACTION = 'onActionDispatched';
@@ -28180,14 +28177,9 @@ var MIDDLEWARE_ACTION_PROCESSED = exports.MIDDLEWARE_ACTION_PROCESSED = 'onActio
 var MIDDLEWARE_STATE_WILL_CHANGE = exports.MIDDLEWARE_STATE_WILL_CHANGE = 'onStateWillChange';
 var MIDDLEWARE_PROCESS_STATE_CHANGE = exports.MIDDLEWARE_PROCESS_STATE_CHANGE = 'onStateChanged';
 var MIDDLEWARE_GENERATOR_STEP = exports.MIDDLEWARE_GENERATOR_STEP = 'onGeneratorStep';
-var MIDDLEWARE_GENERATOR_END = exports.MIDDLEWARE_GENERATOR_END = 'onGeneratorEnd';
-var MIDDLEWARE_GENERATOR_RESUMED = exports.MIDDLEWARE_GENERATOR_RESUMED = 'onGeneratorResumed';
-var MIDDLEWARE_MACHINE_CREATED = exports.MIDDLEWARE_MACHINE_CREATED = 'onMachineCreated';
-var MIDDLEWARE_MACHINE_CONNECTED = exports.MIDDLEWARE_MACHINE_CONNECTED = 'onMachineConnected';
-var MIDDLEWARE_MACHINE_DISCONNECTED = exports.MIDDLEWARE_MACHINE_DISCONNECTED = 'onMachineDisconnected';
-var MIDDLEWARE_REGISTERED = exports.MIDDLEWARE_REGISTERED = 'onMiddlewareRegister';
 
 // misc
+
 var DEVTOOLS_KEY = exports.DEVTOOLS_KEY = '__hello__stent__';
 },{}],359:[function(require,module,exports){
 'use strict';
@@ -28218,7 +28210,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var IDX = 0;
 var getMachineID = function getMachineID() {
-  return '_@@@' + ++IDX;
+  return '_' + ++IDX;
 };
 
 function createMachine(name, config) {
@@ -28266,24 +28258,14 @@ function createMachine(name, config) {
   return machine;
 }
 module.exports = exports['default'];
-},{"./helpers/handleAction":362,"./helpers/handleActionLatest":363,"./helpers/registerMethods":367,"./helpers/validateConfig":371}],360:[function(require,module,exports){
+},{"./helpers/handleAction":361,"./helpers/handleActionLatest":362,"./helpers/registerMethods":366,"./helpers/validateConfig":369}],360:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
 exports.flush = flush;
-exports.getMapping = getMapping;
-exports.destroy = destroy;
 exports.default = connect;
 
 var _ = require('../');
-
-var _handleMiddleware = require('./handleMiddleware');
-
-var _handleMiddleware2 = _interopRequireDefault(_handleMiddleware);
-
-var _constants = require('../constants');
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var idIndex = 0;
 var mappings = null;
@@ -28316,27 +28298,7 @@ function flush() {
   mappings = null;
 }
 
-function getMapping() {
-  return mappings;
-}
-
-function destroy(machineId) {
-  for (var mId in mappings) {
-    mappings[mId].machines = mappings[mId].machines.filter(function (_ref) {
-      var name = _ref.name;
-      return name !== machineId;
-    });
-    (0, _handleMiddleware2.default)(_constants.MIDDLEWARE_MACHINE_DISCONNECTED, null, mappings[mId].machines);
-    if (mappings[mId].machines.length === 0) {
-      delete mappings[mId];
-    }
-  }
-}
-
 function connect() {
-  var _ref2 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
-      meta = _ref2.meta;
-
   setup();
   var withFunc = function withFunc() {
     for (var _len = arguments.length, names = Array(_len), _key = 0; _key < _len; _key++) {
@@ -28353,12 +28315,10 @@ function connect() {
       !silent && done && done.apply(undefined, machines);
 
       return function disconnect() {
-        (0, _handleMiddleware2.default)(_constants.MIDDLEWARE_MACHINE_DISCONNECTED, null, machines, meta);
         if (mappings && mappings[id]) delete mappings[id];
       };
     };
 
-    (0, _handleMiddleware2.default)(_constants.MIDDLEWARE_MACHINE_CONNECTED, null, machines, meta);
     return {
       'map': mapFunc,
       'mapOnce': function mapOnce(done) {
@@ -28372,20 +28332,7 @@ function connect() {
 
   return { 'with': withFunc };
 }
-},{"../":373,"../constants":358,"./handleMiddleware":365}],361:[function(require,module,exports){
-'use strict';
-
-exports.__esModule = true;
-exports.default = call;
-function call(func) {
-  for (var _len = arguments.length, args = Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
-    args[_key - 1] = arguments[_key];
-  }
-
-  return { __type: 'call', func: func, args: args };
-};
-module.exports = exports['default'];
-},{}],362:[function(require,module,exports){
+},{"../":371}],361:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
@@ -28413,10 +28360,6 @@ var _handleGenerator2 = _interopRequireDefault(_handleGenerator);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function handleAction(machine, action) {
-  for (var _len = arguments.length, payload = Array(_len > 2 ? _len - 2 : 0), _key = 2; _key < _len; _key++) {
-    payload[_key - 2] = arguments[_key];
-  }
-
   var state = machine.state,
       transitions = machine.transitions;
 
@@ -28426,6 +28369,10 @@ function handleAction(machine, action) {
   var handler = transitions[state.name][action];
 
   if (typeof handler === 'undefined') return false;
+
+  for (var _len = arguments.length, payload = Array(_len > 2 ? _len - 2 : 0), _key = 2; _key < _len; _key++) {
+    payload[_key - 2] = arguments[_key];
+  }
 
   _handleMiddleware2.default.apply(undefined, [_constants.MIDDLEWARE_PROCESS_ACTION, machine, action].concat(payload));
 
@@ -28447,7 +28394,6 @@ function handleAction(machine, action) {
 
       return (0, _handleGenerator2.default)(machine, generator, function (response) {
         (0, _updateState2.default)(machine, response);
-        _handleMiddleware2.default.apply(undefined, [_constants.MIDDLEWARE_ACTION_PROCESSED, machine, action].concat(payload));
       });
     } else {
       (0, _updateState2.default)(machine, response);
@@ -28461,7 +28407,7 @@ function handleAction(machine, action) {
   _handleMiddleware2.default.apply(undefined, [_constants.MIDDLEWARE_ACTION_PROCESSED, machine, action].concat(payload));
 };
 module.exports = exports['default'];
-},{"../constants":358,"./handleGenerator":364,"./handleMiddleware":365,"./updateState":370}],363:[function(require,module,exports){
+},{"../constants":358,"./handleGenerator":363,"./handleMiddleware":364,"./updateState":368}],362:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
@@ -28485,7 +28431,7 @@ function handleActionLatest(machine, action) {
   actions[action] = _handleAction2.default.apply(undefined, [machine, action].concat(payload));
 };
 module.exports = exports['default'];
-},{"./handleAction":362}],364:[function(require,module,exports){
+},{"./handleAction":361}],363:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
@@ -28522,9 +28468,9 @@ function handleGenerator(machine, generator, done, resultOfPreviousOperation) {
 
   var iterate = function iterate(result) {
     if (canceled) return;
+    (0, _handleMiddleware2.default)(_constants.MIDDLEWARE_GENERATOR_STEP, machine, result.value);
 
     if (!result.done) {
-      (0, _handleMiddleware2.default)(_constants.MIDDLEWARE_GENERATOR_STEP, machine, result.value);
 
       // yield call
       if (_typeof(result.value) === 'object' && result.value.__type === 'call') {
@@ -28537,33 +28483,27 @@ function handleGenerator(machine, generator, done, resultOfPreviousOperation) {
         // promise
         if (typeof funcResult.then !== 'undefined') {
           funcResult.then(function (result) {
-            (0, _handleMiddleware2.default)(_constants.MIDDLEWARE_GENERATOR_RESUMED, machine, result);
             return iterate(generatorNext(generator, result));
           }, function (error) {
-            (0, _handleMiddleware2.default)(_constants.MIDDLEWARE_GENERATOR_RESUMED, machine, error);
             return iterate(generatorThrow(generator, error));
           });
           // generator
         } else if (typeof funcResult.next === 'function') {
           cancelInsideGenerator = handleGenerator(machine, funcResult, function (generatorResult) {
-            (0, _handleMiddleware2.default)(_constants.MIDDLEWARE_GENERATOR_RESUMED, machine, generatorResult);
             iterate(generatorNext(generator, generatorResult));
           });
         } else {
-          (0, _handleMiddleware2.default)(_constants.MIDDLEWARE_GENERATOR_RESUMED, machine, funcResult);
           iterate(generatorNext(generator, funcResult));
         }
 
         // a return statement of the normal function
       } else {
         (0, _updateState2.default)(machine, result.value);
-        (0, _handleMiddleware2.default)(_constants.MIDDLEWARE_GENERATOR_RESUMED, machine);
         iterate(generatorNext(generator));
       }
 
       // the end of the generator (return statement)
     } else {
-      (0, _handleMiddleware2.default)(_constants.MIDDLEWARE_GENERATOR_END, machine, result.value);
       done(result.value);
     }
   };
@@ -28573,7 +28513,7 @@ function handleGenerator(machine, generator, done, resultOfPreviousOperation) {
   return cancelGenerator;
 }
 module.exports = exports['default'];
-},{"../constants":358,"./handleMiddleware":365,"./updateState":370}],365:[function(require,module,exports){
+},{"../constants":358,"./handleMiddleware":364,"./updateState":368}],364:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
@@ -28606,7 +28546,7 @@ function handleMiddleware(hook, machine) {
   })(0);
 }
 module.exports = exports['default'];
-},{"../":373}],366:[function(require,module,exports){
+},{"../":371}],365:[function(require,module,exports){
 "use strict";
 
 exports.__esModule = true;
@@ -28619,7 +28559,7 @@ function isEmptyObject(obj) {
   return true;
 }
 module.exports = exports['default'];
-},{}],367:[function(require,module,exports){
+},{}],366:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
@@ -28629,11 +28569,7 @@ var _toCamelCase = require('./toCamelCase');
 
 var _toCamelCase2 = _interopRequireDefault(_toCamelCase);
 
-var _constants = require('../constants');
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var reserved = ['name', 'transitions', 'state', 'destroy'];
 
 function registerMethods(machine, transitions, dispatch, dispatchLatest) {
   for (var state in transitions) {
@@ -28645,29 +28581,27 @@ function registerMethods(machine, transitions, dispatch, dispatchLatest) {
     })(state);
 
     for (var action in transitions[state]) {
-      var normalized = (0, _toCamelCase2.default)(action);
-      if (reserved.indexOf(normalized) >= 0) throw new Error((0, _constants.ERROR_RESERVED_WORD_USED_AS_ACTION)(normalized));
-      (function (n, a) {
-        machine[n] = function () {
+      (function (action) {
+        machine[(0, _toCamelCase2.default)(action)] = function () {
           for (var _len = arguments.length, payload = Array(_len), _key = 0; _key < _len; _key++) {
             payload[_key] = arguments[_key];
           }
 
-          return dispatch.apply(undefined, [a].concat(payload));
+          return dispatch.apply(undefined, [action].concat(payload));
         };
-        machine[n].latest = function () {
+        machine[(0, _toCamelCase2.default)(action)].latest = function () {
           for (var _len2 = arguments.length, payload = Array(_len2), _key2 = 0; _key2 < _len2; _key2++) {
             payload[_key2] = arguments[_key2];
           }
 
-          return dispatchLatest.apply(undefined, [a].concat(payload));
+          return dispatchLatest.apply(undefined, [action].concat(payload));
         };
-      })(normalized, action);
+      })(action);
     }
   }
 }
 module.exports = exports['default'];
-},{"../constants":358,"./toCamelCase":368}],368:[function(require,module,exports){
+},{"./toCamelCase":367}],367:[function(require,module,exports){
 "use strict";
 
 exports.__esModule = true;
@@ -28679,20 +28613,7 @@ exports.default = function (text) {
 };
 
 module.exports = exports['default'];
-},{}],369:[function(require,module,exports){
-'use strict';
-
-exports.__esModule = true;
-exports.default = uid;
-function uid() {
-  return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
-    var r = Math.random() * 16 | 0,
-        v = c == 'x' ? r : r & 0x3 | 0x8;
-    return v.toString(16);
-  });
-}
-module.exports = exports['default'];
-},{}],370:[function(require,module,exports){
+},{}],368:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
@@ -28735,7 +28656,7 @@ function updateState(machine, state) {
   (0, _handleMiddleware2.default)(_constants.MIDDLEWARE_PROCESS_STATE_CHANGE, machine);
 }
 module.exports = exports['default'];
-},{"../constants":358,"./handleMiddleware":365,"./isEmptyObject":366,"./validateState":372}],371:[function(require,module,exports){
+},{"../constants":358,"./handleMiddleware":364,"./isEmptyObject":365,"./validateState":370}],369:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
@@ -28758,7 +28679,7 @@ function validateConfig(config) {
   return true;
 }
 module.exports = exports['default'];
-},{"../constants":358}],372:[function(require,module,exports){
+},{"../constants":358}],370:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
@@ -28774,7 +28695,7 @@ function validateState(state) {
   throw new Error((0, _constants.ERROR_WRONG_STATE_FORMAT)(state));
 }
 module.exports = exports['default'];
-},{"../constants":358}],373:[function(require,module,exports){
+},{"../constants":358}],371:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
@@ -28792,18 +28713,6 @@ var _connect = require('./helpers/connect');
 
 var _connect2 = _interopRequireDefault(_connect);
 
-var _call = require('./helpers/generators/call');
-
-var _call2 = _interopRequireDefault(_call);
-
-var _handleMiddleware = require('./helpers/handleMiddleware');
-
-var _handleMiddleware2 = _interopRequireDefault(_handleMiddleware);
-
-var _uid = require('./helpers/uid');
-
-var _uid2 = _interopRequireDefault(_uid);
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -28815,20 +28724,12 @@ var MachineFactory = function () {
     this.machines = {};
     this.middlewares = [];
     this.connect = _connect2.default;
-    this.call = _call2.default;
   }
 
   MachineFactory.prototype.create = function create(name, config) {
-    var _this = this;
-
     var machine = (0, _createMachine2.default)(name, config, this.middlewares);
 
-    this.machines[machine.name] = machine;
-    (0, _handleMiddleware2.default)(_constants.MIDDLEWARE_MACHINE_CREATED, machine, machine);
-    machine.destroy = function () {
-      return _this.destroy(machine);
-    };
-    return machine;
+    return this.machines[machine.name] = machine;
   };
 
   MachineFactory.prototype.get = function get(name) {
@@ -28838,7 +28739,7 @@ var MachineFactory = function () {
   };
 
   MachineFactory.prototype.flush = function flush() {
-    this.machines = {};
+    this.machines = [];
     this.middlewares = [];
     (0, _connect.flush)();
   };
@@ -28849,18 +28750,6 @@ var MachineFactory = function () {
     } else {
       this.middlewares.push(middleware);
     }
-    if (middleware.__initialize) middleware.__initialize(this, (0, _uid2.default)());
-    if (middleware[_constants.MIDDLEWARE_REGISTERED]) middleware[_constants.MIDDLEWARE_REGISTERED]();
-  };
-
-  MachineFactory.prototype.destroy = function destroy(machine) {
-    var m = machine;
-    if (typeof machine === 'string') {
-      m = this.machines[machine];
-      if (!m) throw new Error((0, _constants.ERROR_MISSING_MACHINE)(machine));
-    }
-    delete this.machines[m.name];
-    (0, _connect.destroy)(m.name);
   };
 
   return MachineFactory;
@@ -28874,7 +28763,7 @@ exports.Machine = factory;
 if (typeof window !== 'undefined') {
   window[_constants.DEVTOOLS_KEY] = factory;
 }
-},{"./constants":358,"./createMachine":359,"./helpers/connect":360,"./helpers/generators/call":361,"./helpers/handleMiddleware":365,"./helpers/uid":369}],374:[function(require,module,exports){
+},{"./constants":358,"./createMachine":359,"./helpers/connect":360}],372:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
@@ -28906,9 +28795,7 @@ exports.default = function (Component) {
           if (once) mapping = 'mapOnce';
           if (silent) mapping = 'mapSilent';
 
-          this._disconnect = (_connect = (0, _connect3.default)({
-            meta: { component: Component.name }
-          })).with.apply(_connect, names)[mapping](function () {
+          this._disconnect = (_connect = (0, _connect3.default)()).with.apply(_connect, names)[mapping](function () {
             if (!done) {
               _this2.forceUpdate();
             } else {
@@ -28960,7 +28847,7 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 module.exports = exports['default'];
-},{"../helpers/connect":360,"react":357}],375:[function(require,module,exports){
+},{"../helpers/connect":360,"react":357}],373:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
@@ -28973,7 +28860,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 exports.default = { connect: _connect2.default };
 module.exports = exports['default'];
-},{"./connect":374}],376:[function(require,module,exports){
+},{"./connect":372}],374:[function(require,module,exports){
 module.exports={
   "name": "working",
   "page": "LOG",
@@ -34257,7 +34144,7 @@ module.exports={
     }
   ]
 }
-},{}],377:[function(require,module,exports){
+},{}],375:[function(require,module,exports){
 module.exports={
   "name": "working",
   "page": "LOG",
@@ -40775,7 +40662,7 @@ module.exports={
     }
   ]
 }
-},{}],378:[function(require,module,exports){
+},{}],376:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -40856,7 +40743,7 @@ exports.default = (0, _react3.connect)(App).with('DevTools').map(function (_ref)
   return { page: state.page, actions: state.actions };
 });
 
-},{"../constants":392,"./Dashboard.jsx":379,"react":357,"react-dom":184,"stent/lib/react":375}],379:[function(require,module,exports){
+},{"../constants":391,"./Dashboard.jsx":377,"react":357,"react-dom":184,"stent/lib/react":373}],377:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -40909,9 +40796,13 @@ var _onStateChanged = require('./handlers/onStateChanged');
 
 var _onStateChanged2 = _interopRequireDefault(_onStateChanged);
 
-var _UnrecognizedAction = require('./handlers/UnrecognizedAction');
+var _onStateWillChange = require('./handlers/onStateWillChange');
 
-var _UnrecognizedAction2 = _interopRequireDefault(_UnrecognizedAction);
+var _onStateWillChange2 = _interopRequireDefault(_onStateWillChange);
+
+var _UnrecognizedEvent = require('./handlers/UnrecognizedEvent');
+
+var _UnrecognizedEvent2 = _interopRequireDefault(_UnrecognizedEvent);
 
 var _TimeDiff = require('./TimeDiff.jsx');
 
@@ -40928,10 +40819,10 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+// eslint-disable-next-line no-unused-vars
 
-var NOP_HANDLER = function NOP_HANDLER() {
-  return [null, ''];
-};
+// eslint-disable-next-line no-unused-vars
+
 
 var handlers = {
   onMachineCreated: _onMachineCreated2.default,
@@ -40943,7 +40834,7 @@ var handlers = {
   onGeneratorEnd: _onGeneratorEnd2.default,
   onGeneratorResumed: _onGeneratorResumed2.default,
   onStateChanged: _onStateChanged2.default,
-  onStateWillChange: NOP_HANDLER
+  onStateWillChange: _onStateWillChange2.default
 };
 
 function calculateDiffTime(action, previousAction) {
@@ -41043,34 +40934,24 @@ var Dashboard = function (_React$Component) {
       var _state = this.state,
           filterByTypes = _state.filterByTypes,
           source = _state.source;
+      // eslint-disable-next-line no-unused-vars
 
-      var visible = false,
-          actionRepresentation;
+      var Component = handlers[action.type] || _UnrecognizedEvent2.default;
 
       // filter by source
       if (action.uid !== source) return null;
 
-      // no render method to handle it
-      if (!handlers[action.type]) {
-        actionRepresentation = (0, _UnrecognizedAction2.default)(action);
-      } else {
-        actionRepresentation = handlers[action.type](action);
-      }
-      if (actionRepresentation[0] === null) return null;
-
       // filter by type
       if (filterByTypes !== null) {
-        if (action.type && filterByTypes.indexOf(action.type) >= 0) {
-          visible = true;
-        } else if (action.label && filterByTypes.indexOf(action.label) >= 0) {
-          visible = true;
+        if (action.type && filterByTypes.indexOf(action.type) < 0) {
+          return null;
+        } else if (action.label && filterByTypes.indexOf(action.label) <= 0) {
+          return null;
         }
-      } else {
-        visible = true;
       }
 
       var timeDiff = calculateDiffTime(action, this.props.actions[i - 1]);
-      var className = (action.type ? action.type : '') + ' actionRow relative' + (!visible ? ' filteredOut' : '') + (action.withMarker ? ' withMarker' : '');
+      var className = (action.type ? action.type : '') + ' actionRow relative' + (action.withMarker ? ' withMarker' : '');
       var style = action.color ? { backgroundColor: action.color } : {};
 
       return _react2.default.createElement(
@@ -41083,7 +40964,7 @@ var Dashboard = function (_React$Component) {
           },
           style: style },
         timeDiff > 0 && _react2.default.createElement(_TimeDiff2.default, { diff: timeDiff }),
-        actionRepresentation[0],
+        _react2.default.createElement(Component, action),
         this.snapshotIndex === action.index && _react2.default.createElement('i', { className: 'fa fa-thumb-tack snapshotMarker' })
       );
     }
@@ -41127,21 +41008,21 @@ var Dashboard = function (_React$Component) {
             actions.length > 0 ? [_react2.default.createElement(
               'a',
               { onClick: function onClick() {
+                  return marker(_this5.state.snapshotIndex);
+                }, key: 'marker', className: 'ml05 mr1 try2' },
+              _react2.default.createElement('i', { className: 'fa fa-bookmark' })
+            ), _react2.default.createElement(
+              'a',
+              { onClick: function onClick() {
                   return clear();
-                }, key: 'clear', className: 'right mr1 try2' },
+                }, key: 'clear', className: 'mr1 try2' },
               _react2.default.createElement('i', { className: 'fa fa-ban' })
             ), _react2.default.createElement(
               'a',
               { onClick: function onClick() {
                   return _this5.setState({ settingsVisibility: true });
-                }, key: 's', className: 'right mr1 try2' },
+                }, key: 's', className: 'right mr05 try2' },
               _react2.default.createElement('i', { className: 'fa fa-gear' })
-            ), _react2.default.createElement(
-              'a',
-              { onClick: function onClick() {
-                  return marker(_this5.state.snapshotIndex);
-                }, key: 'marker', className: 'right mr1 try2' },
-              _react2.default.createElement('i', { className: 'fa fa-bookmark' })
             ), this._renderSourceSelector()] : _react2.default.createElement(
               'p',
               { style: { margin: '0.2em 0 0 0' } },
@@ -41235,7 +41116,7 @@ exports.default = (0, _react3.connect)((0, _react3.connect)(Dashboard).with('Dev
   };
 });
 
-},{"../helpers/renderAsTree":396,"./Settings.jsx":380,"./TimeDiff.jsx":381,"./handlers/UnrecognizedAction":382,"./handlers/onActionDispatched":383,"./handlers/onActionProcessed":384,"./handlers/onGeneratorEnd":385,"./handlers/onGeneratorResumed":386,"./handlers/onGeneratorStep":387,"./handlers/onMachineConnected":388,"./handlers/onMachineCreated":389,"./handlers/onMachineDisconnected":390,"./handlers/onStateChanged":391,"react":357,"stent/lib/react":375}],380:[function(require,module,exports){
+},{"../helpers/renderAsTree":395,"./Settings.jsx":378,"./TimeDiff.jsx":379,"./handlers/UnrecognizedEvent":380,"./handlers/onActionDispatched":381,"./handlers/onActionProcessed":382,"./handlers/onGeneratorEnd":383,"./handlers/onGeneratorResumed":384,"./handlers/onGeneratorStep":385,"./handlers/onMachineConnected":386,"./handlers/onMachineCreated":387,"./handlers/onMachineDisconnected":388,"./handlers/onStateChanged":389,"./handlers/onStateWillChange":390,"react":357,"stent/lib/react":373}],378:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -41349,7 +41230,7 @@ var Settings = function (_React$Component) {
 
 exports.default = Settings;
 
-},{"react":357}],381:[function(require,module,exports){
+},{"react":357}],379:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -41379,13 +41260,13 @@ function TimeDiff(_ref) {
   );
 }
 
-},{"../helpers/formatMilliseconds":393,"react":357}],382:[function(require,module,exports){
+},{"../helpers/formatMilliseconds":392,"react":357}],380:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = UnrecognizedAction;
+exports.default = UnrecognizedEvent;
 
 var _react = require('react');
 
@@ -41393,10 +41274,10 @@ var _react2 = _interopRequireDefault(_react);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function UnrecognizedAction(action) {
+function UnrecognizedEvent(action) {
   var icon = action.icon || 'fa-angle-double-right';
 
-  return [_react2.default.createElement(
+  return _react2.default.createElement(
     'div',
     null,
     _react2.default.createElement('i', { className: 'fa ' + icon }),
@@ -41405,11 +41286,11 @@ function UnrecognizedAction(action) {
       null,
       action.label || 'unrecognized event'
     )
-  ), 'bla bla'];
-} /* eslint-disable no-unused-vars */
+  );
+} // eslint-disable-next-line no-unused-vars
 ;
 
-},{"react":357}],383:[function(require,module,exports){
+},{"react":357}],381:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -41427,6 +41308,7 @@ var _getMachineName2 = _interopRequireDefault(_getMachineName);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+// eslint-disable-next-line no-unused-vars
 function onActionDispatched(_ref) {
   var actionName = _ref.actionName,
       machine = _ref.machine,
@@ -41450,7 +41332,7 @@ function onActionDispatched(_ref) {
   );
 }
 
-},{"../../helpers/getMachineName":394,"react":357}],384:[function(require,module,exports){
+},{"../../helpers/getMachineName":393,"react":357}],382:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -41468,6 +41350,7 @@ var _getMachineName2 = _interopRequireDefault(_getMachineName);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+// eslint-disable-next-line no-unused-vars
 function onActionProcessed(_ref) {
   var actionName = _ref.actionName,
       machine = _ref.machine,
@@ -41491,7 +41374,7 @@ function onActionProcessed(_ref) {
   );
 }
 
-},{"../../helpers/getMachineName":394,"react":357}],385:[function(require,module,exports){
+},{"../../helpers/getMachineName":393,"react":357}],383:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -41513,6 +41396,7 @@ var _shortenJSON2 = _interopRequireDefault(_shortenJSON);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+// eslint-disable-next-line no-unused-vars
 function onGeneratorEnd(_ref) {
   var value = _ref.value;
 
@@ -41531,9 +41415,9 @@ function onGeneratorEnd(_ref) {
     ' ',
     short
   );
-}
+} // eslint-disable-next-line no-unused-vars
 
-},{"../../helpers/getMachineName":394,"../../helpers/shortenJSON":399,"react":357}],386:[function(require,module,exports){
+},{"../../helpers/getMachineName":393,"../../helpers/shortenJSON":398,"react":357}],384:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -41555,6 +41439,7 @@ var _shortenJSON2 = _interopRequireDefault(_shortenJSON);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+// eslint-disable-next-line no-unused-vars
 function onGeneratorResumed(_ref) {
   var value = _ref.value;
 
@@ -41573,16 +41458,19 @@ function onGeneratorResumed(_ref) {
     ' ',
     short
   );
-}
+} // eslint-disable-next-line no-unused-vars
 
-},{"../../helpers/getMachineName":394,"../../helpers/shortenJSON":399,"react":357}],387:[function(require,module,exports){
+},{"../../helpers/getMachineName":393,"../../helpers/shortenJSON":398,"react":357}],385:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; // eslint-disable-next-line no-unused-vars
+
+// eslint-disable-next-line no-unused-vars
+
 
 exports.default = onGeneratorStep;
 
@@ -41647,7 +41535,6 @@ function onGeneratorStep(_ref) {
           ', ...}'
         )
       );
-      messageNoTags = 'generator yielded ' + yielded.name;
     }
   }
   return _react2.default.createElement(
@@ -41658,7 +41545,7 @@ function onGeneratorStep(_ref) {
   );
 };
 
-},{"../../helpers/getMachineName":394,"../../helpers/shortenJSON":399,"react":357}],388:[function(require,module,exports){
+},{"../../helpers/getMachineName":393,"../../helpers/shortenJSON":398,"react":357}],386:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -41676,7 +41563,7 @@ var _getMachineName2 = _interopRequireDefault(_getMachineName);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-/* eslint-disable no-unused-vars */
+// eslint-disable-next-line no-unused-vars
 function onMachineConnected(_ref) {
   var state = _ref.state,
       meta = _ref.meta;
@@ -41688,7 +41575,7 @@ function onMachineConnected(_ref) {
     '<' + meta.component + '>'
   ) : null;
 
-  return [_react2.default.createElement(
+  return _react2.default.createElement(
     'div',
     null,
     _react2.default.createElement('i', { className: 'fa fa-link' }),
@@ -41699,10 +41586,10 @@ function onMachineConnected(_ref) {
       null,
       machinesConnectedTo
     )
-  ), (meta.component ? meta.component : '') + ' connected to ' + machinesConnectedTo];
+  );
 }
 
-},{"../../helpers/getMachineName":394,"react":357}],389:[function(require,module,exports){
+},{"../../helpers/getMachineName":393,"react":357}],387:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -41720,11 +41607,11 @@ var _getMachineName2 = _interopRequireDefault(_getMachineName);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-/* eslint-disable no-unused-vars */
+// eslint-disable-next-line no-unused-vars
 function onMachineCreated(_ref) {
   var machine = _ref.machine;
 
-  return [_react2.default.createElement(
+  return _react2.default.createElement(
     'div',
     null,
     _react2.default.createElement('i', { className: 'fa fa-plus' }),
@@ -41734,10 +41621,10 @@ function onMachineCreated(_ref) {
       (0, _getMachineName2.default)(machine)
     ),
     ' machine created'
-  ), (0, _getMachineName2.default)(machine) + ' machine created'];
+  );
 };
 
-},{"../../helpers/getMachineName":394,"react":357}],390:[function(require,module,exports){
+},{"../../helpers/getMachineName":393,"react":357}],388:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -41755,7 +41642,7 @@ var _getMachineName2 = _interopRequireDefault(_getMachineName);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-/* eslint-disable no-unused-vars */
+// eslint-disable-next-line no-unused-vars
 function onMachineDisconnected(_ref) {
   var state = _ref.state,
       meta = _ref.meta;
@@ -41767,7 +41654,7 @@ function onMachineDisconnected(_ref) {
     '<' + meta.component + '>'
   ) : null;
 
-  return [_react2.default.createElement(
+  return _react2.default.createElement(
     'div',
     null,
     _react2.default.createElement('i', { className: 'fa fa-unlink' }),
@@ -41778,10 +41665,10 @@ function onMachineDisconnected(_ref) {
       null,
       machinesConnectedTo
     )
-  ), (meta.component ? meta.component : '') + ' disconnected from ' + machinesConnectedTo];
+  );
 }
 
-},{"../../helpers/getMachineName":394,"react":357}],391:[function(require,module,exports){
+},{"../../helpers/getMachineName":393,"react":357}],389:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -41799,11 +41686,11 @@ var _getMachineName2 = _interopRequireDefault(_getMachineName);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-/* eslint-disable no-unused-vars */
+// eslint-disable-next-line no-unused-vars
 function onStateChanged(_ref) {
   var machine = _ref.machine;
 
-  return [_react2.default.createElement(
+  return _react2.default.createElement(
     'div',
     null,
     _react2.default.createElement('i', { className: 'fa fa-heart' }),
@@ -41818,10 +41705,51 @@ function onStateChanged(_ref) {
       null,
       machine.state.name
     )
-  ), (0, _getMachineName2.default)(machine) + '\'s state changed to ' + machine.state.name];
+  );
 }
 
-},{"../../helpers/getMachineName":394,"react":357}],392:[function(require,module,exports){
+},{"../../helpers/getMachineName":393,"react":357}],390:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = onStateWillChange;
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _getMachineName = require('../../helpers/getMachineName');
+
+var _getMachineName2 = _interopRequireDefault(_getMachineName);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+// eslint-disable-next-line no-unused-vars
+function onStateWillChange(_ref) {
+  var machine = _ref.machine;
+
+  return _react2.default.createElement(
+    'div',
+    null,
+    _react2.default.createElement('i', { className: 'fa fa-heart' }),
+    _react2.default.createElement(
+      'strong',
+      null,
+      (0, _getMachineName2.default)(machine)
+    ),
+    '\'s state(',
+    _react2.default.createElement(
+      'strong',
+      null,
+      machine.state.name
+    ),
+    ') will change'
+  );
+}
+
+},{"../../helpers/getMachineName":393,"react":357}],391:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -41832,7 +41760,7 @@ var PAGES = exports.PAGES = {
   DASHBOARD: 'LOG'
 };
 
-},{}],393:[function(require,module,exports){
+},{}],392:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -41866,7 +41794,7 @@ function formatMilliseconds(millisec) {
   return minutes + ":" + seconds + ':' + ms;
 }
 
-},{}],394:[function(require,module,exports){
+},{}],393:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -41882,7 +41810,7 @@ function getMachineName(_ref) {
   return name;
 };
 
-},{}],395:[function(require,module,exports){
+},{}],394:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -41893,7 +41821,7 @@ function normalizeAction(action) {
   return action;
 };
 
-},{}],396:[function(require,module,exports){
+},{}],395:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -41967,7 +41895,7 @@ function renderActionAsTree() {
   }, rest), 'Event');
 };
 
-},{"./formatMilliseconds":393,"./getMachineName":394,"./renderJSON":397}],397:[function(require,module,exports){
+},{"./formatMilliseconds":392,"./getMachineName":393,"./renderJSON":396}],396:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -42079,7 +42007,7 @@ var renderJSON = function renderJSON(json) {
 
 exports.default = renderJSON;
 
-},{"./renderJSONPreview":398,"react":357,"react-json-tree":321}],398:[function(require,module,exports){
+},{"./renderJSONPreview":397,"react":357,"react-json-tree":321}],397:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -42132,7 +42060,7 @@ function renderJSONPreview(data) {
   return result.length > PREVIEW_STR_LIMIT ? result.substr(0, PREVIEW_STR_LIMIT) + '...' : result;
 };
 
-},{}],399:[function(require,module,exports){
+},{}],398:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -42148,7 +42076,7 @@ function shortenJSON(data) {
   return str.substr(0, STR_LIMIT) + '...';
 };
 
-},{}],400:[function(require,module,exports){
+},{}],399:[function(require,module,exports){
 'use strict';
 
 var _react = require('react');
@@ -42183,7 +42111,7 @@ _bridge2.default.on(function (action) {
 
 _reactDom2.default.render(_react2.default.createElement(_App2.default, null), document.querySelector('#container'));
 
-},{"./components/App.jsx":378,"./services/bridge":401,"./stent/machines":402,"react":357,"react-dom":184,"stent":373,"stent/lib/react":375}],401:[function(require,module,exports){
+},{"./components/App.jsx":376,"./services/bridge":400,"./stent/machines":401,"react":357,"react-dom":184,"stent":371,"stent/lib/react":373}],400:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -42213,7 +42141,7 @@ wire();
 
 exports.default = bridge;
 
-},{}],402:[function(require,module,exports){
+},{}],401:[function(require,module,exports){
 'use strict';
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
@@ -42322,4 +42250,4 @@ if (typeof window !== 'undefined' && window.location && window.location.href) {
   };
 }
 
-},{"../_mocks/example.redux.json":376,"../_mocks/example.state.json":377,"../constants":392,"../helpers/normalize":395,"stent":373}]},{},[400]);
+},{"../_mocks/example.redux.json":374,"../_mocks/example.state.json":375,"../constants":391,"../helpers/normalize":394,"stent":371}]},{},[399]);

@@ -10,11 +10,12 @@ import onGeneratorStep from './handlers/onGeneratorStep';
 import onGeneratorEnd from './handlers/onGeneratorEnd';
 import onGeneratorResumed from './handlers/onGeneratorResumed';
 import onStateChanged from './handlers/onStateChanged';
-import UnrecognizedAction from './handlers/UnrecognizedAction';
+import onStateWillChange from './handlers/onStateWillChange';
+import UnrecognizedEvent from './handlers/UnrecognizedEvent';
+// eslint-disable-next-line no-unused-vars
 import TimeDiff from './TimeDiff.jsx';
+// eslint-disable-next-line no-unused-vars
 import Settings from './Settings.jsx';
-
-const NOP_HANDLER = () => [ null, '' ];
 
 const handlers = {
   onMachineCreated,
@@ -26,7 +27,7 @@ const handlers = {
   onGeneratorEnd,
   onGeneratorResumed,
   onStateChanged,
-  onStateWillChange: NOP_HANDLER
+  onStateWillChange
 };
 
 function calculateDiffTime(action, previousAction) {
@@ -94,35 +95,25 @@ class Dashboard extends React.Component {
   }
   _renderAction(action, i) {
     const { filterByTypes, source } = this.state;
-    var visible = false, actionRepresentation;
+    // eslint-disable-next-line no-unused-vars
+    const Component = handlers[action.type] || UnrecognizedEvent;
 
     // filter by source
     if (action.uid !== source) return null;
 
-    // no render method to handle it
-    if (!handlers[action.type]) {
-      actionRepresentation = UnrecognizedAction(action);
-    } else {
-      actionRepresentation = handlers[action.type](action);
-    }
-    if (actionRepresentation[0] === null) return null;
-
     // filter by type
     if (filterByTypes !== null) {
-      if (action.type && filterByTypes.indexOf(action.type) >= 0) {
-        visible = true;
-      } else if (action.label && filterByTypes.indexOf(action.label) >= 0) {
-        visible = true;
+      if (action.type && filterByTypes.indexOf(action.type) < 0) {
+        return null;
+      } else if (action.label && filterByTypes.indexOf(action.label) <= 0) {
+        return null;
       }
-    } else {
-      visible = true;
     }
 
     const timeDiff = calculateDiffTime(action, this.props.actions[i - 1]);
     const className =
       (action.type ? action.type : '') +
       ' actionRow relative' +
-      (!visible ? ' filteredOut' : '') +
       (action.withMarker ? ' withMarker' : '');
     const style = action.color ? { backgroundColor: action.color } : {};
 
@@ -133,7 +124,7 @@ class Dashboard extends React.Component {
         onClick={ () => this._setSnapshotIndex(action.index) }
         style={ style }>
         { timeDiff > 0 && <TimeDiff diff={ timeDiff } /> }
-        { actionRepresentation[0] }
+        <Component {...action} />
         { this.snapshotIndex === action.index && <i className='fa fa-thumb-tack snapshotMarker'></i> }
       </li>
     );
@@ -156,14 +147,14 @@ class Dashboard extends React.Component {
         <div className='logLeft'>
           <div className='logNav'>
             { actions.length > 0 ? [
-              <a onClick={ () => clear() } key='clear' className='right mr1 try2'>
+              <a onClick={ () => marker(this.state.snapshotIndex) } key='marker' className='ml05 mr1 try2'>
+                <i className='fa fa-bookmark'></i>
+              </a>,
+              <a onClick={ () => clear() } key='clear' className='mr1 try2'>
                 <i className='fa fa-ban'></i>
               </a>,
-              <a onClick={ () => this.setState({ settingsVisibility: true }) } key='s' className='right mr1 try2'>
+              <a onClick={ () => this.setState({ settingsVisibility: true }) } key='s' className='right mr05 try2'>
                 <i className='fa fa-gear'></i>
-              </a>,
-              <a onClick={ () => marker(this.state.snapshotIndex) } key='marker' className='right mr1 try2'>
-                <i className='fa fa-bookmark'></i>
               </a>,
               this._renderSourceSelector()
             ] : <p style={{ margin: '0.2em 0 0 0' }}>Waiting for events ...</p> }

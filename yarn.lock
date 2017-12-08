@@ -2785,9 +2785,9 @@ sshpk@^1.7.0:
     jsbn "~0.1.0"
     tweetnacl "~0.14.0"
 
-stent@latest:
-  version "3.6.6"
-  resolved "https://registry.yarnpkg.com/stent/-/stent-3.6.6.tgz#8600a8d899e87e69684eaf78d9fd6a6a2abcfba0"
+stent@3.0.1:
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/stent/-/stent-3.0.1.tgz#4316ddf5f25fb251b9727cd680c75156e2e304bc"
 
 stream-browserify@^2.0.0:
   version "2.0.1"
