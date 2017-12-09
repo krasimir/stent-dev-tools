@@ -48,6 +48,7 @@ function labelRenderer(what) {
   };
 }
 function shouldExpandNode(keyName, data, level) {
+  if (level < 1) return true;
   return false;
 }
 function valueRenderer(raw) {

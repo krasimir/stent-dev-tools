@@ -12,6 +12,7 @@ import onGeneratorResumed from './handlers/onGeneratorResumed';
 import onStateChanged from './handlers/onStateChanged';
 import onStateWillChange from './handlers/onStateWillChange';
 import UnrecognizedEvent from './handlers/UnrecognizedEvent';
+import SagaEffectTriggered from './handlers/SagaEffectTriggered';
 // eslint-disable-next-line no-unused-vars
 import TimeDiff from './TimeDiff.jsx';
 // eslint-disable-next-line no-unused-vars
@@ -19,7 +20,7 @@ import Settings from './Settings.jsx';
 // eslint-disable-next-line no-unused-vars
 import { AutoSizer, List } from 'react-virtualized';
 
-const handlers = {
+const StentHandlers = {
   onMachineCreated,
   onMachineConnected,
   onMachineDisconnected,
@@ -30,6 +31,9 @@ const handlers = {
   onGeneratorResumed,
   onStateChanged,
   onStateWillChange
+};
+const Handlers = {
+  '@saga_effectTriggered': SagaEffectTriggered
 };
 
 class Dashboard extends React.Component {
@@ -68,7 +72,7 @@ class Dashboard extends React.Component {
     const { pinnedEvent, pin } = this.props;
     const { type, withMarker, color, timeDiff } = event;
     // eslint-disable-next-line no-unused-vars
-    const Component = handlers[type] || UnrecognizedEvent;
+    const Component = StentHandlers[type] || Handlers[type] || UnrecognizedEvent;
 
     const className =
       (type ? type : '') +
@@ -92,7 +96,7 @@ class Dashboard extends React.Component {
     const { pinnedEvent } = this.props;
 
     if (!pinnedEvent) return null;
-    if (pinnedEvent.type in handlers) {
+    if (pinnedEvent.type in StentHandlers) {
       return renderMachinesAsTree(pinnedEvent.state);
     }
     return renderStateAsTree(pinnedEvent.state);
