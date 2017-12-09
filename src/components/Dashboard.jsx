@@ -102,12 +102,8 @@ class Dashboard extends React.Component {
     if (action.uid !== source) return null;
 
     // filter by type
-    if (filterByTypes !== null) {
-      if (action.type && filterByTypes.indexOf(action.type) < 0) {
-        return null;
-      } else if (action.label && filterByTypes.indexOf(action.label) <= 0) {
-        return null;
-      }
+    if (filterByTypes !== null && (action.type && filterByTypes.indexOf(action.type) < 0)) {
+      return null;
     }
 
     const timeDiff = calculateDiffTime(action, this.props.actions[i - 1]);
@@ -139,6 +135,9 @@ class Dashboard extends React.Component {
     }
     return renderStateAsTree(snapshotAction.state);
   }
+  _changeSettingsVisibility() {
+    this.setState({ settingsVisibility: !this.state.settingsVisibility });
+  }
   render() {
     const { clear, marker, navViewState, navViewEvent, navViewAnalysis, navState, actions } = this.props;
 
@@ -153,7 +152,7 @@ class Dashboard extends React.Component {
               <a onClick={ () => clear() } key='clear' className='mr1 try2'>
                 <i className='fa fa-ban'></i>
               </a>,
-              <a onClick={ () => this.setState({ settingsVisibility: true }) } key='s' className='right mr05 try2'>
+              <a onClick={ () => this._changeSettingsVisibility() } key='s' className='right mr05 try2'>
                 <i className='fa fa-gear'></i>
               </a>,
               this._renderSourceSelector()

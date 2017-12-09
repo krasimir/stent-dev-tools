@@ -1,18 +1,17 @@
 const listeners = [];
 const bridge = {
-  on: function(callback) {
+  on: function (callback) {
     listeners.push(callback);
   }
-}
+};
 const notify = message => listeners.forEach(f => f(message));
 const wire = () => {
-  if (!chrome || !chrome.extension) return;
-  var port = chrome.extension.connect({ name: "stent-connection" });
+  if (!chrome || !chrome.runtime) return;
 
-  port.onMessage.addListener(function (message) {
+  chrome.runtime.onMessage.addListener(function (message) {
     notify(message);
   });
-}
+};
 
 wire();
 

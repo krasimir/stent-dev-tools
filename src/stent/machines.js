@@ -3,6 +3,7 @@
 import { Machine } from 'stent';
 import exampleState from '../_mocks/example.state.json';
 import exampleStateRedux from '../_mocks/example.redux.json';
+import exampleStateSaga from '../_mocks/example.saga.json';
 import { PAGES } from '../constants';
 import { normalizeAction } from '../helpers/normalize';
 
@@ -11,6 +12,7 @@ const initialState = {
   page: PAGES.DASHBOARD,
   actions: []
 };
+const MAX_EVENTS = 500;
 
 const machine = Machine.create('DevTools', {
   state: initialState,
@@ -21,8 +23,16 @@ const machine = Machine.create('DevTools', {
           this.flushActions();
           return undefined;
         }
+        if (typeof action.type === 'undefined') {
+          return undefined;
+        }
         action.index = actions.length;
         actions.push(normalizeAction(action));
+
+        if (actions.length > MAX_EVENTS) {
+          actions.shift();
+        }
+
         return { ...rest, actions };
       },
       'flush actions': function () {
@@ -73,6 +83,8 @@ if (typeof window !== 'undefined' && window.location && window.location.href) {
       s = exampleState;
     } else if (window.location.href.indexOf('populate=2') > 0) {
       s = exampleStateRedux;
+    } else if (window.location.href.indexOf('populate=3') > 0) {
+      s = exampleStateSaga;
     }
 
     setTimeout(function () {

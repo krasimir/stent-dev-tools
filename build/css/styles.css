@@ -214,6 +214,7 @@ p {
   width: 100%;
   height: calc(100% - 35px);
   padding: 1em;
+  overflow-y: scroll;
 }
 .settings .close {
   position: absolute;
