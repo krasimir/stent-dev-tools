@@ -5,18 +5,19 @@ import exampleStateSaga from '../_mocks/example.saga.json';
 import { PAGES } from '../constants';
 import { normalizeEvent } from '../helpers/normalize';
 
-const initialState = {
+const initialState = () => ({
   name: 'working',
   page: PAGES.DASHBOARD,
-  events: []
-};
+  events: [],
+  pinnedEvent: null
+});
 const MAX_EVENTS = 500;
 
 const machine = Machine.create('DevTools', {
-  state: initialState,
+  state: initialState(),
   transitions: {
     'working': {
-      'action received': function ({ events, ...rest }, event) {
+      'action received': function ({ events, pinnedEvent: currentPinnedEvent, ...rest }, event) {
         if (event.pageRefresh === true) {
           this.flushEvents();
           return undefined;
@@ -24,25 +25,46 @@ const machine = Machine.create('DevTools', {
         if (typeof event.type === 'undefined' || typeof event.uid === 'undefined') {
           return undefined;
         }
-        events.push(normalizeEvent(event));
+
+        const normalizedEvent = normalizeEvent(event);
+
+        const pinnedEvent = (
+          currentPinnedEvent === null ||
+          currentPinnedEvent.id === events[events.length - 1].id
+        ) ? normalizedEvent : currentPinnedEvent;
+
+        events.push(normalizedEvent);
         if (events.length > MAX_EVENTS) {
           events.shift();
         }
 
-        return { ...rest, events };
+        return {
+          ...rest,
+          pinnedEvent,
+          events
+        };
       },
       'flush events': function () {
-        return { events: [], name: 'working', page: PAGES.DASHBOARD };
+        return initialState();
       },
-      'add marker': function ({ events, ...rest }, index) {
-        if (index === null) {
-          events[events.length - 1].withMarker = true;
-        } else {
-          events[index].withMarker = true;
+      'add marker': function ({ events, pinnedEvent, ...rest }) {
+        if (pinnedEvent) {
+          pinnedEvent.withMarker = true;
         }
-        return { ...rest, events };
+      },
+      'pin': function ({ events, pinnedEvent: currentPinnedEvent, ...rest }, id) {
+        const event = this.getEventById(id);
+
+        return {
+          ...rest,
+          pinnedEvent: event ? event : currentPinnedEvent,
+          events
+        };
       }
     }
+  },
+  getEventById(eventId) {
+    return this.state.events.find(({ id }) => id === eventId);
   }
 });
 

@@ -2,7 +2,7 @@ import formatMilliseconds from './formatMilliseconds';
 
 var INDEX = 0;
 var timeOfLastReceivedEvent = {};
-const getIndex = () => INDEX++;
+const getId = () => INDEX++;
 
 export function normalizeEvent(event) {
   const lastTime = timeOfLastReceivedEvent[event.uid || 'nouid'];
@@ -14,7 +14,7 @@ export function normalizeEvent(event) {
       event.timeDiff = '+ ' + formatMilliseconds(diff);
     }
   }
-  event.index = getIndex();
+  event.id = getId();
 
   if (event.uid && event.time) {
     timeOfLastReceivedEvent[event.uid] = event.time;

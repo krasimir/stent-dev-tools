@@ -41,28 +41,13 @@ class Dashboard extends React.Component {
     this.state = {
       filterByTypes: null,
       source: null,
-      snapshotIndex: null,
       settingsVisibility: false
     };
-  }
-  componentDidUpdate() {
-    // if (this.state.snapshotIndex === null) {
-    //   this.log.scrollTop = this.log.scrollHeight;
-    // }
   }
   componentWillReceiveProps(newProps) {
     if (newProps.events.length === 1) {
       this.setState({ source: newProps.events[0].uid });
     }
-  }
-  get snapshotIndex() {
-    const { snapshotIndex } = this.state;
-    const { events } = this.props;
-
-    return snapshotIndex === null ? events.length - 1 : snapshotIndex;
-  }
-  _setSnapshotIndex(index) {
-    this.setState({ snapshotIndex: index === this.props.events.length - 1 ? null : index });
   }
   _onSourceChange(source) {
     this.setState({ source });
@@ -79,8 +64,9 @@ class Dashboard extends React.Component {
       </select>
     );
   }
-  _renderEvent(event, indexInTheArray) {
+  _renderEvent(event) {
     const { filterByTypes, source } = this.state;
+    const { pinnedEvent, pin } = this.props;
     const { type, uid, withMarker, color, timeDiff } = event;
     // eslint-disable-next-line no-unused-vars
     const Component = handlers[type] || UnrecognizedEvent;
@@ -101,25 +87,24 @@ class Dashboard extends React.Component {
 
     return (
       <li
-        key={ event.index }
+        key={ event.id }
         className={ className }
-        onClick={ () => this._setSnapshotIndex(indexInTheArray) }
+        onClick={ () => pin(event.id) }
         style={ style }>
         <TimeDiff timeDiff={ timeDiff } />
         <Component {...event} />
-        { this.snapshotIndex === indexInTheArray && <i className='fa fa-thumb-tack snapshotMarker'></i> }
+        { (pinnedEvent || {})['id'] === event.id && <i className='fa fa-thumb-tack snapshotMarker'></i> }
       </li>
     );
   }
   _renderState() {
-    const { events } = this.props;
-    const snapshotAction = events[this.snapshotIndex];
+    const { pinnedEvent } = this.props;
 
-    if (!snapshotAction) return null;
-    if (snapshotAction.type in handlers) {
-      return renderMachinesAsTree(snapshotAction.state);
+    if (!pinnedEvent) return null;
+    if (pinnedEvent.type in handlers) {
+      return renderMachinesAsTree(pinnedEvent.state);
     }
-    return renderStateAsTree(snapshotAction.state);
+    return renderStateAsTree(pinnedEvent.state);
   }
   _changeSettingsVisibility() {
     this.setState({ settingsVisibility: !this.state.settingsVisibility });
@@ -127,41 +112,54 @@ class Dashboard extends React.Component {
   _rowRenderer({ index, isScrolling, isVisible, key, parent, style }) {
     return (
       <div key={ key } style={style} >
-        { this._renderEvent(this.props.events[index], index) }
+        { this._renderEvent(this.props.events[index]) }
       </div>
     );
   }
   render() {
-    const { clear, marker, navViewState, navViewEvent, navViewAnalysis, navState, events } = this.props;
+    const {
+      clear,
+      marker,
+      navViewState,
+      navViewEvent,
+      navViewAnalysis,
+      navState,
+      events,
+      pinnedEvent
+    } = this.props;
+
+    console.log(events.length);
+    if (events.length === 0) {
+      return <p style={{ margin: '0.2em 0 0 0' }}>Waiting for events ...</p>;
+    }
 
     return (
       <div className='dashboard'>
         <div className='logLeft'>
           <div className='logNav'>
-            { events.length > 0 ? [
-              <a onClick={ () => marker(this.state.snapshotIndex) } key='marker' className='ml05 mr1 try2'>
-                <i className='fa fa-bookmark'></i>
-              </a>,
-              <a onClick={ () => clear() } key='clear' className='mr1 try2'>
-                <i className='fa fa-ban'></i>
-              </a>,
-              <a onClick={ () => this._changeSettingsVisibility() } key='s' className='right mr05 try2'>
-                <i className='fa fa-gear'></i>
-              </a>,
-              this._renderSourceSelector()
-            ] : <p style={{ margin: '0.2em 0 0 0' }}>Waiting for events ...</p> }
+            <a onClick={ () => marker() } key='marker' className='ml05 mr1 try2'>
+              <i className='fa fa-bookmark'></i>
+            </a>
+            <a onClick={ () => clear() } key='clear' className='mr1 try2'>
+              <i className='fa fa-ban'></i>
+            </a>
+            <a onClick={ () => this._changeSettingsVisibility() } key='s' className='right mr05 try2'>
+              <i className='fa fa-gear'></i>
+            </a>
+            { this._renderSourceSelector() }
           </div>
           <ul className='log'>
             { /* events.map(this._renderEvent) */ }
             <AutoSizer>
               {({ height, width }) => (
                 <List
+                  ref={ l => (this.list = l) }
                   rowRenderer={ this._rowRenderer }
                   height={ height }
                   rowCount={ events.length }
                   rowHeight={ 28 }
                   width={ width }
-                  scrollToIndex={ this.state.snapshotIndex === null ? events.length - 1 : -1 }/>
+                  scrollToIndex={ !pinnedEvent ? -1 : events.findIndex(e => e.id === pinnedEvent.id) }/>
               )}
             </AutoSizer>
           </ul>
@@ -174,21 +172,19 @@ class Dashboard extends React.Component {
           ) }
         </div>
         <div className='logRight'>
-          { events.length > 0 ? [
-            <div className='logNav fullHeight' key='nav'>
-              <a onClick={ navViewState } className={ navState === 'state' ? 'selected' : null }>
-                <i className='fa fa-heart mr05'></i>State</a>
-              <a onClick={ navViewEvent } className={ navState === 'event' ? 'selected' : null }>
-                <i className='fa fa-dot-circle-o mr05'></i>Event</a>
-              <a onClick={ navViewAnalysis } className={ navState === 'analysis' ? 'selected' : null }>
-                <i className='fa fa-bar-chart-o mr05'></i>Analysis</a>
-            </div>,
-            <div className='logTree' key='content'>
-              { navState === 'state' ? this._renderState() : null }
-              { navState === 'event' ? renderEventAsTree(this.snapshotIndex, events) : null }
-              { navState === 'analysis' ? 'Work in progress ...' : null }
-            </div>
-          ] : null }
+          <div className='logNav fullHeight' key='nav'>
+            <a onClick={ navViewState } className={ navState === 'state' ? 'selected' : null }>
+              <i className='fa fa-heart mr05'></i>State</a>
+            <a onClick={ navViewEvent } className={ navState === 'event' ? 'selected' : null }>
+              <i className='fa fa-dot-circle-o mr05'></i>Event</a>
+            <a onClick={ navViewAnalysis } className={ navState === 'analysis' ? 'selected' : null }>
+              <i className='fa fa-bar-chart-o mr05'></i>Analysis</a>
+          </div>
+          <div className='logTree' key='content'>
+            { navState === 'state' ? this._renderState() : null }
+            { navState === 'event' ? renderEventAsTree(pinnedEvent) : null }
+            { navState === 'analysis' ? 'Work in progress ...' : null }
+          </div>
         </div>
       </div>
     );
@@ -198,9 +194,12 @@ class Dashboard extends React.Component {
 export default connect(
   connect(Dashboard)
     .with('DevTools')
-    .map(({ flushEvents, addMarker }) => ({
+    .map(({ state, flushEvents, addMarker, pin }) => ({
       clear: () => flushEvents(),
-      marker: index => addMarker(index)
+      marker: () => addMarker(),
+      pin: id => pin(id),
+      pinnedEvent: state.pinnedEvent,
+      events: state.events
     }))
 ).with('Nav').map(n => {
   return {

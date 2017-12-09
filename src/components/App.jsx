@@ -8,10 +8,10 @@ import Dashboard from './Dashboard.jsx';
 
 class App extends React.Component {
   _renderPage() {
-    const { events, page } = this.props;
+    const { page } = this.props;
 
     switch (page) {
-      case PAGES.DASHBOARD: return <Dashboard events={ events } />;
+      case PAGES.DASHBOARD: return <Dashboard />;
     }
     return <p>...</p>;
   }
@@ -26,4 +26,4 @@ class App extends React.Component {
 
 export default connect(App)
   .with('DevTools')
-  .map(({ state }) => ({ page: state.page, events: state.events }));
+  .map(({ state }) => ({ page: state.page }));

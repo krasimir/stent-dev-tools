@@ -18,17 +18,17 @@ export function renderStateAsTree(state = {}) {
   return renderJSON(state, 'State');
 };
 
-export function renderEventAsTree(idx, actions) {
+export function renderEventAsTree(event) {
   const {
     state,
     origin,
-    index,
+    id,
     uid,
     icon,
     withMarker,
     color,
     ...rest
-  } = actions[idx] || {};
+  } = event || {};
 
   return renderJSON({
     ...rest
