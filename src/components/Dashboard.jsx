@@ -65,19 +65,10 @@ class Dashboard extends React.Component {
     );
   }
   _renderEvent(event) {
-    const { filterByTypes, source } = this.state;
     const { pinnedEvent, pin } = this.props;
-    const { type, uid, withMarker, color, timeDiff } = event;
+    const { type, withMarker, color, timeDiff } = event;
     // eslint-disable-next-line no-unused-vars
     const Component = handlers[type] || UnrecognizedEvent;
-
-    // filter by source
-    if (uid !== source) return null;
-
-    // filter by type
-    if (filterByTypes !== null && (type && filterByTypes.indexOf(type) < 0)) {
-      return null;
-    }
 
     const className =
       (type ? type : '') +
@@ -106,17 +97,21 @@ class Dashboard extends React.Component {
     }
     return renderStateAsTree(pinnedEvent.state);
   }
-  _changeSettingsVisibility() {
+  _changeSettingsVisibility(eventsToRender) {
     this.setState({ settingsVisibility: !this.state.settingsVisibility });
+    if (eventsToRender.length > 0) {
+      this.props.pin(eventsToRender[eventsToRender.length - 1].id);
+    }
   }
-  _rowRenderer({ index, isScrolling, isVisible, key, parent, style }) {
+  _rowRenderer(eventsToRender, { index, isScrolling, isVisible, key, parent, style }) {
     return (
       <div key={ key } style={style} >
-        { this._renderEvent(this.props.events[index]) }
+        { this._renderEvent(eventsToRender[index]) }
       </div>
     );
   }
   render() {
+    const { filterByTypes, source } = this.state;
     const {
       clear,
       marker,
@@ -128,10 +123,19 @@ class Dashboard extends React.Component {
       pinnedEvent
     } = this.props;
 
-    console.log(events.length);
     if (events.length === 0) {
       return <p style={{ margin: '0.2em 0 0 0' }}>Waiting for events ...</p>;
     }
+
+    const eventsToRender = events.filter(({ uid, type }) => {
+      // filter by source
+      if (uid !== source) return false;
+      // filter by type
+      if (filterByTypes !== null && (type && filterByTypes.indexOf(type) < 0)) {
+        return false;
+      }
+      return true;
+    });
 
     return (
       <div className='dashboard'>
@@ -143,7 +147,9 @@ class Dashboard extends React.Component {
             <a onClick={ () => clear() } key='clear' className='mr1 try2'>
               <i className='fa fa-ban'></i>
             </a>
-            <a onClick={ () => this._changeSettingsVisibility() } key='s' className='right mr05 try2'>
+            <a onClick={ () => this._changeSettingsVisibility(eventsToRender) }
+              key='s'
+              className='right mr05 try2'>
               <i className='fa fa-gear'></i>
             </a>
             { this._renderSourceSelector() }
@@ -154,18 +160,18 @@ class Dashboard extends React.Component {
               {({ height, width }) => (
                 <List
                   ref={ l => (this.list = l) }
-                  rowRenderer={ this._rowRenderer }
+                  rowRenderer={ (...args) => this._rowRenderer(eventsToRender, ...args) }
                   height={ height }
-                  rowCount={ events.length }
+                  rowCount={ eventsToRender.length }
                   rowHeight={ 28 }
                   width={ width }
-                  scrollToIndex={ !pinnedEvent ? -1 : events.findIndex(e => e.id === pinnedEvent.id) }/>
+                  scrollToIndex={ !pinnedEvent ? -1 : eventsToRender.findIndex(e => e.id === pinnedEvent.id) }/>
               )}
             </AutoSizer>
           </ul>
           { this.state.settingsVisibility && (
             <Settings
-              onClose={ () => this.setState({ settingsVisibility: false }) }
+              onClose={ () => this._changeSettingsVisibility(eventsToRender) }
               onChange={ types => this.setState({ filterByTypes: types }) }
               events={ events }
               types={ this.state.filterByTypes } />
