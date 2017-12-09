@@ -1,6 +1,6 @@
+/* eslint-disable no-unused-vars */
 import getMachineName from './getMachineName';
 import renderJSON from './renderJSON';
-import formatMilliseconds from './formatMilliseconds';
 
 export function renderMachinesAsTree(machines = []) {
   var unnamed = 1;
@@ -18,25 +18,19 @@ export function renderStateAsTree(state = {}) {
   return renderJSON(state, 'State');
 };
 
-export function renderActionAsTree({
-  source,
-  time,
-  state,
-  origin,
-  index,
-  uid,
-  label,
-  icon,
-  withMarker,
-  color,
-  ...rest
-} = {}, actions) {
-  if (typeof source === 'undefined') return null;
-
-  const diff = time - actions[0].time;
+export function renderEventAsTree(idx, actions) {
+  const {
+    state,
+    origin,
+    index,
+    uid,
+    icon,
+    withMarker,
+    color,
+    ...rest
+  } = actions[idx] || {};
 
   return renderJSON({
-    time: '+' + formatMilliseconds(diff),
     ...rest
   }, 'Event');
 };

@@ -6,7 +6,7 @@ const bridge = {
 };
 const notify = message => listeners.forEach(f => f(message));
 const wire = () => {
-  if (!chrome || !chrome.runtime) return;
+  if (!chrome || !chrome.runtime || !chrome.runtime.onMessage) return;
 
   chrome.runtime.onMessage.addListener(function (message) {
     notify(message);

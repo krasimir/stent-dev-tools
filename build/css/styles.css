@@ -111,6 +111,7 @@ p {
   position: absolute;
   top: 0;
   left: 0;
+  overflow-y: hidden;
 }
 .logRight {
   width: 50%;
@@ -129,7 +130,7 @@ p {
   margin: 0;
   padding: 0;
   list-style: none;
-  overflow-y: scroll;
+  overflow-y: hidden;
   height: calc(100% - 35px);
 }
 .log li {

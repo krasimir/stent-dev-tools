@@ -1,16 +1,14 @@
-/* eslint-disable no-undef */
-
 import { Machine } from 'stent';
 import exampleState from '../_mocks/example.state.json';
 import exampleStateRedux from '../_mocks/example.redux.json';
 import exampleStateSaga from '../_mocks/example.saga.json';
 import { PAGES } from '../constants';
-import { normalizeAction } from '../helpers/normalize';
+import { normalizeEvent } from '../helpers/normalize';
 
 const initialState = {
   name: 'working',
   page: PAGES.DASHBOARD,
-  actions: []
+  events: []
 };
 const MAX_EVENTS = 500;
 
@@ -18,33 +16,31 @@ const machine = Machine.create('DevTools', {
   state: initialState,
   transitions: {
     'working': {
-      'action received': function ({ actions, ...rest }, action) {
-        if (action.pageRefresh === true) {
-          this.flushActions();
+      'action received': function ({ events, ...rest }, event) {
+        if (event.pageRefresh === true) {
+          this.flushEvents();
           return undefined;
         }
-        if (typeof action.type === 'undefined') {
+        if (typeof event.type === 'undefined' || typeof event.uid === 'undefined') {
           return undefined;
         }
-        action.index = actions.length;
-        actions.push(normalizeAction(action));
-
-        if (actions.length > MAX_EVENTS) {
-          actions.shift();
+        events.push(normalizeEvent(event));
+        if (events.length > MAX_EVENTS) {
+          events.shift();
         }
 
-        return { ...rest, actions };
+        return { ...rest, events };
       },
-      'flush actions': function () {
-        return { actions: [], name: 'working', page: PAGES.DASHBOARD };
+      'flush events': function () {
+        return { events: [], name: 'working', page: PAGES.DASHBOARD };
       },
-      'add marker': function ({ actions, ...rest }, index) {
+      'add marker': function ({ events, ...rest }, index) {
         if (index === null) {
-          actions[actions.length - 1].withMarker = true;
+          events[events.length - 1].withMarker = true;
         } else {
-          actions[index].withMarker = true;
+          events[index].withMarker = true;
         }
-        return { ...rest, actions };
+        return { ...rest, events };
       }
     }
   }
@@ -90,7 +86,9 @@ if (typeof window !== 'undefined' && window.location && window.location.href) {
     setTimeout(function () {
       console.log('About to inject ' + s.actions.length + ' actions');
       s.actions.forEach((action, i) => {
-        setTimeout(() => machine.actionReceived(action), i * 10);
+        setTimeout(() => {
+          machine.actionReceived(action);
+        }, i * 10);
       });
     }, 20);
   };

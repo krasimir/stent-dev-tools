@@ -15,11 +15,11 @@ export default class Settings extends React.Component {
     this.state = { types };
   }
   _extractTypes() {
-    return this.props.actions.reduce((result, action) => {
-      if (typeof action.type !== 'undefined') {
-        result[action.type] = true;
-      } else if (typeof action.label !== 'undefined') {
-        result[action.label] = true;
+    return this.props.events.reduce((result, event) => {
+      if (typeof event.type !== 'undefined') {
+        result[event.type] = true;
+      } else if (typeof event.label !== 'undefined') {
+        result[event.label] = true;
       }
       return result;
     }, {});
