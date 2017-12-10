@@ -59,7 +59,7 @@ class Dashboard extends React.Component {
     };
   }
   componentWillReceiveProps(newProps) {
-    if (newProps.events.length === 1) {
+    if (newProps.events.length > 1) {
       this.setState({ source: newProps.events[0].uid });
     }
   }
@@ -67,8 +67,8 @@ class Dashboard extends React.Component {
     this.setState({ source });
   }
   _renderSourceSelector() {
-    const options = this.props.events.reduce((result, action) => {
-      if (!result.find(o => o === action.uid)) result.push(action.uid);
+    const options = this.props.events.reduce((result, event) => {
+      if (!result.find(o => o === event.uid)) result.push(event.uid);
       return result;
     }, []);
 

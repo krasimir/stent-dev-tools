@@ -109147,7 +109147,7 @@ var Dashboard = function (_React$Component) {
   _createClass(Dashboard, [{
     key: 'componentWillReceiveProps',
     value: function componentWillReceiveProps(newProps) {
-      if (newProps.events.length === 1) {
+      if (newProps.events.length > 1) {
         this.setState({ source: newProps.events[0].uid });
       }
     }
@@ -109161,10 +109161,10 @@ var Dashboard = function (_React$Component) {
     value: function _renderSourceSelector() {
       var _this2 = this;
 
-      var options = this.props.events.reduce(function (result, action) {
+      var options = this.props.events.reduce(function (result, event) {
         if (!result.find(function (o) {
-          return o === action.uid;
-        })) result.push(action.uid);
+          return o === event.uid;
+        })) result.push(event.uid);
         return result;
       }, []);
 
@@ -111140,28 +111140,33 @@ var machine = _stent.Machine.create('DevTools', {
   state: initialState(),
   transitions: {
     'working': {
-      'action received': function actionReceived(_ref, event) {
+      'action received': function actionReceived(_ref, newEvents) {
         var events = _ref.events,
             currentPinnedEvent = _ref.pinnedEvent,
             rest = _objectWithoutProperties(_ref, ['events', 'pinnedEvent']);
 
-        if (event.pageRefresh === true) {
-          this.flushEvents();
-          return undefined;
-        }
-        if (typeof event.type === 'undefined' || typeof event.uid === 'undefined') {
-          return undefined;
-        }
+        var eventsToAdd = newEvents.map(function (newEvent) {
+          if (newEvent.pageRefresh === true) {
+            events = [];
+            return false;
+          }
+          if (typeof newEvent.type === 'undefined' || typeof newEvent.uid === 'undefined') {
+            return false;
+          }
+          return (0, _normalize.normalizeEvent)(newEvent);
+        }).filter(function (newEvent) {
+          return newEvent;
+        });
 
-        var normalizedEvent = (0, _normalize.normalizeEvent)(event);
+        if (eventsToAdd.length === 0) return undefined;
 
-        var pinnedEvent = currentPinnedEvent === null || currentPinnedEvent.id === events[events.length - 1].id ? normalizedEvent : currentPinnedEvent;
+        var pinnedEvent = currentPinnedEvent === null || events.length > 0 && currentPinnedEvent.id === events[events.length - 1].id ? eventsToAdd[eventsToAdd.length - 1] : currentPinnedEvent;
 
-        events.push(normalizedEvent);
+        events = events.concat(eventsToAdd);
+
         if (events.length > MAX_EVENTS) {
-          events.shift();
+          events.splice(0, MAX_EVENTS - events.length);
         }
-
         return _extends({}, rest, {
           pinnedEvent: pinnedEvent,
           events: events
@@ -111239,11 +111244,7 @@ if (typeof window !== 'undefined' && window.location && window.location.href) {
 
     setTimeout(function () {
       console.log('About to inject ' + s.events.length + ' actions');
-      s.events.forEach(function (action, i) {
-        setTimeout(function () {
-          machine.actionReceived(action);
-        }, i);
-      });
+      machine.actionReceived(s.events);
     }, 20);
   };
 }

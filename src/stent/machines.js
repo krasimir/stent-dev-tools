@@ -18,27 +18,30 @@ const machine = Machine.create('DevTools', {
   state: initialState(),
   transitions: {
     'working': {
-      'action received': function ({ events, pinnedEvent: currentPinnedEvent, ...rest }, event) {
-        if (event.pageRefresh === true) {
-          this.flushEvents();
-          return undefined;
-        }
-        if (typeof event.type === 'undefined' || typeof event.uid === 'undefined') {
-          return undefined;
-        }
+      'action received': function ({ events, pinnedEvent: currentPinnedEvent, ...rest }, newEvents) {
+        const eventsToAdd = newEvents.map(newEvent => {
+          if (newEvent.pageRefresh === true) {
+            events = [];
+            return false;
+          }
+          if (typeof newEvent.type === 'undefined' || typeof newEvent.uid === 'undefined') {
+            return false;
+          }
+          return normalizeEvent(newEvent);
+        }).filter(newEvent => newEvent);
 
-        const normalizedEvent = normalizeEvent(event);
+        if (eventsToAdd.length === 0) return undefined;
 
         const pinnedEvent = (
           currentPinnedEvent === null ||
-          currentPinnedEvent.id === events[events.length - 1].id
-        ) ? normalizedEvent : currentPinnedEvent;
+          (events.length > 0 && currentPinnedEvent.id === events[events.length - 1].id)
+        ) ? eventsToAdd[eventsToAdd.length - 1] : currentPinnedEvent;
 
-        events.push(normalizedEvent);
+        events = events.concat(eventsToAdd);
+
         if (events.length > MAX_EVENTS) {
-          events.shift();
+          events.splice(0, MAX_EVENTS - events.length);
         }
-
         return {
           ...rest,
           pinnedEvent,
@@ -111,11 +114,7 @@ if (typeof window !== 'undefined' && window.location && window.location.href) {
 
     setTimeout(function () {
       console.log('About to inject ' + s.events.length + ' actions');
-      s.events.forEach((action, i) => {
-        setTimeout(() => {
-          machine.actionReceived(action);
-        }, i);
-      });
+      machine.actionReceived(s.events);
     }, 20);
   };
 }
