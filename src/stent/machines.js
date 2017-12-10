@@ -2,6 +2,7 @@ import { Machine } from 'stent';
 import exampleState from '../_mocks/example.state.json';
 import exampleStateRedux from '../_mocks/example.redux.json';
 import exampleStateSaga from '../_mocks/example.saga.json';
+import exampleStateSagaShort from '../_mocks/example.saga.short.json';
 import { PAGES } from '../constants';
 import { normalizeEvent } from '../helpers/normalize';
 
@@ -103,6 +104,8 @@ if (typeof window !== 'undefined' && window.location && window.location.href) {
       s = exampleStateRedux;
     } else if (window.location.href.indexOf('populate=3') > 0) {
       s = exampleStateSaga;
+    } else if (window.location.href.indexOf('populate=4') > 0) {
+      s = exampleStateSagaShort;
     }
 
     setTimeout(function () {
@@ -110,7 +113,7 @@ if (typeof window !== 'undefined' && window.location && window.location.href) {
       s.actions.forEach((action, i) => {
         setTimeout(() => {
           machine.actionReceived(action);
-        }, i * 10);
+        }, i);
       });
     }, 20);
   };

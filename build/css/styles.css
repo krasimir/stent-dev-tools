@@ -139,7 +139,7 @@ p {
   border-top: solid 1px rgb(228, 228, 228);
 }
 .log .fa {
-  margin-right: 1em;
+  margin-right: 0.5em;
   font-size: 1em;
   color: rgb(0, 0, 0);
 }
@@ -204,6 +204,15 @@ p {
 }
 .onStateWillChange, .onStateChanged {
   background: rgb(201, 172, 186) !important;
+}
+.sagaParentEffect {
+  font-size: 0.7em;
+  border: solid 2px #999;
+  margin-left: 0.3em;
+  transform: translateY(-1px);
+  display: inline-block;
+  padding: 0 0.2em;
+  opacity: 0.5;
 }
 
 /* Log settings */

@@ -25,7 +25,7 @@ function previewArray(array) {
   return `[...${ array.length }]`;
 }
 
-export default function renderJSONPreview(data) {
+export default function renderJSONPreview(data, limit = PREVIEW_STR_LIMIT) {
   let result;
 
   if (typeof data === 'object') {
@@ -38,5 +38,5 @@ export default function renderJSONPreview(data) {
     return null;
   }
 
-  return result.length > PREVIEW_STR_LIMIT ? result.substr(0, PREVIEW_STR_LIMIT) + '...' : result;
+  return result.length > limit ? result.substr(0, limit) + '...' : result;
 };

@@ -13,6 +13,10 @@ import onStateChanged from './handlers/onStateChanged';
 import onStateWillChange from './handlers/onStateWillChange';
 import UnrecognizedEvent from './handlers/UnrecognizedEvent';
 import SagaEffectTriggered from './handlers/SagaEffectTriggered';
+import SagaEffectResolved from './handlers/SagaEffectResolved';
+import SagaEffectActionDispatched from './handlers/SagaEffectActionDispatched';
+import SagaEffectCanceled from './handlers/SagaEffectCanceled';
+import SagaEffectRejected from './handlers/SagaEffectRejected';
 // eslint-disable-next-line no-unused-vars
 import TimeDiff from './TimeDiff.jsx';
 // eslint-disable-next-line no-unused-vars
@@ -33,7 +37,11 @@ const StentHandlers = {
   onStateWillChange
 };
 const Handlers = {
-  '@saga_effectTriggered': SagaEffectTriggered
+  '@saga_effectTriggered': SagaEffectTriggered,
+  '@saga_effectResolved': SagaEffectResolved,
+  '@saga_actionDispatched': SagaEffectActionDispatched,
+  '@saga_effectCancelled': SagaEffectCanceled,
+  '@saga_effectRejected': SagaEffectRejected
 };
 
 class Dashboard extends React.Component {
