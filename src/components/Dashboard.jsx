@@ -17,6 +17,7 @@ import SagaEffectResolved from './handlers/SagaEffectResolved';
 import SagaEffectActionDispatched from './handlers/SagaEffectActionDispatched';
 import SagaEffectCanceled from './handlers/SagaEffectCanceled';
 import SagaEffectRejected from './handlers/SagaEffectRejected';
+import ReduxAction from './handlers/ReduxAction';
 // eslint-disable-next-line no-unused-vars
 import TimeDiff from './TimeDiff.jsx';
 // eslint-disable-next-line no-unused-vars
@@ -41,7 +42,8 @@ const Handlers = {
   '@saga_effectResolved': SagaEffectResolved,
   '@saga_actionDispatched': SagaEffectActionDispatched,
   '@saga_effectCancelled': SagaEffectCanceled,
-  '@saga_effectRejected': SagaEffectRejected
+  '@saga_effectRejected': SagaEffectRejected,
+  '@redux_ACTION': ReduxAction
 };
 
 class Dashboard extends React.Component {
@@ -81,11 +83,13 @@ class Dashboard extends React.Component {
     const { type, withMarker, color, timeDiff } = event;
     // eslint-disable-next-line no-unused-vars
     const Component = StentHandlers[type] || Handlers[type] || UnrecognizedEvent;
+    const isPinned = (pinnedEvent || {})['id'] === event.id;
 
     const className =
       (type ? type : '') +
       ' actionRow relative' +
-      (withMarker ? ' withMarker' : '');
+      (withMarker ? ' withMarker' : '') +
+      (isPinned ? ' pinned' : '');
     const style = color ? { backgroundColor: color } : {};
 
     return (
@@ -95,8 +99,9 @@ class Dashboard extends React.Component {
         onClick={ () => pin(event.id) }
         style={ style }>
         <TimeDiff timeDiff={ timeDiff } />
-        <Component {...event} />
-        { (pinnedEvent || {})['id'] === event.id && <i className='fa fa-thumb-tack snapshotMarker'></i> }
+        <div className='actionRowContent'>
+          <Component {...event} />
+        </div>
       </li>
     );
   }
@@ -212,13 +217,15 @@ class Dashboard extends React.Component {
 export default connect(
   connect(Dashboard)
     .with('DevTools')
-    .map(({ state, flushEvents, addMarker, pin }) => ({
-      clear: () => flushEvents(),
-      marker: () => addMarker(),
-      pin: id => pin(id),
-      pinnedEvent: state.pinnedEvent,
-      events: state.events
-    }))
+    .map(({ state, flushEvents, addMarker, pin }) => {
+      return {
+        clear: () => flushEvents(),
+        marker: () => addMarker(),
+        pin: id => pin(id),
+        pinnedEvent: state.pinnedEvent,
+        events: state.events
+      };
+    })
 ).with('Nav').map(n => {
   return {
     navViewState: n.viewState,

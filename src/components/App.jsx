@@ -17,7 +17,7 @@ class App extends React.Component {
   }
   render() {
     return (
-      <div>
+      <div style={{ height: '100%' }}>
         { this._renderPage() }
       </div>
     );

@@ -50,6 +50,9 @@ p {
 }
 
 /* log */
+.dashboard {
+  height: 100%;
+}
 .dashboard::after {
   content: " ";
   display: table;
@@ -100,27 +103,37 @@ p {
     display: none;
   }
 }
-@media all and (max-width: 620px) {
-  .logRight a {
-    font-size: 0.8em;
-  }
-}
 .logLeft {
-  width: 50%;
+  width: 60%;
   height: 100%;
   position: absolute;
   top: 0;
   left: 0;
   overflow-y: hidden;
 }
+@media all and (max-width: 620px) {
+  .logLeft {
+    width: 100%;
+    height: 50%;
+    position: relative;
+  }
+}
 .logRight {
-  width: 50%;
+  width: 40%;
   height: 100%;
   overflow-y: scroll;
   position: absolute;
   top: 0;
-  left: 50%;
+  left: 60%;
   background: #e6e6e6;
+}
+@media all and (max-width: 620px) {
+  .logRight {
+    width: 100%;
+    height: 50%;
+    position: relative;
+    left: 0;
+  }
 }
 .logTree {
   padding-left: 0.5em;
@@ -145,47 +158,41 @@ p {
 }
 .log strong {
   display: inline-block;
-  border-radius: 0.4em;
-  padding: 0 0.2em 0 0.2em;
-  background: rgb(221, 221, 221);
+  font-weight: bold;
 }
-.log .timeSplit {
-  background: #999;
+.timeDiff {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 0.6em;
+  background-color: #fff;
+  opacity: 0.85;
 }
-.log .timeSplit a {
-  display: block;
-  width: 30px;
-  background: rgb(87, 87, 87);
+.timeDiff::after {
+  content: " ";
+  width: 20px;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: -20px;
+  opacity: 0.85;
+  /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#bfbfbf+0,bfbfbf+100&0+0,1+100 */
+  background: -moz-linear-gradient(left, rgba(255,255,255,0) 0%, rgba(255,255,255,1) 100%); /* FF3.6-15 */
+  background: -webkit-linear-gradient(left, rgba(255,255,255,0) 0%,rgba(255,255,255,1) 100%); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to right, rgba(255,255,255,0) 0%,rgba(255,255,255,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00bfbfbf', endColorstr='#bfbfbf',GradientType=1 ); /* IE6-9 */
+}
+.actionRow {
+  font-size: 1em;
   cursor: pointer;
-  height: 4px;
-  transition: height 300ms ease, width 300ms ease;
-  transition-delay: 30ms;
-  overflow: hidden;
-  color: #FFF;
-  font-size: 0.8em;
-  padding-left: 1.6em;
-  padding-top: 0.35em;
+  transition: opacity 1000ms ease, border-bottom 200ms ease, background 200ms ease;
 }
-.log .timeSplit a:hover {
-  height: 20px;
-  width: 100px;
-}
-.log .actionRow {
-  margin-bottom: 1px;
-  cursor: pointer;
-  transition: opacity 1000ms ease, border-bottom 200ms ease;
-}
-.log .actionRow:hover {
+.actionRow:hover {
   opacity: 0.8;
 }
-.log .snapshotMarker {
-  position: absolute;
-  top: 0.5em;
-  right: 0.5em;
-  margin-right: 0;
-}
-.log .filteredOut:hover {
-  opacity: 0.25;
+.actionRowContent {
+  width: 1000px;
+  overflow: hidden;
 }
 .onMachineCreated {
   background: rgb(200, 212, 201) !important;
@@ -199,11 +206,21 @@ p {
 .onGeneratorStep, .onGeneratorEnd, .onGeneratorResumed {
   background: rgb(201, 202, 189) !important;
 }
-.withMarker {
-  border-bottom: solid 2px #f00;
+.withMarker::after {
+  content: " ";
+  display: block;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: #F00;
 }
 .onStateWillChange, .onStateChanged {
   background: rgb(201, 172, 186) !important;
+}
+.pinned {
+  background: #FFF !important;
 }
 .sagaParentEffect {
   font-size: 0.7em;

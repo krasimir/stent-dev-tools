@@ -11,7 +11,7 @@ const getResultRepresentation = function (result, i) {
   if (isDefined(result) && result !== null) {
     if (typeof result === 'object') {
       if ('@@redux-saga/TASK' in result) {
-        return <strong key={ i }>{ result.name }</strong>;
+        return <strong key={ i }>{ result.name }&nbsp;</strong>;
       }
       return renderJSONPreview(result);
     }

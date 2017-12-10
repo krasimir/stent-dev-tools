@@ -1,11 +1,165 @@
 {
   "name": "working",
   "page": "LOG",
-  "actions": [
+  "pinnedEvent": {
+    "time": 1512916025341,
+    "uid": "8327e224-7994-47b8-af95-7731afa9e482",
+    "state": [
+      {
+        "name": "ToDos",
+        "state": {
+          "name": "idle",
+          "todos": [
+            {
+              "label": "Another thing here",
+              "done": true
+            },
+            {
+              "label": "new one",
+              "done": true
+            },
+            {
+              "label": "A new one",
+              "done": false
+            },
+            {
+              "label": "new one",
+              "done": true
+            }
+          ]
+        }
+      },
+      {
+        "name": "_@@@1",
+        "state": {
+          "name": "idle"
+        }
+      },
+      {
+        "name": "_@@@2",
+        "state": {
+          "name": "idle"
+        }
+      },
+      {
+        "name": "_@@@3",
+        "state": {
+          "name": "idle"
+        }
+      },
+      {
+        "name": "_@@@5",
+        "state": {
+          "name": "idle"
+        }
+      }
+    ],
+    "type": "onActionProcessed",
+    "actionName": "change status",
+    "args": [
+      3,
+      true
+    ],
+    "machine": {
+      "name": "ToDos",
+      "state": {
+        "name": "idle",
+        "todos": [
+          {
+            "label": "Another thing here",
+            "done": true
+          },
+          {
+            "label": "new one",
+            "done": true
+          },
+          {
+            "label": "A new one",
+            "done": false
+          },
+          {
+            "label": "new one",
+            "done": true
+          }
+        ]
+      },
+      "transitions": {
+        "idle": {
+          "fetch todos": {
+            "__func": "fetchTodos"
+          },
+          "add new todo": {
+            "__func": "addNewTodo"
+          },
+          "delete todo": {
+            "__func": "deleteTodo"
+          },
+          "edit todo": {
+            "__func": "editTodo"
+          },
+          "change status": {
+            "__func": "changeStatus"
+          }
+        },
+        "fetching": {
+          "todos loaded": {
+            "__func": "todosLoaded"
+          },
+          "error": {
+            "__func": "error"
+          }
+        },
+        "error": {
+          "fetch todos": {
+            "__func": "fetchTodos"
+          }
+        }
+      },
+      "isIdle": {
+        "__func": "<anonymous>"
+      },
+      "fetchTodos": {
+        "__func": "<anonymous>"
+      },
+      "addNewTodo": {
+        "__func": "<anonymous>"
+      },
+      "deleteTodo": {
+        "__func": "<anonymous>"
+      },
+      "editTodo": {
+        "__func": "<anonymous>"
+      },
+      "changeStatus": {
+        "__func": "<anonymous>"
+      },
+      "isFetching": {
+        "__func": "<anonymous>"
+      },
+      "todosLoaded": {
+        "__func": "<anonymous>"
+      },
+      "error": {
+        "__func": "<anonymous>"
+      },
+      "isError": {
+        "__func": "<anonymous>"
+      },
+      "destroy": {
+        "__func": "<anonymous>"
+      }
+    },
+    "meta": {
+      "middlewares": 2
+    },
+    "origin": "http://localhost:3000/",
+    "timeDiff": "+ 0:00:005",
+    "id": 224
+  },
+  "events": [
     {
-      "source": "stent",
-      "time": 1512663913234,
-      "uid": "ffd431d7-0b2b-4ad4-a05d-e64fc9c4111f",
+      "time": 1512916015928,
+      "uid": "8327e224-7994-47b8-af95-7731afa9e482",
       "state": [
         {
           "name": "ToDos",
@@ -89,12 +243,11 @@
         "middlewares": 1
       },
       "origin": "http://localhost:3000/",
-      "index": 0
+      "id": 119
     },
     {
-      "source": "stent",
-      "time": 1512663913240,
-      "uid": "ffd431d7-0b2b-4ad4-a05d-e64fc9c4111f",
+      "time": 1512916015932,
+      "uid": "8327e224-7994-47b8-af95-7731afa9e482",
       "state": [
         {
           "name": "ToDos",
@@ -184,12 +337,12 @@
         "middlewares": 2
       },
       "origin": "http://localhost:3000/",
-      "index": 1
+      "timeDiff": "+ 0:00:004",
+      "id": 120
     },
     {
-      "source": "stent",
-      "time": 1512663913244,
-      "uid": "ffd431d7-0b2b-4ad4-a05d-e64fc9c4111f",
+      "time": 1512916015936,
+      "uid": "8327e224-7994-47b8-af95-7731afa9e482",
       "state": [
         {
           "name": "ToDos",
@@ -279,12 +432,12 @@
         "middlewares": 2
       },
       "origin": "http://localhost:3000/",
-      "index": 2
+      "timeDiff": "+ 0:00:004",
+      "id": 121
     },
     {
-      "source": "stent",
-      "time": 1512663913248,
-      "uid": "ffd431d7-0b2b-4ad4-a05d-e64fc9c4111f",
+      "time": 1512916015939,
+      "uid": "8327e224-7994-47b8-af95-7731afa9e482",
       "state": [
         {
           "name": "ToDos",
@@ -374,12 +527,12 @@
         "middlewares": 2
       },
       "origin": "http://localhost:3000/",
-      "index": 3
+      "timeDiff": "+ 0:00:003",
+      "id": 122
     },
     {
-      "source": "stent",
-      "time": 1512663913253,
-      "uid": "ffd431d7-0b2b-4ad4-a05d-e64fc9c4111f",
+      "time": 1512916015944,
+      "uid": "8327e224-7994-47b8-af95-7731afa9e482",
       "state": [
         {
           "name": "ToDos",
@@ -468,12 +621,12 @@
         "middlewares": 2
       },
       "origin": "http://localhost:3000/",
-      "index": 4
+      "timeDiff": "+ 0:00:005",
+      "id": 123
     },
     {
-      "source": "stent",
-      "time": 1512663913255,
-      "uid": "ffd431d7-0b2b-4ad4-a05d-e64fc9c4111f",
+      "time": 1512916015945,
+      "uid": "8327e224-7994-47b8-af95-7731afa9e482",
       "state": [
         {
           "name": "ToDos",
@@ -489,12 +642,12 @@
         "middlewares": 2
       },
       "origin": "http://localhost:3000/",
-      "index": 5
+      "timeDiff": "+ 0:00:001",
+      "id": 124
     },
     {
-      "source": "stent",
-      "time": 1512663913255,
-      "uid": "ffd431d7-0b2b-4ad4-a05d-e64fc9c4111f",
+      "time": 1512916015946,
+      "uid": "8327e224-7994-47b8-af95-7731afa9e482",
       "state": [
         {
           "name": "ToDos",
@@ -581,12 +734,12 @@
         "middlewares": 2
       },
       "origin": "http://localhost:3000/",
-      "index": 6
+      "timeDiff": "+ 0:00:001",
+      "id": 125
     },
     {
-      "source": "stent",
-      "time": 1512663913256,
-      "uid": "ffd431d7-0b2b-4ad4-a05d-e64fc9c4111f",
+      "time": 1512916015946,
+      "uid": "8327e224-7994-47b8-af95-7731afa9e482",
       "state": [
         {
           "name": "ToDos",
@@ -671,12 +824,11 @@
         "middlewares": 2
       },
       "origin": "http://localhost:3000/",
-      "index": 7
+      "id": 126
     },
     {
-      "source": "stent",
-      "time": 1512663913256,
-      "uid": "ffd431d7-0b2b-4ad4-a05d-e64fc9c4111f",
+      "time": 1512916015946,
+      "uid": "8327e224-7994-47b8-af95-7731afa9e482",
       "state": [
         {
           "name": "ToDos",
@@ -691,12 +843,11 @@
         "middlewares": 2
       },
       "origin": "http://localhost:3000/",
-      "index": 8
+      "id": 127
     },
     {
-      "source": "stent",
-      "time": 1512663913256,
-      "uid": "ffd431d7-0b2b-4ad4-a05d-e64fc9c4111f",
+      "time": 1512916015947,
+      "uid": "8327e224-7994-47b8-af95-7731afa9e482",
       "state": [
         {
           "name": "ToDos",
@@ -715,12 +866,12 @@
         "middlewares": 2
       },
       "origin": "http://localhost:3000/",
-      "index": 9
+      "timeDiff": "+ 0:00:001",
+      "id": 128
     },
     {
-      "source": "stent",
-      "time": 1512663913259,
-      "uid": "ffd431d7-0b2b-4ad4-a05d-e64fc9c4111f",
+      "time": 1512916015949,
+      "uid": "8327e224-7994-47b8-af95-7731afa9e482",
       "state": [
         {
           "name": "ToDos",
@@ -808,12 +959,12 @@
         "middlewares": 2
       },
       "origin": "http://localhost:3000/",
-      "index": 10
+      "timeDiff": "+ 0:00:002",
+      "id": 129
     },
     {
-      "source": "stent",
-      "time": 1512663913260,
-      "uid": "ffd431d7-0b2b-4ad4-a05d-e64fc9c4111f",
+      "time": 1512916015949,
+      "uid": "8327e224-7994-47b8-af95-7731afa9e482",
       "state": [
         {
           "name": "ToDos",
@@ -901,12 +1052,11 @@
         "middlewares": 2
       },
       "origin": "http://localhost:3000/",
-      "index": 11
+      "id": 130
     },
     {
-      "source": "stent",
-      "time": 1512663913261,
-      "uid": "ffd431d7-0b2b-4ad4-a05d-e64fc9c4111f",
+      "time": 1512916015951,
+      "uid": "8327e224-7994-47b8-af95-7731afa9e482",
       "state": [
         {
           "name": "ToDos",
@@ -922,24 +1072,28 @@
           "done": true
         },
         {
-          "label": "hello",
+          "label": "new one",
+          "done": false
+        },
+        {
+          "label": "A new one",
           "done": true
         },
         {
-          "label": "here we go",
-          "done": false
+          "label": "That's a new something",
+          "done": true
         }
       ],
       "meta": {
         "middlewares": 2
       },
       "origin": "http://localhost:3000/",
-      "index": 12
+      "timeDiff": "+ 0:00:002",
+      "id": 131
     },
     {
-      "source": "stent",
-      "time": 1512663913262,
-      "uid": "ffd431d7-0b2b-4ad4-a05d-e64fc9c4111f",
+      "time": 1512916015951,
+      "uid": "8327e224-7994-47b8-af95-7731afa9e482",
       "state": [
         {
           "name": "ToDos",
@@ -957,12 +1111,16 @@
             "done": true
           },
           {
-            "label": "hello",
+            "label": "new one",
+            "done": false
+          },
+          {
+            "label": "A new one",
             "done": true
           },
           {
-            "label": "here we go",
-            "done": false
+            "label": "That's a new something",
+            "done": true
           }
         ]
       ],
@@ -1041,12 +1199,11 @@
         "middlewares": 2
       },
       "origin": "http://localhost:3000/",
-      "index": 13
+      "id": 132
     },
     {
-      "source": "stent",
-      "time": 1512663913262,
-      "uid": "ffd431d7-0b2b-4ad4-a05d-e64fc9c4111f",
+      "time": 1512916015951,
+      "uid": "8327e224-7994-47b8-af95-7731afa9e482",
       "state": [
         {
           "name": "ToDos",
@@ -1131,12 +1288,11 @@
         "middlewares": 2
       },
       "origin": "http://localhost:3000/",
-      "index": 14
+      "id": 133
     },
     {
-      "source": "stent",
-      "time": 1512663913262,
-      "uid": "ffd431d7-0b2b-4ad4-a05d-e64fc9c4111f",
+      "time": 1512916015952,
+      "uid": "8327e224-7994-47b8-af95-7731afa9e482",
       "state": [
         {
           "name": "ToDos",
@@ -1148,12 +1304,16 @@
                 "done": true
               },
               {
-                "label": "hello",
+                "label": "new one",
+                "done": false
+              },
+              {
+                "label": "A new one",
                 "done": true
               },
               {
-                "label": "here we go",
-                "done": false
+                "label": "That's a new something",
+                "done": true
               }
             ]
           }
@@ -1170,12 +1330,16 @@
               "done": true
             },
             {
-              "label": "hello",
+              "label": "new one",
+              "done": false
+            },
+            {
+              "label": "A new one",
               "done": true
             },
             {
-              "label": "here we go",
-              "done": false
+              "label": "That's a new something",
+              "done": true
             }
           ]
         },
@@ -1249,12 +1413,12 @@
         "middlewares": 2
       },
       "origin": "http://localhost:3000/",
-      "index": 15
+      "timeDiff": "+ 0:00:001",
+      "id": 134
     },
     {
-      "source": "stent",
-      "time": 1512663913263,
-      "uid": "ffd431d7-0b2b-4ad4-a05d-e64fc9c4111f",
+      "time": 1512916015952,
+      "uid": "8327e224-7994-47b8-af95-7731afa9e482",
       "state": [
         {
           "name": "ToDos",
@@ -1266,12 +1430,16 @@
                 "done": true
               },
               {
-                "label": "hello",
+                "label": "new one",
+                "done": false
+              },
+              {
+                "label": "A new one",
                 "done": true
               },
               {
-                "label": "here we go",
-                "done": false
+                "label": "That's a new something",
+                "done": true
               }
             ]
           }
@@ -1291,12 +1459,16 @@
                   "done": true
                 },
                 {
-                  "label": "hello",
+                  "label": "new one",
+                  "done": false
+                },
+                {
+                  "label": "A new one",
                   "done": true
                 },
                 {
-                  "label": "here we go",
-                  "done": false
+                  "label": "That's a new something",
+                  "done": true
                 }
               ]
             },
@@ -1370,12 +1542,11 @@
         "middlewares": 2
       },
       "origin": "http://localhost:3000/",
-      "index": 16
+      "id": 135
     },
     {
-      "source": "stent",
-      "time": 1512663913264,
-      "uid": "ffd431d7-0b2b-4ad4-a05d-e64fc9c4111f",
+      "time": 1512916015953,
+      "uid": "8327e224-7994-47b8-af95-7731afa9e482",
       "state": [
         {
           "name": "ToDos",
@@ -1387,12 +1558,16 @@
                 "done": true
               },
               {
-                "label": "hello",
+                "label": "new one",
+                "done": false
+              },
+              {
+                "label": "A new one",
                 "done": true
               },
               {
-                "label": "here we go",
-                "done": false
+                "label": "That's a new something",
+                "done": true
               }
             ]
           }
@@ -1412,12 +1587,16 @@
                   "done": true
                 },
                 {
-                  "label": "hello",
+                  "label": "new one",
+                  "done": false
+                },
+                {
+                  "label": "A new one",
                   "done": true
                 },
                 {
-                  "label": "here we go",
-                  "done": false
+                  "label": "That's a new something",
+                  "done": true
                 }
               ]
             },
@@ -1491,12 +1670,12 @@
         "middlewares": 2
       },
       "origin": "http://localhost:3000/",
-      "index": 17
+      "timeDiff": "+ 0:00:001",
+      "id": 136
     },
     {
-      "source": "stent",
-      "time": 1512663913265,
-      "uid": "ffd431d7-0b2b-4ad4-a05d-e64fc9c4111f",
+      "time": 1512916015954,
+      "uid": "8327e224-7994-47b8-af95-7731afa9e482",
       "state": [
         {
           "name": "ToDos",
@@ -1508,12 +1687,16 @@
                 "done": true
               },
               {
-                "label": "hello",
+                "label": "new one",
+                "done": false
+              },
+              {
+                "label": "A new one",
                 "done": true
               },
               {
-                "label": "here we go",
-                "done": false
+                "label": "That's a new something",
+                "done": true
               }
             ]
           }
@@ -1533,12 +1716,16 @@
                   "done": true
                 },
                 {
-                  "label": "hello",
+                  "label": "new one",
+                  "done": false
+                },
+                {
+                  "label": "A new one",
                   "done": true
                 },
                 {
-                  "label": "here we go",
-                  "done": false
+                  "label": "That's a new something",
+                  "done": true
                 }
               ]
             },
@@ -1612,12 +1799,12 @@
         "middlewares": 2
       },
       "origin": "http://localhost:3000/",
-      "index": 18
+      "timeDiff": "+ 0:00:001",
+      "id": 137
     },
     {
-      "source": "stent",
-      "time": 1512663913266,
-      "uid": "ffd431d7-0b2b-4ad4-a05d-e64fc9c4111f",
+      "time": 1512916015955,
+      "uid": "8327e224-7994-47b8-af95-7731afa9e482",
       "state": [
         {
           "name": "ToDos",
@@ -1629,12 +1816,16 @@
                 "done": true
               },
               {
-                "label": "hello",
+                "label": "new one",
+                "done": false
+              },
+              {
+                "label": "A new one",
                 "done": true
               },
               {
-                "label": "here we go",
-                "done": false
+                "label": "That's a new something",
+                "done": true
               }
             ]
           }
@@ -1683,12 +1874,12 @@
         "middlewares": 2
       },
       "origin": "http://localhost:3000/",
-      "index": 19
+      "timeDiff": "+ 0:00:001",
+      "id": 138
     },
     {
-      "source": "stent",
-      "time": 1512663913266,
-      "uid": "ffd431d7-0b2b-4ad4-a05d-e64fc9c4111f",
+      "time": 1512916015955,
+      "uid": "8327e224-7994-47b8-af95-7731afa9e482",
       "state": [
         {
           "name": "ToDos",
@@ -1700,12 +1891,16 @@
                 "done": true
               },
               {
-                "label": "hello",
+                "label": "new one",
+                "done": false
+              },
+              {
+                "label": "A new one",
                 "done": true
               },
               {
-                "label": "here we go",
-                "done": false
+                "label": "That's a new something",
+                "done": true
               }
             ]
           }
@@ -1759,12 +1954,11 @@
         "middlewares": 2
       },
       "origin": "http://localhost:3000/",
-      "index": 20
+      "id": 139
     },
     {
-      "source": "stent",
-      "time": 1512663913268,
-      "uid": "ffd431d7-0b2b-4ad4-a05d-e64fc9c4111f",
+      "time": 1512916015957,
+      "uid": "8327e224-7994-47b8-af95-7731afa9e482",
       "state": [
         {
           "name": "ToDos",
@@ -1776,12 +1970,16 @@
                 "done": true
               },
               {
-                "label": "hello",
+                "label": "new one",
+                "done": false
+              },
+              {
+                "label": "A new one",
                 "done": true
               },
               {
-                "label": "here we go",
-                "done": false
+                "label": "That's a new something",
+                "done": true
               }
             ]
           }
@@ -1807,12 +2005,16 @@
                   "done": true
                 },
                 {
-                  "label": "hello",
+                  "label": "new one",
+                  "done": false
+                },
+                {
+                  "label": "A new one",
                   "done": true
                 },
                 {
-                  "label": "here we go",
-                  "done": false
+                  "label": "That's a new something",
+                  "done": true
                 }
               ]
             },
@@ -1886,12 +2088,12 @@
         "middlewares": 2
       },
       "origin": "http://localhost:3000/",
-      "index": 21
+      "timeDiff": "+ 0:00:002",
+      "id": 140
     },
     {
-      "source": "stent",
-      "time": 1512663913268,
-      "uid": "ffd431d7-0b2b-4ad4-a05d-e64fc9c4111f",
+      "time": 1512916015957,
+      "uid": "8327e224-7994-47b8-af95-7731afa9e482",
       "state": [
         {
           "name": "ToDos",
@@ -1903,12 +2105,16 @@
                 "done": true
               },
               {
-                "label": "hello",
+                "label": "new one",
+                "done": false
+              },
+              {
+                "label": "A new one",
                 "done": true
               },
               {
-                "label": "here we go",
-                "done": false
+                "label": "That's a new something",
+                "done": true
               }
             ]
           }
@@ -1963,12 +2169,11 @@
         "middlewares": 2
       },
       "origin": "http://localhost:3000/",
-      "index": 22
+      "id": 141
     },
     {
-      "source": "stent",
-      "time": 1512663913268,
-      "uid": "ffd431d7-0b2b-4ad4-a05d-e64fc9c4111f",
+      "time": 1512916015957,
+      "uid": "8327e224-7994-47b8-af95-7731afa9e482",
       "state": [
         {
           "name": "ToDos",
@@ -1980,12 +2185,16 @@
                 "done": true
               },
               {
-                "label": "hello",
+                "label": "new one",
+                "done": false
+              },
+              {
+                "label": "A new one",
                 "done": true
               },
               {
-                "label": "here we go",
-                "done": false
+                "label": "That's a new something",
+                "done": true
               }
             ]
           }
@@ -2045,12 +2254,11 @@
         "middlewares": 2
       },
       "origin": "http://localhost:3000/",
-      "index": 23
+      "id": 142
     },
     {
-      "source": "stent",
-      "time": 1512663913270,
-      "uid": "ffd431d7-0b2b-4ad4-a05d-e64fc9c4111f",
+      "time": 1512916015958,
+      "uid": "8327e224-7994-47b8-af95-7731afa9e482",
       "state": [
         {
           "name": "ToDos",
@@ -2062,12 +2270,16 @@
                 "done": true
               },
               {
-                "label": "hello",
+                "label": "new one",
+                "done": false
+              },
+              {
+                "label": "A new one",
                 "done": true
               },
               {
-                "label": "here we go",
-                "done": false
+                "label": "That's a new something",
+                "done": true
               }
             ]
           }
@@ -2099,12 +2311,16 @@
                   "done": true
                 },
                 {
-                  "label": "hello",
+                  "label": "new one",
+                  "done": false
+                },
+                {
+                  "label": "A new one",
                   "done": true
                 },
                 {
-                  "label": "here we go",
-                  "done": false
+                  "label": "That's a new something",
+                  "done": true
                 }
               ]
             },
@@ -2178,12 +2394,12 @@
         "middlewares": 2
       },
       "origin": "http://localhost:3000/",
-      "index": 24
+      "timeDiff": "+ 0:00:001",
+      "id": 143
     },
     {
-      "source": "stent",
-      "time": 1512663913270,
-      "uid": "ffd431d7-0b2b-4ad4-a05d-e64fc9c4111f",
+      "time": 1512916015959,
+      "uid": "8327e224-7994-47b8-af95-7731afa9e482",
       "state": [
         {
           "name": "ToDos",
@@ -2195,12 +2411,16 @@
                 "done": true
               },
               {
-                "label": "hello",
+                "label": "new one",
+                "done": false
+              },
+              {
+                "label": "A new one",
                 "done": true
               },
               {
-                "label": "here we go",
-                "done": false
+                "label": "That's a new something",
+                "done": true
               }
             ]
           }
@@ -2261,12 +2481,12 @@
         "middlewares": 2
       },
       "origin": "http://localhost:3000/",
-      "index": 25
+      "timeDiff": "+ 0:00:001",
+      "id": 144
     },
     {
-      "source": "stent",
-      "time": 1512663913270,
-      "uid": "ffd431d7-0b2b-4ad4-a05d-e64fc9c4111f",
+      "time": 1512916015959,
+      "uid": "8327e224-7994-47b8-af95-7731afa9e482",
       "state": [
         {
           "name": "ToDos",
@@ -2278,12 +2498,16 @@
                 "done": true
               },
               {
-                "label": "hello",
+                "label": "new one",
+                "done": false
+              },
+              {
+                "label": "A new one",
                 "done": true
               },
               {
-                "label": "here we go",
-                "done": false
+                "label": "That's a new something",
+                "done": true
               }
             ]
           }
@@ -2349,12 +2573,11 @@
         "middlewares": 2
       },
       "origin": "http://localhost:3000/",
-      "index": 26
+      "id": 145
     },
     {
-      "source": "stent",
-      "time": 1512663913274,
-      "uid": "ffd431d7-0b2b-4ad4-a05d-e64fc9c4111f",
+      "time": 1512916015960,
+      "uid": "8327e224-7994-47b8-af95-7731afa9e482",
       "state": [
         {
           "name": "ToDos",
@@ -2366,12 +2589,16 @@
                 "done": true
               },
               {
-                "label": "hello",
+                "label": "new one",
+                "done": false
+              },
+              {
+                "label": "A new one",
                 "done": true
               },
               {
-                "label": "here we go",
-                "done": false
+                "label": "That's a new something",
+                "done": true
               }
             ]
           }
@@ -2395,6 +2622,348 @@
           }
         }
       ],
+      "type": "onMachineConnected",
+      "meta": {
+        "component": "Todo",
+        "machines": [
+          {
+            "name": "ToDos",
+            "state": {
+              "name": "idle",
+              "todos": [
+                {
+                  "label": "Another thing here",
+                  "done": true
+                },
+                {
+                  "label": "new one",
+                  "done": false
+                },
+                {
+                  "label": "A new one",
+                  "done": true
+                },
+                {
+                  "label": "That's a new something",
+                  "done": true
+                }
+              ]
+            },
+            "transitions": {
+              "idle": {
+                "fetch todos": {
+                  "__func": "fetchTodos"
+                },
+                "add new todo": {
+                  "__func": "addNewTodo"
+                },
+                "delete todo": {
+                  "__func": "deleteTodo"
+                },
+                "edit todo": {
+                  "__func": "editTodo"
+                },
+                "change status": {
+                  "__func": "changeStatus"
+                }
+              },
+              "fetching": {
+                "todos loaded": {
+                  "__func": "todosLoaded"
+                },
+                "error": {
+                  "__func": "error"
+                }
+              },
+              "error": {
+                "fetch todos": {
+                  "__func": "fetchTodos"
+                }
+              }
+            },
+            "isIdle": {
+              "__func": "<anonymous>"
+            },
+            "fetchTodos": {
+              "__func": "<anonymous>"
+            },
+            "addNewTodo": {
+              "__func": "<anonymous>"
+            },
+            "deleteTodo": {
+              "__func": "<anonymous>"
+            },
+            "editTodo": {
+              "__func": "<anonymous>"
+            },
+            "changeStatus": {
+              "__func": "<anonymous>"
+            },
+            "isFetching": {
+              "__func": "<anonymous>"
+            },
+            "todosLoaded": {
+              "__func": "<anonymous>"
+            },
+            "error": {
+              "__func": "<anonymous>"
+            },
+            "isError": {
+              "__func": "<anonymous>"
+            },
+            "destroy": {
+              "__func": "<anonymous>"
+            }
+          }
+        ],
+        "middlewares": 2
+      },
+      "origin": "http://localhost:3000/",
+      "timeDiff": "+ 0:00:001",
+      "id": 146
+    },
+    {
+      "time": 1512916015960,
+      "uid": "8327e224-7994-47b8-af95-7731afa9e482",
+      "state": [
+        {
+          "name": "ToDos",
+          "state": {
+            "name": "idle",
+            "todos": [
+              {
+                "label": "Another thing here",
+                "done": true
+              },
+              {
+                "label": "new one",
+                "done": false
+              },
+              {
+                "label": "A new one",
+                "done": true
+              },
+              {
+                "label": "That's a new something",
+                "done": true
+              }
+            ]
+          }
+        },
+        {
+          "name": "_@@@1",
+          "state": {
+            "name": "idle"
+          }
+        },
+        {
+          "name": "_@@@2",
+          "state": {
+            "name": "idle"
+          }
+        },
+        {
+          "name": "_@@@3",
+          "state": {
+            "name": "idle"
+          }
+        },
+        {
+          "name": "_@@@4",
+          "state": {
+            "name": "idle"
+          }
+        }
+      ],
+      "type": "onMachineCreated",
+      "machine": {
+        "name": "_@@@4",
+        "state": {
+          "name": "idle"
+        },
+        "transitions": {
+          "idle": {
+            "edit": "editing"
+          },
+          "editing": {
+            "save": {
+              "__func": "save"
+            },
+            "cancel": "idle"
+          }
+        },
+        "isIdle": {
+          "__func": "<anonymous>"
+        },
+        "edit": {
+          "__func": "<anonymous>"
+        },
+        "isEditing": {
+          "__func": "<anonymous>"
+        },
+        "save": {
+          "__func": "<anonymous>"
+        },
+        "cancel": {
+          "__func": "<anonymous>"
+        }
+      },
+      "meta": {
+        "middlewares": 2
+      },
+      "origin": "http://localhost:3000/",
+      "id": 147
+    },
+    {
+      "time": 1512916015960,
+      "uid": "8327e224-7994-47b8-af95-7731afa9e482",
+      "state": [
+        {
+          "name": "ToDos",
+          "state": {
+            "name": "idle",
+            "todos": [
+              {
+                "label": "Another thing here",
+                "done": true
+              },
+              {
+                "label": "new one",
+                "done": false
+              },
+              {
+                "label": "A new one",
+                "done": true
+              },
+              {
+                "label": "That's a new something",
+                "done": true
+              }
+            ]
+          }
+        },
+        {
+          "name": "_@@@1",
+          "state": {
+            "name": "idle"
+          }
+        },
+        {
+          "name": "_@@@2",
+          "state": {
+            "name": "idle"
+          }
+        },
+        {
+          "name": "_@@@3",
+          "state": {
+            "name": "idle"
+          }
+        },
+        {
+          "name": "_@@@4",
+          "state": {
+            "name": "idle"
+          }
+        }
+      ],
+      "type": "onMachineConnected",
+      "meta": {
+        "machines": [
+          {
+            "name": "_@@@4",
+            "state": {
+              "name": "idle"
+            },
+            "transitions": {
+              "idle": {
+                "edit": "editing"
+              },
+              "editing": {
+                "save": {
+                  "__func": "save"
+                },
+                "cancel": "idle"
+              }
+            },
+            "isIdle": {
+              "__func": "<anonymous>"
+            },
+            "edit": {
+              "__func": "<anonymous>"
+            },
+            "isEditing": {
+              "__func": "<anonymous>"
+            },
+            "save": {
+              "__func": "<anonymous>"
+            },
+            "cancel": {
+              "__func": "<anonymous>"
+            },
+            "destroy": {
+              "__func": "<anonymous>"
+            }
+          }
+        ],
+        "middlewares": 2
+      },
+      "origin": "http://localhost:3000/",
+      "id": 148
+    },
+    {
+      "time": 1512916015964,
+      "uid": "8327e224-7994-47b8-af95-7731afa9e482",
+      "state": [
+        {
+          "name": "ToDos",
+          "state": {
+            "name": "idle",
+            "todos": [
+              {
+                "label": "Another thing here",
+                "done": true
+              },
+              {
+                "label": "new one",
+                "done": false
+              },
+              {
+                "label": "A new one",
+                "done": true
+              },
+              {
+                "label": "That's a new something",
+                "done": true
+              }
+            ]
+          }
+        },
+        {
+          "name": "_@@@1",
+          "state": {
+            "name": "idle"
+          }
+        },
+        {
+          "name": "_@@@2",
+          "state": {
+            "name": "idle"
+          }
+        },
+        {
+          "name": "_@@@3",
+          "state": {
+            "name": "idle"
+          }
+        },
+        {
+          "name": "_@@@4",
+          "state": {
+            "name": "idle"
+          }
+        }
+      ],
       "type": "onActionProcessed",
       "actionName": "todos loaded",
       "args": [
@@ -2404,12 +2973,16 @@
             "done": true
           },
           {
-            "label": "hello",
+            "label": "new one",
+            "done": false
+          },
+          {
+            "label": "A new one",
             "done": true
           },
           {
-            "label": "here we go",
-            "done": false
+            "label": "That's a new something",
+            "done": true
           }
         ]
       ],
@@ -2423,12 +2996,16 @@
               "done": true
             },
             {
-              "label": "hello",
+              "label": "new one",
+              "done": false
+            },
+            {
+              "label": "A new one",
               "done": true
             },
             {
-              "label": "here we go",
-              "done": false
+              "label": "That's a new something",
+              "done": true
             }
           ]
         },
@@ -2502,12 +3079,12 @@
         "middlewares": 2
       },
       "origin": "http://localhost:3000/",
-      "index": 27
+      "timeDiff": "+ 0:00:004",
+      "id": 149
     },
     {
-      "source": "stent",
-      "time": 1512663913274,
-      "uid": "ffd431d7-0b2b-4ad4-a05d-e64fc9c4111f",
+      "time": 1512916015964,
+      "uid": "8327e224-7994-47b8-af95-7731afa9e482",
       "state": [
         {
           "name": "ToDos",
@@ -2519,12 +3096,16 @@
                 "done": true
               },
               {
-                "label": "hello",
+                "label": "new one",
+                "done": false
+              },
+              {
+                "label": "A new one",
                 "done": true
               },
               {
-                "label": "here we go",
-                "done": false
+                "label": "That's a new something",
+                "done": true
               }
             ]
           }
@@ -2543,6 +3124,12 @@
         },
         {
           "name": "_@@@3",
+          "state": {
+            "name": "idle"
+          }
+        },
+        {
+          "name": "_@@@4",
           "state": {
             "name": "idle"
           }
@@ -2554,12 +3141,11 @@
         "middlewares": 2
       },
       "origin": "http://localhost:3000/",
-      "index": 28
+      "id": 150
     },
     {
-      "source": "stent",
-      "time": 1512663913274,
-      "uid": "ffd431d7-0b2b-4ad4-a05d-e64fc9c4111f",
+      "time": 1512916015964,
+      "uid": "8327e224-7994-47b8-af95-7731afa9e482",
       "state": [
         {
           "name": "ToDos",
@@ -2571,12 +3157,16 @@
                 "done": true
               },
               {
-                "label": "hello",
+                "label": "new one",
+                "done": false
+              },
+              {
+                "label": "A new one",
                 "done": true
               },
               {
-                "label": "here we go",
-                "done": false
+                "label": "That's a new something",
+                "done": true
               }
             ]
           }
@@ -2595,6 +3185,12 @@
         },
         {
           "name": "_@@@3",
+          "state": {
+            "name": "idle"
+          }
+        },
+        {
+          "name": "_@@@4",
           "state": {
             "name": "idle"
           }
@@ -2613,12 +3209,16 @@
               "done": true
             },
             {
-              "label": "hello",
+              "label": "new one",
+              "done": false
+            },
+            {
+              "label": "A new one",
               "done": true
             },
             {
-              "label": "here we go",
-              "done": false
+              "label": "That's a new something",
+              "done": true
             }
           ]
         },
@@ -2692,12 +3292,11 @@
         "middlewares": 2
       },
       "origin": "http://localhost:3000/",
-      "index": 29
+      "id": 151
     },
     {
-      "source": "stent",
-      "time": 1512663916691,
-      "uid": "ffd431d7-0b2b-4ad4-a05d-e64fc9c4111f",
+      "time": 1512916019351,
+      "uid": "8327e224-7994-47b8-af95-7731afa9e482",
       "state": [
         {
           "name": "ToDos",
@@ -2709,11 +3308,170 @@
                 "done": true
               },
               {
-                "label": "hello",
+                "label": "new one",
+                "done": false
+              },
+              {
+                "label": "A new one",
                 "done": true
               },
               {
-                "label": "here we go",
+                "label": "That's a new something",
+                "done": true
+              }
+            ]
+          }
+        },
+        {
+          "name": "_@@@1",
+          "state": {
+            "name": "idle"
+          }
+        },
+        {
+          "name": "_@@@2",
+          "state": {
+            "name": "idle"
+          }
+        },
+        {
+          "name": "_@@@3",
+          "state": {
+            "name": "idle"
+          }
+        },
+        {
+          "name": "_@@@4",
+          "state": {
+            "name": "idle"
+          }
+        }
+      ],
+      "type": "onActionDispatched",
+      "actionName": "change status",
+      "args": [
+        3,
+        false
+      ],
+      "machine": {
+        "name": "ToDos",
+        "state": {
+          "name": "idle",
+          "todos": [
+            {
+              "label": "Another thing here",
+              "done": true
+            },
+            {
+              "label": "new one",
+              "done": false
+            },
+            {
+              "label": "A new one",
+              "done": true
+            },
+            {
+              "label": "That's a new something",
+              "done": true
+            }
+          ]
+        },
+        "transitions": {
+          "idle": {
+            "fetch todos": {
+              "__func": "fetchTodos"
+            },
+            "add new todo": {
+              "__func": "addNewTodo"
+            },
+            "delete todo": {
+              "__func": "deleteTodo"
+            },
+            "edit todo": {
+              "__func": "editTodo"
+            },
+            "change status": {
+              "__func": "changeStatus"
+            }
+          },
+          "fetching": {
+            "todos loaded": {
+              "__func": "todosLoaded"
+            },
+            "error": {
+              "__func": "error"
+            }
+          },
+          "error": {
+            "fetch todos": {
+              "__func": "fetchTodos"
+            }
+          }
+        },
+        "isIdle": {
+          "__func": "<anonymous>"
+        },
+        "fetchTodos": {
+          "__func": "<anonymous>"
+        },
+        "addNewTodo": {
+          "__func": "<anonymous>"
+        },
+        "deleteTodo": {
+          "__func": "<anonymous>"
+        },
+        "editTodo": {
+          "__func": "<anonymous>"
+        },
+        "changeStatus": {
+          "__func": "<anonymous>"
+        },
+        "isFetching": {
+          "__func": "<anonymous>"
+        },
+        "todosLoaded": {
+          "__func": "<anonymous>"
+        },
+        "error": {
+          "__func": "<anonymous>"
+        },
+        "isError": {
+          "__func": "<anonymous>"
+        },
+        "destroy": {
+          "__func": "<anonymous>"
+        }
+      },
+      "meta": {
+        "middlewares": 2
+      },
+      "origin": "http://localhost:3000/",
+      "timeDiff": "+ 0:03:387",
+      "id": 152
+    },
+    {
+      "time": 1512916019352,
+      "uid": "8327e224-7994-47b8-af95-7731afa9e482",
+      "state": [
+        {
+          "name": "ToDos",
+          "state": {
+            "name": "idle",
+            "todos": [
+              {
+                "label": "Another thing here",
+                "done": true
+              },
+              {
+                "label": "new one",
+                "done": false
+              },
+              {
+                "label": "A new one",
+                "done": true
+              },
+              {
+                "label": "That's a new something",
                 "done": false
               }
             ]
@@ -2736,14 +3494,490 @@
           "state": {
             "name": "idle"
           }
+        },
+        {
+          "name": "_@@@4",
+          "state": {
+            "name": "idle"
+          }
         }
       ],
-      "type": "onActionDispatched",
-      "actionName": "change status",
-      "args": [
-        2,
-        true
+      "type": "onGeneratorStep",
+      "yielded": {
+        "__type": "call",
+        "func": "saveTodos",
+        "args": [
+          [
+            {
+              "label": "Another thing here",
+              "done": true
+            },
+            {
+              "label": "new one",
+              "done": false
+            },
+            {
+              "label": "A new one",
+              "done": true
+            },
+            {
+              "label": "That's a new something",
+              "done": false
+            }
+          ]
+        ]
+      },
+      "meta": {
+        "middlewares": 2
+      },
+      "origin": "http://localhost:3000/",
+      "timeDiff": "+ 0:00:001",
+      "id": 153
+    },
+    {
+      "time": 1512916019352,
+      "uid": "8327e224-7994-47b8-af95-7731afa9e482",
+      "state": [
+        {
+          "name": "ToDos",
+          "state": {
+            "name": "idle",
+            "todos": [
+              {
+                "label": "Another thing here",
+                "done": true
+              },
+              {
+                "label": "new one",
+                "done": false
+              },
+              {
+                "label": "A new one",
+                "done": true
+              },
+              {
+                "label": "That's a new something",
+                "done": false
+              }
+            ]
+          }
+        },
+        {
+          "name": "_@@@1",
+          "state": {
+            "name": "idle"
+          }
+        },
+        {
+          "name": "_@@@2",
+          "state": {
+            "name": "idle"
+          }
+        },
+        {
+          "name": "_@@@3",
+          "state": {
+            "name": "idle"
+          }
+        },
+        {
+          "name": "_@@@4",
+          "state": {
+            "name": "idle"
+          }
+        }
       ],
+      "type": "onGeneratorStep",
+      "yielded": {
+        "__type": "call",
+        "func": "save",
+        "args": [
+          [
+            {
+              "label": "Another thing here",
+              "done": true
+            },
+            {
+              "label": "new one",
+              "done": false
+            },
+            {
+              "label": "A new one",
+              "done": true
+            },
+            {
+              "label": "That's a new something",
+              "done": false
+            }
+          ]
+        ]
+      },
+      "meta": {
+        "middlewares": 2
+      },
+      "origin": "http://localhost:3000/",
+      "id": 154
+    },
+    {
+      "time": 1512916019353,
+      "uid": "8327e224-7994-47b8-af95-7731afa9e482",
+      "state": [
+        {
+          "name": "ToDos",
+          "state": {
+            "name": "idle",
+            "todos": [
+              {
+                "label": "Another thing here",
+                "done": true
+              },
+              {
+                "label": "new one",
+                "done": false
+              },
+              {
+                "label": "A new one",
+                "done": true
+              },
+              {
+                "label": "That's a new something",
+                "done": false
+              }
+            ]
+          }
+        },
+        {
+          "name": "_@@@1",
+          "state": {
+            "name": "idle"
+          }
+        },
+        {
+          "name": "_@@@2",
+          "state": {
+            "name": "idle"
+          }
+        },
+        {
+          "name": "_@@@3",
+          "state": {
+            "name": "idle"
+          }
+        },
+        {
+          "name": "_@@@4",
+          "state": {
+            "name": "idle"
+          }
+        }
+      ],
+      "type": "onGeneratorResumed",
+      "value": null,
+      "meta": {
+        "middlewares": 2
+      },
+      "origin": "http://localhost:3000/",
+      "timeDiff": "+ 0:00:001",
+      "id": 155
+    },
+    {
+      "time": 1512916019353,
+      "uid": "8327e224-7994-47b8-af95-7731afa9e482",
+      "state": [
+        {
+          "name": "ToDos",
+          "state": {
+            "name": "idle",
+            "todos": [
+              {
+                "label": "Another thing here",
+                "done": true
+              },
+              {
+                "label": "new one",
+                "done": false
+              },
+              {
+                "label": "A new one",
+                "done": true
+              },
+              {
+                "label": "That's a new something",
+                "done": false
+              }
+            ]
+          }
+        },
+        {
+          "name": "_@@@1",
+          "state": {
+            "name": "idle"
+          }
+        },
+        {
+          "name": "_@@@2",
+          "state": {
+            "name": "idle"
+          }
+        },
+        {
+          "name": "_@@@3",
+          "state": {
+            "name": "idle"
+          }
+        },
+        {
+          "name": "_@@@4",
+          "state": {
+            "name": "idle"
+          }
+        }
+      ],
+      "type": "onGeneratorEnd",
+      "value": {
+        "name": "idle",
+        "todos": [
+          {
+            "label": "Another thing here",
+            "done": true
+          },
+          {
+            "label": "new one",
+            "done": false
+          },
+          {
+            "label": "A new one",
+            "done": true
+          },
+          {
+            "label": "That's a new something",
+            "done": false
+          }
+        ]
+      },
+      "meta": {
+        "middlewares": 2
+      },
+      "origin": "http://localhost:3000/",
+      "id": 156
+    },
+    {
+      "time": 1512916019354,
+      "uid": "8327e224-7994-47b8-af95-7731afa9e482",
+      "state": [
+        {
+          "name": "ToDos",
+          "state": {
+            "name": "idle",
+            "todos": [
+              {
+                "label": "Another thing here",
+                "done": true
+              },
+              {
+                "label": "new one",
+                "done": false
+              },
+              {
+                "label": "A new one",
+                "done": true
+              },
+              {
+                "label": "That's a new something",
+                "done": false
+              }
+            ]
+          }
+        },
+        {
+          "name": "_@@@1",
+          "state": {
+            "name": "idle"
+          }
+        },
+        {
+          "name": "_@@@2",
+          "state": {
+            "name": "idle"
+          }
+        },
+        {
+          "name": "_@@@3",
+          "state": {
+            "name": "idle"
+          }
+        },
+        {
+          "name": "_@@@4",
+          "state": {
+            "name": "idle"
+          }
+        }
+      ],
+      "type": "onGeneratorResumed",
+      "value": {
+        "name": "idle",
+        "todos": [
+          {
+            "label": "Another thing here",
+            "done": true
+          },
+          {
+            "label": "new one",
+            "done": false
+          },
+          {
+            "label": "A new one",
+            "done": true
+          },
+          {
+            "label": "That's a new something",
+            "done": false
+          }
+        ]
+      },
+      "meta": {
+        "middlewares": 2
+      },
+      "origin": "http://localhost:3000/",
+      "timeDiff": "+ 0:00:001",
+      "id": 157
+    },
+    {
+      "time": 1512916019354,
+      "uid": "8327e224-7994-47b8-af95-7731afa9e482",
+      "state": [
+        {
+          "name": "ToDos",
+          "state": {
+            "name": "idle",
+            "todos": [
+              {
+                "label": "Another thing here",
+                "done": true
+              },
+              {
+                "label": "new one",
+                "done": false
+              },
+              {
+                "label": "A new one",
+                "done": true
+              },
+              {
+                "label": "That's a new something",
+                "done": false
+              }
+            ]
+          }
+        },
+        {
+          "name": "_@@@1",
+          "state": {
+            "name": "idle"
+          }
+        },
+        {
+          "name": "_@@@2",
+          "state": {
+            "name": "idle"
+          }
+        },
+        {
+          "name": "_@@@3",
+          "state": {
+            "name": "idle"
+          }
+        },
+        {
+          "name": "_@@@4",
+          "state": {
+            "name": "idle"
+          }
+        }
+      ],
+      "type": "onGeneratorEnd",
+      "value": {
+        "name": "idle",
+        "todos": [
+          {
+            "label": "Another thing here",
+            "done": true
+          },
+          {
+            "label": "new one",
+            "done": false
+          },
+          {
+            "label": "A new one",
+            "done": true
+          },
+          {
+            "label": "That's a new something",
+            "done": false
+          }
+        ]
+      },
+      "meta": {
+        "middlewares": 2
+      },
+      "origin": "http://localhost:3000/",
+      "id": 158
+    },
+    {
+      "time": 1512916019354,
+      "uid": "8327e224-7994-47b8-af95-7731afa9e482",
+      "state": [
+        {
+          "name": "ToDos",
+          "state": {
+            "name": "idle",
+            "todos": [
+              {
+                "label": "Another thing here",
+                "done": true
+              },
+              {
+                "label": "new one",
+                "done": false
+              },
+              {
+                "label": "A new one",
+                "done": true
+              },
+              {
+                "label": "That's a new something",
+                "done": false
+              }
+            ]
+          }
+        },
+        {
+          "name": "_@@@1",
+          "state": {
+            "name": "idle"
+          }
+        },
+        {
+          "name": "_@@@2",
+          "state": {
+            "name": "idle"
+          }
+        },
+        {
+          "name": "_@@@3",
+          "state": {
+            "name": "idle"
+          }
+        },
+        {
+          "name": "_@@@4",
+          "state": {
+            "name": "idle"
+          }
+        }
+      ],
+      "type": "onStateWillChange",
       "machine": {
         "name": "ToDos",
         "state": {
@@ -2754,11 +3988,15 @@
               "done": true
             },
             {
-              "label": "hello",
+              "label": "new one",
+              "done": false
+            },
+            {
+              "label": "A new one",
               "done": true
             },
             {
-              "label": "here we go",
+              "label": "That's a new something",
               "done": false
             }
           ]
@@ -2833,12 +4071,11 @@
         "middlewares": 2
       },
       "origin": "http://localhost:3000/",
-      "index": 30
+      "id": 159
     },
     {
-      "source": "stent",
-      "time": 1512663916692,
-      "uid": "ffd431d7-0b2b-4ad4-a05d-e64fc9c4111f",
+      "time": 1512916019354,
+      "uid": "8327e224-7994-47b8-af95-7731afa9e482",
       "state": [
         {
           "name": "ToDos",
@@ -2850,12 +4087,16 @@
                 "done": true
               },
               {
-                "label": "hello",
+                "label": "new one",
+                "done": false
+              },
+              {
+                "label": "A new one",
                 "done": true
               },
               {
-                "label": "here we go",
-                "done": true
+                "label": "That's a new something",
+                "done": false
               }
             ]
           }
@@ -2877,537 +4118,9 @@
           "state": {
             "name": "idle"
           }
-        }
-      ],
-      "type": "onGeneratorStep",
-      "yielded": {
-        "__type": "call",
-        "func": "saveTodos",
-        "args": [
-          [
-            {
-              "label": "Another thing here",
-              "done": true
-            },
-            {
-              "label": "hello",
-              "done": true
-            },
-            {
-              "label": "here we go",
-              "done": true
-            }
-          ]
-        ]
-      },
-      "meta": {
-        "middlewares": 2
-      },
-      "origin": "http://localhost:3000/",
-      "index": 31
-    },
-    {
-      "source": "stent",
-      "time": 1512663916692,
-      "uid": "ffd431d7-0b2b-4ad4-a05d-e64fc9c4111f",
-      "state": [
-        {
-          "name": "ToDos",
-          "state": {
-            "name": "idle",
-            "todos": [
-              {
-                "label": "Another thing here",
-                "done": true
-              },
-              {
-                "label": "hello",
-                "done": true
-              },
-              {
-                "label": "here we go",
-                "done": true
-              }
-            ]
-          }
         },
         {
-          "name": "_@@@1",
-          "state": {
-            "name": "idle"
-          }
-        },
-        {
-          "name": "_@@@2",
-          "state": {
-            "name": "idle"
-          }
-        },
-        {
-          "name": "_@@@3",
-          "state": {
-            "name": "idle"
-          }
-        }
-      ],
-      "type": "onGeneratorStep",
-      "yielded": {
-        "__type": "call",
-        "func": "save",
-        "args": [
-          [
-            {
-              "label": "Another thing here",
-              "done": true
-            },
-            {
-              "label": "hello",
-              "done": true
-            },
-            {
-              "label": "here we go",
-              "done": true
-            }
-          ]
-        ]
-      },
-      "meta": {
-        "middlewares": 2
-      },
-      "origin": "http://localhost:3000/",
-      "index": 32
-    },
-    {
-      "source": "stent",
-      "time": 1512663916693,
-      "uid": "ffd431d7-0b2b-4ad4-a05d-e64fc9c4111f",
-      "state": [
-        {
-          "name": "ToDos",
-          "state": {
-            "name": "idle",
-            "todos": [
-              {
-                "label": "Another thing here",
-                "done": true
-              },
-              {
-                "label": "hello",
-                "done": true
-              },
-              {
-                "label": "here we go",
-                "done": true
-              }
-            ]
-          }
-        },
-        {
-          "name": "_@@@1",
-          "state": {
-            "name": "idle"
-          }
-        },
-        {
-          "name": "_@@@2",
-          "state": {
-            "name": "idle"
-          }
-        },
-        {
-          "name": "_@@@3",
-          "state": {
-            "name": "idle"
-          }
-        }
-      ],
-      "type": "onGeneratorResumed",
-      "value": null,
-      "meta": {
-        "middlewares": 2
-      },
-      "origin": "http://localhost:3000/",
-      "index": 33
-    },
-    {
-      "source": "stent",
-      "time": 1512663916694,
-      "uid": "ffd431d7-0b2b-4ad4-a05d-e64fc9c4111f",
-      "state": [
-        {
-          "name": "ToDos",
-          "state": {
-            "name": "idle",
-            "todos": [
-              {
-                "label": "Another thing here",
-                "done": true
-              },
-              {
-                "label": "hello",
-                "done": true
-              },
-              {
-                "label": "here we go",
-                "done": true
-              }
-            ]
-          }
-        },
-        {
-          "name": "_@@@1",
-          "state": {
-            "name": "idle"
-          }
-        },
-        {
-          "name": "_@@@2",
-          "state": {
-            "name": "idle"
-          }
-        },
-        {
-          "name": "_@@@3",
-          "state": {
-            "name": "idle"
-          }
-        }
-      ],
-      "type": "onGeneratorEnd",
-      "value": {
-        "name": "idle",
-        "todos": [
-          {
-            "label": "Another thing here",
-            "done": true
-          },
-          {
-            "label": "hello",
-            "done": true
-          },
-          {
-            "label": "here we go",
-            "done": true
-          }
-        ]
-      },
-      "meta": {
-        "middlewares": 2
-      },
-      "origin": "http://localhost:3000/",
-      "index": 34
-    },
-    {
-      "source": "stent",
-      "time": 1512663916694,
-      "uid": "ffd431d7-0b2b-4ad4-a05d-e64fc9c4111f",
-      "state": [
-        {
-          "name": "ToDos",
-          "state": {
-            "name": "idle",
-            "todos": [
-              {
-                "label": "Another thing here",
-                "done": true
-              },
-              {
-                "label": "hello",
-                "done": true
-              },
-              {
-                "label": "here we go",
-                "done": true
-              }
-            ]
-          }
-        },
-        {
-          "name": "_@@@1",
-          "state": {
-            "name": "idle"
-          }
-        },
-        {
-          "name": "_@@@2",
-          "state": {
-            "name": "idle"
-          }
-        },
-        {
-          "name": "_@@@3",
-          "state": {
-            "name": "idle"
-          }
-        }
-      ],
-      "type": "onGeneratorResumed",
-      "value": {
-        "name": "idle",
-        "todos": [
-          {
-            "label": "Another thing here",
-            "done": true
-          },
-          {
-            "label": "hello",
-            "done": true
-          },
-          {
-            "label": "here we go",
-            "done": true
-          }
-        ]
-      },
-      "meta": {
-        "middlewares": 2
-      },
-      "origin": "http://localhost:3000/",
-      "index": 35
-    },
-    {
-      "source": "stent",
-      "time": 1512663916694,
-      "uid": "ffd431d7-0b2b-4ad4-a05d-e64fc9c4111f",
-      "state": [
-        {
-          "name": "ToDos",
-          "state": {
-            "name": "idle",
-            "todos": [
-              {
-                "label": "Another thing here",
-                "done": true
-              },
-              {
-                "label": "hello",
-                "done": true
-              },
-              {
-                "label": "here we go",
-                "done": true
-              }
-            ]
-          }
-        },
-        {
-          "name": "_@@@1",
-          "state": {
-            "name": "idle"
-          }
-        },
-        {
-          "name": "_@@@2",
-          "state": {
-            "name": "idle"
-          }
-        },
-        {
-          "name": "_@@@3",
-          "state": {
-            "name": "idle"
-          }
-        }
-      ],
-      "type": "onGeneratorEnd",
-      "value": {
-        "name": "idle",
-        "todos": [
-          {
-            "label": "Another thing here",
-            "done": true
-          },
-          {
-            "label": "hello",
-            "done": true
-          },
-          {
-            "label": "here we go",
-            "done": true
-          }
-        ]
-      },
-      "meta": {
-        "middlewares": 2
-      },
-      "origin": "http://localhost:3000/",
-      "index": 36
-    },
-    {
-      "source": "stent",
-      "time": 1512663916694,
-      "uid": "ffd431d7-0b2b-4ad4-a05d-e64fc9c4111f",
-      "state": [
-        {
-          "name": "ToDos",
-          "state": {
-            "name": "idle",
-            "todos": [
-              {
-                "label": "Another thing here",
-                "done": true
-              },
-              {
-                "label": "hello",
-                "done": true
-              },
-              {
-                "label": "here we go",
-                "done": true
-              }
-            ]
-          }
-        },
-        {
-          "name": "_@@@1",
-          "state": {
-            "name": "idle"
-          }
-        },
-        {
-          "name": "_@@@2",
-          "state": {
-            "name": "idle"
-          }
-        },
-        {
-          "name": "_@@@3",
-          "state": {
-            "name": "idle"
-          }
-        }
-      ],
-      "type": "onStateWillChange",
-      "machine": {
-        "name": "ToDos",
-        "state": {
-          "name": "idle",
-          "todos": [
-            {
-              "label": "Another thing here",
-              "done": true
-            },
-            {
-              "label": "hello",
-              "done": true
-            },
-            {
-              "label": "here we go",
-              "done": true
-            }
-          ]
-        },
-        "transitions": {
-          "idle": {
-            "fetch todos": {
-              "__func": "fetchTodos"
-            },
-            "add new todo": {
-              "__func": "addNewTodo"
-            },
-            "delete todo": {
-              "__func": "deleteTodo"
-            },
-            "edit todo": {
-              "__func": "editTodo"
-            },
-            "change status": {
-              "__func": "changeStatus"
-            }
-          },
-          "fetching": {
-            "todos loaded": {
-              "__func": "todosLoaded"
-            },
-            "error": {
-              "__func": "error"
-            }
-          },
-          "error": {
-            "fetch todos": {
-              "__func": "fetchTodos"
-            }
-          }
-        },
-        "isIdle": {
-          "__func": "<anonymous>"
-        },
-        "fetchTodos": {
-          "__func": "<anonymous>"
-        },
-        "addNewTodo": {
-          "__func": "<anonymous>"
-        },
-        "deleteTodo": {
-          "__func": "<anonymous>"
-        },
-        "editTodo": {
-          "__func": "<anonymous>"
-        },
-        "changeStatus": {
-          "__func": "<anonymous>"
-        },
-        "isFetching": {
-          "__func": "<anonymous>"
-        },
-        "todosLoaded": {
-          "__func": "<anonymous>"
-        },
-        "error": {
-          "__func": "<anonymous>"
-        },
-        "isError": {
-          "__func": "<anonymous>"
-        },
-        "destroy": {
-          "__func": "<anonymous>"
-        }
-      },
-      "meta": {
-        "middlewares": 2
-      },
-      "origin": "http://localhost:3000/",
-      "index": 37
-    },
-    {
-      "source": "stent",
-      "time": 1512663916695,
-      "uid": "ffd431d7-0b2b-4ad4-a05d-e64fc9c4111f",
-      "state": [
-        {
-          "name": "ToDos",
-          "state": {
-            "name": "idle",
-            "todos": [
-              {
-                "label": "Another thing here",
-                "done": true
-              },
-              {
-                "label": "hello",
-                "done": true
-              },
-              {
-                "label": "here we go",
-                "done": true
-              }
-            ]
-          }
-        },
-        {
-          "name": "_@@@1",
-          "state": {
-            "name": "idle"
-          }
-        },
-        {
-          "name": "_@@@2",
-          "state": {
-            "name": "idle"
-          }
-        },
-        {
-          "name": "_@@@3",
+          "name": "_@@@4",
           "state": {
             "name": "idle"
           }
@@ -3424,12 +4137,16 @@
               "done": true
             },
             {
-              "label": "hello",
+              "label": "new one",
+              "done": false
+            },
+            {
+              "label": "A new one",
               "done": true
             },
             {
-              "label": "here we go",
-              "done": true
+              "label": "That's a new something",
+              "done": false
             }
           ]
         },
@@ -3503,12 +4220,11 @@
         "middlewares": 2
       },
       "origin": "http://localhost:3000/",
-      "index": 38
+      "id": 160
     },
     {
-      "source": "stent",
-      "time": 1512663916701,
-      "uid": "ffd431d7-0b2b-4ad4-a05d-e64fc9c4111f",
+      "time": 1512916019362,
+      "uid": "8327e224-7994-47b8-af95-7731afa9e482",
       "state": [
         {
           "name": "ToDos",
@@ -3520,12 +4236,16 @@
                 "done": true
               },
               {
-                "label": "hello",
+                "label": "new one",
+                "done": false
+              },
+              {
+                "label": "A new one",
                 "done": true
               },
               {
-                "label": "here we go",
-                "done": true
+                "label": "That's a new something",
+                "done": false
               }
             ]
           }
@@ -3544,6 +4264,12 @@
         },
         {
           "name": "_@@@3",
+          "state": {
+            "name": "idle"
+          }
+        },
+        {
+          "name": "_@@@4",
           "state": {
             "name": "idle"
           }
@@ -3552,8 +4278,8 @@
       "type": "onActionProcessed",
       "actionName": "change status",
       "args": [
-        2,
-        true
+        3,
+        false
       ],
       "machine": {
         "name": "ToDos",
@@ -3565,12 +4291,16 @@
               "done": true
             },
             {
-              "label": "hello",
+              "label": "new one",
+              "done": false
+            },
+            {
+              "label": "A new one",
               "done": true
             },
             {
-              "label": "here we go",
-              "done": true
+              "label": "That's a new something",
+              "done": false
             }
           ]
         },
@@ -3644,12 +4374,12 @@
         "middlewares": 2
       },
       "origin": "http://localhost:3000/",
-      "index": 39
+      "timeDiff": "+ 0:00:008",
+      "id": 161
     },
     {
-      "source": "stent",
-      "time": 1512663918387,
-      "uid": "ffd431d7-0b2b-4ad4-a05d-e64fc9c4111f",
+      "time": 1512916020462,
+      "uid": "8327e224-7994-47b8-af95-7731afa9e482",
       "state": [
         {
           "name": "ToDos",
@@ -3661,12 +4391,16 @@
                 "done": true
               },
               {
-                "label": "hello",
+                "label": "new one",
+                "done": false
+              },
+              {
+                "label": "A new one",
                 "done": true
               },
               {
-                "label": "here we go",
-                "done": true
+                "label": "That's a new something",
+                "done": false
               }
             ]
           }
@@ -3685,6 +4419,12 @@
         },
         {
           "name": "_@@@3",
+          "state": {
+            "name": "idle"
+          }
+        },
+        {
+          "name": "_@@@4",
           "state": {
             "name": "idle"
           }
@@ -3693,7 +4433,7 @@
       "type": "onActionDispatched",
       "actionName": "delete todo",
       "args": [
-        2
+        3
       ],
       "machine": {
         "name": "ToDos",
@@ -3705,12 +4445,16 @@
               "done": true
             },
             {
-              "label": "hello",
+              "label": "new one",
+              "done": false
+            },
+            {
+              "label": "A new one",
               "done": true
             },
             {
-              "label": "here we go",
-              "done": true
+              "label": "That's a new something",
+              "done": false
             }
           ]
         },
@@ -3784,12 +4528,12 @@
         "middlewares": 2
       },
       "origin": "http://localhost:3000/",
-      "index": 40
+      "timeDiff": "+ 0:01:100",
+      "id": 162
     },
     {
-      "source": "stent",
-      "time": 1512663918388,
-      "uid": "ffd431d7-0b2b-4ad4-a05d-e64fc9c4111f",
+      "time": 1512916020463,
+      "uid": "8327e224-7994-47b8-af95-7731afa9e482",
       "state": [
         {
           "name": "ToDos",
@@ -3801,7 +4545,11 @@
                 "done": true
               },
               {
-                "label": "hello",
+                "label": "new one",
+                "done": false
+              },
+              {
+                "label": "A new one",
                 "done": true
               }
             ]
@@ -3821,6 +4569,12 @@
         },
         {
           "name": "_@@@3",
+          "state": {
+            "name": "idle"
+          }
+        },
+        {
+          "name": "_@@@4",
           "state": {
             "name": "idle"
           }
@@ -3837,7 +4591,11 @@
               "done": true
             },
             {
-              "label": "hello",
+              "label": "new one",
+              "done": false
+            },
+            {
+              "label": "A new one",
               "done": true
             }
           ]
@@ -3847,12 +4605,12 @@
         "middlewares": 2
       },
       "origin": "http://localhost:3000/",
-      "index": 41
+      "timeDiff": "+ 0:00:001",
+      "id": 163
     },
     {
-      "source": "stent",
-      "time": 1512663918388,
-      "uid": "ffd431d7-0b2b-4ad4-a05d-e64fc9c4111f",
+      "time": 1512916020463,
+      "uid": "8327e224-7994-47b8-af95-7731afa9e482",
       "state": [
         {
           "name": "ToDos",
@@ -3864,7 +4622,11 @@
                 "done": true
               },
               {
-                "label": "hello",
+                "label": "new one",
+                "done": false
+              },
+              {
+                "label": "A new one",
                 "done": true
               }
             ]
@@ -3884,6 +4646,12 @@
         },
         {
           "name": "_@@@3",
+          "state": {
+            "name": "idle"
+          }
+        },
+        {
+          "name": "_@@@4",
           "state": {
             "name": "idle"
           }
@@ -3900,7 +4668,11 @@
               "done": true
             },
             {
-              "label": "hello",
+              "label": "new one",
+              "done": false
+            },
+            {
+              "label": "A new one",
               "done": true
             }
           ]
@@ -3910,12 +4682,11 @@
         "middlewares": 2
       },
       "origin": "http://localhost:3000/",
-      "index": 42
+      "id": 164
     },
     {
-      "source": "stent",
-      "time": 1512663918389,
-      "uid": "ffd431d7-0b2b-4ad4-a05d-e64fc9c4111f",
+      "time": 1512916020463,
+      "uid": "8327e224-7994-47b8-af95-7731afa9e482",
       "state": [
         {
           "name": "ToDos",
@@ -3927,7 +4698,11 @@
                 "done": true
               },
               {
-                "label": "hello",
+                "label": "new one",
+                "done": false
+              },
+              {
+                "label": "A new one",
                 "done": true
               }
             ]
@@ -3947,6 +4722,12 @@
         },
         {
           "name": "_@@@3",
+          "state": {
+            "name": "idle"
+          }
+        },
+        {
+          "name": "_@@@4",
           "state": {
             "name": "idle"
           }
@@ -3958,12 +4739,11 @@
         "middlewares": 2
       },
       "origin": "http://localhost:3000/",
-      "index": 43
+      "id": 165
     },
     {
-      "source": "stent",
-      "time": 1512663918389,
-      "uid": "ffd431d7-0b2b-4ad4-a05d-e64fc9c4111f",
+      "time": 1512916020464,
+      "uid": "8327e224-7994-47b8-af95-7731afa9e482",
       "state": [
         {
           "name": "ToDos",
@@ -3975,7 +4755,11 @@
                 "done": true
               },
               {
-                "label": "hello",
+                "label": "new one",
+                "done": false
+              },
+              {
+                "label": "A new one",
                 "done": true
               }
             ]
@@ -3995,6 +4779,12 @@
         },
         {
           "name": "_@@@3",
+          "state": {
+            "name": "idle"
+          }
+        },
+        {
+          "name": "_@@@4",
           "state": {
             "name": "idle"
           }
@@ -4009,7 +4799,11 @@
             "done": true
           },
           {
-            "label": "hello",
+            "label": "new one",
+            "done": false
+          },
+          {
+            "label": "A new one",
             "done": true
           }
         ]
@@ -4018,12 +4812,12 @@
         "middlewares": 2
       },
       "origin": "http://localhost:3000/",
-      "index": 44
+      "timeDiff": "+ 0:00:001",
+      "id": 166
     },
     {
-      "source": "stent",
-      "time": 1512663918389,
-      "uid": "ffd431d7-0b2b-4ad4-a05d-e64fc9c4111f",
+      "time": 1512916020464,
+      "uid": "8327e224-7994-47b8-af95-7731afa9e482",
       "state": [
         {
           "name": "ToDos",
@@ -4035,7 +4829,11 @@
                 "done": true
               },
               {
-                "label": "hello",
+                "label": "new one",
+                "done": false
+              },
+              {
+                "label": "A new one",
                 "done": true
               }
             ]
@@ -4055,6 +4853,12 @@
         },
         {
           "name": "_@@@3",
+          "state": {
+            "name": "idle"
+          }
+        },
+        {
+          "name": "_@@@4",
           "state": {
             "name": "idle"
           }
@@ -4069,7 +4873,11 @@
             "done": true
           },
           {
-            "label": "hello",
+            "label": "new one",
+            "done": false
+          },
+          {
+            "label": "A new one",
             "done": true
           }
         ]
@@ -4078,12 +4886,11 @@
         "middlewares": 2
       },
       "origin": "http://localhost:3000/",
-      "index": 45
+      "id": 167
     },
     {
-      "source": "stent",
-      "time": 1512663918389,
-      "uid": "ffd431d7-0b2b-4ad4-a05d-e64fc9c4111f",
+      "time": 1512916020464,
+      "uid": "8327e224-7994-47b8-af95-7731afa9e482",
       "state": [
         {
           "name": "ToDos",
@@ -4095,7 +4902,11 @@
                 "done": true
               },
               {
-                "label": "hello",
+                "label": "new one",
+                "done": false
+              },
+              {
+                "label": "A new one",
                 "done": true
               }
             ]
@@ -4115,6 +4926,12 @@
         },
         {
           "name": "_@@@3",
+          "state": {
+            "name": "idle"
+          }
+        },
+        {
+          "name": "_@@@4",
           "state": {
             "name": "idle"
           }
@@ -4129,7 +4946,11 @@
             "done": true
           },
           {
-            "label": "hello",
+            "label": "new one",
+            "done": false
+          },
+          {
+            "label": "A new one",
             "done": true
           }
         ]
@@ -4138,12 +4959,11 @@
         "middlewares": 2
       },
       "origin": "http://localhost:3000/",
-      "index": 46
+      "id": 168
     },
     {
-      "source": "stent",
-      "time": 1512663918389,
-      "uid": "ffd431d7-0b2b-4ad4-a05d-e64fc9c4111f",
+      "time": 1512916020464,
+      "uid": "8327e224-7994-47b8-af95-7731afa9e482",
       "state": [
         {
           "name": "ToDos",
@@ -4155,7 +4975,11 @@
                 "done": true
               },
               {
-                "label": "hello",
+                "label": "new one",
+                "done": false
+              },
+              {
+                "label": "A new one",
                 "done": true
               }
             ]
@@ -4175,6 +4999,12 @@
         },
         {
           "name": "_@@@3",
+          "state": {
+            "name": "idle"
+          }
+        },
+        {
+          "name": "_@@@4",
           "state": {
             "name": "idle"
           }
@@ -4191,7 +5021,11 @@
               "done": true
             },
             {
-              "label": "hello",
+              "label": "new one",
+              "done": false
+            },
+            {
+              "label": "A new one",
               "done": true
             }
           ]
@@ -4266,12 +5100,11 @@
         "middlewares": 2
       },
       "origin": "http://localhost:3000/",
-      "index": 47
+      "id": 169
     },
     {
-      "source": "stent",
-      "time": 1512663918390,
-      "uid": "ffd431d7-0b2b-4ad4-a05d-e64fc9c4111f",
+      "time": 1512916020464,
+      "uid": "8327e224-7994-47b8-af95-7731afa9e482",
       "state": [
         {
           "name": "ToDos",
@@ -4283,7 +5116,11 @@
                 "done": true
               },
               {
-                "label": "hello",
+                "label": "new one",
+                "done": false
+              },
+              {
+                "label": "A new one",
                 "done": true
               }
             ]
@@ -4303,6 +5140,12 @@
         },
         {
           "name": "_@@@3",
+          "state": {
+            "name": "idle"
+          }
+        },
+        {
+          "name": "_@@@4",
           "state": {
             "name": "idle"
           }
@@ -4319,7 +5162,11 @@
               "done": true
             },
             {
-              "label": "hello",
+              "label": "new one",
+              "done": false
+            },
+            {
+              "label": "A new one",
               "done": true
             }
           ]
@@ -4394,12 +5241,11 @@
         "middlewares": 2
       },
       "origin": "http://localhost:3000/",
-      "index": 48
+      "id": 170
     },
     {
-      "source": "stent",
-      "time": 1512663918391,
-      "uid": "ffd431d7-0b2b-4ad4-a05d-e64fc9c4111f",
+      "time": 1512916020467,
+      "uid": "8327e224-7994-47b8-af95-7731afa9e482",
       "state": [
         {
           "name": "ToDos",
@@ -4411,7 +5257,11 @@
                 "done": true
               },
               {
-                "label": "hello",
+                "label": "new one",
+                "done": false
+              },
+              {
+                "label": "A new one",
                 "done": true
               }
             ]
@@ -4431,6 +5281,12 @@
         },
         {
           "name": "_@@@3",
+          "state": {
+            "name": "idle"
+          }
+        },
+        {
+          "name": "_@@@4",
           "state": {
             "name": "idle"
           }
@@ -4450,7 +5306,11 @@
                   "done": true
                 },
                 {
-                  "label": "hello",
+                  "label": "new one",
+                  "done": false
+                },
+                {
+                  "label": "A new one",
                   "done": true
                 }
               ]
@@ -4525,12 +5385,12 @@
         "middlewares": 2
       },
       "origin": "http://localhost:3000/",
-      "index": 49
+      "timeDiff": "+ 0:00:003",
+      "id": 171
     },
     {
-      "source": "stent",
-      "time": 1512663918392,
-      "uid": "ffd431d7-0b2b-4ad4-a05d-e64fc9c4111f",
+      "time": 1512916020467,
+      "uid": "8327e224-7994-47b8-af95-7731afa9e482",
       "state": [
         {
           "name": "ToDos",
@@ -4542,7 +5402,11 @@
                 "done": true
               },
               {
-                "label": "hello",
+                "label": "new one",
+                "done": false
+              },
+              {
+                "label": "A new one",
                 "done": true
               }
             ]
@@ -4556,6 +5420,12 @@
         },
         {
           "name": "_@@@2",
+          "state": {
+            "name": "idle"
+          }
+        },
+        {
+          "name": "_@@@3",
           "state": {
             "name": "idle"
           }
@@ -4574,7 +5444,11 @@
                   "done": true
                 },
                 {
-                  "label": "hello",
+                  "label": "new one",
+                  "done": false
+                },
+                {
+                  "label": "A new one",
                   "done": true
                 }
               ]
@@ -4649,12 +5523,11 @@
         "middlewares": 2
       },
       "origin": "http://localhost:3000/",
-      "index": 50
+      "id": 172
     },
     {
-      "source": "stent",
-      "time": 1512663918393,
-      "uid": "ffd431d7-0b2b-4ad4-a05d-e64fc9c4111f",
+      "time": 1512916020468,
+      "uid": "8327e224-7994-47b8-af95-7731afa9e482",
       "state": [
         {
           "name": "ToDos",
@@ -4666,7 +5539,11 @@
                 "done": true
               },
               {
-                "label": "hello",
+                "label": "new one",
+                "done": false
+              },
+              {
+                "label": "A new one",
                 "done": true
               }
             ]
@@ -4680,6 +5557,12 @@
         },
         {
           "name": "_@@@2",
+          "state": {
+            "name": "idle"
+          }
+        },
+        {
+          "name": "_@@@3",
           "state": {
             "name": "idle"
           }
@@ -4698,7 +5581,11 @@
                   "done": true
                 },
                 {
-                  "label": "hello",
+                  "label": "new one",
+                  "done": false
+                },
+                {
+                  "label": "A new one",
                   "done": true
                 }
               ]
@@ -4773,12 +5660,12 @@
         "middlewares": 2
       },
       "origin": "http://localhost:3000/",
-      "index": 51
+      "timeDiff": "+ 0:00:001",
+      "id": 173
     },
     {
-      "source": "stent",
-      "time": 1512663918393,
-      "uid": "ffd431d7-0b2b-4ad4-a05d-e64fc9c4111f",
+      "time": 1512916020468,
+      "uid": "8327e224-7994-47b8-af95-7731afa9e482",
       "state": [
         {
           "name": "ToDos",
@@ -4790,7 +5677,11 @@
                 "done": true
               },
               {
-                "label": "hello",
+                "label": "new one",
+                "done": false
+              },
+              {
+                "label": "A new one",
                 "done": true
               }
             ]
@@ -4804,6 +5695,12 @@
         },
         {
           "name": "_@@@2",
+          "state": {
+            "name": "idle"
+          }
+        },
+        {
+          "name": "_@@@3",
           "state": {
             "name": "idle"
           }
@@ -4822,7 +5719,11 @@
                   "done": true
                 },
                 {
-                  "label": "hello",
+                  "label": "new one",
+                  "done": false
+                },
+                {
+                  "label": "A new one",
                   "done": true
                 }
               ]
@@ -4897,12 +5798,11 @@
         "middlewares": 2
       },
       "origin": "http://localhost:3000/",
-      "index": 52
+      "id": 174
     },
     {
-      "source": "stent",
-      "time": 1512663918393,
-      "uid": "ffd431d7-0b2b-4ad4-a05d-e64fc9c4111f",
+      "time": 1512916020468,
+      "uid": "8327e224-7994-47b8-af95-7731afa9e482",
       "state": [
         {
           "name": "ToDos",
@@ -4914,7 +5814,11 @@
                 "done": true
               },
               {
-                "label": "hello",
+                "label": "new one",
+                "done": false
+              },
+              {
+                "label": "A new one",
                 "done": true
               }
             ]
@@ -4928,6 +5832,12 @@
         },
         {
           "name": "_@@@2",
+          "state": {
+            "name": "idle"
+          }
+        },
+        {
+          "name": "_@@@3",
           "state": {
             "name": "idle"
           }
@@ -4975,12 +5885,11 @@
         "middlewares": 2
       },
       "origin": "http://localhost:3000/",
-      "index": 53
+      "id": 175
     },
     {
-      "source": "stent",
-      "time": 1512663918394,
-      "uid": "ffd431d7-0b2b-4ad4-a05d-e64fc9c4111f",
+      "time": 1512916020469,
+      "uid": "8327e224-7994-47b8-af95-7731afa9e482",
       "state": [
         {
           "name": "ToDos",
@@ -4992,7 +5901,11 @@
                 "done": true
               },
               {
-                "label": "hello",
+                "label": "new one",
+                "done": false
+              },
+              {
+                "label": "A new one",
                 "done": true
               }
             ]
@@ -5006,6 +5919,12 @@
         },
         {
           "name": "_@@@2",
+          "state": {
+            "name": "idle"
+          }
+        },
+        {
+          "name": "_@@@3",
           "state": {
             "name": "idle"
           }
@@ -5024,7 +5943,11 @@
                   "done": true
                 },
                 {
-                  "label": "hello",
+                  "label": "new one",
+                  "done": false
+                },
+                {
+                  "label": "A new one",
                   "done": true
                 }
               ]
@@ -5099,12 +6022,12 @@
         "middlewares": 2
       },
       "origin": "http://localhost:3000/",
-      "index": 54
+      "timeDiff": "+ 0:00:001",
+      "id": 176
     },
     {
-      "source": "stent",
-      "time": 1512663918394,
-      "uid": "ffd431d7-0b2b-4ad4-a05d-e64fc9c4111f",
+      "time": 1512916020469,
+      "uid": "8327e224-7994-47b8-af95-7731afa9e482",
       "state": [
         {
           "name": "ToDos",
@@ -5116,7 +6039,11 @@
                 "done": true
               },
               {
-                "label": "hello",
+                "label": "new one",
+                "done": false
+              },
+              {
+                "label": "A new one",
                 "done": true
               }
             ]
@@ -5130,6 +6057,12 @@
         },
         {
           "name": "_@@@2",
+          "state": {
+            "name": "idle"
+          }
+        },
+        {
+          "name": "_@@@3",
           "state": {
             "name": "idle"
           }
@@ -5177,12 +6110,11 @@
         "middlewares": 2
       },
       "origin": "http://localhost:3000/",
-      "index": 55
+      "id": 177
     },
     {
-      "source": "stent",
-      "time": 1512663918395,
-      "uid": "ffd431d7-0b2b-4ad4-a05d-e64fc9c4111f",
+      "time": 1512916020469,
+      "uid": "8327e224-7994-47b8-af95-7731afa9e482",
       "state": [
         {
           "name": "ToDos",
@@ -5194,7 +6126,11 @@
                 "done": true
               },
               {
-                "label": "hello",
+                "label": "new one",
+                "done": false
+              },
+              {
+                "label": "A new one",
                 "done": true
               }
             ]
@@ -5208,6 +6144,236 @@
         },
         {
           "name": "_@@@2",
+          "state": {
+            "name": "idle"
+          }
+        },
+        {
+          "name": "_@@@3",
+          "state": {
+            "name": "idle"
+          }
+        }
+      ],
+      "type": "onMachineDisconnected",
+      "meta": {
+        "machines": [
+          {
+            "name": "ToDos",
+            "state": {
+              "name": "idle",
+              "todos": [
+                {
+                  "label": "Another thing here",
+                  "done": true
+                },
+                {
+                  "label": "new one",
+                  "done": false
+                },
+                {
+                  "label": "A new one",
+                  "done": true
+                }
+              ]
+            },
+            "transitions": {
+              "idle": {
+                "fetch todos": {
+                  "__func": "fetchTodos"
+                },
+                "add new todo": {
+                  "__func": "addNewTodo"
+                },
+                "delete todo": {
+                  "__func": "deleteTodo"
+                },
+                "edit todo": {
+                  "__func": "editTodo"
+                },
+                "change status": {
+                  "__func": "changeStatus"
+                }
+              },
+              "fetching": {
+                "todos loaded": {
+                  "__func": "todosLoaded"
+                },
+                "error": {
+                  "__func": "error"
+                }
+              },
+              "error": {
+                "fetch todos": {
+                  "__func": "fetchTodos"
+                }
+              }
+            },
+            "isIdle": {
+              "__func": "<anonymous>"
+            },
+            "fetchTodos": {
+              "__func": "<anonymous>"
+            },
+            "addNewTodo": {
+              "__func": "<anonymous>"
+            },
+            "deleteTodo": {
+              "__func": "<anonymous>"
+            },
+            "editTodo": {
+              "__func": "<anonymous>"
+            },
+            "changeStatus": {
+              "__func": "<anonymous>"
+            },
+            "isFetching": {
+              "__func": "<anonymous>"
+            },
+            "todosLoaded": {
+              "__func": "<anonymous>"
+            },
+            "error": {
+              "__func": "<anonymous>"
+            },
+            "isError": {
+              "__func": "<anonymous>"
+            },
+            "destroy": {
+              "__func": "<anonymous>"
+            }
+          }
+        ],
+        "middlewares": 2
+      },
+      "origin": "http://localhost:3000/",
+      "id": 178
+    },
+    {
+      "time": 1512916020469,
+      "uid": "8327e224-7994-47b8-af95-7731afa9e482",
+      "state": [
+        {
+          "name": "ToDos",
+          "state": {
+            "name": "idle",
+            "todos": [
+              {
+                "label": "Another thing here",
+                "done": true
+              },
+              {
+                "label": "new one",
+                "done": false
+              },
+              {
+                "label": "A new one",
+                "done": true
+              }
+            ]
+          }
+        },
+        {
+          "name": "_@@@1",
+          "state": {
+            "name": "idle"
+          }
+        },
+        {
+          "name": "_@@@2",
+          "state": {
+            "name": "idle"
+          }
+        },
+        {
+          "name": "_@@@3",
+          "state": {
+            "name": "idle"
+          }
+        }
+      ],
+      "type": "onMachineDisconnected",
+      "meta": {
+        "machines": [
+          {
+            "name": "_@@@3",
+            "state": {
+              "name": "idle"
+            },
+            "transitions": {
+              "idle": {
+                "edit": "editing"
+              },
+              "editing": {
+                "save": {
+                  "__func": "save"
+                },
+                "cancel": "idle"
+              }
+            },
+            "isIdle": {
+              "__func": "<anonymous>"
+            },
+            "edit": {
+              "__func": "<anonymous>"
+            },
+            "isEditing": {
+              "__func": "<anonymous>"
+            },
+            "save": {
+              "__func": "<anonymous>"
+            },
+            "cancel": {
+              "__func": "<anonymous>"
+            },
+            "destroy": {
+              "__func": "<anonymous>"
+            }
+          }
+        ],
+        "middlewares": 2
+      },
+      "origin": "http://localhost:3000/",
+      "id": 179
+    },
+    {
+      "time": 1512916020470,
+      "uid": "8327e224-7994-47b8-af95-7731afa9e482",
+      "state": [
+        {
+          "name": "ToDos",
+          "state": {
+            "name": "idle",
+            "todos": [
+              {
+                "label": "Another thing here",
+                "done": true
+              },
+              {
+                "label": "new one",
+                "done": false
+              },
+              {
+                "label": "A new one",
+                "done": true
+              }
+            ]
+          }
+        },
+        {
+          "name": "_@@@1",
+          "state": {
+            "name": "idle"
+          }
+        },
+        {
+          "name": "_@@@2",
+          "state": {
+            "name": "idle"
+          }
+        },
+        {
+          "name": "_@@@3",
           "state": {
             "name": "idle"
           }
@@ -5219,12 +6385,12 @@
         "middlewares": 2
       },
       "origin": "http://localhost:3000/",
-      "index": 56
+      "timeDiff": "+ 0:00:001",
+      "id": 180
     },
     {
-      "source": "stent",
-      "time": 1512663918397,
-      "uid": "ffd431d7-0b2b-4ad4-a05d-e64fc9c4111f",
+      "time": 1512916020472,
+      "uid": "8327e224-7994-47b8-af95-7731afa9e482",
       "state": [
         {
           "name": "ToDos",
@@ -5236,7 +6402,11 @@
                 "done": true
               },
               {
-                "label": "hello",
+                "label": "new one",
+                "done": false
+              },
+              {
+                "label": "A new one",
                 "done": true
               }
             ]
@@ -5253,12 +6423,18 @@
           "state": {
             "name": "idle"
           }
+        },
+        {
+          "name": "_@@@3",
+          "state": {
+            "name": "idle"
+          }
         }
       ],
       "type": "onActionProcessed",
       "actionName": "delete todo",
       "args": [
-        2
+        3
       ],
       "machine": {
         "name": "ToDos",
@@ -5270,7 +6446,11 @@
               "done": true
             },
             {
-              "label": "hello",
+              "label": "new one",
+              "done": false
+            },
+            {
+              "label": "A new one",
               "done": true
             }
           ]
@@ -5345,12 +6525,12 @@
         "middlewares": 2
       },
       "origin": "http://localhost:3000/",
-      "index": 57
+      "timeDiff": "+ 0:00:002",
+      "id": 181
     },
     {
-      "source": "stent",
-      "time": 1512663921026,
-      "uid": "ffd431d7-0b2b-4ad4-a05d-e64fc9c4111f",
+      "time": 1512916021550,
+      "uid": "8327e224-7994-47b8-af95-7731afa9e482",
       "state": [
         {
           "name": "ToDos",
@@ -5362,7 +6542,11 @@
                 "done": true
               },
               {
-                "label": "hello",
+                "label": "new one",
+                "done": false
+              },
+              {
+                "label": "A new one",
                 "done": true
               }
             ]
@@ -5376,6 +6560,1903 @@
         },
         {
           "name": "_@@@2",
+          "state": {
+            "name": "idle"
+          }
+        },
+        {
+          "name": "_@@@3",
+          "state": {
+            "name": "idle"
+          }
+        }
+      ],
+      "type": "onActionDispatched",
+      "actionName": "change status",
+      "args": [
+        1,
+        true
+      ],
+      "machine": {
+        "name": "ToDos",
+        "state": {
+          "name": "idle",
+          "todos": [
+            {
+              "label": "Another thing here",
+              "done": true
+            },
+            {
+              "label": "new one",
+              "done": false
+            },
+            {
+              "label": "A new one",
+              "done": true
+            }
+          ]
+        },
+        "transitions": {
+          "idle": {
+            "fetch todos": {
+              "__func": "fetchTodos"
+            },
+            "add new todo": {
+              "__func": "addNewTodo"
+            },
+            "delete todo": {
+              "__func": "deleteTodo"
+            },
+            "edit todo": {
+              "__func": "editTodo"
+            },
+            "change status": {
+              "__func": "changeStatus"
+            }
+          },
+          "fetching": {
+            "todos loaded": {
+              "__func": "todosLoaded"
+            },
+            "error": {
+              "__func": "error"
+            }
+          },
+          "error": {
+            "fetch todos": {
+              "__func": "fetchTodos"
+            }
+          }
+        },
+        "isIdle": {
+          "__func": "<anonymous>"
+        },
+        "fetchTodos": {
+          "__func": "<anonymous>"
+        },
+        "addNewTodo": {
+          "__func": "<anonymous>"
+        },
+        "deleteTodo": {
+          "__func": "<anonymous>"
+        },
+        "editTodo": {
+          "__func": "<anonymous>"
+        },
+        "changeStatus": {
+          "__func": "<anonymous>"
+        },
+        "isFetching": {
+          "__func": "<anonymous>"
+        },
+        "todosLoaded": {
+          "__func": "<anonymous>"
+        },
+        "error": {
+          "__func": "<anonymous>"
+        },
+        "isError": {
+          "__func": "<anonymous>"
+        },
+        "destroy": {
+          "__func": "<anonymous>"
+        }
+      },
+      "meta": {
+        "middlewares": 2
+      },
+      "origin": "http://localhost:3000/",
+      "timeDiff": "+ 0:01:078",
+      "id": 182
+    },
+    {
+      "time": 1512916021550,
+      "uid": "8327e224-7994-47b8-af95-7731afa9e482",
+      "state": [
+        {
+          "name": "ToDos",
+          "state": {
+            "name": "idle",
+            "todos": [
+              {
+                "label": "Another thing here",
+                "done": true
+              },
+              {
+                "label": "new one",
+                "done": true
+              },
+              {
+                "label": "A new one",
+                "done": true
+              }
+            ]
+          }
+        },
+        {
+          "name": "_@@@1",
+          "state": {
+            "name": "idle"
+          }
+        },
+        {
+          "name": "_@@@2",
+          "state": {
+            "name": "idle"
+          }
+        },
+        {
+          "name": "_@@@3",
+          "state": {
+            "name": "idle"
+          }
+        }
+      ],
+      "type": "onGeneratorStep",
+      "yielded": {
+        "__type": "call",
+        "func": "saveTodos",
+        "args": [
+          [
+            {
+              "label": "Another thing here",
+              "done": true
+            },
+            {
+              "label": "new one",
+              "done": true
+            },
+            {
+              "label": "A new one",
+              "done": true
+            }
+          ]
+        ]
+      },
+      "meta": {
+        "middlewares": 2
+      },
+      "origin": "http://localhost:3000/",
+      "id": 183
+    },
+    {
+      "time": 1512916021551,
+      "uid": "8327e224-7994-47b8-af95-7731afa9e482",
+      "state": [
+        {
+          "name": "ToDos",
+          "state": {
+            "name": "idle",
+            "todos": [
+              {
+                "label": "Another thing here",
+                "done": true
+              },
+              {
+                "label": "new one",
+                "done": true
+              },
+              {
+                "label": "A new one",
+                "done": true
+              }
+            ]
+          }
+        },
+        {
+          "name": "_@@@1",
+          "state": {
+            "name": "idle"
+          }
+        },
+        {
+          "name": "_@@@2",
+          "state": {
+            "name": "idle"
+          }
+        },
+        {
+          "name": "_@@@3",
+          "state": {
+            "name": "idle"
+          }
+        }
+      ],
+      "type": "onGeneratorStep",
+      "yielded": {
+        "__type": "call",
+        "func": "save",
+        "args": [
+          [
+            {
+              "label": "Another thing here",
+              "done": true
+            },
+            {
+              "label": "new one",
+              "done": true
+            },
+            {
+              "label": "A new one",
+              "done": true
+            }
+          ]
+        ]
+      },
+      "meta": {
+        "middlewares": 2
+      },
+      "origin": "http://localhost:3000/",
+      "timeDiff": "+ 0:00:001",
+      "id": 184
+    },
+    {
+      "time": 1512916021551,
+      "uid": "8327e224-7994-47b8-af95-7731afa9e482",
+      "state": [
+        {
+          "name": "ToDos",
+          "state": {
+            "name": "idle",
+            "todos": [
+              {
+                "label": "Another thing here",
+                "done": true
+              },
+              {
+                "label": "new one",
+                "done": true
+              },
+              {
+                "label": "A new one",
+                "done": true
+              }
+            ]
+          }
+        },
+        {
+          "name": "_@@@1",
+          "state": {
+            "name": "idle"
+          }
+        },
+        {
+          "name": "_@@@2",
+          "state": {
+            "name": "idle"
+          }
+        },
+        {
+          "name": "_@@@3",
+          "state": {
+            "name": "idle"
+          }
+        }
+      ],
+      "type": "onGeneratorResumed",
+      "value": null,
+      "meta": {
+        "middlewares": 2
+      },
+      "origin": "http://localhost:3000/",
+      "id": 185
+    },
+    {
+      "time": 1512916021551,
+      "uid": "8327e224-7994-47b8-af95-7731afa9e482",
+      "state": [
+        {
+          "name": "ToDos",
+          "state": {
+            "name": "idle",
+            "todos": [
+              {
+                "label": "Another thing here",
+                "done": true
+              },
+              {
+                "label": "new one",
+                "done": true
+              },
+              {
+                "label": "A new one",
+                "done": true
+              }
+            ]
+          }
+        },
+        {
+          "name": "_@@@1",
+          "state": {
+            "name": "idle"
+          }
+        },
+        {
+          "name": "_@@@2",
+          "state": {
+            "name": "idle"
+          }
+        },
+        {
+          "name": "_@@@3",
+          "state": {
+            "name": "idle"
+          }
+        }
+      ],
+      "type": "onGeneratorEnd",
+      "value": {
+        "name": "idle",
+        "todos": [
+          {
+            "label": "Another thing here",
+            "done": true
+          },
+          {
+            "label": "new one",
+            "done": true
+          },
+          {
+            "label": "A new one",
+            "done": true
+          }
+        ]
+      },
+      "meta": {
+        "middlewares": 2
+      },
+      "origin": "http://localhost:3000/",
+      "id": 186
+    },
+    {
+      "time": 1512916021551,
+      "uid": "8327e224-7994-47b8-af95-7731afa9e482",
+      "state": [
+        {
+          "name": "ToDos",
+          "state": {
+            "name": "idle",
+            "todos": [
+              {
+                "label": "Another thing here",
+                "done": true
+              },
+              {
+                "label": "new one",
+                "done": true
+              },
+              {
+                "label": "A new one",
+                "done": true
+              }
+            ]
+          }
+        },
+        {
+          "name": "_@@@1",
+          "state": {
+            "name": "idle"
+          }
+        },
+        {
+          "name": "_@@@2",
+          "state": {
+            "name": "idle"
+          }
+        },
+        {
+          "name": "_@@@3",
+          "state": {
+            "name": "idle"
+          }
+        }
+      ],
+      "type": "onGeneratorResumed",
+      "value": {
+        "name": "idle",
+        "todos": [
+          {
+            "label": "Another thing here",
+            "done": true
+          },
+          {
+            "label": "new one",
+            "done": true
+          },
+          {
+            "label": "A new one",
+            "done": true
+          }
+        ]
+      },
+      "meta": {
+        "middlewares": 2
+      },
+      "origin": "http://localhost:3000/",
+      "id": 187
+    },
+    {
+      "time": 1512916021551,
+      "uid": "8327e224-7994-47b8-af95-7731afa9e482",
+      "state": [
+        {
+          "name": "ToDos",
+          "state": {
+            "name": "idle",
+            "todos": [
+              {
+                "label": "Another thing here",
+                "done": true
+              },
+              {
+                "label": "new one",
+                "done": true
+              },
+              {
+                "label": "A new one",
+                "done": true
+              }
+            ]
+          }
+        },
+        {
+          "name": "_@@@1",
+          "state": {
+            "name": "idle"
+          }
+        },
+        {
+          "name": "_@@@2",
+          "state": {
+            "name": "idle"
+          }
+        },
+        {
+          "name": "_@@@3",
+          "state": {
+            "name": "idle"
+          }
+        }
+      ],
+      "type": "onGeneratorEnd",
+      "value": {
+        "name": "idle",
+        "todos": [
+          {
+            "label": "Another thing here",
+            "done": true
+          },
+          {
+            "label": "new one",
+            "done": true
+          },
+          {
+            "label": "A new one",
+            "done": true
+          }
+        ]
+      },
+      "meta": {
+        "middlewares": 2
+      },
+      "origin": "http://localhost:3000/",
+      "id": 188
+    },
+    {
+      "time": 1512916021552,
+      "uid": "8327e224-7994-47b8-af95-7731afa9e482",
+      "state": [
+        {
+          "name": "ToDos",
+          "state": {
+            "name": "idle",
+            "todos": [
+              {
+                "label": "Another thing here",
+                "done": true
+              },
+              {
+                "label": "new one",
+                "done": true
+              },
+              {
+                "label": "A new one",
+                "done": true
+              }
+            ]
+          }
+        },
+        {
+          "name": "_@@@1",
+          "state": {
+            "name": "idle"
+          }
+        },
+        {
+          "name": "_@@@2",
+          "state": {
+            "name": "idle"
+          }
+        },
+        {
+          "name": "_@@@3",
+          "state": {
+            "name": "idle"
+          }
+        }
+      ],
+      "type": "onStateWillChange",
+      "machine": {
+        "name": "ToDos",
+        "state": {
+          "name": "idle",
+          "todos": [
+            {
+              "label": "Another thing here",
+              "done": true
+            },
+            {
+              "label": "new one",
+              "done": true
+            },
+            {
+              "label": "A new one",
+              "done": true
+            }
+          ]
+        },
+        "transitions": {
+          "idle": {
+            "fetch todos": {
+              "__func": "fetchTodos"
+            },
+            "add new todo": {
+              "__func": "addNewTodo"
+            },
+            "delete todo": {
+              "__func": "deleteTodo"
+            },
+            "edit todo": {
+              "__func": "editTodo"
+            },
+            "change status": {
+              "__func": "changeStatus"
+            }
+          },
+          "fetching": {
+            "todos loaded": {
+              "__func": "todosLoaded"
+            },
+            "error": {
+              "__func": "error"
+            }
+          },
+          "error": {
+            "fetch todos": {
+              "__func": "fetchTodos"
+            }
+          }
+        },
+        "isIdle": {
+          "__func": "<anonymous>"
+        },
+        "fetchTodos": {
+          "__func": "<anonymous>"
+        },
+        "addNewTodo": {
+          "__func": "<anonymous>"
+        },
+        "deleteTodo": {
+          "__func": "<anonymous>"
+        },
+        "editTodo": {
+          "__func": "<anonymous>"
+        },
+        "changeStatus": {
+          "__func": "<anonymous>"
+        },
+        "isFetching": {
+          "__func": "<anonymous>"
+        },
+        "todosLoaded": {
+          "__func": "<anonymous>"
+        },
+        "error": {
+          "__func": "<anonymous>"
+        },
+        "isError": {
+          "__func": "<anonymous>"
+        },
+        "destroy": {
+          "__func": "<anonymous>"
+        }
+      },
+      "meta": {
+        "middlewares": 2
+      },
+      "origin": "http://localhost:3000/",
+      "timeDiff": "+ 0:00:001",
+      "id": 189
+    },
+    {
+      "time": 1512916021552,
+      "uid": "8327e224-7994-47b8-af95-7731afa9e482",
+      "state": [
+        {
+          "name": "ToDos",
+          "state": {
+            "name": "idle",
+            "todos": [
+              {
+                "label": "Another thing here",
+                "done": true
+              },
+              {
+                "label": "new one",
+                "done": true
+              },
+              {
+                "label": "A new one",
+                "done": true
+              }
+            ]
+          }
+        },
+        {
+          "name": "_@@@1",
+          "state": {
+            "name": "idle"
+          }
+        },
+        {
+          "name": "_@@@2",
+          "state": {
+            "name": "idle"
+          }
+        },
+        {
+          "name": "_@@@3",
+          "state": {
+            "name": "idle"
+          }
+        }
+      ],
+      "type": "onStateChanged",
+      "machine": {
+        "name": "ToDos",
+        "state": {
+          "name": "idle",
+          "todos": [
+            {
+              "label": "Another thing here",
+              "done": true
+            },
+            {
+              "label": "new one",
+              "done": true
+            },
+            {
+              "label": "A new one",
+              "done": true
+            }
+          ]
+        },
+        "transitions": {
+          "idle": {
+            "fetch todos": {
+              "__func": "fetchTodos"
+            },
+            "add new todo": {
+              "__func": "addNewTodo"
+            },
+            "delete todo": {
+              "__func": "deleteTodo"
+            },
+            "edit todo": {
+              "__func": "editTodo"
+            },
+            "change status": {
+              "__func": "changeStatus"
+            }
+          },
+          "fetching": {
+            "todos loaded": {
+              "__func": "todosLoaded"
+            },
+            "error": {
+              "__func": "error"
+            }
+          },
+          "error": {
+            "fetch todos": {
+              "__func": "fetchTodos"
+            }
+          }
+        },
+        "isIdle": {
+          "__func": "<anonymous>"
+        },
+        "fetchTodos": {
+          "__func": "<anonymous>"
+        },
+        "addNewTodo": {
+          "__func": "<anonymous>"
+        },
+        "deleteTodo": {
+          "__func": "<anonymous>"
+        },
+        "editTodo": {
+          "__func": "<anonymous>"
+        },
+        "changeStatus": {
+          "__func": "<anonymous>"
+        },
+        "isFetching": {
+          "__func": "<anonymous>"
+        },
+        "todosLoaded": {
+          "__func": "<anonymous>"
+        },
+        "error": {
+          "__func": "<anonymous>"
+        },
+        "isError": {
+          "__func": "<anonymous>"
+        },
+        "destroy": {
+          "__func": "<anonymous>"
+        }
+      },
+      "meta": {
+        "middlewares": 2
+      },
+      "origin": "http://localhost:3000/",
+      "id": 190
+    },
+    {
+      "time": 1512916021557,
+      "uid": "8327e224-7994-47b8-af95-7731afa9e482",
+      "state": [
+        {
+          "name": "ToDos",
+          "state": {
+            "name": "idle",
+            "todos": [
+              {
+                "label": "Another thing here",
+                "done": true
+              },
+              {
+                "label": "new one",
+                "done": true
+              },
+              {
+                "label": "A new one",
+                "done": true
+              }
+            ]
+          }
+        },
+        {
+          "name": "_@@@1",
+          "state": {
+            "name": "idle"
+          }
+        },
+        {
+          "name": "_@@@2",
+          "state": {
+            "name": "idle"
+          }
+        },
+        {
+          "name": "_@@@3",
+          "state": {
+            "name": "idle"
+          }
+        }
+      ],
+      "type": "onActionProcessed",
+      "actionName": "change status",
+      "args": [
+        1,
+        true
+      ],
+      "machine": {
+        "name": "ToDos",
+        "state": {
+          "name": "idle",
+          "todos": [
+            {
+              "label": "Another thing here",
+              "done": true
+            },
+            {
+              "label": "new one",
+              "done": true
+            },
+            {
+              "label": "A new one",
+              "done": true
+            }
+          ]
+        },
+        "transitions": {
+          "idle": {
+            "fetch todos": {
+              "__func": "fetchTodos"
+            },
+            "add new todo": {
+              "__func": "addNewTodo"
+            },
+            "delete todo": {
+              "__func": "deleteTodo"
+            },
+            "edit todo": {
+              "__func": "editTodo"
+            },
+            "change status": {
+              "__func": "changeStatus"
+            }
+          },
+          "fetching": {
+            "todos loaded": {
+              "__func": "todosLoaded"
+            },
+            "error": {
+              "__func": "error"
+            }
+          },
+          "error": {
+            "fetch todos": {
+              "__func": "fetchTodos"
+            }
+          }
+        },
+        "isIdle": {
+          "__func": "<anonymous>"
+        },
+        "fetchTodos": {
+          "__func": "<anonymous>"
+        },
+        "addNewTodo": {
+          "__func": "<anonymous>"
+        },
+        "deleteTodo": {
+          "__func": "<anonymous>"
+        },
+        "editTodo": {
+          "__func": "<anonymous>"
+        },
+        "changeStatus": {
+          "__func": "<anonymous>"
+        },
+        "isFetching": {
+          "__func": "<anonymous>"
+        },
+        "todosLoaded": {
+          "__func": "<anonymous>"
+        },
+        "error": {
+          "__func": "<anonymous>"
+        },
+        "isError": {
+          "__func": "<anonymous>"
+        },
+        "destroy": {
+          "__func": "<anonymous>"
+        }
+      },
+      "meta": {
+        "middlewares": 2
+      },
+      "origin": "http://localhost:3000/",
+      "timeDiff": "+ 0:00:005",
+      "id": 191
+    },
+    {
+      "time": 1512916022096,
+      "uid": "8327e224-7994-47b8-af95-7731afa9e482",
+      "state": [
+        {
+          "name": "ToDos",
+          "state": {
+            "name": "idle",
+            "todos": [
+              {
+                "label": "Another thing here",
+                "done": true
+              },
+              {
+                "label": "new one",
+                "done": true
+              },
+              {
+                "label": "A new one",
+                "done": true
+              }
+            ]
+          }
+        },
+        {
+          "name": "_@@@1",
+          "state": {
+            "name": "idle"
+          }
+        },
+        {
+          "name": "_@@@2",
+          "state": {
+            "name": "idle"
+          }
+        },
+        {
+          "name": "_@@@3",
+          "state": {
+            "name": "idle"
+          }
+        }
+      ],
+      "type": "onActionDispatched",
+      "actionName": "change status",
+      "args": [
+        2,
+        false
+      ],
+      "machine": {
+        "name": "ToDos",
+        "state": {
+          "name": "idle",
+          "todos": [
+            {
+              "label": "Another thing here",
+              "done": true
+            },
+            {
+              "label": "new one",
+              "done": true
+            },
+            {
+              "label": "A new one",
+              "done": true
+            }
+          ]
+        },
+        "transitions": {
+          "idle": {
+            "fetch todos": {
+              "__func": "fetchTodos"
+            },
+            "add new todo": {
+              "__func": "addNewTodo"
+            },
+            "delete todo": {
+              "__func": "deleteTodo"
+            },
+            "edit todo": {
+              "__func": "editTodo"
+            },
+            "change status": {
+              "__func": "changeStatus"
+            }
+          },
+          "fetching": {
+            "todos loaded": {
+              "__func": "todosLoaded"
+            },
+            "error": {
+              "__func": "error"
+            }
+          },
+          "error": {
+            "fetch todos": {
+              "__func": "fetchTodos"
+            }
+          }
+        },
+        "isIdle": {
+          "__func": "<anonymous>"
+        },
+        "fetchTodos": {
+          "__func": "<anonymous>"
+        },
+        "addNewTodo": {
+          "__func": "<anonymous>"
+        },
+        "deleteTodo": {
+          "__func": "<anonymous>"
+        },
+        "editTodo": {
+          "__func": "<anonymous>"
+        },
+        "changeStatus": {
+          "__func": "<anonymous>"
+        },
+        "isFetching": {
+          "__func": "<anonymous>"
+        },
+        "todosLoaded": {
+          "__func": "<anonymous>"
+        },
+        "error": {
+          "__func": "<anonymous>"
+        },
+        "isError": {
+          "__func": "<anonymous>"
+        },
+        "destroy": {
+          "__func": "<anonymous>"
+        }
+      },
+      "meta": {
+        "middlewares": 2
+      },
+      "origin": "http://localhost:3000/",
+      "timeDiff": "+ 0:01:539",
+      "id": 192
+    },
+    {
+      "time": 1512916022096,
+      "uid": "8327e224-7994-47b8-af95-7731afa9e482",
+      "state": [
+        {
+          "name": "ToDos",
+          "state": {
+            "name": "idle",
+            "todos": [
+              {
+                "label": "Another thing here",
+                "done": true
+              },
+              {
+                "label": "new one",
+                "done": true
+              },
+              {
+                "label": "A new one",
+                "done": false
+              }
+            ]
+          }
+        },
+        {
+          "name": "_@@@1",
+          "state": {
+            "name": "idle"
+          }
+        },
+        {
+          "name": "_@@@2",
+          "state": {
+            "name": "idle"
+          }
+        },
+        {
+          "name": "_@@@3",
+          "state": {
+            "name": "idle"
+          }
+        }
+      ],
+      "type": "onGeneratorStep",
+      "yielded": {
+        "__type": "call",
+        "func": "saveTodos",
+        "args": [
+          [
+            {
+              "label": "Another thing here",
+              "done": true
+            },
+            {
+              "label": "new one",
+              "done": true
+            },
+            {
+              "label": "A new one",
+              "done": false
+            }
+          ]
+        ]
+      },
+      "meta": {
+        "middlewares": 2
+      },
+      "origin": "http://localhost:3000/",
+      "id": 193
+    },
+    {
+      "time": 1512916022096,
+      "uid": "8327e224-7994-47b8-af95-7731afa9e482",
+      "state": [
+        {
+          "name": "ToDos",
+          "state": {
+            "name": "idle",
+            "todos": [
+              {
+                "label": "Another thing here",
+                "done": true
+              },
+              {
+                "label": "new one",
+                "done": true
+              },
+              {
+                "label": "A new one",
+                "done": false
+              }
+            ]
+          }
+        },
+        {
+          "name": "_@@@1",
+          "state": {
+            "name": "idle"
+          }
+        },
+        {
+          "name": "_@@@2",
+          "state": {
+            "name": "idle"
+          }
+        },
+        {
+          "name": "_@@@3",
+          "state": {
+            "name": "idle"
+          }
+        }
+      ],
+      "type": "onGeneratorStep",
+      "yielded": {
+        "__type": "call",
+        "func": "save",
+        "args": [
+          [
+            {
+              "label": "Another thing here",
+              "done": true
+            },
+            {
+              "label": "new one",
+              "done": true
+            },
+            {
+              "label": "A new one",
+              "done": false
+            }
+          ]
+        ]
+      },
+      "meta": {
+        "middlewares": 2
+      },
+      "origin": "http://localhost:3000/",
+      "id": 194
+    },
+    {
+      "time": 1512916022097,
+      "uid": "8327e224-7994-47b8-af95-7731afa9e482",
+      "state": [
+        {
+          "name": "ToDos",
+          "state": {
+            "name": "idle",
+            "todos": [
+              {
+                "label": "Another thing here",
+                "done": true
+              },
+              {
+                "label": "new one",
+                "done": true
+              },
+              {
+                "label": "A new one",
+                "done": false
+              }
+            ]
+          }
+        },
+        {
+          "name": "_@@@1",
+          "state": {
+            "name": "idle"
+          }
+        },
+        {
+          "name": "_@@@2",
+          "state": {
+            "name": "idle"
+          }
+        },
+        {
+          "name": "_@@@3",
+          "state": {
+            "name": "idle"
+          }
+        }
+      ],
+      "type": "onGeneratorResumed",
+      "value": null,
+      "meta": {
+        "middlewares": 2
+      },
+      "origin": "http://localhost:3000/",
+      "timeDiff": "+ 0:00:001",
+      "id": 195
+    },
+    {
+      "time": 1512916022097,
+      "uid": "8327e224-7994-47b8-af95-7731afa9e482",
+      "state": [
+        {
+          "name": "ToDos",
+          "state": {
+            "name": "idle",
+            "todos": [
+              {
+                "label": "Another thing here",
+                "done": true
+              },
+              {
+                "label": "new one",
+                "done": true
+              },
+              {
+                "label": "A new one",
+                "done": false
+              }
+            ]
+          }
+        },
+        {
+          "name": "_@@@1",
+          "state": {
+            "name": "idle"
+          }
+        },
+        {
+          "name": "_@@@2",
+          "state": {
+            "name": "idle"
+          }
+        },
+        {
+          "name": "_@@@3",
+          "state": {
+            "name": "idle"
+          }
+        }
+      ],
+      "type": "onGeneratorEnd",
+      "value": {
+        "name": "idle",
+        "todos": [
+          {
+            "label": "Another thing here",
+            "done": true
+          },
+          {
+            "label": "new one",
+            "done": true
+          },
+          {
+            "label": "A new one",
+            "done": false
+          }
+        ]
+      },
+      "meta": {
+        "middlewares": 2
+      },
+      "origin": "http://localhost:3000/",
+      "id": 196
+    },
+    {
+      "time": 1512916022097,
+      "uid": "8327e224-7994-47b8-af95-7731afa9e482",
+      "state": [
+        {
+          "name": "ToDos",
+          "state": {
+            "name": "idle",
+            "todos": [
+              {
+                "label": "Another thing here",
+                "done": true
+              },
+              {
+                "label": "new one",
+                "done": true
+              },
+              {
+                "label": "A new one",
+                "done": false
+              }
+            ]
+          }
+        },
+        {
+          "name": "_@@@1",
+          "state": {
+            "name": "idle"
+          }
+        },
+        {
+          "name": "_@@@2",
+          "state": {
+            "name": "idle"
+          }
+        },
+        {
+          "name": "_@@@3",
+          "state": {
+            "name": "idle"
+          }
+        }
+      ],
+      "type": "onGeneratorResumed",
+      "value": {
+        "name": "idle",
+        "todos": [
+          {
+            "label": "Another thing here",
+            "done": true
+          },
+          {
+            "label": "new one",
+            "done": true
+          },
+          {
+            "label": "A new one",
+            "done": false
+          }
+        ]
+      },
+      "meta": {
+        "middlewares": 2
+      },
+      "origin": "http://localhost:3000/",
+      "id": 197
+    },
+    {
+      "time": 1512916022097,
+      "uid": "8327e224-7994-47b8-af95-7731afa9e482",
+      "state": [
+        {
+          "name": "ToDos",
+          "state": {
+            "name": "idle",
+            "todos": [
+              {
+                "label": "Another thing here",
+                "done": true
+              },
+              {
+                "label": "new one",
+                "done": true
+              },
+              {
+                "label": "A new one",
+                "done": false
+              }
+            ]
+          }
+        },
+        {
+          "name": "_@@@1",
+          "state": {
+            "name": "idle"
+          }
+        },
+        {
+          "name": "_@@@2",
+          "state": {
+            "name": "idle"
+          }
+        },
+        {
+          "name": "_@@@3",
+          "state": {
+            "name": "idle"
+          }
+        }
+      ],
+      "type": "onGeneratorEnd",
+      "value": {
+        "name": "idle",
+        "todos": [
+          {
+            "label": "Another thing here",
+            "done": true
+          },
+          {
+            "label": "new one",
+            "done": true
+          },
+          {
+            "label": "A new one",
+            "done": false
+          }
+        ]
+      },
+      "meta": {
+        "middlewares": 2
+      },
+      "origin": "http://localhost:3000/",
+      "id": 198
+    },
+    {
+      "time": 1512916022097,
+      "uid": "8327e224-7994-47b8-af95-7731afa9e482",
+      "state": [
+        {
+          "name": "ToDos",
+          "state": {
+            "name": "idle",
+            "todos": [
+              {
+                "label": "Another thing here",
+                "done": true
+              },
+              {
+                "label": "new one",
+                "done": true
+              },
+              {
+                "label": "A new one",
+                "done": false
+              }
+            ]
+          }
+        },
+        {
+          "name": "_@@@1",
+          "state": {
+            "name": "idle"
+          }
+        },
+        {
+          "name": "_@@@2",
+          "state": {
+            "name": "idle"
+          }
+        },
+        {
+          "name": "_@@@3",
+          "state": {
+            "name": "idle"
+          }
+        }
+      ],
+      "type": "onStateWillChange",
+      "machine": {
+        "name": "ToDos",
+        "state": {
+          "name": "idle",
+          "todos": [
+            {
+              "label": "Another thing here",
+              "done": true
+            },
+            {
+              "label": "new one",
+              "done": true
+            },
+            {
+              "label": "A new one",
+              "done": false
+            }
+          ]
+        },
+        "transitions": {
+          "idle": {
+            "fetch todos": {
+              "__func": "fetchTodos"
+            },
+            "add new todo": {
+              "__func": "addNewTodo"
+            },
+            "delete todo": {
+              "__func": "deleteTodo"
+            },
+            "edit todo": {
+              "__func": "editTodo"
+            },
+            "change status": {
+              "__func": "changeStatus"
+            }
+          },
+          "fetching": {
+            "todos loaded": {
+              "__func": "todosLoaded"
+            },
+            "error": {
+              "__func": "error"
+            }
+          },
+          "error": {
+            "fetch todos": {
+              "__func": "fetchTodos"
+            }
+          }
+        },
+        "isIdle": {
+          "__func": "<anonymous>"
+        },
+        "fetchTodos": {
+          "__func": "<anonymous>"
+        },
+        "addNewTodo": {
+          "__func": "<anonymous>"
+        },
+        "deleteTodo": {
+          "__func": "<anonymous>"
+        },
+        "editTodo": {
+          "__func": "<anonymous>"
+        },
+        "changeStatus": {
+          "__func": "<anonymous>"
+        },
+        "isFetching": {
+          "__func": "<anonymous>"
+        },
+        "todosLoaded": {
+          "__func": "<anonymous>"
+        },
+        "error": {
+          "__func": "<anonymous>"
+        },
+        "isError": {
+          "__func": "<anonymous>"
+        },
+        "destroy": {
+          "__func": "<anonymous>"
+        }
+      },
+      "meta": {
+        "middlewares": 2
+      },
+      "origin": "http://localhost:3000/",
+      "id": 199
+    },
+    {
+      "time": 1512916022097,
+      "uid": "8327e224-7994-47b8-af95-7731afa9e482",
+      "state": [
+        {
+          "name": "ToDos",
+          "state": {
+            "name": "idle",
+            "todos": [
+              {
+                "label": "Another thing here",
+                "done": true
+              },
+              {
+                "label": "new one",
+                "done": true
+              },
+              {
+                "label": "A new one",
+                "done": false
+              }
+            ]
+          }
+        },
+        {
+          "name": "_@@@1",
+          "state": {
+            "name": "idle"
+          }
+        },
+        {
+          "name": "_@@@2",
+          "state": {
+            "name": "idle"
+          }
+        },
+        {
+          "name": "_@@@3",
+          "state": {
+            "name": "idle"
+          }
+        }
+      ],
+      "type": "onStateChanged",
+      "machine": {
+        "name": "ToDos",
+        "state": {
+          "name": "idle",
+          "todos": [
+            {
+              "label": "Another thing here",
+              "done": true
+            },
+            {
+              "label": "new one",
+              "done": true
+            },
+            {
+              "label": "A new one",
+              "done": false
+            }
+          ]
+        },
+        "transitions": {
+          "idle": {
+            "fetch todos": {
+              "__func": "fetchTodos"
+            },
+            "add new todo": {
+              "__func": "addNewTodo"
+            },
+            "delete todo": {
+              "__func": "deleteTodo"
+            },
+            "edit todo": {
+              "__func": "editTodo"
+            },
+            "change status": {
+              "__func": "changeStatus"
+            }
+          },
+          "fetching": {
+            "todos loaded": {
+              "__func": "todosLoaded"
+            },
+            "error": {
+              "__func": "error"
+            }
+          },
+          "error": {
+            "fetch todos": {
+              "__func": "fetchTodos"
+            }
+          }
+        },
+        "isIdle": {
+          "__func": "<anonymous>"
+        },
+        "fetchTodos": {
+          "__func": "<anonymous>"
+        },
+        "addNewTodo": {
+          "__func": "<anonymous>"
+        },
+        "deleteTodo": {
+          "__func": "<anonymous>"
+        },
+        "editTodo": {
+          "__func": "<anonymous>"
+        },
+        "changeStatus": {
+          "__func": "<anonymous>"
+        },
+        "isFetching": {
+          "__func": "<anonymous>"
+        },
+        "todosLoaded": {
+          "__func": "<anonymous>"
+        },
+        "error": {
+          "__func": "<anonymous>"
+        },
+        "isError": {
+          "__func": "<anonymous>"
+        },
+        "destroy": {
+          "__func": "<anonymous>"
+        }
+      },
+      "meta": {
+        "middlewares": 2
+      },
+      "origin": "http://localhost:3000/",
+      "id": 200
+    },
+    {
+      "time": 1512916022102,
+      "uid": "8327e224-7994-47b8-af95-7731afa9e482",
+      "state": [
+        {
+          "name": "ToDos",
+          "state": {
+            "name": "idle",
+            "todos": [
+              {
+                "label": "Another thing here",
+                "done": true
+              },
+              {
+                "label": "new one",
+                "done": true
+              },
+              {
+                "label": "A new one",
+                "done": false
+              }
+            ]
+          }
+        },
+        {
+          "name": "_@@@1",
+          "state": {
+            "name": "idle"
+          }
+        },
+        {
+          "name": "_@@@2",
+          "state": {
+            "name": "idle"
+          }
+        },
+        {
+          "name": "_@@@3",
+          "state": {
+            "name": "idle"
+          }
+        }
+      ],
+      "type": "onActionProcessed",
+      "actionName": "change status",
+      "args": [
+        2,
+        false
+      ],
+      "machine": {
+        "name": "ToDos",
+        "state": {
+          "name": "idle",
+          "todos": [
+            {
+              "label": "Another thing here",
+              "done": true
+            },
+            {
+              "label": "new one",
+              "done": true
+            },
+            {
+              "label": "A new one",
+              "done": false
+            }
+          ]
+        },
+        "transitions": {
+          "idle": {
+            "fetch todos": {
+              "__func": "fetchTodos"
+            },
+            "add new todo": {
+              "__func": "addNewTodo"
+            },
+            "delete todo": {
+              "__func": "deleteTodo"
+            },
+            "edit todo": {
+              "__func": "editTodo"
+            },
+            "change status": {
+              "__func": "changeStatus"
+            }
+          },
+          "fetching": {
+            "todos loaded": {
+              "__func": "todosLoaded"
+            },
+            "error": {
+              "__func": "error"
+            }
+          },
+          "error": {
+            "fetch todos": {
+              "__func": "fetchTodos"
+            }
+          }
+        },
+        "isIdle": {
+          "__func": "<anonymous>"
+        },
+        "fetchTodos": {
+          "__func": "<anonymous>"
+        },
+        "addNewTodo": {
+          "__func": "<anonymous>"
+        },
+        "deleteTodo": {
+          "__func": "<anonymous>"
+        },
+        "editTodo": {
+          "__func": "<anonymous>"
+        },
+        "changeStatus": {
+          "__func": "<anonymous>"
+        },
+        "isFetching": {
+          "__func": "<anonymous>"
+        },
+        "todosLoaded": {
+          "__func": "<anonymous>"
+        },
+        "error": {
+          "__func": "<anonymous>"
+        },
+        "isError": {
+          "__func": "<anonymous>"
+        },
+        "destroy": {
+          "__func": "<anonymous>"
+        }
+      },
+      "meta": {
+        "middlewares": 2
+      },
+      "origin": "http://localhost:3000/",
+      "timeDiff": "+ 0:00:005",
+      "id": 201
+    },
+    {
+      "time": 1512916024150,
+      "uid": "8327e224-7994-47b8-af95-7731afa9e482",
+      "state": [
+        {
+          "name": "ToDos",
+          "state": {
+            "name": "idle",
+            "todos": [
+              {
+                "label": "Another thing here",
+                "done": true
+              },
+              {
+                "label": "new one",
+                "done": true
+              },
+              {
+                "label": "A new one",
+                "done": false
+              }
+            ]
+          }
+        },
+        {
+          "name": "_@@@1",
+          "state": {
+            "name": "idle"
+          }
+        },
+        {
+          "name": "_@@@2",
+          "state": {
+            "name": "idle"
+          }
+        },
+        {
+          "name": "_@@@3",
           "state": {
             "name": "idle"
           }
@@ -5399,8 +8480,12 @@
               "done": true
             },
             {
-              "label": "hello",
+              "label": "new one",
               "done": true
+            },
+            {
+              "label": "A new one",
+              "done": false
             }
           ]
         },
@@ -5474,12 +8559,12 @@
         "middlewares": 2
       },
       "origin": "http://localhost:3000/",
-      "index": 58
+      "timeDiff": "+ 0:02:048",
+      "id": 202
     },
     {
-      "source": "stent",
-      "time": 1512663921027,
-      "uid": "ffd431d7-0b2b-4ad4-a05d-e64fc9c4111f",
+      "time": 1512916024151,
+      "uid": "8327e224-7994-47b8-af95-7731afa9e482",
       "state": [
         {
           "name": "ToDos",
@@ -5491,8 +8576,12 @@
                 "done": true
               },
               {
-                "label": "hello",
+                "label": "new one",
                 "done": true
+              },
+              {
+                "label": "A new one",
+                "done": false
               }
             ]
           }
@@ -5505,6 +8594,12 @@
         },
         {
           "name": "_@@@2",
+          "state": {
+            "name": "idle"
+          }
+        },
+        {
+          "name": "_@@@3",
           "state": {
             "name": "idle"
           }
@@ -5521,8 +8616,12 @@
               "done": true
             },
             {
-              "label": "hello",
+              "label": "new one",
               "done": true
+            },
+            {
+              "label": "A new one",
+              "done": false
             },
             {
               "label": "new one",
@@ -5535,12 +8634,12 @@
         "middlewares": 2
       },
       "origin": "http://localhost:3000/",
-      "index": 59
+      "timeDiff": "+ 0:00:001",
+      "id": 203
     },
     {
-      "source": "stent",
-      "time": 1512663921027,
-      "uid": "ffd431d7-0b2b-4ad4-a05d-e64fc9c4111f",
+      "time": 1512916024151,
+      "uid": "8327e224-7994-47b8-af95-7731afa9e482",
       "state": [
         {
           "name": "ToDos",
@@ -5552,8 +8651,12 @@
                 "done": true
               },
               {
-                "label": "hello",
+                "label": "new one",
                 "done": true
+              },
+              {
+                "label": "A new one",
+                "done": false
               }
             ]
           }
@@ -5566,6 +8669,12 @@
         },
         {
           "name": "_@@@2",
+          "state": {
+            "name": "idle"
+          }
+        },
+        {
+          "name": "_@@@3",
           "state": {
             "name": "idle"
           }
@@ -5582,8 +8691,12 @@
               "done": true
             },
             {
-              "label": "hello",
+              "label": "new one",
               "done": true
+            },
+            {
+              "label": "A new one",
+              "done": false
             },
             {
               "label": "new one",
@@ -5596,12 +8709,11 @@
         "middlewares": 2
       },
       "origin": "http://localhost:3000/",
-      "index": 60
+      "id": 204
     },
     {
-      "source": "stent",
-      "time": 1512663921029,
-      "uid": "ffd431d7-0b2b-4ad4-a05d-e64fc9c4111f",
+      "time": 1512916024152,
+      "uid": "8327e224-7994-47b8-af95-7731afa9e482",
       "state": [
         {
           "name": "ToDos",
@@ -5613,8 +8725,12 @@
                 "done": true
               },
               {
-                "label": "hello",
+                "label": "new one",
                 "done": true
+              },
+              {
+                "label": "A new one",
+                "done": false
               }
             ]
           }
@@ -5627,6 +8743,12 @@
         },
         {
           "name": "_@@@2",
+          "state": {
+            "name": "idle"
+          }
+        },
+        {
+          "name": "_@@@3",
           "state": {
             "name": "idle"
           }
@@ -5638,12 +8760,12 @@
         "middlewares": 2
       },
       "origin": "http://localhost:3000/",
-      "index": 61
+      "timeDiff": "+ 0:00:001",
+      "id": 205
     },
     {
-      "source": "stent",
-      "time": 1512663921029,
-      "uid": "ffd431d7-0b2b-4ad4-a05d-e64fc9c4111f",
+      "time": 1512916024153,
+      "uid": "8327e224-7994-47b8-af95-7731afa9e482",
       "state": [
         {
           "name": "ToDos",
@@ -5655,8 +8777,12 @@
                 "done": true
               },
               {
-                "label": "hello",
+                "label": "new one",
                 "done": true
+              },
+              {
+                "label": "A new one",
+                "done": false
               }
             ]
           }
@@ -5669,6 +8795,12 @@
         },
         {
           "name": "_@@@2",
+          "state": {
+            "name": "idle"
+          }
+        },
+        {
+          "name": "_@@@3",
           "state": {
             "name": "idle"
           }
@@ -5683,8 +8815,12 @@
             "done": true
           },
           {
-            "label": "hello",
+            "label": "new one",
             "done": true
+          },
+          {
+            "label": "A new one",
+            "done": false
           },
           {
             "label": "new one",
@@ -5696,12 +8832,12 @@
         "middlewares": 2
       },
       "origin": "http://localhost:3000/",
-      "index": 62
+      "timeDiff": "+ 0:00:001",
+      "id": 206
     },
     {
-      "source": "stent",
-      "time": 1512663921029,
-      "uid": "ffd431d7-0b2b-4ad4-a05d-e64fc9c4111f",
+      "time": 1512916024153,
+      "uid": "8327e224-7994-47b8-af95-7731afa9e482",
       "state": [
         {
           "name": "ToDos",
@@ -5713,8 +8849,12 @@
                 "done": true
               },
               {
-                "label": "hello",
+                "label": "new one",
                 "done": true
+              },
+              {
+                "label": "A new one",
+                "done": false
               }
             ]
           }
@@ -5727,6 +8867,12 @@
         },
         {
           "name": "_@@@2",
+          "state": {
+            "name": "idle"
+          }
+        },
+        {
+          "name": "_@@@3",
           "state": {
             "name": "idle"
           }
@@ -5741,8 +8887,12 @@
             "done": true
           },
           {
-            "label": "hello",
+            "label": "new one",
             "done": true
+          },
+          {
+            "label": "A new one",
+            "done": false
           },
           {
             "label": "new one",
@@ -5754,12 +8904,11 @@
         "middlewares": 2
       },
       "origin": "http://localhost:3000/",
-      "index": 63
+      "id": 207
     },
     {
-      "source": "stent",
-      "time": 1512663921029,
-      "uid": "ffd431d7-0b2b-4ad4-a05d-e64fc9c4111f",
+      "time": 1512916024153,
+      "uid": "8327e224-7994-47b8-af95-7731afa9e482",
       "state": [
         {
           "name": "ToDos",
@@ -5771,8 +8920,12 @@
                 "done": true
               },
               {
-                "label": "hello",
+                "label": "new one",
                 "done": true
+              },
+              {
+                "label": "A new one",
+                "done": false
               }
             ]
           }
@@ -5785,6 +8938,12 @@
         },
         {
           "name": "_@@@2",
+          "state": {
+            "name": "idle"
+          }
+        },
+        {
+          "name": "_@@@3",
           "state": {
             "name": "idle"
           }
@@ -5799,8 +8958,12 @@
             "done": true
           },
           {
-            "label": "hello",
+            "label": "new one",
             "done": true
+          },
+          {
+            "label": "A new one",
+            "done": false
           },
           {
             "label": "new one",
@@ -5812,12 +8975,11 @@
         "middlewares": 2
       },
       "origin": "http://localhost:3000/",
-      "index": 64
+      "id": 208
     },
     {
-      "source": "stent",
-      "time": 1512663921029,
-      "uid": "ffd431d7-0b2b-4ad4-a05d-e64fc9c4111f",
+      "time": 1512916024153,
+      "uid": "8327e224-7994-47b8-af95-7731afa9e482",
       "state": [
         {
           "name": "ToDos",
@@ -5829,8 +8991,12 @@
                 "done": true
               },
               {
-                "label": "hello",
+                "label": "new one",
                 "done": true
+              },
+              {
+                "label": "A new one",
+                "done": false
               }
             ]
           }
@@ -5843,6 +9009,12 @@
         },
         {
           "name": "_@@@2",
+          "state": {
+            "name": "idle"
+          }
+        },
+        {
+          "name": "_@@@3",
           "state": {
             "name": "idle"
           }
@@ -5859,8 +9031,12 @@
               "done": true
             },
             {
-              "label": "hello",
+              "label": "new one",
               "done": true
+            },
+            {
+              "label": "A new one",
+              "done": false
             }
           ]
         },
@@ -5934,12 +9110,11 @@
         "middlewares": 2
       },
       "origin": "http://localhost:3000/",
-      "index": 65
+      "id": 209
     },
     {
-      "source": "stent",
-      "time": 1512663921030,
-      "uid": "ffd431d7-0b2b-4ad4-a05d-e64fc9c4111f",
+      "time": 1512916024154,
+      "uid": "8327e224-7994-47b8-af95-7731afa9e482",
       "state": [
         {
           "name": "ToDos",
@@ -5951,8 +9126,12 @@
                 "done": true
               },
               {
-                "label": "hello",
+                "label": "new one",
                 "done": true
+              },
+              {
+                "label": "A new one",
+                "done": false
               },
               {
                 "label": "new one",
@@ -5972,6 +9151,12 @@
           "state": {
             "name": "idle"
           }
+        },
+        {
+          "name": "_@@@3",
+          "state": {
+            "name": "idle"
+          }
         }
       ],
       "type": "onStateChanged",
@@ -5985,8 +9170,12 @@
               "done": true
             },
             {
-              "label": "hello",
+              "label": "new one",
               "done": true
+            },
+            {
+              "label": "A new one",
+              "done": false
             },
             {
               "label": "new one",
@@ -6064,12 +9253,12 @@
         "middlewares": 2
       },
       "origin": "http://localhost:3000/",
-      "index": 66
+      "timeDiff": "+ 0:00:001",
+      "id": 210
     },
     {
-      "source": "stent",
-      "time": 1512663921032,
-      "uid": "ffd431d7-0b2b-4ad4-a05d-e64fc9c4111f",
+      "time": 1512916024157,
+      "uid": "8327e224-7994-47b8-af95-7731afa9e482",
       "state": [
         {
           "name": "ToDos",
@@ -6081,8 +9270,12 @@
                 "done": true
               },
               {
-                "label": "hello",
+                "label": "new one",
                 "done": true
+              },
+              {
+                "label": "A new one",
+                "done": false
               },
               {
                 "label": "new one",
@@ -6099,6 +9292,12 @@
         },
         {
           "name": "_@@@2",
+          "state": {
+            "name": "idle"
+          }
+        },
+        {
+          "name": "_@@@3",
           "state": {
             "name": "idle"
           }
@@ -6118,8 +9317,12 @@
                   "done": true
                 },
                 {
-                  "label": "hello",
+                  "label": "new one",
                   "done": true
+                },
+                {
+                  "label": "A new one",
+                  "done": false
                 },
                 {
                   "label": "new one",
@@ -6197,12 +9400,12 @@
         "middlewares": 2
       },
       "origin": "http://localhost:3000/",
-      "index": 67
+      "timeDiff": "+ 0:00:003",
+      "id": 211
     },
     {
-      "source": "stent",
-      "time": 1512663921033,
-      "uid": "ffd431d7-0b2b-4ad4-a05d-e64fc9c4111f",
+      "time": 1512916024157,
+      "uid": "8327e224-7994-47b8-af95-7731afa9e482",
       "state": [
         {
           "name": "ToDos",
@@ -6214,8 +9417,12 @@
                 "done": true
               },
               {
-                "label": "hello",
+                "label": "new one",
                 "done": true
+              },
+              {
+                "label": "A new one",
+                "done": false
               },
               {
                 "label": "new one",
@@ -6237,7 +9444,13 @@
           }
         },
         {
-          "name": "_@@@4",
+          "name": "_@@@3",
+          "state": {
+            "name": "idle"
+          }
+        },
+        {
+          "name": "_@@@5",
           "state": {
             "name": "idle"
           }
@@ -6245,7 +9458,7 @@
       ],
       "type": "onMachineCreated",
       "machine": {
-        "name": "_@@@4",
+        "name": "_@@@5",
         "state": {
           "name": "idle"
         },
@@ -6280,12 +9493,11 @@
         "middlewares": 2
       },
       "origin": "http://localhost:3000/",
-      "index": 68
+      "id": 212
     },
     {
-      "source": "stent",
-      "time": 1512663921033,
-      "uid": "ffd431d7-0b2b-4ad4-a05d-e64fc9c4111f",
+      "time": 1512916024157,
+      "uid": "8327e224-7994-47b8-af95-7731afa9e482",
       "state": [
         {
           "name": "ToDos",
@@ -6297,8 +9509,12 @@
                 "done": true
               },
               {
-                "label": "hello",
+                "label": "new one",
                 "done": true
+              },
+              {
+                "label": "A new one",
+                "done": false
               },
               {
                 "label": "new one",
@@ -6320,7 +9536,13 @@
           }
         },
         {
-          "name": "_@@@4",
+          "name": "_@@@3",
+          "state": {
+            "name": "idle"
+          }
+        },
+        {
+          "name": "_@@@5",
           "state": {
             "name": "idle"
           }
@@ -6330,7 +9552,7 @@
       "meta": {
         "machines": [
           {
-            "name": "_@@@4",
+            "name": "_@@@5",
             "state": {
               "name": "idle"
             },
@@ -6368,12 +9590,11 @@
         "middlewares": 2
       },
       "origin": "http://localhost:3000/",
-      "index": 69
+      "id": 213
     },
     {
-      "source": "stent",
-      "time": 1512663921035,
-      "uid": "ffd431d7-0b2b-4ad4-a05d-e64fc9c4111f",
+      "time": 1512916024160,
+      "uid": "8327e224-7994-47b8-af95-7731afa9e482",
       "state": [
         {
           "name": "ToDos",
@@ -6385,8 +9606,12 @@
                 "done": true
               },
               {
-                "label": "hello",
+                "label": "new one",
                 "done": true
+              },
+              {
+                "label": "A new one",
+                "done": false
               },
               {
                 "label": "new one",
@@ -6408,7 +9633,13 @@
           }
         },
         {
-          "name": "_@@@4",
+          "name": "_@@@3",
+          "state": {
+            "name": "idle"
+          }
+        },
+        {
+          "name": "_@@@5",
           "state": {
             "name": "idle"
           }
@@ -6432,8 +9663,12 @@
               "done": true
             },
             {
-              "label": "hello",
+              "label": "new one",
               "done": true
+            },
+            {
+              "label": "A new one",
+              "done": false
             },
             {
               "label": "new one",
@@ -6511,7 +9746,1090 @@
         "middlewares": 2
       },
       "origin": "http://localhost:3000/",
-      "index": 70
+      "timeDiff": "+ 0:00:003",
+      "id": 214
+    },
+    {
+      "time": 1512916025334,
+      "uid": "8327e224-7994-47b8-af95-7731afa9e482",
+      "state": [
+        {
+          "name": "ToDos",
+          "state": {
+            "name": "idle",
+            "todos": [
+              {
+                "label": "Another thing here",
+                "done": true
+              },
+              {
+                "label": "new one",
+                "done": true
+              },
+              {
+                "label": "A new one",
+                "done": false
+              },
+              {
+                "label": "new one",
+                "done": false
+              }
+            ]
+          }
+        },
+        {
+          "name": "_@@@1",
+          "state": {
+            "name": "idle"
+          }
+        },
+        {
+          "name": "_@@@2",
+          "state": {
+            "name": "idle"
+          }
+        },
+        {
+          "name": "_@@@3",
+          "state": {
+            "name": "idle"
+          }
+        },
+        {
+          "name": "_@@@5",
+          "state": {
+            "name": "idle"
+          }
+        }
+      ],
+      "type": "onActionDispatched",
+      "actionName": "change status",
+      "args": [
+        3,
+        true
+      ],
+      "machine": {
+        "name": "ToDos",
+        "state": {
+          "name": "idle",
+          "todos": [
+            {
+              "label": "Another thing here",
+              "done": true
+            },
+            {
+              "label": "new one",
+              "done": true
+            },
+            {
+              "label": "A new one",
+              "done": false
+            },
+            {
+              "label": "new one",
+              "done": false
+            }
+          ]
+        },
+        "transitions": {
+          "idle": {
+            "fetch todos": {
+              "__func": "fetchTodos"
+            },
+            "add new todo": {
+              "__func": "addNewTodo"
+            },
+            "delete todo": {
+              "__func": "deleteTodo"
+            },
+            "edit todo": {
+              "__func": "editTodo"
+            },
+            "change status": {
+              "__func": "changeStatus"
+            }
+          },
+          "fetching": {
+            "todos loaded": {
+              "__func": "todosLoaded"
+            },
+            "error": {
+              "__func": "error"
+            }
+          },
+          "error": {
+            "fetch todos": {
+              "__func": "fetchTodos"
+            }
+          }
+        },
+        "isIdle": {
+          "__func": "<anonymous>"
+        },
+        "fetchTodos": {
+          "__func": "<anonymous>"
+        },
+        "addNewTodo": {
+          "__func": "<anonymous>"
+        },
+        "deleteTodo": {
+          "__func": "<anonymous>"
+        },
+        "editTodo": {
+          "__func": "<anonymous>"
+        },
+        "changeStatus": {
+          "__func": "<anonymous>"
+        },
+        "isFetching": {
+          "__func": "<anonymous>"
+        },
+        "todosLoaded": {
+          "__func": "<anonymous>"
+        },
+        "error": {
+          "__func": "<anonymous>"
+        },
+        "isError": {
+          "__func": "<anonymous>"
+        },
+        "destroy": {
+          "__func": "<anonymous>"
+        }
+      },
+      "meta": {
+        "middlewares": 2
+      },
+      "origin": "http://localhost:3000/",
+      "timeDiff": "+ 0:01:174",
+      "id": 215
+    },
+    {
+      "time": 1512916025335,
+      "uid": "8327e224-7994-47b8-af95-7731afa9e482",
+      "state": [
+        {
+          "name": "ToDos",
+          "state": {
+            "name": "idle",
+            "todos": [
+              {
+                "label": "Another thing here",
+                "done": true
+              },
+              {
+                "label": "new one",
+                "done": true
+              },
+              {
+                "label": "A new one",
+                "done": false
+              },
+              {
+                "label": "new one",
+                "done": true
+              }
+            ]
+          }
+        },
+        {
+          "name": "_@@@1",
+          "state": {
+            "name": "idle"
+          }
+        },
+        {
+          "name": "_@@@2",
+          "state": {
+            "name": "idle"
+          }
+        },
+        {
+          "name": "_@@@3",
+          "state": {
+            "name": "idle"
+          }
+        },
+        {
+          "name": "_@@@5",
+          "state": {
+            "name": "idle"
+          }
+        }
+      ],
+      "type": "onGeneratorStep",
+      "yielded": {
+        "__type": "call",
+        "func": "saveTodos",
+        "args": [
+          [
+            {
+              "label": "Another thing here",
+              "done": true
+            },
+            {
+              "label": "new one",
+              "done": true
+            },
+            {
+              "label": "A new one",
+              "done": false
+            },
+            {
+              "label": "new one",
+              "done": true
+            }
+          ]
+        ]
+      },
+      "meta": {
+        "middlewares": 2
+      },
+      "origin": "http://localhost:3000/",
+      "timeDiff": "+ 0:00:001",
+      "id": 216
+    },
+    {
+      "time": 1512916025335,
+      "uid": "8327e224-7994-47b8-af95-7731afa9e482",
+      "state": [
+        {
+          "name": "ToDos",
+          "state": {
+            "name": "idle",
+            "todos": [
+              {
+                "label": "Another thing here",
+                "done": true
+              },
+              {
+                "label": "new one",
+                "done": true
+              },
+              {
+                "label": "A new one",
+                "done": false
+              },
+              {
+                "label": "new one",
+                "done": true
+              }
+            ]
+          }
+        },
+        {
+          "name": "_@@@1",
+          "state": {
+            "name": "idle"
+          }
+        },
+        {
+          "name": "_@@@2",
+          "state": {
+            "name": "idle"
+          }
+        },
+        {
+          "name": "_@@@3",
+          "state": {
+            "name": "idle"
+          }
+        },
+        {
+          "name": "_@@@5",
+          "state": {
+            "name": "idle"
+          }
+        }
+      ],
+      "type": "onGeneratorStep",
+      "yielded": {
+        "__type": "call",
+        "func": "save",
+        "args": [
+          [
+            {
+              "label": "Another thing here",
+              "done": true
+            },
+            {
+              "label": "new one",
+              "done": true
+            },
+            {
+              "label": "A new one",
+              "done": false
+            },
+            {
+              "label": "new one",
+              "done": true
+            }
+          ]
+        ]
+      },
+      "meta": {
+        "middlewares": 2
+      },
+      "origin": "http://localhost:3000/",
+      "id": 217
+    },
+    {
+      "time": 1512916025335,
+      "uid": "8327e224-7994-47b8-af95-7731afa9e482",
+      "state": [
+        {
+          "name": "ToDos",
+          "state": {
+            "name": "idle",
+            "todos": [
+              {
+                "label": "Another thing here",
+                "done": true
+              },
+              {
+                "label": "new one",
+                "done": true
+              },
+              {
+                "label": "A new one",
+                "done": false
+              },
+              {
+                "label": "new one",
+                "done": true
+              }
+            ]
+          }
+        },
+        {
+          "name": "_@@@1",
+          "state": {
+            "name": "idle"
+          }
+        },
+        {
+          "name": "_@@@2",
+          "state": {
+            "name": "idle"
+          }
+        },
+        {
+          "name": "_@@@3",
+          "state": {
+            "name": "idle"
+          }
+        },
+        {
+          "name": "_@@@5",
+          "state": {
+            "name": "idle"
+          }
+        }
+      ],
+      "type": "onGeneratorResumed",
+      "value": null,
+      "meta": {
+        "middlewares": 2
+      },
+      "origin": "http://localhost:3000/",
+      "id": 218
+    },
+    {
+      "time": 1512916025336,
+      "uid": "8327e224-7994-47b8-af95-7731afa9e482",
+      "state": [
+        {
+          "name": "ToDos",
+          "state": {
+            "name": "idle",
+            "todos": [
+              {
+                "label": "Another thing here",
+                "done": true
+              },
+              {
+                "label": "new one",
+                "done": true
+              },
+              {
+                "label": "A new one",
+                "done": false
+              },
+              {
+                "label": "new one",
+                "done": true
+              }
+            ]
+          }
+        },
+        {
+          "name": "_@@@1",
+          "state": {
+            "name": "idle"
+          }
+        },
+        {
+          "name": "_@@@2",
+          "state": {
+            "name": "idle"
+          }
+        },
+        {
+          "name": "_@@@3",
+          "state": {
+            "name": "idle"
+          }
+        },
+        {
+          "name": "_@@@5",
+          "state": {
+            "name": "idle"
+          }
+        }
+      ],
+      "type": "onGeneratorEnd",
+      "value": {
+        "name": "idle",
+        "todos": [
+          {
+            "label": "Another thing here",
+            "done": true
+          },
+          {
+            "label": "new one",
+            "done": true
+          },
+          {
+            "label": "A new one",
+            "done": false
+          },
+          {
+            "label": "new one",
+            "done": true
+          }
+        ]
+      },
+      "meta": {
+        "middlewares": 2
+      },
+      "origin": "http://localhost:3000/",
+      "timeDiff": "+ 0:00:001",
+      "id": 219
+    },
+    {
+      "time": 1512916025336,
+      "uid": "8327e224-7994-47b8-af95-7731afa9e482",
+      "state": [
+        {
+          "name": "ToDos",
+          "state": {
+            "name": "idle",
+            "todos": [
+              {
+                "label": "Another thing here",
+                "done": true
+              },
+              {
+                "label": "new one",
+                "done": true
+              },
+              {
+                "label": "A new one",
+                "done": false
+              },
+              {
+                "label": "new one",
+                "done": true
+              }
+            ]
+          }
+        },
+        {
+          "name": "_@@@1",
+          "state": {
+            "name": "idle"
+          }
+        },
+        {
+          "name": "_@@@2",
+          "state": {
+            "name": "idle"
+          }
+        },
+        {
+          "name": "_@@@3",
+          "state": {
+            "name": "idle"
+          }
+        },
+        {
+          "name": "_@@@5",
+          "state": {
+            "name": "idle"
+          }
+        }
+      ],
+      "type": "onGeneratorResumed",
+      "value": {
+        "name": "idle",
+        "todos": [
+          {
+            "label": "Another thing here",
+            "done": true
+          },
+          {
+            "label": "new one",
+            "done": true
+          },
+          {
+            "label": "A new one",
+            "done": false
+          },
+          {
+            "label": "new one",
+            "done": true
+          }
+        ]
+      },
+      "meta": {
+        "middlewares": 2
+      },
+      "origin": "http://localhost:3000/",
+      "id": 220
+    },
+    {
+      "time": 1512916025336,
+      "uid": "8327e224-7994-47b8-af95-7731afa9e482",
+      "state": [
+        {
+          "name": "ToDos",
+          "state": {
+            "name": "idle",
+            "todos": [
+              {
+                "label": "Another thing here",
+                "done": true
+              },
+              {
+                "label": "new one",
+                "done": true
+              },
+              {
+                "label": "A new one",
+                "done": false
+              },
+              {
+                "label": "new one",
+                "done": true
+              }
+            ]
+          }
+        },
+        {
+          "name": "_@@@1",
+          "state": {
+            "name": "idle"
+          }
+        },
+        {
+          "name": "_@@@2",
+          "state": {
+            "name": "idle"
+          }
+        },
+        {
+          "name": "_@@@3",
+          "state": {
+            "name": "idle"
+          }
+        },
+        {
+          "name": "_@@@5",
+          "state": {
+            "name": "idle"
+          }
+        }
+      ],
+      "type": "onGeneratorEnd",
+      "value": {
+        "name": "idle",
+        "todos": [
+          {
+            "label": "Another thing here",
+            "done": true
+          },
+          {
+            "label": "new one",
+            "done": true
+          },
+          {
+            "label": "A new one",
+            "done": false
+          },
+          {
+            "label": "new one",
+            "done": true
+          }
+        ]
+      },
+      "meta": {
+        "middlewares": 2
+      },
+      "origin": "http://localhost:3000/",
+      "id": 221
+    },
+    {
+      "time": 1512916025336,
+      "uid": "8327e224-7994-47b8-af95-7731afa9e482",
+      "state": [
+        {
+          "name": "ToDos",
+          "state": {
+            "name": "idle",
+            "todos": [
+              {
+                "label": "Another thing here",
+                "done": true
+              },
+              {
+                "label": "new one",
+                "done": true
+              },
+              {
+                "label": "A new one",
+                "done": false
+              },
+              {
+                "label": "new one",
+                "done": true
+              }
+            ]
+          }
+        },
+        {
+          "name": "_@@@1",
+          "state": {
+            "name": "idle"
+          }
+        },
+        {
+          "name": "_@@@2",
+          "state": {
+            "name": "idle"
+          }
+        },
+        {
+          "name": "_@@@3",
+          "state": {
+            "name": "idle"
+          }
+        },
+        {
+          "name": "_@@@5",
+          "state": {
+            "name": "idle"
+          }
+        }
+      ],
+      "type": "onStateWillChange",
+      "machine": {
+        "name": "ToDos",
+        "state": {
+          "name": "idle",
+          "todos": [
+            {
+              "label": "Another thing here",
+              "done": true
+            },
+            {
+              "label": "new one",
+              "done": true
+            },
+            {
+              "label": "A new one",
+              "done": false
+            },
+            {
+              "label": "new one",
+              "done": true
+            }
+          ]
+        },
+        "transitions": {
+          "idle": {
+            "fetch todos": {
+              "__func": "fetchTodos"
+            },
+            "add new todo": {
+              "__func": "addNewTodo"
+            },
+            "delete todo": {
+              "__func": "deleteTodo"
+            },
+            "edit todo": {
+              "__func": "editTodo"
+            },
+            "change status": {
+              "__func": "changeStatus"
+            }
+          },
+          "fetching": {
+            "todos loaded": {
+              "__func": "todosLoaded"
+            },
+            "error": {
+              "__func": "error"
+            }
+          },
+          "error": {
+            "fetch todos": {
+              "__func": "fetchTodos"
+            }
+          }
+        },
+        "isIdle": {
+          "__func": "<anonymous>"
+        },
+        "fetchTodos": {
+          "__func": "<anonymous>"
+        },
+        "addNewTodo": {
+          "__func": "<anonymous>"
+        },
+        "deleteTodo": {
+          "__func": "<anonymous>"
+        },
+        "editTodo": {
+          "__func": "<anonymous>"
+        },
+        "changeStatus": {
+          "__func": "<anonymous>"
+        },
+        "isFetching": {
+          "__func": "<anonymous>"
+        },
+        "todosLoaded": {
+          "__func": "<anonymous>"
+        },
+        "error": {
+          "__func": "<anonymous>"
+        },
+        "isError": {
+          "__func": "<anonymous>"
+        },
+        "destroy": {
+          "__func": "<anonymous>"
+        }
+      },
+      "meta": {
+        "middlewares": 2
+      },
+      "origin": "http://localhost:3000/",
+      "id": 222
+    },
+    {
+      "time": 1512916025336,
+      "uid": "8327e224-7994-47b8-af95-7731afa9e482",
+      "state": [
+        {
+          "name": "ToDos",
+          "state": {
+            "name": "idle",
+            "todos": [
+              {
+                "label": "Another thing here",
+                "done": true
+              },
+              {
+                "label": "new one",
+                "done": true
+              },
+              {
+                "label": "A new one",
+                "done": false
+              },
+              {
+                "label": "new one",
+                "done": true
+              }
+            ]
+          }
+        },
+        {
+          "name": "_@@@1",
+          "state": {
+            "name": "idle"
+          }
+        },
+        {
+          "name": "_@@@2",
+          "state": {
+            "name": "idle"
+          }
+        },
+        {
+          "name": "_@@@3",
+          "state": {
+            "name": "idle"
+          }
+        },
+        {
+          "name": "_@@@5",
+          "state": {
+            "name": "idle"
+          }
+        }
+      ],
+      "type": "onStateChanged",
+      "machine": {
+        "name": "ToDos",
+        "state": {
+          "name": "idle",
+          "todos": [
+            {
+              "label": "Another thing here",
+              "done": true
+            },
+            {
+              "label": "new one",
+              "done": true
+            },
+            {
+              "label": "A new one",
+              "done": false
+            },
+            {
+              "label": "new one",
+              "done": true
+            }
+          ]
+        },
+        "transitions": {
+          "idle": {
+            "fetch todos": {
+              "__func": "fetchTodos"
+            },
+            "add new todo": {
+              "__func": "addNewTodo"
+            },
+            "delete todo": {
+              "__func": "deleteTodo"
+            },
+            "edit todo": {
+              "__func": "editTodo"
+            },
+            "change status": {
+              "__func": "changeStatus"
+            }
+          },
+          "fetching": {
+            "todos loaded": {
+              "__func": "todosLoaded"
+            },
+            "error": {
+              "__func": "error"
+            }
+          },
+          "error": {
+            "fetch todos": {
+              "__func": "fetchTodos"
+            }
+          }
+        },
+        "isIdle": {
+          "__func": "<anonymous>"
+        },
+        "fetchTodos": {
+          "__func": "<anonymous>"
+        },
+        "addNewTodo": {
+          "__func": "<anonymous>"
+        },
+        "deleteTodo": {
+          "__func": "<anonymous>"
+        },
+        "editTodo": {
+          "__func": "<anonymous>"
+        },
+        "changeStatus": {
+          "__func": "<anonymous>"
+        },
+        "isFetching": {
+          "__func": "<anonymous>"
+        },
+        "todosLoaded": {
+          "__func": "<anonymous>"
+        },
+        "error": {
+          "__func": "<anonymous>"
+        },
+        "isError": {
+          "__func": "<anonymous>"
+        },
+        "destroy": {
+          "__func": "<anonymous>"
+        }
+      },
+      "meta": {
+        "middlewares": 2
+      },
+      "origin": "http://localhost:3000/",
+      "id": 223
+    },
+    {
+      "time": 1512916025341,
+      "uid": "8327e224-7994-47b8-af95-7731afa9e482",
+      "state": [
+        {
+          "name": "ToDos",
+          "state": {
+            "name": "idle",
+            "todos": [
+              {
+                "label": "Another thing here",
+                "done": true
+              },
+              {
+                "label": "new one",
+                "done": true
+              },
+              {
+                "label": "A new one",
+                "done": false
+              },
+              {
+                "label": "new one",
+                "done": true
+              }
+            ]
+          }
+        },
+        {
+          "name": "_@@@1",
+          "state": {
+            "name": "idle"
+          }
+        },
+        {
+          "name": "_@@@2",
+          "state": {
+            "name": "idle"
+          }
+        },
+        {
+          "name": "_@@@3",
+          "state": {
+            "name": "idle"
+          }
+        },
+        {
+          "name": "_@@@5",
+          "state": {
+            "name": "idle"
+          }
+        }
+      ],
+      "type": "onActionProcessed",
+      "actionName": "change status",
+      "args": [
+        3,
+        true
+      ],
+      "machine": {
+        "name": "ToDos",
+        "state": {
+          "name": "idle",
+          "todos": [
+            {
+              "label": "Another thing here",
+              "done": true
+            },
+            {
+              "label": "new one",
+              "done": true
+            },
+            {
+              "label": "A new one",
+              "done": false
+            },
+            {
+              "label": "new one",
+              "done": true
+            }
+          ]
+        },
+        "transitions": {
+          "idle": {
+            "fetch todos": {
+              "__func": "fetchTodos"
+            },
+            "add new todo": {
+              "__func": "addNewTodo"
+            },
+            "delete todo": {
+              "__func": "deleteTodo"
+            },
+            "edit todo": {
+              "__func": "editTodo"
+            },
+            "change status": {
+              "__func": "changeStatus"
+            }
+          },
+          "fetching": {
+            "todos loaded": {
+              "__func": "todosLoaded"
+            },
+            "error": {
+              "__func": "error"
+            }
+          },
+          "error": {
+            "fetch todos": {
+              "__func": "fetchTodos"
+            }
+          }
+        },
+        "isIdle": {
+          "__func": "<anonymous>"
+        },
+        "fetchTodos": {
+          "__func": "<anonymous>"
+        },
+        "addNewTodo": {
+          "__func": "<anonymous>"
+        },
+        "deleteTodo": {
+          "__func": "<anonymous>"
+        },
+        "editTodo": {
+          "__func": "<anonymous>"
+        },
+        "changeStatus": {
+          "__func": "<anonymous>"
+        },
+        "isFetching": {
+          "__func": "<anonymous>"
+        },
+        "todosLoaded": {
+          "__func": "<anonymous>"
+        },
+        "error": {
+          "__func": "<anonymous>"
+        },
+        "isError": {
+          "__func": "<anonymous>"
+        },
+        "destroy": {
+          "__func": "<anonymous>"
+        }
+      },
+      "meta": {
+        "middlewares": 2
+      },
+      "origin": "http://localhost:3000/",
+      "timeDiff": "+ 0:00:005",
+      "id": 224
     }
   ]
 }

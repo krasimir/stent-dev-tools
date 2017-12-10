@@ -48,10 +48,11 @@ const machine = Machine.create('DevTools', {
       'flush events': function () {
         return initialState();
       },
-      'add marker': function ({ events, pinnedEvent, ...rest }) {
-        if (pinnedEvent) {
-          pinnedEvent.withMarker = true;
+      'add marker': function (state) {
+        if (state.pinnedEvent) {
+          state.pinnedEvent.withMarker = true;
         }
+        return state;
       },
       'pin': function ({ events, pinnedEvent: currentPinnedEvent, ...rest }, id) {
         const event = this.getEventById(id);
@@ -109,8 +110,8 @@ if (typeof window !== 'undefined' && window.location && window.location.href) {
     }
 
     setTimeout(function () {
-      console.log('About to inject ' + s.actions.length + ' actions');
-      s.actions.forEach((action, i) => {
+      console.log('About to inject ' + s.events.length + ' actions');
+      s.events.forEach((action, i) => {
         setTimeout(() => {
           machine.actionReceived(action);
         }, i);
