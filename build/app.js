@@ -111131,7 +111131,8 @@ var initialState = function initialState() {
     name: 'working',
     page: _constants.PAGES.DASHBOARD,
     events: [],
-    pinnedEvent: null
+    pinnedEvent: null,
+    autoscroll: true
   };
 };
 var MAX_EVENTS = 500;
@@ -111142,8 +111143,9 @@ var machine = _stent.Machine.create('DevTools', {
     'working': {
       'action received': function actionReceived(_ref, newEvents) {
         var events = _ref.events,
-            currentPinnedEvent = _ref.pinnedEvent,
-            rest = _objectWithoutProperties(_ref, ['events', 'pinnedEvent']);
+            autoscroll = _ref.autoscroll,
+            pinnedEvent = _ref.pinnedEvent,
+            rest = _objectWithoutProperties(_ref, ['events', 'autoscroll', 'pinnedEvent']);
 
         var eventsToAdd = newEvents.map(function (newEvent) {
           if (newEvent.pageRefresh === true) {
@@ -111160,17 +111162,21 @@ var machine = _stent.Machine.create('DevTools', {
 
         if (eventsToAdd.length === 0) return undefined;
 
-        var pinnedEvent = currentPinnedEvent === null || events.length > 0 && currentPinnedEvent.id === events[events.length - 1].id ? eventsToAdd[eventsToAdd.length - 1] : currentPinnedEvent;
-
         events = events.concat(eventsToAdd);
 
         if (events.length > MAX_EVENTS) {
           events.splice(0, MAX_EVENTS - events.length);
         }
-        return _extends({}, rest, {
-          pinnedEvent: pinnedEvent,
-          events: events
-        });
+
+        if (autoscroll) {
+          pinnedEvent = events[events.length - 1];
+        }
+
+        return _extends({
+          events: events,
+          autoscroll: autoscroll,
+          pinnedEvent: pinnedEvent
+        }, rest);
       },
       'flush events': function flushEvents() {
         return initialState();
@@ -111187,8 +111193,10 @@ var machine = _stent.Machine.create('DevTools', {
             rest = _objectWithoutProperties(_ref2, ['events', 'pinnedEvent']);
 
         var event = this.getEventById(id);
-
+        var autoscroll = event.id === events[events.length - 1].id;
+        console.log(autoscroll);
         return _extends({}, rest, {
+          autoscroll: autoscroll,
           pinnedEvent: event ? event : currentPinnedEvent,
           events: events
         });

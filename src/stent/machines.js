@@ -10,7 +10,8 @@ const initialState = () => ({
   name: 'working',
   page: PAGES.DASHBOARD,
   events: [],
-  pinnedEvent: null
+  pinnedEvent: null,
+  autoscroll: true
 });
 const MAX_EVENTS = 500;
 
@@ -18,7 +19,7 @@ const machine = Machine.create('DevTools', {
   state: initialState(),
   transitions: {
     'working': {
-      'action received': function ({ events, pinnedEvent: currentPinnedEvent, ...rest }, newEvents) {
+      'action received': function ({ events, autoscroll, pinnedEvent, ...rest }, newEvents) {
         const eventsToAdd = newEvents.map(newEvent => {
           if (newEvent.pageRefresh === true) {
             events = [];
@@ -32,20 +33,21 @@ const machine = Machine.create('DevTools', {
 
         if (eventsToAdd.length === 0) return undefined;
 
-        const pinnedEvent = (
-          currentPinnedEvent === null ||
-          (events.length > 0 && currentPinnedEvent.id === events[events.length - 1].id)
-        ) ? eventsToAdd[eventsToAdd.length - 1] : currentPinnedEvent;
-
         events = events.concat(eventsToAdd);
 
         if (events.length > MAX_EVENTS) {
           events.splice(0, MAX_EVENTS - events.length);
         }
+
+        if (autoscroll) {
+          pinnedEvent = events[events.length - 1];
+        }
+
         return {
-          ...rest,
+          events,
+          autoscroll,
           pinnedEvent,
-          events
+          ...rest
         };
       },
       'flush events': function () {
@@ -59,9 +61,11 @@ const machine = Machine.create('DevTools', {
       },
       'pin': function ({ events, pinnedEvent: currentPinnedEvent, ...rest }, id) {
         const event = this.getEventById(id);
+        const autoscroll = event.id === events[events.length - 1].id;
 
         return {
           ...rest,
+          autoscroll,
           pinnedEvent: event ? event : currentPinnedEvent,
           events
         };
