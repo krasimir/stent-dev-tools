@@ -24,10 +24,10 @@ const getResultRepresentation = function (result, i) {
   return null;
 };
 
-export default function SagaEffectResolved({ event }) {
+export default function SagaEffectResolved({ event, onClick, className }) {
   var label = '';
   const { result, timeDiff } = event;
-  const style = calculateRowStyles(event, { color: '#c8ead6' });
+  const style = calculateRowStyles(event, { color: 'rgb(165, 165, 165)' });
 
   if (isDefined(result)) {
     if (typeof result === 'object' && result !== null) {
@@ -50,13 +50,13 @@ export default function SagaEffectResolved({ event }) {
   }
 
   return (
-    <div style={ style }>
-      <TimeDiff timeDiff={ timeDiff } />
+    <li style={ style } onClick={ onClick } className={ className }>
+      <TimeDiff timeDiff={ timeDiff } parentStyle={ style } />
       <div className='actionRowContent'>
         <i className='fa fa-check-square-o'></i>
         <SagaEffectIds event={ event } />
         { label }
       </div>
-    </div>
+    </li>
   );
 }

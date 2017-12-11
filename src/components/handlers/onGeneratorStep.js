@@ -8,7 +8,7 @@ import calculateRowStyles from './helpers/calculateRowStyles';
 // eslint-disable-next-line no-unused-vars
 import TimeDiff from '../TimeDiff.jsx';
 
-export default function onGeneratorStep({ event }) {
+export default function onGeneratorStep({ event, onClick, className }) {
   const { yielded, timeDiff } = event;
   var message = '';
   const style = calculateRowStyles(event, { color: 'rgb(201, 202, 189)' });
@@ -25,12 +25,12 @@ export default function onGeneratorStep({ event }) {
     }
   }
   return (
-    <div style={ style }>
-      <TimeDiff timeDiff={ timeDiff } />
+    <li style={ style } onClick={ onClick } className={ className }>
+      <TimeDiff timeDiff={ timeDiff } parentStyle={ style } />
       <div className='actionRowContent'>
         <i className='fa fa-arrow-circle-left'></i>
         { message }
       </div>
-    </div>
+    </li>
   );
 };

@@ -8,22 +8,22 @@ import calculateRowStyles from './helpers/calculateRowStyles';
 // eslint-disable-next-line no-unused-vars
 import TimeDiff from '../TimeDiff.jsx';
 
-export default function SagaEffectActionDispatched({ event }) {
+export default function SagaEffectActionDispatched({ event, onClick, className }) {
   var label = '';
   const { action, timeDiff } = event;
-  const style = calculateRowStyles(event, { color: '#c8ead6' });
+  const style = calculateRowStyles(event, { color: 'rgb(165, 165, 165)' });
 
   if (isDefined(action)) {
     label = <span>Action <strong>{ action.type }</strong> dispatched</span>;
   }
 
   return (
-    <div style={ style }>
-      <TimeDiff timeDiff={ timeDiff } />
+    <li style={ style } onClick={ onClick } className={ className }>
+      <TimeDiff timeDiff={ timeDiff } parentStyle={ style } />
       <div className='actionRowContent'>
         <i className='fa fa-toggle-right'></i>
         { label }
       </div>
-    </div>
+    </li>
   );
 }

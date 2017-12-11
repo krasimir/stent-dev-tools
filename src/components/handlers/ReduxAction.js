@@ -9,10 +9,10 @@ import calculateRowStyles from './helpers/calculateRowStyles';
 // eslint-disable-next-line no-unused-vars
 import TimeDiff from '../TimeDiff.jsx';
 
-export default function ReduxAction({ event }) {
+export default function ReduxAction({ event, onClick, className }) {
   var label = '';
   const { action, timeDiff } = event;
-  const style = calculateRowStyles(event, { color: '#c8ecf1' });
+  const style = calculateRowStyles(event, { color: 'rgb(142, 142, 142)' });
 
   if (isDefined(action)) {
     const { type, ...rest } = action;
@@ -25,12 +25,12 @@ export default function ReduxAction({ event }) {
   }
 
   return (
-    <div style={ style }>
-      <TimeDiff timeDiff={ timeDiff } />
+    <li style={ style } onClick={ onClick } className={ className }>
+      <TimeDiff timeDiff={ timeDiff } parentStyle={ style } />
       <div className='actionRowContent'>
         <i className='fa fa-dot-circle-o'></i>
         { label }
       </div>
-    </div>
+    </li>
   );
 }
