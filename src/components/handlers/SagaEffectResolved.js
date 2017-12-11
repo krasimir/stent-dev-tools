@@ -7,6 +7,10 @@ import SagaEffectIds from './helpers/SagaEffectIds';
 import SagaEffectName from './helpers/SagaEffectName';
 import renderJSONPreview from '../../helpers/renderJSONPreview';
 
+import calculateRowStyles from './helpers/calculateRowStyles';
+// eslint-disable-next-line no-unused-vars
+import TimeDiff from '../TimeDiff.jsx';
+
 const getResultRepresentation = function (result, i) {
   if (isDefined(result) && result !== null) {
     if (typeof result === 'object') {
@@ -20,9 +24,10 @@ const getResultRepresentation = function (result, i) {
   return null;
 };
 
-export default function SagaEffectResolved(event) {
+export default function SagaEffectResolved({ event }) {
   var label = '';
-  const { result } = event;
+  const { result, timeDiff } = event;
+  const style = calculateRowStyles(event, { color: '#c8ead6' });
 
   if (isDefined(result)) {
     if (typeof result === 'object' && result !== null) {
@@ -45,10 +50,13 @@ export default function SagaEffectResolved(event) {
   }
 
   return (
-    <div>
-      <i className='fa fa-check-square-o'></i>
-      <SagaEffectIds event={ event } />
-      { label }
+    <div style={ style }>
+      <TimeDiff timeDiff={ timeDiff } />
+      <div className='actionRowContent'>
+        <i className='fa fa-check-square-o'></i>
+        <SagaEffectIds event={ event } />
+        { label }
+      </div>
     </div>
   );
 }

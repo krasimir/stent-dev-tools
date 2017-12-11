@@ -194,18 +194,6 @@ p {
   width: 1000px;
   overflow: hidden;
 }
-.onMachineCreated {
-  background: rgb(200, 212, 201) !important;
-}
-.onMachineConnected {
-  background: rgb(170, 189, 207) !important;
-}
-.onActionDispatched, .onActionProcessed {
-  background: rgb(192, 189, 202) !important;
-}
-.onGeneratorStep, .onGeneratorEnd, .onGeneratorResumed {
-  background: rgb(201, 202, 189) !important;
-}
 .withMarker::after {
   content: " ";
   display: block;
@@ -215,9 +203,6 @@ p {
   width: 100%;
   height: 2px;
   background: #F00;
-}
-.onStateWillChange, .onStateChanged {
-  background: rgb(201, 172, 186) !important;
 }
 .pinned {
   background: #FFF !important;

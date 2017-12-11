@@ -108996,7 +108996,7 @@ exports.default = (0, _react3.connect)(App).with('DevTools').map(function (_ref)
   return { page: state.page };
 });
 
-},{"../constants":479,"./Dashboard.jsx":457,"react":433,"react-dom":187,"stent/lib/react":451}],457:[function(require,module,exports){
+},{"../constants":480,"./Dashboard.jsx":457,"react":433,"react-dom":187,"stent/lib/react":451}],457:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -109081,10 +109081,6 @@ var _ReduxAction = require('./handlers/ReduxAction');
 
 var _ReduxAction2 = _interopRequireDefault(_ReduxAction);
 
-var _TimeDiff = require('./TimeDiff.jsx');
-
-var _TimeDiff2 = _interopRequireDefault(_TimeDiff);
-
 var _Settings = require('./Settings.jsx');
 
 var _Settings2 = _interopRequireDefault(_Settings);
@@ -109098,8 +109094,6 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-// eslint-disable-next-line no-unused-vars
-
 // eslint-disable-next-line no-unused-vars
 
 // eslint-disable-next-line no-unused-vars
@@ -109189,33 +109183,22 @@ var Dashboard = function (_React$Component) {
           pinnedEvent = _props.pinnedEvent,
           pin = _props.pin;
       var type = event.type,
-          withMarker = event.withMarker,
-          color = event.color,
-          timeDiff = event.timeDiff;
+          withMarker = event.withMarker;
       // eslint-disable-next-line no-unused-vars
 
       var Component = StentHandlers[type] || Handlers[type] || _UnrecognizedEvent2.default;
       var isPinned = (pinnedEvent || {})['id'] === event.id;
 
       var className = (type ? type : '') + ' actionRow relative' + (withMarker ? ' withMarker' : '') + (isPinned ? ' pinned' : '');
-      var style = color ? { backgroundColor: color } : {};
 
-      return _react2.default.createElement(
-        'li',
-        {
-          key: event.id,
-          className: className,
-          onClick: function onClick() {
-            return pin(event.id);
-          },
-          style: style },
-        _react2.default.createElement(_TimeDiff2.default, { timeDiff: timeDiff }),
-        _react2.default.createElement(
-          'div',
-          { className: 'actionRowContent' },
-          _react2.default.createElement(Component, event)
-        )
-      );
+      return _react2.default.createElement(Component, {
+        key: event.id,
+        className: className,
+        onClick: function onClick() {
+          return pin(event.id);
+        },
+        event: event
+      });
     }
   }, {
     key: '_renderState',
@@ -109437,7 +109420,7 @@ exports.default = (0, _react3.connect)((0, _react3.connect)(Dashboard).with('Dev
   };
 });
 
-},{"../helpers/renderAsTree":485,"./Settings.jsx":458,"./TimeDiff.jsx":459,"./handlers/ReduxAction":460,"./handlers/SagaEffectActionDispatched":461,"./handlers/SagaEffectCanceled":462,"./handlers/SagaEffectRejected":463,"./handlers/SagaEffectResolved":464,"./handlers/SagaEffectTriggered":465,"./handlers/UnrecognizedEvent":466,"./handlers/onActionDispatched":469,"./handlers/onActionProcessed":470,"./handlers/onGeneratorEnd":471,"./handlers/onGeneratorResumed":472,"./handlers/onGeneratorStep":473,"./handlers/onMachineConnected":474,"./handlers/onMachineCreated":475,"./handlers/onMachineDisconnected":476,"./handlers/onStateChanged":477,"./handlers/onStateWillChange":478,"react":433,"react-virtualized":392,"stent/lib/react":451}],458:[function(require,module,exports){
+},{"../helpers/renderAsTree":486,"./Settings.jsx":458,"./handlers/ReduxAction":460,"./handlers/SagaEffectActionDispatched":461,"./handlers/SagaEffectCanceled":462,"./handlers/SagaEffectRejected":463,"./handlers/SagaEffectResolved":464,"./handlers/SagaEffectTriggered":465,"./handlers/UnrecognizedEvent":466,"./handlers/onActionDispatched":470,"./handlers/onActionProcessed":471,"./handlers/onGeneratorEnd":472,"./handlers/onGeneratorResumed":473,"./handlers/onGeneratorStep":474,"./handlers/onMachineConnected":475,"./handlers/onMachineCreated":476,"./handlers/onMachineDisconnected":477,"./handlers/onStateChanged":478,"./handlers/onStateWillChange":479,"react":433,"react-virtualized":392,"stent/lib/react":451}],458:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -109602,17 +109585,31 @@ var _renderJSONPreview = require('../../helpers/renderJSONPreview');
 
 var _renderJSONPreview2 = _interopRequireDefault(_renderJSONPreview);
 
+var _calculateRowStyles = require('./helpers/calculateRowStyles');
+
+var _calculateRowStyles2 = _interopRequireDefault(_calculateRowStyles);
+
+var _TimeDiff = require('../TimeDiff.jsx');
+
+var _TimeDiff2 = _interopRequireDefault(_TimeDiff);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; } // eslint-disable-next-line no-unused-vars
 
 // eslint-disable-next-line no-unused-vars
 
+// eslint-disable-next-line no-unused-vars
 
-function ReduxAction(event) {
+
+function ReduxAction(_ref) {
+  var event = _ref.event;
+
   var label = '';
-  var action = event.action;
+  var action = event.action,
+      timeDiff = event.timeDiff;
 
+  var style = (0, _calculateRowStyles2.default)(event, { color: '#c8ecf1' });
 
   if ((0, _isDefined2.default)(action)) {
     var type = action.type,
@@ -109637,13 +109634,18 @@ function ReduxAction(event) {
 
   return _react2.default.createElement(
     'div',
-    null,
-    _react2.default.createElement('i', { className: 'fa fa-dot-circle-o' }),
-    label
+    { style: style },
+    _react2.default.createElement(_TimeDiff2.default, { timeDiff: timeDiff }),
+    _react2.default.createElement(
+      'div',
+      { className: 'actionRowContent' },
+      _react2.default.createElement('i', { className: 'fa fa-dot-circle-o' }),
+      label
+    )
   );
 }
 
-},{"../../helpers/isDefined":482,"../../helpers/renderJSONPreview":487,"./helpers/SagaEffectName":468,"react":433}],461:[function(require,module,exports){
+},{"../../helpers/isDefined":483,"../../helpers/renderJSONPreview":488,"../TimeDiff.jsx":459,"./helpers/SagaEffectName":468,"./helpers/calculateRowStyles":469,"react":433}],461:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -109663,12 +109665,24 @@ var _SagaEffectName = require('./helpers/SagaEffectName');
 
 var _SagaEffectName2 = _interopRequireDefault(_SagaEffectName);
 
+var _calculateRowStyles = require('./helpers/calculateRowStyles');
+
+var _calculateRowStyles2 = _interopRequireDefault(_calculateRowStyles);
+
+var _TimeDiff = require('../TimeDiff.jsx');
+
+var _TimeDiff2 = _interopRequireDefault(_TimeDiff);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function SagaEffectActionDispatched(event) {
-  var label = '';
-  var action = event.action;
+function SagaEffectActionDispatched(_ref) {
+  var event = _ref.event;
 
+  var label = '';
+  var action = event.action,
+      timeDiff = event.timeDiff;
+
+  var style = (0, _calculateRowStyles2.default)(event, { color: '#c8ead6' });
 
   if ((0, _isDefined2.default)(action)) {
     label = _react2.default.createElement(
@@ -109686,15 +109700,22 @@ function SagaEffectActionDispatched(event) {
 
   return _react2.default.createElement(
     'div',
-    null,
-    _react2.default.createElement('i', { className: 'fa fa-toggle-right' }),
-    label
+    { style: style },
+    _react2.default.createElement(_TimeDiff2.default, { timeDiff: timeDiff }),
+    _react2.default.createElement(
+      'div',
+      { className: 'actionRowContent' },
+      _react2.default.createElement('i', { className: 'fa fa-toggle-right' }),
+      label
+    )
   );
 }
 // eslint-disable-next-line no-unused-vars
+
+// eslint-disable-next-line no-unused-vars
 // eslint-disable-next-line no-unused-vars
 
-},{"../../helpers/isDefined":482,"./helpers/SagaEffectName":468,"react":433}],462:[function(require,module,exports){
+},{"../../helpers/isDefined":483,"../TimeDiff.jsx":459,"./helpers/SagaEffectName":468,"./helpers/calculateRowStyles":469,"react":433}],462:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -109714,24 +109735,44 @@ var _SagaEffectIds = require('./helpers/SagaEffectIds');
 
 var _SagaEffectIds2 = _interopRequireDefault(_SagaEffectIds);
 
+var _calculateRowStyles = require('./helpers/calculateRowStyles');
+
+var _calculateRowStyles2 = _interopRequireDefault(_calculateRowStyles);
+
+var _TimeDiff = require('../TimeDiff.jsx');
+
+var _TimeDiff2 = _interopRequireDefault(_TimeDiff);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 // eslint-disable-next-line no-unused-vars
-function SagaEffectCanceled(event) {
+function SagaEffectCanceled(_ref) {
+  var event = _ref.event;
+
   var label = 'canceled';
+  var style = (0, _calculateRowStyles2.default)(event, { color: '#c8ead6' });
+  var timeDiff = event.timeDiff;
+
 
   return _react2.default.createElement(
     'div',
-    null,
-    _react2.default.createElement('i', { className: 'fa fa-times-rectangle-o' }),
-    _react2.default.createElement(_SagaEffectIds2.default, { event: event }),
-    label
+    { style: style },
+    _react2.default.createElement(_TimeDiff2.default, { timeDiff: timeDiff }),
+    _react2.default.createElement(
+      'div',
+      { className: 'actionRowContent' },
+      _react2.default.createElement('i', { className: 'fa fa-times-rectangle-o' }),
+      _react2.default.createElement(_SagaEffectIds2.default, { event: event }),
+      label
+    )
   );
 }
 // eslint-disable-next-line no-unused-vars
+
+// eslint-disable-next-line no-unused-vars
 // eslint-disable-next-line no-unused-vars
 
-},{"./helpers/SagaEffectIds":467,"./helpers/SagaEffectName":468,"react":433}],463:[function(require,module,exports){
+},{"../TimeDiff.jsx":459,"./helpers/SagaEffectIds":467,"./helpers/SagaEffectName":468,"./helpers/calculateRowStyles":469,"react":433}],463:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -109759,13 +109800,25 @@ var _SagaEffectIds = require('./helpers/SagaEffectIds');
 
 var _SagaEffectIds2 = _interopRequireDefault(_SagaEffectIds);
 
+var _calculateRowStyles = require('./helpers/calculateRowStyles');
+
+var _calculateRowStyles2 = _interopRequireDefault(_calculateRowStyles);
+
+var _TimeDiff = require('../TimeDiff.jsx');
+
+var _TimeDiff2 = _interopRequireDefault(_TimeDiff);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 // eslint-disable-next-line no-unused-vars
-function SagaEffectCanceled(event) {
-  var label = 'canceled';
-  var error = event.error;
+function SagaEffectCanceled(_ref) {
+  var event = _ref.event;
 
+  var label = 'canceled';
+  var error = event.error,
+      timeDiff = event.timeDiff;
+
+  var style = (0, _calculateRowStyles2.default)(event, { color: '#c8ead6' });
 
   if ((0, _isDefined2.default)(error)) {
     var message = (0, _readFromPath2.default)(error, 'message', false);
@@ -109783,16 +109836,23 @@ function SagaEffectCanceled(event) {
 
   return _react2.default.createElement(
     'div',
-    null,
-    _react2.default.createElement('i', { className: 'fa fa-frown-o' }),
-    _react2.default.createElement(_SagaEffectIds2.default, { event: event }),
-    label
+    { style: style },
+    _react2.default.createElement(_TimeDiff2.default, { timeDiff: timeDiff }),
+    _react2.default.createElement(
+      'div',
+      { className: 'actionRowContent' },
+      _react2.default.createElement('i', { className: 'fa fa-frown-o' }),
+      _react2.default.createElement(_SagaEffectIds2.default, { event: event }),
+      label
+    )
   );
 }
 // eslint-disable-next-line no-unused-vars
+
+// eslint-disable-next-line no-unused-vars
 // eslint-disable-next-line no-unused-vars
 
-},{"../../helpers/isDefined":482,"../../helpers/readFromPath":484,"./helpers/SagaEffectIds":467,"./helpers/SagaEffectName":468,"react":433}],464:[function(require,module,exports){
+},{"../../helpers/isDefined":483,"../../helpers/readFromPath":485,"../TimeDiff.jsx":459,"./helpers/SagaEffectIds":467,"./helpers/SagaEffectName":468,"./helpers/calculateRowStyles":469,"react":433}],464:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -109800,6 +109860,8 @@ Object.defineProperty(exports, "__esModule", {
 });
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; // eslint-disable-next-line no-unused-vars
+
+// eslint-disable-next-line no-unused-vars
 
 // eslint-disable-next-line no-unused-vars
 
@@ -109828,6 +109890,14 @@ var _renderJSONPreview = require('../../helpers/renderJSONPreview');
 
 var _renderJSONPreview2 = _interopRequireDefault(_renderJSONPreview);
 
+var _calculateRowStyles = require('./helpers/calculateRowStyles');
+
+var _calculateRowStyles2 = _interopRequireDefault(_calculateRowStyles);
+
+var _TimeDiff = require('../TimeDiff.jsx');
+
+var _TimeDiff2 = _interopRequireDefault(_TimeDiff);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var getResultRepresentation = function getResultRepresentation(result, i) {
@@ -109848,10 +109918,14 @@ var getResultRepresentation = function getResultRepresentation(result, i) {
   return null;
 };
 
-function SagaEffectResolved(event) {
-  var label = '';
-  var result = event.result;
+function SagaEffectResolved(_ref) {
+  var event = _ref.event;
 
+  var label = '';
+  var result = event.result,
+      timeDiff = event.timeDiff;
+
+  var style = (0, _calculateRowStyles2.default)(event, { color: '#c8ead6' });
 
   if ((0, _isDefined2.default)(result)) {
     if ((typeof result === 'undefined' ? 'undefined' : _typeof(result)) === 'object' && result !== null) {
@@ -109875,14 +109949,19 @@ function SagaEffectResolved(event) {
 
   return _react2.default.createElement(
     'div',
-    null,
-    _react2.default.createElement('i', { className: 'fa fa-check-square-o' }),
-    _react2.default.createElement(_SagaEffectIds2.default, { event: event }),
-    label
+    { style: style },
+    _react2.default.createElement(_TimeDiff2.default, { timeDiff: timeDiff }),
+    _react2.default.createElement(
+      'div',
+      { className: 'actionRowContent' },
+      _react2.default.createElement('i', { className: 'fa fa-check-square-o' }),
+      _react2.default.createElement(_SagaEffectIds2.default, { event: event }),
+      label
+    )
   );
 }
 
-},{"../../helpers/isDefined":482,"../../helpers/renderJSONPreview":487,"./helpers/SagaEffectIds":467,"./helpers/SagaEffectName":468,"react":433}],465:[function(require,module,exports){
+},{"../../helpers/isDefined":483,"../../helpers/renderJSONPreview":488,"../TimeDiff.jsx":459,"./helpers/SagaEffectIds":467,"./helpers/SagaEffectName":468,"./helpers/calculateRowStyles":469,"react":433}],465:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -109910,13 +109989,25 @@ var _SagaEffectName = require('./helpers/SagaEffectName');
 
 var _SagaEffectName2 = _interopRequireDefault(_SagaEffectName);
 
+var _calculateRowStyles = require('./helpers/calculateRowStyles');
+
+var _calculateRowStyles2 = _interopRequireDefault(_calculateRowStyles);
+
+var _TimeDiff = require('../TimeDiff.jsx');
+
+var _TimeDiff2 = _interopRequireDefault(_TimeDiff);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 // eslint-disable-next-line no-unused-vars
-function SagaEffectTriggered(event) {
-  var label = '';
-  var effect = event.effect;
+function SagaEffectTriggered(_ref) {
+  var event = _ref.event;
 
+  var label = '';
+  var effect = event.effect,
+      timeDiff = event.timeDiff;
+
+  var style = (0, _calculateRowStyles2.default)(event, { color: '#c8ead6' });
 
   if ((0, _isDefined2.default)(effect)) {
     var saga = (0, _readFromPath2.default)(effect, 'saga.__func');
@@ -109945,16 +110036,23 @@ function SagaEffectTriggered(event) {
 
   return _react2.default.createElement(
     'div',
-    null,
-    _react2.default.createElement('i', { className: 'fa fa-square-o' }),
-    _react2.default.createElement(_SagaEffectIds2.default, { event: event }),
-    label
+    { style: style },
+    _react2.default.createElement(_TimeDiff2.default, { timeDiff: timeDiff }),
+    _react2.default.createElement(
+      'div',
+      { className: 'actionRowContent' },
+      _react2.default.createElement('i', { className: 'fa fa-square-o' }),
+      _react2.default.createElement(_SagaEffectIds2.default, { event: event }),
+      label
+    )
   );
 }
 // eslint-disable-next-line no-unused-vars
+
+// eslint-disable-next-line no-unused-vars
 // eslint-disable-next-line no-unused-vars
 
-},{"../../helpers/isDefined":482,"../../helpers/readFromPath":484,"./helpers/SagaEffectIds":467,"./helpers/SagaEffectName":468,"react":433}],466:[function(require,module,exports){
+},{"../../helpers/isDefined":483,"../../helpers/readFromPath":485,"../TimeDiff.jsx":459,"./helpers/SagaEffectIds":467,"./helpers/SagaEffectName":468,"./helpers/calculateRowStyles":469,"react":433}],466:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -109966,31 +110064,49 @@ var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
+var _calculateRowStyles = require('./helpers/calculateRowStyles');
+
+var _calculateRowStyles2 = _interopRequireDefault(_calculateRowStyles);
+
+var _TimeDiff = require('../TimeDiff.jsx');
+
+var _TimeDiff2 = _interopRequireDefault(_TimeDiff);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function UnrecognizedEvent(action) {
-  var icon = action.icon || 'fa-angle-double-right';
-  var label = action.label && action.label.replace(/ /g, '') !== action.type ? _react2.default.createElement(
+function UnrecognizedEvent(_ref) {
+  var event = _ref.event;
+
+  var icon = event.icon || 'fa-angle-double-right';
+  var label = event.label && event.label.replace(/ /g, '') !== event.type ? _react2.default.createElement(
     'div',
     { style: { marginLeft: '1.6em' } },
-    action.label
+    event.label
   ) : '';
+  var style = (0, _calculateRowStyles2.default)(event, { color: '#e6e6e6' });
 
   return _react2.default.createElement(
     'div',
-    null,
-    _react2.default.createElement('i', { className: 'fa ' + icon, style: { marginRight: '0.5em' } }),
+    { style: style },
+    _react2.default.createElement(_TimeDiff2.default, { timeDiff: event.timeDiff }),
     _react2.default.createElement(
-      'strong',
-      null,
-      action.type
-    ),
-    label
+      'div',
+      { className: 'actionRowContent' },
+      _react2.default.createElement('i', { className: 'fa ' + icon, style: { marginRight: '0.5em' } }),
+      _react2.default.createElement(
+        'strong',
+        null,
+        event.type
+      ),
+      label
+    )
   );
-} // eslint-disable-next-line no-unused-vars
+}
+// eslint-disable-next-line no-unused-vars
+// eslint-disable-next-line no-unused-vars
 ;
 
-},{"react":433}],467:[function(require,module,exports){
+},{"../TimeDiff.jsx":459,"./helpers/calculateRowStyles":469,"react":433}],467:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -110036,7 +110152,7 @@ function SagaEffectIds(_ref) {
 } // eslint-disable-next-line no-unused-vars
 ;
 
-},{"../../../helpers/isDefined":482,"../../../helpers/readFromPath":484,"react":433}],468:[function(require,module,exports){
+},{"../../../helpers/isDefined":483,"../../../helpers/readFromPath":485,"react":433}],468:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -110186,7 +110302,23 @@ function SagaEffectName(_ref) {
   return null;
 };
 
-},{"../../../helpers/readFromPath":484,"react":433}],469:[function(require,module,exports){
+},{"../../../helpers/readFromPath":485,"react":433}],469:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = calculateRowStyles;
+function calculateRowStyles(_ref) {
+  var color = _ref.color;
+  var defaults = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+
+  return {
+    backgroundColor: color ? color : defaults.color ? defaults.color : '#e6e6e6'
+  };
+}
+
+},{}],470:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -110202,33 +110334,50 @@ var _getMachineName = require('../../helpers/getMachineName');
 
 var _getMachineName2 = _interopRequireDefault(_getMachineName);
 
+var _calculateRowStyles = require('./helpers/calculateRowStyles');
+
+var _calculateRowStyles2 = _interopRequireDefault(_calculateRowStyles);
+
+var _TimeDiff = require('../TimeDiff.jsx');
+
+var _TimeDiff2 = _interopRequireDefault(_TimeDiff);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 // eslint-disable-next-line no-unused-vars
 function onActionDispatched(_ref) {
-  var actionName = _ref.actionName,
-      machine = _ref.machine,
-      args = _ref.args;
+  var event = _ref.event,
+      timeDiff = _ref.timeDiff;
+  var actionName = event.actionName,
+      machine = event.machine;
+
+  var style = (0, _calculateRowStyles2.default)(event, { color: 'rgb(192, 189, 202)' });
 
   return _react2.default.createElement(
     'div',
-    null,
-    _react2.default.createElement('i', { className: 'fa fa-share' }),
+    { style: style },
+    _react2.default.createElement(_TimeDiff2.default, { timeDiff: timeDiff }),
     _react2.default.createElement(
-      'strong',
-      null,
-      actionName
-    ),
-    _react2.default.createElement('i', { className: 'fa fa-long-arrow-right', style: { marginRight: '0.5em', marginLeft: '0.5em' } }),
-    _react2.default.createElement(
-      'strong',
-      null,
-      (0, _getMachineName2.default)(machine)
+      'div',
+      { className: 'actionRowContent' },
+      _react2.default.createElement('i', { className: 'fa fa-share' }),
+      _react2.default.createElement(
+        'strong',
+        null,
+        actionName
+      ),
+      _react2.default.createElement('i', { className: 'fa fa-long-arrow-right', style: { marginRight: '0.5em', marginLeft: '0.5em' } }),
+      _react2.default.createElement(
+        'strong',
+        null,
+        (0, _getMachineName2.default)(machine)
+      )
     )
   );
 }
+// eslint-disable-next-line no-unused-vars
 
-},{"../../helpers/getMachineName":481,"react":433}],470:[function(require,module,exports){
+},{"../../helpers/getMachineName":482,"../TimeDiff.jsx":459,"./helpers/calculateRowStyles":469,"react":433}],471:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -110244,33 +110393,50 @@ var _getMachineName = require('../../helpers/getMachineName');
 
 var _getMachineName2 = _interopRequireDefault(_getMachineName);
 
+var _calculateRowStyles = require('./helpers/calculateRowStyles');
+
+var _calculateRowStyles2 = _interopRequireDefault(_calculateRowStyles);
+
+var _TimeDiff = require('../TimeDiff.jsx');
+
+var _TimeDiff2 = _interopRequireDefault(_TimeDiff);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 // eslint-disable-next-line no-unused-vars
 function onActionProcessed(_ref) {
-  var actionName = _ref.actionName,
-      machine = _ref.machine,
-      args = _ref.args;
+  var event = _ref.event;
+  var actionName = event.actionName,
+      machine = event.machine,
+      timeDiff = event.timeDiff;
+
+  var style = (0, _calculateRowStyles2.default)(event, { color: 'rgb(192, 189, 202)' });
 
   return _react2.default.createElement(
     'div',
-    null,
-    _react2.default.createElement('i', { className: 'fa fa-thumbs-o-up' }),
+    { style: style },
+    _react2.default.createElement(_TimeDiff2.default, { timeDiff: timeDiff }),
     _react2.default.createElement(
-      'strong',
-      null,
-      actionName
-    ),
-    _react2.default.createElement('i', { className: 'fa fa-long-arrow-right', style: { marginRight: '0.5em', marginLeft: '0.5em' } }),
-    _react2.default.createElement(
-      'strong',
-      null,
-      (0, _getMachineName2.default)(machine)
+      'div',
+      { className: 'actionRowContent' },
+      _react2.default.createElement('i', { className: 'fa fa-thumbs-o-up' }),
+      _react2.default.createElement(
+        'strong',
+        null,
+        actionName
+      ),
+      _react2.default.createElement('i', { className: 'fa fa-long-arrow-right', style: { marginRight: '0.5em', marginLeft: '0.5em' } }),
+      _react2.default.createElement(
+        'strong',
+        null,
+        (0, _getMachineName2.default)(machine)
+      )
     )
   );
 }
+// eslint-disable-next-line no-unused-vars
 
-},{"../../helpers/getMachineName":481,"react":433}],471:[function(require,module,exports){
+},{"../../helpers/getMachineName":482,"../TimeDiff.jsx":459,"./helpers/calculateRowStyles":469,"react":433}],472:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -110290,30 +110456,48 @@ var _shortenJSON = require('../../helpers/shortenJSON');
 
 var _shortenJSON2 = _interopRequireDefault(_shortenJSON);
 
+var _calculateRowStyles = require('./helpers/calculateRowStyles');
+
+var _calculateRowStyles2 = _interopRequireDefault(_calculateRowStyles);
+
+var _TimeDiff = require('../TimeDiff.jsx');
+
+var _TimeDiff2 = _interopRequireDefault(_TimeDiff);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 // eslint-disable-next-line no-unused-vars
 function onGeneratorEnd(_ref) {
-  var value = _ref.value;
+  var event = _ref.event;
+  var value = event.value,
+      timeDiff = event.timeDiff;
 
+  var style = (0, _calculateRowStyles2.default)(event, { color: 'rgb(201, 202, 189)' });
   var short = value ? 'with ' + (0, _shortenJSON2.default)(value) : '';
 
   return _react2.default.createElement(
     'div',
-    null,
-    _react2.default.createElement('i', { className: 'fa fa-check-circle-o' }),
-    'generator ',
+    { style: style },
+    _react2.default.createElement(_TimeDiff2.default, { timeDiff: timeDiff }),
     _react2.default.createElement(
-      'strong',
-      null,
-      'completed'
-    ),
-    ' ',
-    short
+      'div',
+      { className: 'actionRowContent' },
+      _react2.default.createElement('i', { className: 'fa fa-check-circle-o' }),
+      'generator ',
+      _react2.default.createElement(
+        'strong',
+        null,
+        'completed'
+      ),
+      ' ',
+      short
+    )
   );
-} // eslint-disable-next-line no-unused-vars
+}
+// eslint-disable-next-line no-unused-vars
+// eslint-disable-next-line no-unused-vars
 
-},{"../../helpers/getMachineName":481,"../../helpers/shortenJSON":488,"react":433}],472:[function(require,module,exports){
+},{"../../helpers/getMachineName":482,"../../helpers/shortenJSON":489,"../TimeDiff.jsx":459,"./helpers/calculateRowStyles":469,"react":433}],473:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -110333,30 +110517,48 @@ var _shortenJSON = require('../../helpers/shortenJSON');
 
 var _shortenJSON2 = _interopRequireDefault(_shortenJSON);
 
+var _calculateRowStyles = require('./helpers/calculateRowStyles');
+
+var _calculateRowStyles2 = _interopRequireDefault(_calculateRowStyles);
+
+var _TimeDiff = require('../TimeDiff.jsx');
+
+var _TimeDiff2 = _interopRequireDefault(_TimeDiff);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 // eslint-disable-next-line no-unused-vars
 function onGeneratorResumed(_ref) {
-  var value = _ref.value;
+  var event = _ref.event;
+  var value = event.value,
+      timeDiff = event.timeDiff;
 
+  var style = (0, _calculateRowStyles2.default)(event, { color: 'rgb(201, 202, 189)' });
   var short = value ? 'with ' + (0, _shortenJSON2.default)(value) : '';
 
   return _react2.default.createElement(
     'div',
-    null,
-    _react2.default.createElement('i', { className: 'fa fa-arrow-circle-right' }),
-    'generator ',
+    { style: style },
+    _react2.default.createElement(_TimeDiff2.default, { timeDiff: timeDiff }),
     _react2.default.createElement(
-      'strong',
-      null,
-      'resumed'
-    ),
-    ' ',
-    short
+      'div',
+      { className: 'actionRowContent' },
+      _react2.default.createElement('i', { className: 'fa fa-arrow-circle-right' }),
+      'generator ',
+      _react2.default.createElement(
+        'strong',
+        null,
+        'resumed'
+      ),
+      ' ',
+      short
+    )
   );
-} // eslint-disable-next-line no-unused-vars
+}
+// eslint-disable-next-line no-unused-vars
+// eslint-disable-next-line no-unused-vars
 
-},{"../../helpers/getMachineName":481,"../../helpers/shortenJSON":488,"react":433}],473:[function(require,module,exports){
+},{"../../helpers/getMachineName":482,"../../helpers/shortenJSON":489,"../TimeDiff.jsx":459,"./helpers/calculateRowStyles":469,"react":433}],474:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -110364,6 +110566,8 @@ Object.defineProperty(exports, "__esModule", {
 });
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; // eslint-disable-next-line no-unused-vars
+
+// eslint-disable-next-line no-unused-vars
 
 // eslint-disable-next-line no-unused-vars
 
@@ -110382,12 +110586,23 @@ var _shortenJSON = require('../../helpers/shortenJSON');
 
 var _shortenJSON2 = _interopRequireDefault(_shortenJSON);
 
+var _calculateRowStyles = require('./helpers/calculateRowStyles');
+
+var _calculateRowStyles2 = _interopRequireDefault(_calculateRowStyles);
+
+var _TimeDiff = require('../TimeDiff.jsx');
+
+var _TimeDiff2 = _interopRequireDefault(_TimeDiff);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function onGeneratorStep(_ref) {
-  var yielded = _ref.yielded;
+  var event = _ref.event;
+  var yielded = event.yielded,
+      timeDiff = event.timeDiff;
 
   var message = '';
+  var style = (0, _calculateRowStyles2.default)(event, { color: 'rgb(201, 202, 189)' });
 
   if (typeof yielded === 'string') {
     message = _react2.default.createElement(
@@ -110435,13 +110650,18 @@ function onGeneratorStep(_ref) {
   }
   return _react2.default.createElement(
     'div',
-    null,
-    _react2.default.createElement('i', { className: 'fa fa-arrow-circle-left' }),
-    message
+    { style: style },
+    _react2.default.createElement(_TimeDiff2.default, { timeDiff: timeDiff }),
+    _react2.default.createElement(
+      'div',
+      { className: 'actionRowContent' },
+      _react2.default.createElement('i', { className: 'fa fa-arrow-circle-left' }),
+      message
+    )
   );
 };
 
-},{"../../helpers/getMachineName":481,"../../helpers/shortenJSON":488,"react":433}],474:[function(require,module,exports){
+},{"../../helpers/getMachineName":482,"../../helpers/shortenJSON":489,"../TimeDiff.jsx":459,"./helpers/calculateRowStyles":469,"react":433}],475:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -110457,13 +110677,24 @@ var _getMachineName = require('../../helpers/getMachineName');
 
 var _getMachineName2 = _interopRequireDefault(_getMachineName);
 
+var _calculateRowStyles = require('./helpers/calculateRowStyles');
+
+var _calculateRowStyles2 = _interopRequireDefault(_calculateRowStyles);
+
+var _TimeDiff = require('../TimeDiff.jsx');
+
+var _TimeDiff2 = _interopRequireDefault(_TimeDiff);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 // eslint-disable-next-line no-unused-vars
 function onMachineConnected(_ref) {
-  var state = _ref.state,
-      meta = _ref.meta;
+  var event = _ref.event;
+  var state = event.state,
+      meta = event.meta,
+      timeDiff = event.timeDiff;
 
+  var style = (0, _calculateRowStyles2.default)(event, { color: 'rgb(170, 189, 207)' });
   var machinesConnectedTo = state.map(_getMachineName2.default).join(', ');
   var component = meta.component ? _react2.default.createElement(
     'strong',
@@ -110473,19 +110704,25 @@ function onMachineConnected(_ref) {
 
   return _react2.default.createElement(
     'div',
-    null,
-    _react2.default.createElement('i', { className: 'fa fa-link' }),
-    component,
-    ' connected to ',
+    { style: style },
+    _react2.default.createElement(_TimeDiff2.default, { timeDiff: timeDiff }),
     _react2.default.createElement(
-      'strong',
-      null,
-      machinesConnectedTo
+      'div',
+      { className: 'actionRowContent' },
+      _react2.default.createElement('i', { className: 'fa fa-link' }),
+      component,
+      ' connected to ',
+      _react2.default.createElement(
+        'strong',
+        null,
+        machinesConnectedTo
+      )
     )
   );
 }
+// eslint-disable-next-line no-unused-vars
 
-},{"../../helpers/getMachineName":481,"react":433}],475:[function(require,module,exports){
+},{"../../helpers/getMachineName":482,"../TimeDiff.jsx":459,"./helpers/calculateRowStyles":469,"react":433}],476:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -110501,26 +110738,45 @@ var _getMachineName = require('../../helpers/getMachineName');
 
 var _getMachineName2 = _interopRequireDefault(_getMachineName);
 
+var _calculateRowStyles = require('./helpers/calculateRowStyles');
+
+var _calculateRowStyles2 = _interopRequireDefault(_calculateRowStyles);
+
+var _TimeDiff = require('../TimeDiff.jsx');
+
+var _TimeDiff2 = _interopRequireDefault(_TimeDiff);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 // eslint-disable-next-line no-unused-vars
 function onMachineCreated(_ref) {
-  var machine = _ref.machine;
+  var event = _ref.event,
+      timeDiff = _ref.timeDiff;
+  var machine = event.machine;
+
+  var style = (0, _calculateRowStyles2.default)(event, { color: 'rgb(200, 212, 201)' });
 
   return _react2.default.createElement(
     'div',
-    null,
-    _react2.default.createElement('i', { className: 'fa fa-plus' }),
+    { style: style },
+    _react2.default.createElement(_TimeDiff2.default, { timeDiff: timeDiff }),
     _react2.default.createElement(
-      'strong',
-      null,
-      (0, _getMachineName2.default)(machine)
-    ),
-    ' machine created'
+      'div',
+      { className: 'actionRowContent' },
+      _react2.default.createElement('i', { className: 'fa fa-plus' }),
+      _react2.default.createElement(
+        'strong',
+        null,
+        (0, _getMachineName2.default)(machine)
+      ),
+      ' machine created'
+    )
   );
-};
+}
+// eslint-disable-next-line no-unused-vars
+;
 
-},{"../../helpers/getMachineName":481,"react":433}],476:[function(require,module,exports){
+},{"../../helpers/getMachineName":482,"../TimeDiff.jsx":459,"./helpers/calculateRowStyles":469,"react":433}],477:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -110536,13 +110792,24 @@ var _getMachineName = require('../../helpers/getMachineName');
 
 var _getMachineName2 = _interopRequireDefault(_getMachineName);
 
+var _calculateRowStyles = require('./helpers/calculateRowStyles');
+
+var _calculateRowStyles2 = _interopRequireDefault(_calculateRowStyles);
+
+var _TimeDiff = require('../TimeDiff.jsx');
+
+var _TimeDiff2 = _interopRequireDefault(_TimeDiff);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 // eslint-disable-next-line no-unused-vars
 function onMachineDisconnected(_ref) {
-  var state = _ref.state,
-      meta = _ref.meta;
+  var event = _ref.event;
+  var state = event.state,
+      meta = event.meta,
+      timeDiff = event.timeDiff;
 
+  var style = (0, _calculateRowStyles2.default)(event, { color: 'rgb(170, 189, 207)' });
   var machinesConnectedTo = state.map(_getMachineName2.default).join(', ');
   var component = meta.component ? _react2.default.createElement(
     'strong',
@@ -110552,19 +110819,25 @@ function onMachineDisconnected(_ref) {
 
   return _react2.default.createElement(
     'div',
-    null,
-    _react2.default.createElement('i', { className: 'fa fa-unlink' }),
-    component,
-    ' disconnected from ',
+    { style: style },
+    _react2.default.createElement(_TimeDiff2.default, { timeDiff: timeDiff }),
     _react2.default.createElement(
-      'strong',
-      null,
-      machinesConnectedTo
+      'div',
+      { className: 'actionRowContent' },
+      _react2.default.createElement('i', { className: 'fa fa-unlink' }),
+      component,
+      ' disconnected from ',
+      _react2.default.createElement(
+        'strong',
+        null,
+        machinesConnectedTo
+      )
     )
   );
 }
+// eslint-disable-next-line no-unused-vars
 
-},{"../../helpers/getMachineName":481,"react":433}],477:[function(require,module,exports){
+},{"../../helpers/getMachineName":482,"../TimeDiff.jsx":459,"./helpers/calculateRowStyles":469,"react":433}],478:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -110580,31 +110853,49 @@ var _getMachineName = require('../../helpers/getMachineName');
 
 var _getMachineName2 = _interopRequireDefault(_getMachineName);
 
+var _calculateRowStyles = require('./helpers/calculateRowStyles');
+
+var _calculateRowStyles2 = _interopRequireDefault(_calculateRowStyles);
+
+var _TimeDiff = require('../TimeDiff.jsx');
+
+var _TimeDiff2 = _interopRequireDefault(_TimeDiff);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 // eslint-disable-next-line no-unused-vars
 function onStateChanged(_ref) {
-  var machine = _ref.machine;
+  var event = _ref.event;
+  var machine = event.machine,
+      timeDiff = event.timeDiff;
+
+  var style = (0, _calculateRowStyles2.default)(event, { color: 'rgb(201, 172, 186)' });
 
   return _react2.default.createElement(
     'div',
-    null,
-    _react2.default.createElement('i', { className: 'fa fa-heart' }),
+    { style: style },
+    _react2.default.createElement(_TimeDiff2.default, { timeDiff: timeDiff }),
     _react2.default.createElement(
-      'strong',
-      null,
-      (0, _getMachineName2.default)(machine)
-    ),
-    '\'s state changed to ',
-    _react2.default.createElement(
-      'strong',
-      null,
-      machine.state.name
+      'div',
+      { className: 'actionRowContent' },
+      _react2.default.createElement('i', { className: 'fa fa-heart' }),
+      _react2.default.createElement(
+        'strong',
+        null,
+        (0, _getMachineName2.default)(machine)
+      ),
+      '\'s state changed to ',
+      _react2.default.createElement(
+        'strong',
+        null,
+        machine.state.name
+      )
     )
   );
 }
+// eslint-disable-next-line no-unused-vars
 
-},{"../../helpers/getMachineName":481,"react":433}],478:[function(require,module,exports){
+},{"../../helpers/getMachineName":482,"../TimeDiff.jsx":459,"./helpers/calculateRowStyles":469,"react":433}],479:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -110620,32 +110911,50 @@ var _getMachineName = require('../../helpers/getMachineName');
 
 var _getMachineName2 = _interopRequireDefault(_getMachineName);
 
+var _calculateRowStyles = require('./helpers/calculateRowStyles');
+
+var _calculateRowStyles2 = _interopRequireDefault(_calculateRowStyles);
+
+var _TimeDiff = require('../TimeDiff.jsx');
+
+var _TimeDiff2 = _interopRequireDefault(_TimeDiff);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 // eslint-disable-next-line no-unused-vars
 function onStateWillChange(_ref) {
-  var machine = _ref.machine;
+  var event = _ref.event;
+  var machine = event.machine,
+      timeDiff = event.timeDiff;
+
+  var style = (0, _calculateRowStyles2.default)(event, { color: 'rgb(201, 172, 186)' });
 
   return _react2.default.createElement(
     'div',
-    null,
-    _react2.default.createElement('i', { className: 'fa fa-heart' }),
+    { style: style },
+    _react2.default.createElement(_TimeDiff2.default, { timeDiff: timeDiff }),
     _react2.default.createElement(
-      'strong',
-      null,
-      (0, _getMachineName2.default)(machine)
-    ),
-    '\'s state(',
-    _react2.default.createElement(
-      'strong',
-      null,
-      machine.state.name
-    ),
-    ') will change'
+      'div',
+      { className: 'actionRowContent' },
+      _react2.default.createElement('i', { className: 'fa fa-heart' }),
+      _react2.default.createElement(
+        'strong',
+        null,
+        (0, _getMachineName2.default)(machine)
+      ),
+      '\'s state(',
+      _react2.default.createElement(
+        'strong',
+        null,
+        machine.state.name
+      ),
+      ') will change'
+    )
   );
 }
+// eslint-disable-next-line no-unused-vars
 
-},{"../../helpers/getMachineName":481,"react":433}],479:[function(require,module,exports){
+},{"../../helpers/getMachineName":482,"../TimeDiff.jsx":459,"./helpers/calculateRowStyles":469,"react":433}],480:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -110655,7 +110964,7 @@ var PAGES = exports.PAGES = {
   DASHBOARD: 'LOG'
 };
 
-},{}],480:[function(require,module,exports){
+},{}],481:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -110689,7 +110998,7 @@ function formatMilliseconds(millisec) {
   return minutes + ":" + seconds + ':' + ms;
 }
 
-},{}],481:[function(require,module,exports){
+},{}],482:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -110705,7 +111014,7 @@ function getMachineName(_ref) {
   return name;
 };
 
-},{}],482:[function(require,module,exports){
+},{}],483:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -110717,7 +111026,7 @@ var isDefined = function isDefined(v) {
 
 exports.default = isDefined;
 
-},{}],483:[function(require,module,exports){
+},{}],484:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -110756,7 +111065,7 @@ function normalizeEvent(event) {
   return event;
 };
 
-},{"./formatMilliseconds":480}],484:[function(require,module,exports){
+},{"./formatMilliseconds":481}],485:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -110787,7 +111096,7 @@ function readFromPath(object, path) {
   return fallback;
 };
 
-},{"./isDefined":482}],485:[function(require,module,exports){
+},{"./isDefined":483}],486:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -110847,7 +111156,7 @@ function renderEventAsTree(event) {
   return (0, _renderJSON2.default)(_extends({}, rest), 'Event');
 };
 
-},{"./getMachineName":481,"./renderJSON":486}],486:[function(require,module,exports){
+},{"./getMachineName":482,"./renderJSON":487}],487:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -110960,7 +111269,7 @@ var renderJSON = function renderJSON(json) {
 
 exports.default = renderJSON;
 
-},{"./renderJSONPreview":487,"react":433,"react-json-tree":324}],487:[function(require,module,exports){
+},{"./renderJSONPreview":488,"react":433,"react-json-tree":324}],488:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -111015,7 +111324,7 @@ function renderJSONPreview(data) {
   return result.length > limit ? result.substr(0, limit) + '...' : result;
 };
 
-},{}],488:[function(require,module,exports){
+},{}],489:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -111031,7 +111340,7 @@ function shortenJSON(data) {
   return str.substr(0, STR_LIMIT) + '...';
 };
 
-},{}],489:[function(require,module,exports){
+},{}],490:[function(require,module,exports){
 'use strict';
 
 var _react = require('react');
@@ -111066,7 +111375,7 @@ _bridge2.default.on(function (action) {
 
 _reactDom2.default.render(_react2.default.createElement(_App2.default, null), document.querySelector('#container'));
 
-},{"./components/App.jsx":456,"./services/bridge":490,"./stent/machines":491,"react":433,"react-dom":187,"stent":449,"stent/lib/react":451}],490:[function(require,module,exports){
+},{"./components/App.jsx":456,"./services/bridge":491,"./stent/machines":492,"react":433,"react-dom":187,"stent":449,"stent/lib/react":451}],491:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -111095,7 +111404,7 @@ wire();
 
 exports.default = bridge;
 
-},{}],491:[function(require,module,exports){
+},{}],492:[function(require,module,exports){
 'use strict';
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
@@ -111194,7 +111503,7 @@ var machine = _stent.Machine.create('DevTools', {
 
         var event = this.getEventById(id);
         var autoscroll = event.id === events[events.length - 1].id;
-        console.log(autoscroll);
+
         return _extends({}, rest, {
           autoscroll: autoscroll,
           pinnedEvent: event ? event : currentPinnedEvent,
@@ -111257,4 +111566,4 @@ if (typeof window !== 'undefined' && window.location && window.location.href) {
   };
 }
 
-},{"../_mocks/example.redux.json":452,"../_mocks/example.saga.json":453,"../_mocks/example.saga.short.json":454,"../_mocks/example.state.json":455,"../constants":479,"../helpers/normalize":483,"stent":449}]},{},[489]);
+},{"../_mocks/example.redux.json":452,"../_mocks/example.saga.json":453,"../_mocks/example.saga.short.json":454,"../_mocks/example.state.json":455,"../constants":480,"../helpers/normalize":484,"stent":449}]},{},[490]);

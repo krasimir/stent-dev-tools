@@ -2,14 +2,23 @@
 import React from 'react';
 import getMachineName from '../../helpers/getMachineName';
 
-export default function onMachineConnected({ state, meta }) {
+import calculateRowStyles from './helpers/calculateRowStyles';
+// eslint-disable-next-line no-unused-vars
+import TimeDiff from '../TimeDiff.jsx';
+
+export default function onMachineConnected({ event }) {
+  const { state, meta, timeDiff } = event;
+  const style = calculateRowStyles(event, { color: 'rgb(170, 189, 207)' });
   const machinesConnectedTo = state.map(getMachineName).join(', ');
   const component = meta.component ? <strong>{ `<${ meta.component }>` }</strong> : null;
 
   return (
-    <div>
-      <i className='fa fa-link'></i>
-      { component } connected to <strong>{ machinesConnectedTo }</strong>
+    <div style={ style }>
+      <TimeDiff timeDiff={ timeDiff } />
+      <div className='actionRowContent'>
+        <i className='fa fa-link'></i>
+        { component } connected to <strong>{ machinesConnectedTo }</strong>
+      </div>
     </div>
   );
 }

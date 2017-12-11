@@ -19,8 +19,6 @@ import SagaEffectCanceled from './handlers/SagaEffectCanceled';
 import SagaEffectRejected from './handlers/SagaEffectRejected';
 import ReduxAction from './handlers/ReduxAction';
 // eslint-disable-next-line no-unused-vars
-import TimeDiff from './TimeDiff.jsx';
-// eslint-disable-next-line no-unused-vars
 import Settings from './Settings.jsx';
 // eslint-disable-next-line no-unused-vars
 import { AutoSizer, List } from 'react-virtualized';
@@ -80,7 +78,7 @@ class Dashboard extends React.Component {
   }
   _renderEvent(event) {
     const { pinnedEvent, pin } = this.props;
-    const { type, withMarker, color, timeDiff } = event;
+    const { type, withMarker } = event;
     // eslint-disable-next-line no-unused-vars
     const Component = StentHandlers[type] || Handlers[type] || UnrecognizedEvent;
     const isPinned = (pinnedEvent || {})['id'] === event.id;
@@ -90,19 +88,14 @@ class Dashboard extends React.Component {
       ' actionRow relative' +
       (withMarker ? ' withMarker' : '') +
       (isPinned ? ' pinned' : '');
-    const style = color ? { backgroundColor: color } : {};
 
     return (
-      <li
+      <Component
         key={ event.id }
         className={ className }
         onClick={ () => pin(event.id) }
-        style={ style }>
-        <TimeDiff timeDiff={ timeDiff } />
-        <div className='actionRowContent'>
-          <Component {...event} />
-        </div>
-      </li>
+        event={ event }
+      />
     );
   }
   _renderState() {

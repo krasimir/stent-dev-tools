@@ -2,11 +2,21 @@
 import React from 'react';
 import getMachineName from '../../helpers/getMachineName';
 
-export default function onStateChanged({ machine }) {
+import calculateRowStyles from './helpers/calculateRowStyles';
+// eslint-disable-next-line no-unused-vars
+import TimeDiff from '../TimeDiff.jsx';
+
+export default function onStateChanged({ event }) {
+  const { machine, timeDiff } = event;
+  const style = calculateRowStyles(event, { color: 'rgb(201, 172, 186)' });
+
   return (
-    <div>
-      <i className='fa fa-heart'></i>
-      <strong>{ getMachineName(machine) }</strong>'s state changed to <strong>{ machine.state.name }</strong>
+    <div style={ style }>
+      <TimeDiff timeDiff={ timeDiff } />
+      <div className='actionRowContent'>
+        <i className='fa fa-heart'></i>
+        <strong>{ getMachineName(machine) }</strong>'s state changed to <strong>{ machine.state.name }</strong>
+      </div>
     </div>
   );
 }
