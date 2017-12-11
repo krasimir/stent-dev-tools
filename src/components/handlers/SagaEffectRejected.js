@@ -14,7 +14,7 @@ import TimeDiff from '../TimeDiff.jsx';
 export default function SagaEffectCanceled({ event, onClick, className }) {
   var label = 'canceled';
   const { error, timeDiff } = event;
-  const style = calculateRowStyles(event, { color: 'rgb(165, 165, 165)' });
+  const style = calculateRowStyles(event, { color: 'rgb(230, 230, 230)' });
 
   if (isDefined(error)) {
     const message = readFromPath(error, 'message', false);

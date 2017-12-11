@@ -11,7 +11,7 @@ import TimeDiff from '../TimeDiff.jsx';
 export default function SagaEffectActionDispatched({ event, onClick, className }) {
   var label = '';
   const { action, timeDiff } = event;
-  const style = calculateRowStyles(event, { color: 'rgb(165, 165, 165)' });
+  const style = calculateRowStyles(event, { color: 'rgb(230, 230, 230)' });
 
   if (isDefined(action)) {
     label = <span>Action <strong>{ action.type }</strong> dispatched</span>;

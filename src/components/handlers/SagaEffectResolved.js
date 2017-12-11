@@ -27,7 +27,7 @@ const getResultRepresentation = function (result, i) {
 export default function SagaEffectResolved({ event, onClick, className }) {
   var label = '';
   const { result, timeDiff } = event;
-  const style = calculateRowStyles(event, { color: 'rgb(165, 165, 165)' });
+  const style = calculateRowStyles(event, { color: 'rgb(230, 230, 230)' });
 
   if (isDefined(result)) {
     if (typeof result === 'object' && result !== null) {

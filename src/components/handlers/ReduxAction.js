@@ -12,7 +12,7 @@ import TimeDiff from '../TimeDiff.jsx';
 export default function ReduxAction({ event, onClick, className }) {
   var label = '';
   const { action, timeDiff } = event;
-  const style = calculateRowStyles(event, { color: 'rgb(142, 142, 142)' });
+  const style = calculateRowStyles(event, { color: 'rgb(200, 200, 200)' });
 
   if (isDefined(action)) {
     const { type, ...rest } = action;

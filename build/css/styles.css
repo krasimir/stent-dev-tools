@@ -154,6 +154,7 @@ p {
   margin-right: 0.5em;
   font-size: 1em;
   color: rgb(0, 0, 0);
+  transition: transform 200ms ease;
 }
 .log strong {
   display: inline-block;
@@ -178,8 +179,8 @@ p {
   transition: opacity 200ms ease, transform 200ms ease;
   transform: scale(1);
 }
-.actionRow:hover {
-  opacity: 0.6;
+.actionRow:hover .fa:first-child {
+  transform: scale(0.6);
 }
 .actionRowContent {
   width: 1000px;

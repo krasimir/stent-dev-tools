@@ -14,7 +14,7 @@ import TimeDiff from '../TimeDiff.jsx';
 export default function SagaEffectTriggered({ event, onClick, className }) {
   var label = '';
   const { effect, timeDiff } = event;
-  const style = calculateRowStyles(event, { color: 'rgb(165, 165, 165)' });
+  const style = calculateRowStyles(event, { color: 'rgb(230, 230, 230)' });
 
   if (isDefined(effect)) {
     const saga = readFromPath(effect, 'saga.__func');
@@ -31,7 +31,13 @@ export default function SagaEffectTriggered({ event, onClick, className }) {
   }
 
   return (
-    <li style={ style } onClick={ onClick } className={ className }>
+    <li
+      style={ style }
+      onClick={ onClick }
+      className={ className }
+      onMouseOver={ () => {
+        
+      }}>
       <TimeDiff timeDiff={ timeDiff } parentStyle={ style } />
       <div className='actionRowContent'>
         <i className='fa fa-square-o'></i>
