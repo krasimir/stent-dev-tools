@@ -23,7 +23,6 @@ export function renderEventAsTree(event) {
     state,
     origin,
     id,
-    uid,
     icon,
     withMarker,
     color,

@@ -2,6 +2,8 @@
 
 var messages = [];
 
+chrome.runtime.sendMessage([{ pageRefresh: true }]);
+
 window.addEventListener('message', function (event) {
   const message = event.data;
 

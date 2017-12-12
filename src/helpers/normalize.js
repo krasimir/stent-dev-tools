@@ -1,7 +1,7 @@
 import formatMilliseconds from './formatMilliseconds';
 
 var INDEX = 0;
-var timeOfLastReceivedEvent = {};
+var timeOfLastReceivedEvent = null;
 const getId = () => INDEX++;
 
 function hexToRgb(hex) {
@@ -20,10 +20,8 @@ function hexToRgb(hex) {
 }
 
 export function normalizeEvent(event) {
-  const lastTime = timeOfLastReceivedEvent[event.uid || 'nouid'];
-
-  if (lastTime) {
-    let diff = event.time - lastTime;
+  if (timeOfLastReceivedEvent) {
+    let diff = event.time - timeOfLastReceivedEvent;
 
     if (diff > 0) {
       event.timeDiff = '+ ' + formatMilliseconds(diff);
@@ -31,8 +29,8 @@ export function normalizeEvent(event) {
   }
   event.id = getId();
 
-  if (event.uid && event.time) {
-    timeOfLastReceivedEvent[event.uid] = event.time;
+  if (event.time) {
+    timeOfLastReceivedEvent = event.time;
   }
   if (event.color && event.color.indexOf('#') === 0) {
     event.color = hexToRgb(event.color);

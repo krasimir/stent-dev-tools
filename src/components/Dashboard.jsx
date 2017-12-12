@@ -52,29 +52,8 @@ class Dashboard extends React.Component {
     this._rowRenderer = this._rowRenderer.bind(this);
     this.state = {
       filterByTypes: null,
-      source: null,
       settingsVisibility: false
     };
-  }
-  componentWillReceiveProps(newProps) {
-    if (newProps.events.length > 1) {
-      this.setState({ source: newProps.events[0].uid });
-    }
-  }
-  _onSourceChange(source) {
-    this.setState({ source });
-  }
-  _renderSourceSelector() {
-    const options = this.props.events.reduce((result, event) => {
-      if (!result.find(o => o === event.uid)) result.push(event.uid);
-      return result;
-    }, []);
-
-    return (
-      <select onChange={ e => this._onSourceChange(e.target.value) } className='left mr1' key='filter3'>
-        { options.map((uid, i) => <option value={ uid } key={ i }>{ `<source ${ i + 1 }>` }</option>) }
-      </select>
-    );
   }
   _renderEvent(event) {
     const { pinnedEvent, pin } = this.props;
@@ -121,7 +100,7 @@ class Dashboard extends React.Component {
     );
   }
   render() {
-    const { filterByTypes, source } = this.state;
+    const { filterByTypes } = this.state;
     const {
       clear,
       marker,
@@ -137,9 +116,7 @@ class Dashboard extends React.Component {
       return <p style={{ margin: '0.2em 0 0 0' }}>Waiting for events ...</p>;
     }
 
-    const eventsToRender = events.filter(({ uid, type }) => {
-      // filter by source
-      if (uid !== source) return false;
+    const eventsToRender = events.filter(({ type }) => {
       // filter by type
       if (filterByTypes !== null && (type && filterByTypes.indexOf(type) < 0)) {
         return false;
@@ -162,7 +139,6 @@ class Dashboard extends React.Component {
               className='right mr05 try2'>
               <i className='fa fa-gear'></i>
             </a>
-            { this._renderSourceSelector() }
           </div>
           <ul className='log'>
             { /* events.map(this._renderEvent) */ }

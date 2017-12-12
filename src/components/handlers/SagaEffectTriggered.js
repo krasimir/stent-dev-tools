@@ -36,7 +36,7 @@ export default function SagaEffectTriggered({ event, onClick, className }) {
       onClick={ onClick }
       className={ className }
       onMouseOver={ () => {
-        
+
       }}>
       <TimeDiff timeDiff={ timeDiff } parentStyle={ style } />
       <div className='actionRowContent'>

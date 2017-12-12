@@ -1,1 +1,3 @@
-* fix the filter to work with the label if type is missing
+* make sure that we always have a pinned item (there's probably a case where we have a pinned event in the state but it doesn't match any of the `events`, probably when we flush events)
+* run only in dev mode (if window is defined + register variable via content script)
+* empty page + just disable the controls when there's no events (do not hide everything)

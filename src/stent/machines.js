@@ -1,7 +1,4 @@
 import { Machine } from 'stent';
-import exampleState from '../_mocks/example.state.json';
-import exampleStateRedux from '../_mocks/example.redux.json';
-import exampleStateSaga from '../_mocks/example.saga.json';
 import { PAGES } from '../constants';
 import { normalizeEvent } from '../helpers/normalize';
 
@@ -19,12 +16,11 @@ const machine = Machine.create('DevTools', {
   transitions: {
     'working': {
       'action received': function ({ events, autoscroll, pinnedEvent, ...rest }, newEvents) {
+        if (newEvents.length === 1 && newEvents[0].pageRefresh === true) {
+          this.flushEvents(); return undefined;
+        }
         const eventsToAdd = newEvents.map(newEvent => {
-          if (newEvent.pageRefresh === true) {
-            events = [];
-            return false;
-          }
-          if (typeof newEvent.type === 'undefined' || typeof newEvent.uid === 'undefined') {
+          if (typeof newEvent.type === 'undefined') {
             return false;
           }
           return normalizeEvent(newEvent);
@@ -106,16 +102,18 @@ if (typeof window !== 'undefined' && window.location && window.location.href) {
     let s;
 
     if (window.location.href.indexOf('populate=1') > 0) {
-      s = exampleState;
+      s = './_mocks/example.stent.json';
     } else if (window.location.href.indexOf('populate=2') > 0) {
-      s = exampleStateRedux;
+      s = './_mocks/example.redux.json';
     } else if (window.location.href.indexOf('populate=3') > 0) {
-      s = exampleStateSaga;
+      s = './_mocks/example.saga.json';
     }
 
-    setTimeout(function () {
-      console.log('About to inject ' + s.events.length + ' actions');
-      machine.actionReceived(s.events);
-    }, 20);
+    fetch(s).then(response => {
+      response.json().then(({ events }) => {
+        console.log('About to inject ' + events.length + ' actions');
+        machine.actionReceived(events);
+      });
+    });
   };
 }

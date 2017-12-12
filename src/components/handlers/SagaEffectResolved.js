@@ -36,7 +36,7 @@ export default function SagaEffectResolved({ event, onClick, className }) {
       } else if ('type' in result) {
         label = result.type;
       } else if (Array.isArray(result)) {
-        if (typeof result[0] === 'object' && '@@redux-saga/TASK' in result[0]) {
+        if (typeof result[0] === 'object' && result[0] !== null && '@@redux-saga/TASK' in result[0]) {
           label = result.map(getResultRepresentation);
         } else {
           label = renderJSONPreview(result);
